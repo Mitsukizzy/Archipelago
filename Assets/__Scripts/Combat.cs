@@ -103,7 +103,7 @@ public class Combat : MonoBehaviour
             multClickCountRight = 0;
         }
 
-        switch ( multClickCountRight )
+        switch ( multClickCountLeft )
         {
             case 0:
                 // Perform smash move 0 right click
