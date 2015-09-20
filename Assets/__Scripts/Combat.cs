@@ -15,6 +15,8 @@ public class Combat : MonoBehaviour
     private GameObject m_Canvas;
     private GameObject m_ComboTextObj;
     private Text m_ComboText;
+		
+	private InputManager im;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class Combat : MonoBehaviour
 	    m_ComboText = m_ComboTextObj.GetComponent<Text>();
         m_ComboText.rectTransform.parent = m_Canvas.transform;
         m_ComboText.rectTransform.localPosition = transform.position;
+		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
 	}
 	
 	// Update is called once per frame
@@ -35,19 +38,19 @@ public class Combat : MonoBehaviour
 	        m_ComboTextObj.SetActive( false );
 	    }
 
-        if ( Input.GetMouseButtonDown( 0 ) )
+        if ( im.normalAttackButtonPressed() )
         {
             clickTimer = Time.time;
             LeftClickCombo();
         }
 
-        if ( Input.GetMouseButtonDown( 1 ) )
+        if ( im.smashAttackButtonPressed() )
         {
             clickTimer = Time.time;
             RightClickCombo();
         }
 
-        if ( Input.GetMouseButtonDown( 2 ) )
+        if ( im.specialAttackButtonPressed() )
         {
             Debug.Log( "Pressed middle click." );
         }
@@ -100,7 +103,7 @@ public class Combat : MonoBehaviour
             multClickCountRight = 0;
         }
 
-        switch ( multClickCountLeft )
+        switch ( multClickCountRight )
         {
             case 0:
                 // Perform smash move 0 right click
