@@ -15,18 +15,27 @@ public class Combat : MonoBehaviour
     private GameObject m_Canvas;
     private GameObject m_ComboTextObj;
     private Text m_ComboText;
+
+	public GameObject CombatTrail;
 		
 	private InputManager im;
+
+	//trail renderer for attack effects
+	public GameObject attackTrail;
+	Vector3 trailDefaultPos;
 
 	// Use this for initialization
 	void Start () {
         m_Canvas = GameObject.Find ( "Canvas" );
         m_ComboTextObj = ( GameObject )Instantiate ( Resources.Load ( "ComboText" ) );
         m_ComboTextObj.SetActive ( false );
+		CombatTrail.SetActive(false);
 	    m_ComboText = m_ComboTextObj.GetComponent<Text>();
         m_ComboText.rectTransform.parent = m_Canvas.transform;
         m_ComboText.rectTransform.localPosition = transform.position;
 		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
+
+		trailDefaultPos = attackTrail.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +45,7 @@ public class Combat : MonoBehaviour
         if ( fadeTimer < 0 )
         {
 	        m_ComboTextObj.SetActive( false );
+			CombatTrail.SetActive(false);
 	    }
 
         if ( im.normalAttackButtonPressed() )
@@ -69,27 +79,34 @@ public class Combat : MonoBehaviour
             case 0:
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
-                break;
+				attackTrail.transform.Translate(Vector3.up * -3.0f);
+				attackTrail.transform.Translate(Vector3.right * 3.0f);
+				break;
             case 1:
                 // Perform basic move 2 left click
                 ShowComboText ( "LEFT 2!" );
-                break;
+				attackTrail.transform.Translate(Vector3.up * 3.0f);
+				attackTrail.transform.Translate(Vector3.right * -3.0f);
+				break;
             case 2:
                 // Perform basic move 3 left click
                 ShowComboText ( "LEFT 3!" );
-                break;
+				attackTrail.transform.Translate(Vector3.right * 3.0f);
+				break;
             case 3:
                 // Perform basic move 4 left click
+				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 ShowComboText ( "LEFT 4!" );
                 break;
             default:
                 // Reset to zero if over 4
                 multClickCountLeft = 0;
                 multClickCountRight = 0;
-
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
-                break;
+				attackTrail.transform.Translate(Vector3.up * -3.0f);
+				attackTrail.transform.Translate(Vector3.right * 3.0f);
+				break;
         } 
         multClickCountRight = 0;
         multClickCountLeft++;
@@ -108,11 +125,15 @@ public class Combat : MonoBehaviour
             case 0:
                 // Perform smash move 0 right click
                 ShowComboText( "RIGHT 0!");
-                break;
+			attackTrail.transform.Translate(Vector3.up * 3.0f);
+			attackTrail.transform.Translate(Vector3.right * 3.0f);
+			break;
             case 1:
                 // Perform smash move 1 right click
                 ShowComboText ( "RIGHT 1!" );
-                break;
+			attackTrail.transform.Translate(Vector3.up * -3.0f);
+			attackTrail.transform.Translate(Vector3.right * -3.0f);
+			break;
             case 2:
                 // Perform smash move 2 right click
                 ShowComboText ( "RIGHT 2!" );
@@ -150,6 +171,7 @@ public class Combat : MonoBehaviour
     {
         fadeTimer = 0.75f;
         m_ComboTextObj.SetActive( true );
+		CombatTrail.SetActive(true);
         m_ComboText.text = text;
     }
 }

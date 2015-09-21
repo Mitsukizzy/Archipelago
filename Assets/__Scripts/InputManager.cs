@@ -9,12 +9,6 @@ public enum InputType {
 };
 
 public class InputManager : MonoBehaviour {
-	
-	float clickTimer = 0.0f;
-	float prevClickTimer = 0.0f;
-	float delayBetweenMultClicks = 0.75f;
-	int multClickCountLeft = 0;
-	int multClickCountRight = 0;
 
 	public InputType controlScheme;
 
@@ -82,17 +76,37 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
-    public bool DodgeButtonReleased ()
-    {
-        switch ( controlScheme )
-        {
-            case InputType.Mouse:
-                if ( Input.GetKeyUp ( KeyCode.Space ) )
-                {
-                    return true;
-                }
-                break;
-            case InputType.Keyboard:
+	public bool DodgeButtonPressed ()
+	{
+		switch ( controlScheme )
+		{
+		case InputType.Mouse:
+			if ( Input.GetKeyDown ( KeyCode.Space ) )
+			{
+				return true;
+			}
+			break;
+		case InputType.Keyboard:
+			break;
+		case InputType.Controller:
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
+	
+	public bool DodgeButtonReleased ()
+	{
+		switch ( controlScheme )
+		{
+		case InputType.Mouse:
+			if ( Input.GetKeyUp ( KeyCode.Space ) )
+			{
+				return true;
+			}
+			break;
+		case InputType.Keyboard:
                 break;
             case InputType.Controller:
                 break;
@@ -153,4 +167,21 @@ public class InputManager : MonoBehaviour {
 		return false;
 	}
 
+	public bool gatheringButtonPressed(){
+		switch(controlScheme){
+		case InputType.Mouse:
+			if(Input.GetKey( KeyCode.E )){
+				return true;
+			}
+			break;
+		case InputType.Keyboard:
+			break;
+		case InputType.Controller:
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
+	
 }
