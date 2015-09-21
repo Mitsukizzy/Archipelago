@@ -51,12 +51,14 @@ public class Combat : MonoBehaviour
         if ( im.normalAttackButtonPressed() )
         {
             clickTimer = Time.time;
+            attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
             LeftClickCombo();
         }
 
         if ( im.smashAttackButtonPressed() )
         {
             clickTimer = Time.time;
+            attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
             RightClickCombo();
         }
 
@@ -125,14 +127,14 @@ public class Combat : MonoBehaviour
             case 0:
                 // Perform smash move 0 right click
                 ShowComboText( "RIGHT 0!");
-			attackTrail.transform.Translate(Vector3.up * 3.0f);
-			attackTrail.transform.Translate(Vector3.right * 3.0f);
+			    attackTrail.transform.Translate(Vector3.up * 3.0f);
+			    attackTrail.transform.Translate(Vector3.right * 3.0f);
 			break;
             case 1:
                 // Perform smash move 1 right click
                 ShowComboText ( "RIGHT 1!" );
-			attackTrail.transform.Translate(Vector3.up * -3.0f);
-			attackTrail.transform.Translate(Vector3.right * -3.0f);
+			    attackTrail.transform.Translate(Vector3.up * -3.0f);
+			    attackTrail.transform.Translate(Vector3.right * -3.0f);
 			break;
             case 2:
                 // Perform smash move 2 right click
