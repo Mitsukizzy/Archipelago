@@ -16,44 +16,91 @@ public class InputManager : MonoBehaviour {
 	int multClickCountLeft = 0;
 	int multClickCountRight = 0;
 
-	public GameObject currentCharacter; //The character that we are controlling at this time.
-	public float speed = 5.0f;
-	public float runSpeed = 10.0f;
 	public InputType controlScheme;
-	float originalSpeed;
 
 	// Use this for initialization
-	void Start () {
-		originalSpeed = speed;
+	void Start () 
+    {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(controlScheme == InputType.Mouse){
-
-			//move character
-			currentCharacter.transform.Translate(Vector2.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed);
-			currentCharacter.transform.Translate(Vector2.up * Input.GetAxis("Vertical") * Time.deltaTime * speed);
-
-
-			if( Input.GetKey( KeyCode.Q ) )
-			{
-				Debug.Log("Run");
-				speed = runSpeed;
-			}
-
-			if( Input.GetKeyUp( KeyCode.Q ) )
-			{
-				Debug.Log("Stopped Running");
-				speed = originalSpeed;
-			}
-
-			if( Input.GetKey( KeyCode.Space ) )
-			{
-				Debug.Log("Dodge");
-			}
-		}
+	void Update () 
+    {
 	}
+
+    public Vector3 GetHorizontalMovement ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                return Vector2.right * Input.GetAxis ( "Horizontal" ) * Time.deltaTime;
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return Vector3.zero;
+    }
+
+    public Vector3 GetVerticalMovement ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                return Vector2.up * Input.GetAxis ( "Vertical" ) * Time.deltaTime;
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return Vector3.zero;
+    }
+
+    public bool RunButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKey ( KeyCode.LeftShift ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    public bool DodgeButtonReleased ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyUp ( KeyCode.Space ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
 	public bool normalAttackButtonPressed(){
 		switch(controlScheme){
