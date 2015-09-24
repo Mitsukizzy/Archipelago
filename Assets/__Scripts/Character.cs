@@ -4,13 +4,20 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 
-    private InputManager m_input;
+    private InputManager m_Input;
+    private Camera m_Cam;
 
-    private bool m_facingRight;
+    private bool m_FacingRight;
 
     private float speed = 5.0f;
     private float runSpeed = 10.0f;
     private float dodgeSpeed = 300.0f;
+
+    // Audio declarations
+    public AudioClip sndWalk;
+    public AudioClip sndRun;
+    private AudioSource m_AudioSource;
+
 	//Dodge trail effect
 	public GameObject dodgeTrail;
 	private float originalSpeed;
@@ -24,13 +31,27 @@ public class Character : MonoBehaviour {
 	public Image gatherBar;
 	private float gatherFill;
 
+    public enum PlayerState
+    {
+        Run,
+        Walk,
+        Gather,
+        Fight,
+        Interact,
+        Idle
+    }
+    private PlayerState m_State;
+
 	// Use this for initialization
 	void Start () 
     {
-        m_facingRight = false;
+        m_FacingRight = false;
+        m_State = PlayerState.Idle;
         originalSpeed = speed;
 
-        m_input = GameObject.Find ( "InputManager" ).GetComponent<InputManager> ();
+        m_Input = GameObject.Find ( "InputManager" ).GetComponent<InputManager> ();
+        m_AudioSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
+        m_AudioSource.loop = true;
 
 		dodgeReleased = true;
 		isGathering = false;
@@ -48,9 +69,10 @@ public class Character : MonoBehaviour {
 		}
 
         // Move character
-		if(!isGathering){
-        	transform.Translate ( m_input.GetHorizontalMovement() * speed );
-        	transform.Translate ( m_input.GetVerticalMovement() * speed );
+		if ( !isGathering )
+        {
+        	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
+        	transform.Translate ( m_Input.GetVerticalMovement() * speed );
 		}
 		else{ //if we are gathering
 			gatherTime += Time.deltaTime;
@@ -68,48 +90,64 @@ public class Character : MonoBehaviour {
 			}
 		}
 
-        if ( m_input.RunButtonPressed () )
-        {
-            speed = runSpeed;
-        }
-        else
-        {
-            speed = originalSpeed;
-        }
-
-		if( m_input.DodgeButtonPressed() )
+		if( m_Input.DodgeButtonPressed() )
 		{
 			dodgeReleased = false;
 		}
 
-        if ( m_input.DodgeButtonReleased () )
+        if ( m_Input.DodgeButtonReleased () )
         {
 			dodgeTrail.GetComponent<TrailRenderer>().material.SetColor("_TintColor", new Color(255,255,255,20));
 
-			transform.Translate ( m_input.GetHorizontalMovement () * dodgeSpeed );
-            transform.Translate ( m_input.GetVerticalMovement () * dodgeSpeed );
+			transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
+            transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
 			dodgeReleased = true;		}
 
-		if( m_input.gatheringButtonPressed () )
+		if( m_Input.gatheringButtonPressed () )
 		{
 			GatherItem();
 		}
+
+        if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
+        {
+            m_State = PlayerState.Idle;
+            m_AudioSource.Stop ();
+        }
+        else
+        {
+            if ( m_State != PlayerState.Run && m_State != PlayerState.Walk )
+            {
+                m_AudioSource.Play ();
+            }
+            if ( m_Input.RunButtonHeld () )
+            {
+                speed = runSpeed;
+                m_State = PlayerState.Run;
+                m_AudioSource.clip = sndRun;
+            }
+            else
+            {
+                speed = originalSpeed;
+                m_State = PlayerState.Walk;
+                m_AudioSource.clip = sndWalk;
+            }
+        }
 
         FaceSpriteTowardDirection ();
 	}
 
     void FaceSpriteTowardDirection ()
     {
-        if ( m_input.GetHorizontalMovement ().x > 0 && !m_facingRight )
+        if ( m_Input.GetHorizontalMovement ().x > 0 && !m_FacingRight )
         {
-            m_facingRight = true;
+            m_FacingRight = true;
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
         }
-        else if ( m_input.GetHorizontalMovement ().x < 0 && m_facingRight )
+        else if ( m_Input.GetHorizontalMovement ().x < 0 && m_FacingRight )
         {
-            m_facingRight = false;
+            m_FacingRight = false;
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;

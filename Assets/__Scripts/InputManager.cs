@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour {
         return Vector3.zero;
     }
 
-    public bool RunButtonPressed ()
+    public bool RunButtonHeld ()
     {
         switch ( controlScheme )
         {
