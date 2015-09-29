@@ -11,11 +11,13 @@ public class Character : MonoBehaviour {
 
     private float speed = 5.0f;
     private float runSpeed = 10.0f;
-    private float dodgeSpeed = 300.0f;
+    private float dodgeSpeed = 500.0f;
+    private int health = 100;
 
     // Audio declarations
     public AudioClip sndWalk;
     public AudioClip sndRun;
+    public AudioClip sndDodge;
     private AudioSource m_AudioSource;
 
 	//Dodge trail effect
@@ -101,7 +103,9 @@ public class Character : MonoBehaviour {
 
 			transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
             transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
-			dodgeReleased = true;		}
+            m_AudioSource.PlayOneShot ( sndDodge );
+			dodgeReleased = true;		
+        }
 
 		if( m_Input.gatheringButtonPressed () )
 		{
@@ -110,15 +114,10 @@ public class Character : MonoBehaviour {
 
         if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
         {
-            m_State = PlayerState.Idle;
-            m_AudioSource.Stop ();
+            m_State = PlayerState.Idle;            
         }
         else
         {
-            if ( m_State != PlayerState.Run && m_State != PlayerState.Walk )
-            {
-                m_AudioSource.Play ();
-            }
             if ( m_Input.RunButtonHeld () )
             {
                 speed = runSpeed;
@@ -133,8 +132,27 @@ public class Character : MonoBehaviour {
             }
         }
 
+        if ( m_State == PlayerState.Run || m_State == PlayerState.Walk )
+        {
+            if ( !m_AudioSource.isPlaying )
+            {
+                m_AudioSource.PlayOneShot ( m_AudioSource.clip );
+                m_AudioSource.Play ();
+            }
+        }
+        else
+        {
+            m_AudioSource.Stop ();
+        }
+
         FaceSpriteTowardDirection ();
 	}
+
+    IEnumerator PlayWhileMoving ()
+    {
+        yield return new WaitForSeconds ( m_AudioSource.clip.length );
+        m_AudioSource.Play ();
+    }
 
     void FaceSpriteTowardDirection ()
     {
@@ -160,4 +178,13 @@ public class Character : MonoBehaviour {
 			Debug.Log("Begin Gathering");
 		}
 	}
+
+    public bool IsAlive()
+    {
+        if ( health > 0 )
+        {
+            return true;
+        }
+        return false;
+    }
 }

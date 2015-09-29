@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AttackMovement : MonoBehaviour {
+public class TrailRenderMovement : MonoBehaviour {
 
 	public GameObject moveBack;
 
