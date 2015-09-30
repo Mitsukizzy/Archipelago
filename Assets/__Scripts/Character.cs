@@ -75,6 +75,33 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (m_Input.gatheringButtonPressed()){
+            m_State = PlayerState.Gather;    
+        }
+        if(m_State == PlayerState.Gather && gatherFrom != null)
+        {
+            Debug.Log("Please Im dying");
+            m_State = PlayerState.Gather;
+			gatherTime += Time.deltaTime;
+			if( gatherTime >= secondsGathering )
+            {
+                m_State = PlayerState.Idle;
+				gatherFill = 0.0f;
+				gatherBar.fillAmount = gatherFill;
+				gatherTime = 0.0f;
+				Debug.Log("Finished Gathering");
+				gatherFrom.GetComponent<Interactable>().ReceiveItem();
+			}
+			else{
+				gatherFill=gatherTime/secondsGathering;
+				gatherBar.fillAmount = gatherFill;
+			}
+            m_AudioSource.Stop (); // temp solution to stop walking audio
+		}
+        else
+        {
+            m_State = PlayerState.Idle;
+        }
         if ( m_State != PlayerState.Dodge )
         {
             dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
@@ -111,12 +138,7 @@ public class Character : MonoBehaviour {
                 staminaBar.value -= 20;
             }
 
-		    if( m_Input.gatheringButtonPressed () )
-		    {
-		    	GatherItem();
-		    }
-
-            if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
+            if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
                 m_State = PlayerState.Idle;            
             }
@@ -153,25 +175,6 @@ public class Character : MonoBehaviour {
             }
             FaceSpriteTowardDirection ();
 		}
-        else if ( m_State == PlayerState.Gather )
-        {   
-            //if we are gathering
-			gatherTime += Time.deltaTime;
-			if( gatherTime >= secondsGathering )
-            {
-                m_State = PlayerState.Idle;
-				gatherFill = 0.0f;
-				gatherBar.fillAmount = gatherFill;
-				gatherTime = 0.0f;
-				Debug.Log("Finished Gathering");
-				gatherFrom.GetComponent<Interactable>().ReceiveItem();
-			}
-			else{
-				gatherFill=gatherTime/secondsGathering;
-				gatherBar.fillAmount = gatherFill;
-			}
-            m_AudioSource.Stop (); // temp solution to stop walking audio
-		}
         else
         {
             m_AudioSource.Stop (); // temp solution to stop walking audio
@@ -205,14 +208,6 @@ public class Character : MonoBehaviour {
             transform.localScale = newScale;
         }        
     }
-
-	void GatherItem(){
-		if ( gatherFrom != null )
-        {
-            m_State = PlayerState.Gather;
-			Debug.Log("Begin Gathering");
-		}
-	}
 
     public bool IsAlive()
     {
