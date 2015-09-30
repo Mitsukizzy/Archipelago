@@ -38,6 +38,9 @@ public class Character : MonoBehaviour {
     private float staminaTimer = 0;
     private bool usingStamina = false;
 
+    //Animator
+    private Animator m_Animator;
+
     public enum PlayerState
     {
         Run,
@@ -60,27 +63,29 @@ public class Character : MonoBehaviour {
         m_Input = GameObject.Find ( "InputManager" ).GetComponent<InputManager> ();
         m_AudioSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
         m_AudioSource.loop = true;
+        m_Animator = GetComponent<Animator>();
 
 		gatherFrom = null;
 		gatherTime = 0.0f;
 		gatherFill = 0.0f;
 		gatherBar.fillAmount = gatherFill;
-        gatherBar.rectTransform.localPosition = new Vector3(transform.position.x+5, transform.position.y+50, 0);
+        gatherBar.rectTransform.localPosition = new Vector3(transform.position.x+5, transform.position.y+70, 0);
 	
         //health and stamina bar
         hpBar.maxValue = health;
         hpBar.value = health;
+
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if (m_Input.gatheringButtonPressed()){
+        if (m_Input.gatheringButtonPressed() && gatherFrom != null)
+        {
             m_State = PlayerState.Gather;    
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
-            Debug.Log("Please Im dying");
             m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
 			if( gatherTime >= secondsGathering )
@@ -98,10 +103,7 @@ public class Character : MonoBehaviour {
 			}
             m_AudioSource.Stop (); // temp solution to stop walking audio
 		}
-        else
-        {
-            m_State = PlayerState.Idle;
-        }
+
         if ( m_State != PlayerState.Dodge )
         {
             dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
@@ -199,6 +201,7 @@ public class Character : MonoBehaviour {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
+            //transform.Rotate(0, 180, 0, Space.Self);
         }
         else if ( m_Input.GetHorizontalMovement ().x < 0 && m_FacingRight )
         {
@@ -206,6 +209,7 @@ public class Character : MonoBehaviour {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
+            //transform.Rotate(0, 180, 0, Space.Self);
         }        
     }
 
