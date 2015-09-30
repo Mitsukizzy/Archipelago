@@ -9,9 +9,9 @@ public class Character : MonoBehaviour {
 
     private bool m_FacingRight;
 
-    private float speed = 5.0f;
-    private float runSpeed = 10.0f;
-    private float dodgeSpeed = 500.0f;
+    public float speed = 5.0f;
+    public float runSpeed = 10.0f;
+    public float dodgeSpeed = 500.0f;
     private int health = 100;
 
     // Audio declarations
@@ -30,6 +30,13 @@ public class Character : MonoBehaviour {
 	private float gatherTime;
 	public Image gatherBar;
 	private float gatherFill;
+
+    //Health and Stamina sliders
+    public Slider hpBar;
+    public Slider staminaBar;
+    public float timeToRegenStamina = 5.0f;
+    private float staminaTimer = 0;
+    private bool usingStamina = false;
 
     public enum PlayerState
     {
@@ -58,7 +65,12 @@ public class Character : MonoBehaviour {
 		gatherTime = 0.0f;
 		gatherFill = 0.0f;
 		gatherBar.fillAmount = gatherFill;
-	}
+        gatherBar.rectTransform.localPosition = new Vector3(transform.position.x+5, transform.position.y+50, 0);
+	
+        //health and stamina bar
+        hpBar.maxValue = health;
+        hpBar.value = health;
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -67,47 +79,61 @@ public class Character : MonoBehaviour {
         {
             dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
         }
+        if(!usingStamina)
+        {            
+            staminaTimer += Time.deltaTime;
+        }
+        if (staminaTimer >= timeToRegenStamina && !usingStamina)
+        {
+            staminaBar.value += 50;
+            staminaTimer = 0;
+        }
         
         if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact )
-        {
+        {   
             // Move character
         	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
         	transform.Translate ( m_Input.GetVerticalMovement() * speed );
 
-            if ( m_Input.DodgeButtonPressed () )
-            {
+            if( m_Input.DodgeButtonPressed() )
+		    {
                 m_State = PlayerState.Dodge;
-            }
-            if ( m_Input.DodgeButtonReleased () )
-            {
-                dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 255, 255, 255, 20 ) );
+		    }
 
-                transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
+            if ( m_Input.DodgeButtonReleased () && staminaBar.value >= 20 )
+            {
+		    	dodgeTrail.GetComponent<TrailRenderer>().material.SetColor("_TintColor", new Color(255,255,255,20));
+
+		    	transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
                 transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
                 m_AudioSource.PlayOneShot ( sndDodge );
                 m_State = PlayerState.Idle;
+                staminaBar.value -= 20;
             }
 
-            if ( m_Input.gatheringButtonPressed () )
-            {
-                GatherItem ();
-            }
+		    if( m_Input.gatheringButtonPressed () )
+		    {
+		    	GatherItem();
+		    }
 
             if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
-                m_State = PlayerState.Idle;
+                m_State = PlayerState.Idle;            
             }
             else
             {
-                if ( m_Input.RunButtonHeld () )
+                if ( m_Input.RunButtonHeld () && staminaBar.value >= 1 )
                 {
                     speed = runSpeed;
+                    staminaBar.value -= 1;
                     m_State = PlayerState.Run;
+                    usingStamina = true;
                     m_AudioSource.clip = sndRun;
                 }
                 else
                 {
                     speed = originalSpeed;
+                    usingStamina = false; 
                     m_State = PlayerState.Walk;
                     m_AudioSource.clip = sndWalk;
                 }
@@ -123,9 +149,8 @@ public class Character : MonoBehaviour {
             }
             else
             {
-                m_AudioSource.Stop ();
+                m_AudioSource.Stop (); // temp solution to stop walking audio
             }
-
             FaceSpriteTowardDirection ();
 		}
         else if ( m_State != PlayerState.Gather )
