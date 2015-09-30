@@ -153,7 +153,7 @@ public class Character : MonoBehaviour {
             }
             FaceSpriteTowardDirection ();
 		}
-        else if ( m_State != PlayerState.Gather )
+        else if ( m_State == PlayerState.Gather )
         {   
             //if we are gathering
 			gatherTime += Time.deltaTime;
