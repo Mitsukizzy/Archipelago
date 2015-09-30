@@ -24,7 +24,6 @@ public class EnemyAI : MonoBehaviour
         float distFromCharAggro = ( m_StartingPosition - m_Char.transform.position ).magnitude;
         float distFromCharAttack = ( transform.position - m_Char.transform.position ).magnitude;
 
-        Debug.Log ( distFromCharAggro );
         if ( distFromCharAttack <= attackDistance )
         {
             // Attack character

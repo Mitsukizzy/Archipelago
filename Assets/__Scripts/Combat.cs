@@ -15,6 +15,7 @@ public class Combat : MonoBehaviour
     private GameObject m_Canvas;
     private GameObject m_ComboTextObj;
     private Text m_ComboText;
+    private Character m_Char;
 
 	public GameObject CombatTrail;
 
@@ -45,16 +46,17 @@ public class Combat : MonoBehaviour
 	    m_ComboText = m_ComboTextObj.GetComponent<Text>();
         m_ComboText.rectTransform.parent = m_Canvas.transform;
         m_ComboText.rectTransform.localPosition = transform.position;
-		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
 
+		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
+        m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
         m_AudioSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
 
 		trailDefaultPos = attackTrail.transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        // TODO: Replace with Input Manager hooks
+	void Update () 
+    {
         fadeTimer -= Time.deltaTime;
         if ( fadeTimer < 0 )
         {
@@ -62,23 +64,26 @@ public class Combat : MonoBehaviour
 			CombatTrail.SetActive(false);
 	    }
 
-        if ( im.normalAttackButtonPressed() )
+        if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
-            clickTimer = Time.time;
-            attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
-            LeftClickCombo();
-        }
+            if ( im.normalAttackButtonPressed () )
+            {
+                clickTimer = Time.time;
+                attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
+                LeftClickCombo ();
+            }
 
-        if ( im.smashAttackButtonPressed() )
-        {
-            clickTimer = Time.time;
-            attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
-            RightClickCombo();
-        }
+            if ( im.smashAttackButtonPressed () )
+            {
+                clickTimer = Time.time;
+                attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
+                RightClickCombo ();
+            }
 
-        if ( im.specialAttackButtonPressed() )
-        {
-            Debug.Log( "Pressed middle click." );
+            if ( im.specialAttackButtonPressed () )
+            {
+                Debug.Log ( "Pressed middle click." );
+            }
         }
 	}
 

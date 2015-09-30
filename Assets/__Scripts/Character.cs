@@ -23,10 +23,8 @@ public class Character : MonoBehaviour {
 	//Dodge trail effect
 	public GameObject dodgeTrail;
 	private float originalSpeed;
-	private bool dodgeReleased;
 
 	//Gathering variables
-	private bool isGathering;
 	public GameObject gatherFrom;
 	public float secondsGathering = 3.0f;
 	private float gatherTime;
@@ -37,6 +35,7 @@ public class Character : MonoBehaviour {
     {
         Run,
         Walk,
+        Dodge,
         Gather,
         Fight,
         Interact,
@@ -55,8 +54,6 @@ public class Character : MonoBehaviour {
         m_AudioSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
         m_AudioSource.loop = true;
 
-		dodgeReleased = true;
-		isGathering = false;
 		gatherFrom = null;
 		gatherTime = 0.0f;
 		gatherFill = 0.0f;
@@ -66,20 +63,78 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		if(dodgeReleased){
-			dodgeTrail.GetComponent<TrailRenderer>().material.SetColor("_TintColor", new Color(0,0,0,0));
-		}
-
-        // Move character
-		if ( !isGathering )
+        if ( m_State != PlayerState.Dodge )
         {
+            dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
+        }
+        
+        if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact )
+        {
+            // Move character
         	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
         	transform.Translate ( m_Input.GetVerticalMovement() * speed );
+
+            if ( m_Input.DodgeButtonPressed () )
+            {
+                m_State = PlayerState.Dodge;
+            }
+            if ( m_Input.DodgeButtonReleased () )
+            {
+                dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 255, 255, 255, 20 ) );
+
+                transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
+                transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
+                m_AudioSource.PlayOneShot ( sndDodge );
+                m_State = PlayerState.Idle;
+            }
+
+            if ( m_Input.gatheringButtonPressed () )
+            {
+                GatherItem ();
+            }
+
+            if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
+            {
+                m_State = PlayerState.Idle;
+            }
+            else
+            {
+                if ( m_Input.RunButtonHeld () )
+                {
+                    speed = runSpeed;
+                    m_State = PlayerState.Run;
+                    m_AudioSource.clip = sndRun;
+                }
+                else
+                {
+                    speed = originalSpeed;
+                    m_State = PlayerState.Walk;
+                    m_AudioSource.clip = sndWalk;
+                }
+            }
+
+            if ( m_State == PlayerState.Run || m_State == PlayerState.Walk )
+            {
+                if ( !m_AudioSource.isPlaying )
+                {
+                    m_AudioSource.PlayOneShot ( m_AudioSource.clip );
+                    m_AudioSource.Play ();
+                }
+            }
+            else
+            {
+                m_AudioSource.Stop ();
+            }
+
+            FaceSpriteTowardDirection ();
 		}
-		else{ //if we are gathering
+        else if ( m_State != PlayerState.Gather )
+        {   
+            //if we are gathering
 			gatherTime += Time.deltaTime;
-			if(gatherTime >= secondsGathering){
-				isGathering = false;
+			if( gatherTime >= secondsGathering )
+            {
+                m_State = PlayerState.Idle;
 				gatherFill = 0.0f;
 				gatherBar.fillAmount = gatherFill;
 				gatherTime = 0.0f;
@@ -90,68 +145,22 @@ public class Character : MonoBehaviour {
 				gatherFill=gatherTime/secondsGathering;
 				gatherBar.fillAmount = gatherFill;
 			}
+            m_AudioSource.Stop (); // temp solution to stop walking audio
 		}
-
-		if( m_Input.DodgeButtonPressed() )
-		{
-			dodgeReleased = false;
-		}
-
-        if ( m_Input.DodgeButtonReleased () )
-        {
-			dodgeTrail.GetComponent<TrailRenderer>().material.SetColor("_TintColor", new Color(255,255,255,20));
-
-			transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
-            transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
-            m_AudioSource.PlayOneShot ( sndDodge );
-			dodgeReleased = true;		
-        }
-
-		if( m_Input.gatheringButtonPressed () )
-		{
-			GatherItem();
-		}
-
-        if ( m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
-        {
-            m_State = PlayerState.Idle;            
-        }
         else
         {
-            if ( m_Input.RunButtonHeld () )
-            {
-                speed = runSpeed;
-                m_State = PlayerState.Run;
-                m_AudioSource.clip = sndRun;
-            }
-            else
-            {
-                speed = originalSpeed;
-                m_State = PlayerState.Walk;
-                m_AudioSource.clip = sndWalk;
-            }
+            m_AudioSource.Stop (); // temp solution to stop walking audio
         }
-
-        if ( m_State == PlayerState.Run || m_State == PlayerState.Walk )
-        {
-            if ( !m_AudioSource.isPlaying )
-            {
-                m_AudioSource.PlayOneShot ( m_AudioSource.clip );
-                m_AudioSource.Play ();
-            }
-        }
-        else
-        {
-            m_AudioSource.Stop ();
-        }
-
-        FaceSpriteTowardDirection ();
 	}
 
-    IEnumerator PlayWhileMoving ()
+    public void SetPlayerState ( PlayerState newState )
     {
-        yield return new WaitForSeconds ( m_AudioSource.clip.length );
-        m_AudioSource.Play ();
+        m_State = newState;
+    }
+
+    public PlayerState GetPlayerState ()
+    {
+        return m_State;
     }
 
     void FaceSpriteTowardDirection ()
@@ -173,8 +182,9 @@ public class Character : MonoBehaviour {
     }
 
 	void GatherItem(){
-		if (gatherFrom != null){
-			isGathering = true;
+		if ( gatherFrom != null )
+        {
+            m_State = PlayerState.Gather;
 			Debug.Log("Begin Gathering");
 		}
 	}
