@@ -123,6 +123,7 @@ public class Character : MonoBehaviour {
             // Move character
         	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
         	transform.Translate ( m_Input.GetVerticalMovement() * speed );
+            m_Animator.SetBool("isWalking", true);
 
             if( m_Input.DodgeButtonPressed() )
 		    {
@@ -142,7 +143,8 @@ public class Character : MonoBehaviour {
 
             if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
-                m_State = PlayerState.Idle;            
+                m_State = PlayerState.Idle;
+                m_Animator.SetBool("isWalking", false);
             }
             else
             {
@@ -201,7 +203,6 @@ public class Character : MonoBehaviour {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
-            //transform.Rotate(0, 180, 0, Space.Self);
         }
         else if ( m_Input.GetHorizontalMovement ().x < 0 && m_FacingRight )
         {
@@ -209,7 +210,6 @@ public class Character : MonoBehaviour {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
-            //transform.Rotate(0, 180, 0, Space.Self);
         }        
     }
 
@@ -221,4 +221,5 @@ public class Character : MonoBehaviour {
         }
         return false;
     }
+
 }

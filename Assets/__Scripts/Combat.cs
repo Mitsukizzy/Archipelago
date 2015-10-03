@@ -18,6 +18,8 @@ public class Combat : MonoBehaviour
 
 	public GameObject CombatTrail;
 
+    private Animator m_Animator;
+
     // Audio declarations
     public AudioClip sndLeft1;
     public AudioClip sndLeft2;
@@ -49,6 +51,7 @@ public class Combat : MonoBehaviour
 		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
         m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
         m_AudioSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
+        m_Animator = GetComponent<Animator>();
 
 		trailDefaultPos = attackTrail.transform.position;
 	}
@@ -102,6 +105,7 @@ public class Combat : MonoBehaviour
 				attackTrail.transform.Translate(Vector3.up * -3.0f);
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_AudioSource.PlayOneShot ( sndLeft1 );
+                m_Animator.SetTrigger("atkL1");
 				break;
             case 1:
                 // Perform basic move 2 left click
@@ -128,6 +132,7 @@ public class Combat : MonoBehaviour
                 multClickCountRight = 0;
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
+                m_Animator.SetTrigger("atkL1");
 				attackTrail.transform.Translate(Vector3.up * -3.0f);
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_AudioSource.PlayOneShot ( sndLeft1 );
@@ -153,6 +158,7 @@ public class Combat : MonoBehaviour
 			    attackTrail.transform.Translate(Vector3.up * 3.0f);
 			    attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_AudioSource.PlayOneShot ( sndRight0 );
+                m_Animator.SetTrigger("atkR1");
 			    break;
             case 1:
                 // Perform smash move 1 right click
@@ -203,6 +209,12 @@ public class Combat : MonoBehaviour
         fadeTimer = 0.75f;
         m_ComboTextObj.SetActive( true );
 		CombatTrail.SetActive(true);
+        m_Animator.SetBool("isAtking", true);
         m_ComboText.text = text;
+    }
+
+    public void finishedAttacking()
+    {
+        m_Animator.SetBool("isAtking", false);
     }
 }
