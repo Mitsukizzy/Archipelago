@@ -2316,7 +2316,7 @@ GameObject:
   - 114: {fileID: 1046867458}
   m_Layer: 0
   m_Name: Croc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2400,7 +2400,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aggroDistance: 20
   attackDistance: 2
-  speed: 5
+  moveSpeed: 20
+  attackSpeed: 5
+  health: 250
 --- !u!1 &1128661265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2736,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1436415289}
   - 114: {fileID: 1436415288}
+  - 114: {fileID: 1436415290}
+  - 114: {fileID: 1436415291}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2765,6 +2769,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1436415290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436415287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0343ad7fc23aadd4db76127b44adacab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sndLeft1: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
+  sndLeft2: {fileID: 8300000, guid: 39a1441e81ee63c4ab2788a6d99e0c58, type: 3}
+  sndLeft3: {fileID: 8300000, guid: ceed223c7faada742bd82da6d06cc0ec, type: 3}
+  sndLeft4: {fileID: 8300000, guid: 5fe6dbd6c428c0c408eda7be56df8090, type: 3}
+  sndRight0: {fileID: 8300000, guid: 6c478a0592e31c846880d4822cd9cdcb, type: 3}
+  sndRight1: {fileID: 8300000, guid: af0e3a9ebd8c0f24f86758d8564306fd, type: 3}
+  sndRight2: {fileID: 8300000, guid: b8b30a404d18a1b4bb0313c957af16b0, type: 3}
+  sndRight3: {fileID: 8300000, guid: c6e9f993a3225404498d5165a8213f4e, type: 3}
+  sndRight4: {fileID: 8300000, guid: af245ddf864b6d74e8decb0044d9c123, type: 3}
+  sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
+  sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
+  sndDodge: {fileID: 8300000, guid: a73a69cabc1a8d841814001fcb967063, type: 3}
+  sndNoStamina: {fileID: 8300000, guid: b25038ae5c3b34c48bbe35910f29d72b, type: 3}
+  sndPlayerNearDeath: {fileID: 8300000, guid: b25038ae5c3b34c48bbe35910f29d72b, type: 3}
+  sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
+  sndPlayerDeath: {fileID: 8300000, guid: 9b230e8e018685b44bfd90364072e84a, type: 3}
+  sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
+  sndEnemyDeath: {fileID: 0}
+--- !u!114 &1436415291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436415287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19a357f64a684e02a7965c70fcc1e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlScheme: 1
 --- !u!1 &1521163786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,17 +3688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20260f1b177847e45ab5e759d111f695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CombatTrail: {fileID: 496745804}
-  sndLeft1: {fileID: 8300000, guid: a688e76aa7de16b4d8bb012c50cd22db, type: 3}
-  sndLeft2: {fileID: 8300000, guid: a73a69cabc1a8d841814001fcb967063, type: 3}
-  sndLeft3: {fileID: 8300000, guid: 6c478a0592e31c846880d4822cd9cdcb, type: 3}
-  sndLeft4: {fileID: 8300000, guid: 035df22b820afeb45946114b4d28c806, type: 3}
-  sndRight0: {fileID: 8300000, guid: 969a74906d9487a46a0c4a6f6b213509, type: 3}
-  sndRight1: {fileID: 8300000, guid: 6c478a0592e31c846880d4822cd9cdcb, type: 3}
-  sndRight2: {fileID: 8300000, guid: 184cf795aed11e2498e659aa5fe89da9, type: 3}
-  sndRight3: {fileID: 8300000, guid: a688e76aa7de16b4d8bb012c50cd22db, type: 3}
-  sndRight4: {fileID: 8300000, guid: 6e6048267a7cc4b40a3796ce1c8aca74, type: 3}
   attackTrail: {fileID: 496745804}
+  CombatTrail: {fileID: 496745804}
 --- !u!212 &2142275703
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3724,16 +3760,15 @@ MonoBehaviour:
   speed: 10
   runSpeed: 25
   dodgeSpeed: 500
-  sndWalk: {fileID: 8300000, guid: c04da9e38f0a792469a2a88be8fc81ae, type: 3}
-  sndRun: {fileID: 8300000, guid: f48b01558a22f0d44953f2c668ef3557, type: 3}
-  sndDodge: {fileID: 8300000, guid: a73a69cabc1a8d841814001fcb967063, type: 3}
+  health: 100
+  stamina: 500
   dodgeTrail: {fileID: 976431447}
   gatherFrom: {fileID: 0}
   secondsGathering: 3
   gatherBar: {fileID: 759373771}
   hpBar: {fileID: 141310981}
   staminaBar: {fileID: 1965947994}
-  timeToRegenStamina: 5
+  timeToRegenStamina: 4
 --- !u!61 &2142275707
 BoxCollider2D:
   m_ObjectHideFlags: 0

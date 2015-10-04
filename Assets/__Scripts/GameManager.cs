@@ -5,7 +5,6 @@ using System.Collections;
 public class GameManager : MonoBehaviour 
 {
     private Character m_Char;
-
     public GameObject gameOverOverlay;
 
 	// Use this for initialization
@@ -21,8 +20,24 @@ public class GameManager : MonoBehaviour
         {
             // Move to Game Over screen
             gameOverOverlay.SetActive ( true );
+            m_Char.Revive ();
         }
 	}
+
+    public GameManager GetGameManager ()
+    {
+        return GetComponent<GameManager> ();
+    }
+
+    public InputManager GetInputManager ()
+    {
+        return GetComponent<InputManager> ();
+    }
+
+    public AudioManager GetAudioManager ()
+    {
+        return GetComponent<AudioManager> ();
+    }
 
     public void MainMenu ()
     {
