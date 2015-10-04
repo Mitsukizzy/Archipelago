@@ -20,8 +20,24 @@ public class GameManager : MonoBehaviour
         {
             // Move to Game Over screen
             gameOverOverlay.SetActive ( true );
+            m_Char.Revive ();
         }
 	}
+
+    public GameManager GetGameManager ()
+    {
+        return GetComponent<GameManager> ();
+    }
+
+    public InputManager GetInputManager ()
+    {
+        return GetComponent<InputManager> ();
+    }
+
+    public AudioManager GetAudioManager ()
+    {
+        return GetComponent<AudioManager> ();
+    }
 
     public void MainMenu ()
     {
@@ -30,7 +46,6 @@ public class GameManager : MonoBehaviour
 
     public void RetryFromCampfire ()
     {
-        m_Char.Revive ();
         gameOverOverlay.SetActive ( false );
     }
 }
