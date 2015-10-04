@@ -24,8 +24,8 @@ public class Character : MonoBehaviour {
 	public GameObject gatherFrom;
 	public float secondsGathering = 3.0f;
 	private float gatherTime;
-	public Image gatherBar;
-	private float gatherFill;
+    public GameObject gatherBarObj;
+	private Slider gatherBar;
 
     //Health and Stamina sliders
     public Slider hpBar;
@@ -62,9 +62,9 @@ public class Character : MonoBehaviour {
 
 		gatherFrom = null;
 		gatherTime = 0.0f;
-		gatherFill = 0.0f;
-		gatherBar.fillAmount = gatherFill;
-        gatherBar.rectTransform.localPosition = new Vector3(transform.position.x+5, transform.position.y+70, 0);
+        gatherBar = gatherBarObj.GetComponent<Slider>();
+        gatherBar.value = 0.0f;
+        gatherBar.maxValue = 1;
 	
         //health and stamina bar
         hpBar.maxValue = health;
@@ -76,26 +76,34 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (m_State == PlayerState.Interact || m_State == PlayerState.Gather)
+        {
+            m_Animator.SetBool("isWalking", false);
+            if (m_State == PlayerState.Gather)
+            {
+                m_Animator.SetBool("isAtking", false);
+            }
+        }
         if (m_Input.gatheringButtonPressed() && gatherFrom != null)
         {
             m_State = PlayerState.Gather;    
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
+            gatherBarObj.SetActive(true);
             m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
 			if( gatherTime >= secondsGathering )
             {
                 m_State = PlayerState.Idle;
-				gatherFill = 0.0f;
-				gatherBar.fillAmount = gatherFill;
+				gatherBar.value = 0;
 				gatherTime = 0.0f;
 				Debug.Log("Finished Gathering");
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
+                gatherBarObj.SetActive(false);
 			}
 			else{
-				gatherFill=gatherTime/secondsGathering;
-				gatherBar.fillAmount = gatherFill;
+				gatherBar.value=gatherTime/secondsGathering;
 			}
 		}
 
@@ -241,5 +249,17 @@ public class Character : MonoBehaviour {
         // Both back to their default, full values
         hpBar.value = health;
         staminaBar.value = stamina;
+    }
+
+    public void toggleInteract()
+    {
+        if (m_State != PlayerState.Interact)
+        {
+            m_State = PlayerState.Interact;
+        }
+        else
+        {
+            m_State = PlayerState.Idle;
+        }
     }
 }

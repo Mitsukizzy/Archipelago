@@ -26,6 +26,8 @@ public class Combat : MonoBehaviour
     public GameObject CombatTrail;
 	Vector3 trailDefaultPos;
 
+    bool animationDelay;
+
 	// Use this for initialization
 	void Start () {
         m_Canvas = GameObject.Find ( "Canvas" );
@@ -43,6 +45,7 @@ public class Combat : MonoBehaviour
         m_Animator = GetComponent<Animator>();
 
 		trailDefaultPos = attackTrail.transform.position;
+        animationDelay = false;
 	}
 	
 	// Update is called once per frame
@@ -57,7 +60,7 @@ public class Combat : MonoBehaviour
 
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
-            if ( m_Input.normalAttackButtonPressed () )
+            if ( m_Input.normalAttackButtonPressed () && !animationDelay )
             {
                 if ( m_Char.UseStamina ( 30 ) )
                 {
@@ -65,10 +68,11 @@ public class Combat : MonoBehaviour
                     attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
                     damageToEnemy = 10;
                     LeftClickCombo ();
+                    //animationDelay = true; //uncomment when we have all animations
                 }
             }
 
-            if ( m_Input.smashAttackButtonPressed () )
+            if ( m_Input.smashAttackButtonPressed () && !animationDelay )
             {
                 if ( m_Char.UseStamina ( 50 ) )
                 {
@@ -76,6 +80,7 @@ public class Combat : MonoBehaviour
                     attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
                     damageToEnemy = 20;
                     RightClickCombo ();
+                    //animationDelay = true; //uncomment when we have all animations
                 }
             }
         }
@@ -98,6 +103,7 @@ public class Combat : MonoBehaviour
                 attackTrail.transform.Translate ( Vector3.right * 3.0f );
                 m_Audio.PlayOnce ( "left1" );
                 m_Animator.SetTrigger("atkL1");
+                animationDelay = true; //take this line out once we get all animations
 				break;
             case 1:
                 // Perform basic move 2 left click
@@ -151,6 +157,7 @@ public class Combat : MonoBehaviour
 			    attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "right0" );
                 m_Animator.SetTrigger("atkR1");
+                animationDelay = true; //take this line out once we get all animations
 			    break;
             case 1:
                 // Perform smash move 1 right click
@@ -223,5 +230,10 @@ public class Combat : MonoBehaviour
                 damageToEnemy = 0;
             }
         }
+    }
+
+    public void animationFinished()
+    {
+        animationDelay = false;
     }
 }
