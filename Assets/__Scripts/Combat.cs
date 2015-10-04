@@ -4,21 +4,22 @@ using UnityEngine.UI;
 
 public class Combat : MonoBehaviour 
 {
-    float clickTimer = 0.0f;
-    float prevClickTimer = 0.0f;
-    float fadeTimer = 0.0f;
-    float delayBetweenMultClicks = 0.75f;
-    int multClickCountLeft = 0;
-    int multClickCountRight = 0;
+    private float clickTimer = 0.0f;
+    private float prevClickTimer = 0.0f;
+    private float fadeTimer = 0.0f;
+    private float delayBetweenMultClicks = 0.75f;
+    private int multClickCountLeft = 0;
+    private int multClickCountRight = 0;
+    private int damageToEnemy = 0;
 
     private GameObject m_Canvas;
     private GameObject m_ComboTextObj;
     private Text m_ComboText;
     private Character m_Char;
+    private Animator m_Animator;
+    private InputManager im;
 
 	public GameObject CombatTrail;
-
-    private Animator m_Animator;
 
     // Audio declarations
     public AudioClip sndLeft1;
@@ -30,9 +31,7 @@ public class Combat : MonoBehaviour
     public AudioClip sndRight2;
     public AudioClip sndRight3;
     public AudioClip sndRight4;
-    private AudioSource m_AudioSource;
-		
-	private InputManager im;
+    private AudioSource m_AudioSource;		
 
 	//trail renderer for attack effects
 	public GameObject attackTrail;
@@ -72,6 +71,8 @@ public class Combat : MonoBehaviour
             {
                 clickTimer = Time.time;
                 attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
+                m_Char.UseStamina ( 10 );
+                damageToEnemy = 10;
                 LeftClickCombo ();
             }
 
@@ -79,12 +80,9 @@ public class Combat : MonoBehaviour
             {
                 clickTimer = Time.time;
                 attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
+                m_Char.UseStamina ( 20 );
+                damageToEnemy = 20;
                 RightClickCombo ();
-            }
-
-            if ( im.specialAttackButtonPressed () )
-            {
-                Debug.Log ( "Pressed middle click." );
             }
         }
 	}
@@ -215,6 +213,21 @@ public class Combat : MonoBehaviour
 
     public void finishedAttacking()
     {
-        m_Animator.SetBool("isAtking", false);
+        m_Animator.SetBool ( "isAtking", false );
+    }
+
+    void OnTriggerStay2D ( Collider2D coll )
+    {
+        if ( coll.gameObject.tag == "Enemy"  )
+        {
+            Enemy enemy = ( Enemy )coll.gameObject.GetComponent ( "Enemy" );
+
+            if ( damageToEnemy != 0 )
+            {
+                // Play hit sound
+                enemy.TakeDamage ( damageToEnemy );
+                damageToEnemy = 0;
+            }
+        }
     }
 }

@@ -5,7 +5,6 @@ using System.Collections;
 public class GameManager : MonoBehaviour 
 {
     private Character m_Char;
-
     public GameObject gameOverOverlay;
 
 	// Use this for initialization
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryFromCampfire ()
     {
+        m_Char.Revive ();
         gameOverOverlay.SetActive ( false );
     }
 }

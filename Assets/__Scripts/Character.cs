@@ -12,7 +12,7 @@ public class Character : MonoBehaviour {
     public float speed = 5.0f;
     public float runSpeed = 10.0f;
     public float dodgeSpeed = 500.0f;
-    private int health = 100;
+    public int health = 100;
 
     // Audio declarations
     public AudioClip sndWalk;
@@ -74,7 +74,6 @@ public class Character : MonoBehaviour {
         //health and stamina bar
         hpBar.maxValue = health;
         hpBar.value = health;
-
     }
 	
 	// Update is called once per frame
@@ -103,6 +102,11 @@ public class Character : MonoBehaviour {
 			}
             m_AudioSource.Stop (); // temp solution to stop walking audio
 		}
+
+        if ( m_State == PlayerState.Fight )
+        {
+            // Play battle music
+        }
 
         if ( m_State != PlayerState.Dodge )
         {
@@ -210,16 +214,32 @@ public class Character : MonoBehaviour {
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
-        }        
+        }
+    }
+
+    public void UseStamina ( int cost )
+    {
+        staminaBar.value -= cost;
+    }
+
+    public void TakeDamage ( int damage )
+    {
+        hpBar.value -= damage;
     }
 
     public bool IsAlive()
     {
-        if ( health > 0 )
+        if ( hpBar.value > 0 )
         {
             return true;
         }
         return false;
     }
 
+    public void Revive ()
+    {
+        // Both back to 100
+        hpBar.value = health;
+        staminaBar.value = health;
+    }
 }

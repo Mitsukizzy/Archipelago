@@ -59,7 +59,6 @@ public class Campfire : MonoBehaviour
         {
             FadeOut ();
         }
-        Debug.Log ( m_Char.GetPlayerState () );
 	}
 
     public void MakeCamp ()
