@@ -4,39 +4,29 @@ using UnityEngine.UI;
 
 public class Combat : MonoBehaviour 
 {
-    float clickTimer = 0.0f;
-    float prevClickTimer = 0.0f;
-    float fadeTimer = 0.0f;
-    float delayBetweenMultClicks = 0.75f;
-    int multClickCountLeft = 0;
-    int multClickCountRight = 0;
+    private float clickTimer = 0.0f;
+    private float prevClickTimer = 0.0f;
+    private float fadeTimer = 0.0f;
+    private float delayBetweenMultClicks = 0.75f;
+    private int multClickCountLeft = 0;
+    private int multClickCountRight = 0;
+    private int damageToEnemy = 0;
 
+    private GameManager m_Game;
     private GameObject m_Canvas;
     private GameObject m_ComboTextObj;
     private Text m_ComboText;
     private Character m_Char;
-
-	public GameObject CombatTrail;
-
     private Animator m_Animator;
-
-    // Audio declarations
-    public AudioClip sndLeft1;
-    public AudioClip sndLeft2;
-    public AudioClip sndLeft3;
-    public AudioClip sndLeft4;
-    public AudioClip sndRight0;
-    public AudioClip sndRight1;
-    public AudioClip sndRight2;
-    public AudioClip sndRight3;
-    public AudioClip sndRight4;
-    private AudioSource m_AudioSource;
-		
-	private InputManager im;
+    private InputManager m_Input;
+    private AudioManager m_Audio;
 
 	//trail renderer for attack effects
-	public GameObject attackTrail;
+    public GameObject attackTrail;
+    public GameObject CombatTrail;
 	Vector3 trailDefaultPos;
+
+    bool animationDelay;
 
 	// Use this for initialization
 	void Start () {
@@ -48,12 +38,14 @@ public class Combat : MonoBehaviour
         m_ComboText.rectTransform.parent = m_Canvas.transform;
         m_ComboText.rectTransform.localPosition = transform.position;
 
-		im = GameObject.Find ("InputManager").GetComponent<InputManager>();
-        m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
-        m_AudioSource = GameObject.Find ("Main Camera").GetComponent<AudioSource> ();
+        m_Game = GameObject.Find ( "GameManager" ).GetComponent<GameManager>();
+        m_Input = m_Game.GetInputManager();
+        m_Audio = m_Game.GetAudioManager();
+        m_Char = GameObject.Find ( "Character" ).GetComponent<Character>();
         m_Animator = GetComponent<Animator>();
 
 		trailDefaultPos = attackTrail.transform.position;
+        animationDelay = false;
 	}
 	
 	// Update is called once per frame
@@ -68,23 +60,28 @@ public class Combat : MonoBehaviour
 
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
-            if ( im.normalAttackButtonPressed () )
+            if ( m_Input.normalAttackButtonPressed () && !animationDelay )
             {
-                clickTimer = Time.time;
-                attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
-                LeftClickCombo ();
+                if ( m_Char.UseStamina ( 30 ) )
+                {
+                    clickTimer = Time.time;
+                    attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
+                    damageToEnemy = 10;
+                    LeftClickCombo ();
+                    //animationDelay = true; //uncomment when we have all animations
+                }
             }
 
-            if ( im.smashAttackButtonPressed () )
+            if ( m_Input.smashAttackButtonPressed () && !animationDelay )
             {
-                clickTimer = Time.time;
-                attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
-                RightClickCombo ();
-            }
-
-            if ( im.specialAttackButtonPressed () )
-            {
-                Debug.Log ( "Pressed middle click." );
+                if ( m_Char.UseStamina ( 50 ) )
+                {
+                    clickTimer = Time.time;
+                    attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
+                    damageToEnemy = 20;
+                    RightClickCombo ();
+                    //animationDelay = true; //uncomment when we have all animations
+                }
             }
         }
 	}
@@ -103,28 +100,29 @@ public class Combat : MonoBehaviour
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
 				attackTrail.transform.Translate(Vector3.up * -3.0f);
-				attackTrail.transform.Translate(Vector3.right * 3.0f);
-                m_AudioSource.PlayOneShot ( sndLeft1 );
+                attackTrail.transform.Translate ( Vector3.right * 3.0f );
+                m_Audio.PlayOnce ( "left1" );
                 m_Animator.SetTrigger("atkL1");
+                animationDelay = true; //take this line out once we get all animations
 				break;
             case 1:
                 // Perform basic move 2 left click
                 ShowComboText ( "LEFT 2!" );
 				attackTrail.transform.Translate(Vector3.up * 3.0f);
 				attackTrail.transform.Translate(Vector3.right * -3.0f);
-                m_AudioSource.PlayOneShot ( sndLeft2 );
+                m_Audio.PlayOnce ( "left2" );
 				break;
             case 2:
                 // Perform basic move 3 left click
                 ShowComboText ( "LEFT 3!" );
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
-                m_AudioSource.PlayOneShot ( sndLeft3 );
+                m_Audio.PlayOnce ( "left3" );
 				break;
             case 3:
                 // Perform basic move 4 left click
 				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 ShowComboText ( "LEFT 4!" );
-                m_AudioSource.PlayOneShot ( sndLeft4 );
+                m_Audio.PlayOnce ( "left4" );
                 break;
             default:
                 // Reset to zero if over 4
@@ -135,7 +133,7 @@ public class Combat : MonoBehaviour
                 m_Animator.SetTrigger("atkL1");
 				attackTrail.transform.Translate(Vector3.up * -3.0f);
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
-                m_AudioSource.PlayOneShot ( sndLeft1 );
+                m_Audio.PlayOnce ( "left1" );
 				break;
         } 
         multClickCountRight = 0;
@@ -157,36 +155,37 @@ public class Combat : MonoBehaviour
                 ShowComboText( "RIGHT 0!");
 			    attackTrail.transform.Translate(Vector3.up * 3.0f);
 			    attackTrail.transform.Translate(Vector3.right * 3.0f);
-                m_AudioSource.PlayOneShot ( sndRight0 );
+                m_Audio.PlayOnce ( "right0" );
                 m_Animator.SetTrigger("atkR1");
+                animationDelay = true; //take this line out once we get all animations
 			    break;
             case 1:
                 // Perform smash move 1 right click
                 ShowComboText ( "RIGHT 1!" );
 			    attackTrail.transform.Translate(Vector3.up * -3.0f);
 			    attackTrail.transform.Translate(Vector3.right * -3.0f);
-                m_AudioSource.PlayOneShot ( sndRight1 );
+                m_Audio.PlayOnce ( "right1" );
 			    break;
             case 2:
                 // Perform smash move 2 right click
                 ShowComboText ( "RIGHT 2!" );
-                m_AudioSource.PlayOneShot ( sndRight2 );
+                m_Audio.PlayOnce ( "right2" );
                 break;
             case 3:
                 // Perform smash move 3 right click
                 ShowComboText ( "RIGHT 3!" );
-                m_AudioSource.PlayOneShot ( sndRight3 );
+                m_Audio.PlayOnce ( "right3" );
                 break;
             case 4:
                 // Perform smash move 4 right click
                 ShowComboText ( "RIGHT 4!" );
-                m_AudioSource.PlayOneShot ( sndRight4 );
+                m_Audio.PlayOnce ( "right4" );
                 break;
             default:
                 // Reset to zero if over 4
                 multClickCountLeft = 0;
                 multClickCountRight = 0;
-                m_AudioSource.PlayOneShot ( sndRight0 );
+                m_Audio.PlayOnce ( "right0" );
                 break;
         }
         multClickCountLeft = 0;
@@ -215,6 +214,26 @@ public class Combat : MonoBehaviour
 
     public void finishedAttacking()
     {
-        m_Animator.SetBool("isAtking", false);
+        m_Animator.SetBool ( "isAtking", false );
+    }
+
+    void OnTriggerStay2D ( Collider2D coll )
+    {
+        if ( coll.gameObject.tag == "Enemy"  )
+        {
+            Enemy enemy = ( Enemy )coll.gameObject.GetComponent ( "Enemy" );
+
+            if ( damageToEnemy != 0 )
+            {
+                // Play hit sound
+                enemy.TakeDamage ( damageToEnemy );
+                damageToEnemy = 0;
+            }
+        }
+    }
+
+    public void animationFinished()
+    {
+        animationDelay = false;
     }
 }
