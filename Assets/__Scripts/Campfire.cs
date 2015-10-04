@@ -32,7 +32,7 @@ public class Campfire : MonoBehaviour
 	void Start () 
     {
         m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
-        m_Input = GameObject.Find ( "InputManager" ).GetComponent<InputManager> ();
+        m_Input = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
         m_CharAnimator =m_Char.GetComponent<Animator>();
 	}
