@@ -7,11 +7,16 @@ public class Interactable : MonoBehaviour
     public Sprite activeSprite;
 
 	public GameObject gatherableItem;
+    public GameObject inventoryGameObject;
+    private Inventory inventory;
 
 	// Use this for initialization
 	void Start () 
     {
-	
+        if (tag == "Gatherable")
+        {
+            inventory = inventoryGameObject.GetComponent<Inventory>();
+        }
 	}
 	
 	// Update is called once per frame
@@ -46,7 +51,8 @@ public class Interactable : MonoBehaviour
 	public void ReceiveItem()
 	{
 		//Replace this with better code once we actually implement a UI
-		gatherableItem.SetActive(true);
+		//gatherableItem.SetActive(true);
+        inventory.AddItem(gatherableItem);
 	}
 
 }
