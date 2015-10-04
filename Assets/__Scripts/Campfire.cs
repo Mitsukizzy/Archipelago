@@ -11,6 +11,8 @@ public class Campfire : MonoBehaviour
     private InputManager m_Input;
     private CameraFollow m_Camera;
 
+    private Animator m_CharAnimator;
+
     public GameObject campPopup;
     public GameObject campMenu;
 
@@ -32,6 +34,7 @@ public class Campfire : MonoBehaviour
         m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
         m_Input = GameObject.Find ( "InputManager" ).GetComponent<InputManager> ();
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
+        m_CharAnimator =m_Char.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +44,7 @@ public class Campfire : MonoBehaviour
         {
             campPopup.SetActive ( true );
             m_Char.SetPlayerState ( Character.PlayerState.Interact );
+            m_CharAnimator.SetBool("isWalking", false);
         }
 
         if ( isFadingIn )

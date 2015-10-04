@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
         relCameraPosMag = relCameraPos.magnitude - 0.5f;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // The standard position of the camera is the relative position of the camera from the player.
         Vector3 standardPos = target.position + relCameraPos;
@@ -88,7 +88,7 @@ public class CameraFollow : MonoBehaviour
         Quaternion lookAtRotation = Quaternion.LookRotation(relPlayerPosition, Vector3.up);
 
         // Lerp the camera's rotation between it's current rotation and the rotation that looks at the player.
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookAtRotation, smooth * Time.deltaTime);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, lookAtRotation, smooth * Time.deltaTime);
     }
 
     public void ChangeTarget ( Transform newTarget )
