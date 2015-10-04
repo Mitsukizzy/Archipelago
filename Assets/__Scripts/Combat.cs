@@ -111,18 +111,24 @@ public class Combat : MonoBehaviour
 				attackTrail.transform.Translate(Vector3.up * 3.0f);
 				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 m_Audio.PlayOnce ( "left2" );
+                m_Animator.SetTrigger("atkL1");
+                animationDelay = true; //take this line out once we get all animations
 				break;
             case 2:
                 // Perform basic move 3 left click
                 ShowComboText ( "LEFT 3!" );
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "left3" );
+                m_Animator.SetTrigger("atkL1");
+                animationDelay = true; //take this line out once we get all animations
 				break;
             case 3:
                 // Perform basic move 4 left click
 				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 ShowComboText ( "LEFT 4!" );
                 m_Audio.PlayOnce ( "left4" );
+                m_Animator.SetTrigger("atkL1");
+                animationDelay = true; //take this line out once we get all animations
                 break;
             default:
                 // Reset to zero if over 4
@@ -134,6 +140,7 @@ public class Combat : MonoBehaviour
 				attackTrail.transform.Translate(Vector3.up * -3.0f);
 				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "left1" );
+                animationDelay = true; //take this line out once we get all animations
 				break;
         } 
         multClickCountRight = 0;
@@ -157,7 +164,7 @@ public class Combat : MonoBehaviour
 			    attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "right0" );
                 m_Animator.SetTrigger("atkR1");
-                animationDelay = true; //take this line out once we get all animations
+                //animationDelay = true; //take this line out once we get all animations
 			    break;
             case 1:
                 // Perform smash move 1 right click
@@ -165,27 +172,32 @@ public class Combat : MonoBehaviour
 			    attackTrail.transform.Translate(Vector3.up * -3.0f);
 			    attackTrail.transform.Translate(Vector3.right * -3.0f);
                 m_Audio.PlayOnce ( "right1" );
+                m_Animator.SetTrigger("atkR1");
 			    break;
             case 2:
                 // Perform smash move 2 right click
                 ShowComboText ( "RIGHT 2!" );
                 m_Audio.PlayOnce ( "right2" );
+                m_Animator.SetTrigger("atkR1");
                 break;
             case 3:
                 // Perform smash move 3 right click
                 ShowComboText ( "RIGHT 3!" );
                 m_Audio.PlayOnce ( "right3" );
+                m_Animator.SetTrigger("atkR1");
                 break;
             case 4:
                 // Perform smash move 4 right click
                 ShowComboText ( "RIGHT 4!" );
                 m_Audio.PlayOnce ( "right4" );
+                m_Animator.SetTrigger("atkR1");
                 break;
             default:
                 // Reset to zero if over 4
                 multClickCountLeft = 0;
                 multClickCountRight = 0;
                 m_Audio.PlayOnce ( "right0" );
+                m_Animator.SetTrigger("atkR1");
                 break;
         }
         multClickCountLeft = 0;
