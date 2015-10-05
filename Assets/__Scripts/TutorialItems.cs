@@ -33,8 +33,15 @@ public class TutorialItems : MonoBehaviour
     void OnTriggerEnter2D ( Collider2D coll )
     {
         if ( coll.gameObject.tag == "Char" )
-        {
-            tutorial.SetHint ( "interact" );
+        {            
+            if ( transform.name.Equals ( "Arrow" ) )
+            {
+                Application.LoadLevel ( 2 ); // Load the Wetlands
+            }
+            else
+            {
+                tutorial.SetHint ( "interact" );
+            }
         }
     }
 
@@ -50,6 +57,7 @@ public class TutorialItems : MonoBehaviour
             {
                 canPlayBoat = true;
             }
+            
             tutorial.CloseHint ();
         }
     }

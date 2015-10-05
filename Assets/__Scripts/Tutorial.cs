@@ -15,6 +15,8 @@ public class Tutorial : MonoBehaviour
 
     public GameObject knife;
     public GameObject journal;
+    public GameObject objective;
+    public GameObject arrow;
     public GameObject dialogueBox;
     private Text dialogueText;
     private GameObject backpack;
@@ -38,9 +40,6 @@ public class Tutorial : MonoBehaviour
 
         CloseDialogue ();
         SetHint ( "wasd" );
-
-        knife.SetActive ( false );
-        journal.SetActive ( false );
 
         // Dialogue
         //DialogueList.Add ( "-Player is lying on the shoreline, face up-" );
@@ -83,6 +82,18 @@ public class Tutorial : MonoBehaviour
             if ( curDialogue == 2 )
             {
                 Destroy ( backpack );
+                objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
+                objective.SetActive ( true );
+            }
+            if ( curDialogue == 3 )
+            {
+                objective.SetActive ( false );
+            }
+            if ( curDialogue == 6 )
+            {
+                objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
+                objective.SetActive ( true );
+                arrow.SetActive ( true );
             }
         }
     }
