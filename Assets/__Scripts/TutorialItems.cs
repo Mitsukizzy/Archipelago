@@ -36,7 +36,7 @@ public class TutorialItems : MonoBehaviour
         {            
             if ( transform.name.Equals ( "Arrow" ) )
             {
-                Application.LoadLevel ( 2 ); // Load the Wetlands
+                Application.LoadLevel ( 1 ); // Load the Wetlands
             }
             else
             {
