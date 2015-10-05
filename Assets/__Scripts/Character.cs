@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 
+    private GameManager m_Game;
     private InputManager m_Input;
     private AudioManager m_Audio;
     private Camera m_Cam;
@@ -53,11 +54,11 @@ public class Character : MonoBehaviour {
 	void Start () 
     {
         m_FacingRight = false;
-        m_State = PlayerState.Idle;
         originalSpeed = speed;
 
-        m_Input = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
-        m_Audio = GameObject.Find ( "GameManager" ).GetComponent<AudioManager> ();
+        m_Game = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
+        m_Input = m_Game.GetInputManager ();
+        m_Audio = m_Game.GetAudioManager ();
         m_Animator = GetComponent<Animator>();
 
 		gatherFrom = null;
@@ -86,7 +87,7 @@ public class Character : MonoBehaviour {
         }
         if (m_Input.gatheringButtonPressed() && gatherFrom != null)
         {
-            m_State = PlayerState.Gather;    
+            SetPlayerState ( PlayerState.Gather );
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
@@ -95,7 +96,7 @@ public class Character : MonoBehaviour {
 			gatherTime += Time.deltaTime;
 			if( gatherTime >= secondsGathering )
             {
-                m_State = PlayerState.Idle;
+                SetPlayerState( PlayerState.Idle );
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
 				Debug.Log("Finished Gathering");
@@ -135,7 +136,7 @@ public class Character : MonoBehaviour {
 
             if( m_Input.DodgeButtonPressed() )
 		    {
-                m_State = PlayerState.Dodge;
+                SetPlayerState ( PlayerState.Dodge );
 		    }
 
             if ( m_Input.DodgeButtonReleased () )
@@ -147,13 +148,13 @@ public class Character : MonoBehaviour {
                     transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
                     transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
                     m_Audio.PlayOnce ( "dodge" );
-                    m_State = PlayerState.Idle;
+                    SetPlayerState ( PlayerState.Idle );
                 }
             }
 
             if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
-                m_State = PlayerState.Idle;
+                SetPlayerState ( PlayerState.Idle );
                 m_Animator.SetBool("isWalking", false);
             }
             else

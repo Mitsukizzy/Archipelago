@@ -6,11 +6,27 @@ public class GameManager : MonoBehaviour
 {
     private Character m_Char;
     public GameObject gameOverOverlay;
+    private GameState m_GameState;
+
+
+    public enum GameState
+    {
+        Tutorial,
+        Normal
+    }
 
 	// Use this for initialization
 	void Start () 
     {
         m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
+        if ( Application.loadedLevelName.Equals ( "Beach" ) )
+        {
+            m_GameState = GameState.Tutorial;
+        }
+        else
+        {
+            m_GameState = GameState.Normal;
+        }
 	}
 	
 	// Update is called once per frame
@@ -37,6 +53,16 @@ public class GameManager : MonoBehaviour
     public AudioManager GetAudioManager ()
     {
         return GetComponent<AudioManager> ();
+    }
+
+    public void SetGameState ( GameState newState )
+    {
+        m_GameState = newState;
+    }
+
+    public GameState GetGameState()
+    {
+        return m_GameState;
     }
 
     public void MainMenu ()
