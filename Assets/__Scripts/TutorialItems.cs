@@ -56,8 +56,7 @@ public class TutorialItems : MonoBehaviour
             else if ( transform.name.Equals ( "Boat" ) )
             {
                 canPlayBoat = true;
-            }
-            
+            }            
             tutorial.CloseHint ();
         }
     }
