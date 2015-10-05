@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Backpack : MonoBehaviour 
+// Backpack and Boat
+public class TutorialItems : MonoBehaviour 
 {
     public Tutorial tutorial;
     private InputManager mInput;
     private bool canPlayBackpack = false;
+    private bool canPlayBoat = false;
 
 	// Use this for initialization
 	void Start () 
@@ -21,6 +23,11 @@ public class Backpack : MonoBehaviour
             tutorial.ShowDialogue ( 0, 2 );
             canPlayBackpack = false;
         }
+        if ( canPlayBoat )
+        {
+            tutorial.ShowDialogue ( 3, 6 );
+            canPlayBoat = false;
+        }
 	}
 
     void OnTriggerEnter2D ( Collider2D coll )
@@ -35,7 +42,14 @@ public class Backpack : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" && mInput.gatheringButtonPressed () )
         {
-            canPlayBackpack = true;
+            if ( transform.name.Equals ( "Backpack" ) )
+            {
+                canPlayBackpack = true;
+            }
+            else if ( transform.name.Equals ( "Boat" ) )
+            {
+                canPlayBoat = true;
+            }
             tutorial.CloseHint ();
         }
     }

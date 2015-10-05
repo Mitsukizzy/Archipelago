@@ -11,6 +11,11 @@ public class CameraFollow : MonoBehaviour
     private float relCameraPosMag;      // The distance of the camera from the player.
     private Vector3 newPos;             // The position the camera is trying to reach.
 
+    private float rightBound;
+    private float leftBound;
+    private float topBound;
+    private float bottomBound;
+    private SpriteRenderer spriteBounds;
 
     void Awake()
     {
@@ -22,6 +27,14 @@ public class CameraFollow : MonoBehaviour
         // Setting the relative position as the initial relative position of the camera in the scene.
         relCameraPos = transform.position - target.position;
         relCameraPosMag = relCameraPos.magnitude - 0.5f;
+
+        float vertExtent = GetComponent<Camera>().orthographicSize;
+        float horzExtent = vertExtent * Screen.width / Screen.height;
+        spriteBounds = GameObject.Find ( "MapBackground" ).GetComponent<SpriteRenderer> ();
+        leftBound = ( float )( horzExtent - spriteBounds.bounds.size.x / 2.0f );
+        rightBound = ( float )( spriteBounds.bounds.size.x / 2.0f - horzExtent );
+        bottomBound = ( float )( vertExtent - spriteBounds.bounds.size.y / 2.0f );
+        topBound = ( float )( spriteBounds.bounds.size.y / 2.0f - vertExtent );
     }
 
     void Update()
@@ -56,7 +69,11 @@ public class CameraFollow : MonoBehaviour
         }
 
         // Lerp the camera's position between it's current position and it's new position.
-        transform.position = Vector3.Lerp(transform.position, newPos, smooth * Time.deltaTime);
+        Vector3 newPosition = Vector3.Lerp ( transform.position, newPos, smooth * Time.deltaTime );
+        // Keep camera within bounds of the map background
+        newPosition.x = Mathf.Clamp ( newPosition.x, leftBound, rightBound );
+        newPosition.y = Mathf.Clamp ( newPosition.y, bottomBound, topBound );
+        transform.position = newPosition;
 
         // Make sure the camera is looking at the player.
         SmoothLookAt();
