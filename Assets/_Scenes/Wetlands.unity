@@ -2390,7 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a100ca01d6bed4fb7d4056e8d18e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroDistance: 20
+  aggroDistance: 30
   attackDistance: 2
   moveSpeed: 20
   attackSpeed: 5
@@ -3702,11 +3702,11 @@ RectTransform:
   - {fileID: 766663011}
   m_Father: {fileID: 1128661266}
   m_RootOrder: 3
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 96}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 39.7999992, y: 149}
   m_SizeDelta: {x: 120, y: 10}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &2137292339
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,6 +91,7 @@ public class Character : MonoBehaviour {
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
+            //gatherBarObj.GetComponent<RectTransform>().localPosition = Camera.main.WorldToScreenPoint(transform.position);
             gatherBarObj.SetActive(true);
             m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
