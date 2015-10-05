@@ -58,7 +58,9 @@ public class Combat : MonoBehaviour
 			CombatTrail.SetActive(false);
 	    }
 
-        if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && m_Char.GetPlayerState () != Character.PlayerState.Interact )
+        if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && 
+            m_Char.GetPlayerState () != Character.PlayerState.Interact &&
+            m_Game.GetGameState() != GameManager.GameState.Tutorial )
         {
             if ( m_Input.normalAttackButtonPressed () && !animationDelay )
             {
