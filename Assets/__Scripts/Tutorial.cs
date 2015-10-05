@@ -104,6 +104,10 @@ public class Tutorial : MonoBehaviour
         {
             canAdvanceDialogue = false;
             CloseDialogue ();
+            if ( curDialogue == 2 )
+            {
+                SetHint ( "shift" );
+            }
         }
         if ( canAdvanceDialogue )
         {
@@ -151,7 +155,8 @@ public class Tutorial : MonoBehaviour
                 break;
             case "shift":
                 currentTip = shift;
-                StartCoroutine ( TimedHintShow () );
+                StartCoroutine ( TimedHintShow ( 10 ) );
+                StartCoroutine ( CustomHintShow ( staminaHelp, 10 ) );
                 break;
             case "space":
                 currentTip = wasd;
@@ -172,5 +177,12 @@ public class Tutorial : MonoBehaviour
         currentTip.SetActive ( true );
         yield return new WaitForSeconds ( seconds );
         currentTip.SetActive ( false );
+    }
+
+    IEnumerator CustomHintShow ( GameObject tip, int seconds = 5 )
+    {
+        tip.SetActive ( true );
+        yield return new WaitForSeconds ( seconds );
+        tip.SetActive ( false );
     }
 }
