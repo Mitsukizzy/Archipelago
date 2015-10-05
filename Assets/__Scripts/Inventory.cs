@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour {
 
     private Canvas inventHolder;
 
+    public bool interactable;
+
 	// Use this for initialization
 	void Start () {
         for (int i = 1; i < 8; i++)
@@ -23,12 +25,27 @@ public class Inventory : MonoBehaviour {
             slotList.Add(slot);
             initSlotPosx += 70;
         }
-        inventHolder = GameObject.Find("inventHolder").GetComponent<Canvas>();
+        inventHolder = GameObject.Find("Inventory UI").GetComponent<Canvas>();
+        interactable = false;
+        inventHolder.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (interactable)
+        {
+            foreach (GameObject slot in slotList)
+            {
+                slot.GetComponent<SlotScript>().interactable = true;
+            }
+        }
+        else
+        {
+            foreach (GameObject slot in slotList)
+            {
+                slot.GetComponent<SlotScript>().interactable = false;
+            }
+        }
 	}
 
     public void AddItem(GameObject item)
@@ -59,5 +76,10 @@ public class Inventory : MonoBehaviour {
     public void ToggleInventory()
     {
         inventHolder.enabled = !inventHolder.enabled;
+    }
+
+    public void SetInteractable(bool interact)
+    {
+        interactable = interact;
     }
 }

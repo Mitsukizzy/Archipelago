@@ -80,7 +80,7 @@ public class Combat : MonoBehaviour
                     attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
                     damageToEnemy = 20;
                     RightClickCombo ();
-                    //animationDelay = true; //uncomment when we have all animations
+                    animationDelay = true; //uncomment when we have all animations
                 }
             }
         }

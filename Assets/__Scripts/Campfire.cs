@@ -22,6 +22,8 @@ public class Campfire : MonoBehaviour
     private bool isFadingInCircle;
     private bool canCamp;
 
+    private GameObject m_Inventory;
+
     void Awake()
     {
         screenFadeFill.rectTransform.sizeDelta = new Vector2 ( Screen.width, Screen.height );
@@ -35,6 +37,7 @@ public class Campfire : MonoBehaviour
         m_Input = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
         m_CharAnimator =m_Char.GetComponent<Animator>();
+        m_Inventory = GameObject.Find("Inventory UI");
 	}
 	
 	// Update is called once per frame
@@ -87,6 +90,7 @@ public class Campfire : MonoBehaviour
         isFadingInCircle = true;
         campMenu.SetActive ( false );
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
+        m_Inventory.GetComponent<Canvas>().enabled = false;
 
         // Center camera on player
         m_Camera.TargetPlayer ();
@@ -130,6 +134,12 @@ public class Campfire : MonoBehaviour
             isFadingOut = false;
             isFadingIn = true;
         }
+    }
+
+    public void CookandEat()
+    {
+        m_Inventory.GetComponent<Canvas>().enabled = true;
+        m_Inventory.gameObject.transform.GetChild(0).GetComponent<Inventory>().SetInteractable(true);
     }
 
     void OnTriggerEnter2D ( Collider2D coll )
