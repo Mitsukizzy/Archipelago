@@ -895,7 +895,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330289485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.19999981, y: -15.8999996, z: 0}
+  m_LocalPosition: {x: -7.5999999, y: -12.5, z: 0}
   m_LocalScale: {x: 12.4175196, y: 12.4175253, z: 12.4175253}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1792,8 +1792,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 50}
-  m_SizeDelta: {x: 71.4000244, y: 85.3300171}
+  m_AnchoredPosition: {x: 45, y: 45}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &921907070
 MonoBehaviour:
@@ -1814,7 +1814,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f7c919197087a6d41aa1abe7d370b58d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bdcea3c6af2b4c4aa4ef41b517e3887, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1854,10 +1854,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: b064e78cc55e59b4ca80aec0c57a803c,
+    m_HighlightedSprite: {fileID: 21300000, guid: c46c1558d8bd2d34ba413dd8d770b373,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b064e78cc55e59b4ca80aec0c57a803c, type: 3}
-    m_DisabledSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 6788e13331f7124489121facf2a5a194, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 4bdcea3c6af2b4c4aa4ef41b517e3887, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -2305,6 +2305,7 @@ GameObject:
   - 58: {fileID: 1046867456}
   - 114: {fileID: 1046867457}
   - 114: {fileID: 1046867458}
+  - 95: {fileID: 1046867459}
   m_Layer: 0
   m_Name: Croc
   m_TagString: Enemy
@@ -2336,7 +2337,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eaf935d7327f4475e83e15148ca6ca9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9fe5ebe35f1149438a2571b30595b47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1046867455
 Transform:
@@ -2345,8 +2346,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1046867453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.2999992, y: 2.00999999, z: 0}
-  m_LocalScale: {x: -5.05149841, y: 5.05149317, z: 5.05149317}
+  m_LocalPosition: {x: 36.2999992, y: 34.4000015, z: 0}
+  m_LocalScale: {x: -2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2362,7 +2363,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.47340608
+  m_Radius: 14.8088894
 --- !u!114 &1046867457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,6 +2395,23 @@ MonoBehaviour:
   moveSpeed: 20
   attackSpeed: 5
   health: 250
+--- !u!95 &1046867459
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1046867453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17f0c2dbb848c7040a901ed0b54ab8bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1128661265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,7 +2568,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141229871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29, y: 7, z: 0}
+  m_LocalPosition: {x: -63.7999992, y: -7.30000019, z: 0}
   m_LocalScale: {x: 3.22076964, y: 3.22076845, z: 3.22076845}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3804,7 +3822,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2142275701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.51000214, y: -2.59000015, z: -1}
+  m_LocalPosition: {x: -72.5999985, y: -7.80000019, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 976431448}

@@ -14,6 +14,9 @@ public class Inventory : MonoBehaviour {
 
     public bool interactable;
 
+    private GameObject bag;
+    SpriteState initBagSprites;
+
 	// Use this for initialization
 	void Start () {
         for (int i = 1; i < 8; i++)
@@ -28,6 +31,8 @@ public class Inventory : MonoBehaviour {
         inventHolder = GameObject.Find("Inventory UI").GetComponent<Canvas>();
         interactable = false;
         inventHolder.enabled = false;
+        bag = GameObject.Find("Bag");
+        initBagSprites = bag.GetComponent<Button>().spriteState;
 	}
 	
 	// Update is called once per frame
@@ -76,6 +81,20 @@ public class Inventory : MonoBehaviour {
     public void ToggleInventory()
     {
         inventHolder.enabled = !inventHolder.enabled;
+        if (inventHolder.enabled)
+        {
+            bag.GetComponent<Image>().sprite = initBagSprites.pressedSprite;
+            SpriteState openBagSpriteStates = new SpriteState();
+            openBagSpriteStates.highlightedSprite = initBagSprites.pressedSprite;
+            openBagSpriteStates.pressedSprite = initBagSprites.disabledSprite;
+            
+            bag.GetComponent<Button>().spriteState = openBagSpriteStates;
+        }
+        else
+        {
+            bag.GetComponent<Image>().sprite = initBagSprites.disabledSprite;
+            bag.GetComponent<Button>().spriteState = initBagSprites;
+        }
     }
 
     public void SetInteractable(bool interact)

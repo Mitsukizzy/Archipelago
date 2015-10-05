@@ -35,6 +35,10 @@ public class Interactable : MonoBehaviour
 				coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
 			}
         }
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().SetBool("inRange", true);
+        }
     }
 
     void OnTriggerExit2D ( Collider2D coll )
@@ -46,6 +50,10 @@ public class Interactable : MonoBehaviour
 				coll.gameObject.GetComponent<Character>().gatherFrom = null;
 			}
 		}
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().SetBool("inRange", false);
+        }
     }
 
 	public void ReceiveItem()
