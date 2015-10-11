@@ -861,7 +861,6 @@ MonoBehaviour:
   defaultSprite: {fileID: 21300000, guid: 4025eae623f46654f9cb84d221f845e2, type: 3}
   activeSprite: {fileID: 21300000, guid: 6e82310ece027974b9fd248567136854, type: 3}
   gatherableItem: {fileID: 0}
-  inventoryGameObject: {fileID: 0}
 --- !u!212 &330289488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -899,7 +898,7 @@ Transform:
   m_LocalScale: {x: 12.4175196, y: 12.4175253, z: 12.4175253}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
 --- !u!61 &330289490
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1064,7 +1063,7 @@ RectTransform:
   m_Children:
   - {fileID: 840409960}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1591,7 +1590,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: {fileID: 186810, guid: 8c23a1c1026ea0846a6b9564fa188356, type: 2}
   slotList: []
-  interactable: 0
 --- !u!1 &854044949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1752,7 @@ RectTransform:
   - {fileID: 219354026}
   - {fileID: 2015851650}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2352,7 +2350,7 @@ Transform:
   m_LocalScale: {x: -2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!58 &1046867456
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2379,8 +2377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: eaf935d7327f4475e83e15148ca6ca9b, type: 3}
   activeSprite: {fileID: 21300000, guid: 9379c5006cb98480bbb1e087729cd224, type: 3}
-  gatherableItem: {fileID: 0}
-  inventoryGameObject: {fileID: 0}
+  gatherableItem: {fileID: 143314, guid: f6578b3077035544c8a7109e3b87e458, type: 2}
 --- !u!114 &1046867458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2397,6 +2394,7 @@ MonoBehaviour:
   moveSpeed: 20
   attackSpeed: 5
   health: 250
+  dropRng: 1
 --- !u!95 &1046867459
 Animator:
   serializedVersion: 3
@@ -2538,7 +2536,7 @@ RectTransform:
   - {fileID: 1338066472}
   - {fileID: 2137292338}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2664,7 +2662,7 @@ Transform:
   m_LocalScale: {x: 3.22076964, y: 3.22076845, z: 3.22076845}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!114 &1141229874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2679,7 +2677,6 @@ MonoBehaviour:
   defaultSprite: {fileID: 21300000, guid: f2b4933f46dcc4c4086c667694935691, type: 3}
   activeSprite: {fileID: 21300000, guid: b38c87a80a6a31b4389b9ebda72e5520, type: 3}
   gatherableItem: {fileID: 106894, guid: de29f40635977a54c83f502ecb4d0e25, type: 2}
-  inventoryGameObject: {fileID: 840409959}
 --- !u!61 &1141229875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2958,7 +2955,7 @@ Transform:
   m_LocalScale: {x: 1.76014841, y: 1.76014829, z: 1.76014829}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1436415290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3053,7 +3050,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1547403774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1675253583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,7 +3220,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -3.86977959, y: 1.98638391}
@@ -3424,7 +3421,7 @@ RectTransform:
   m_Children:
   - {fileID: 921907069}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3603,6 +3600,48 @@ RectTransform:
   m_AnchoredPosition: {x: 138, y: -7}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 1, y: 1}
+--- !u!1001 &2004879243
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 33.5130959
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 211.600555
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -859.561218
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442940, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2015851649
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,7 +3826,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &2066968188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,7 +4049,7 @@ Transform:
   - {fileID: 976431448}
   - {fileID: 123401069}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!50 &2142275705
 Rigidbody2D:
   serializedVersion: 2

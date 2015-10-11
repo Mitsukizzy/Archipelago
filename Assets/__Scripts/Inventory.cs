@@ -12,8 +12,6 @@ public class Inventory : MonoBehaviour {
 
     private Canvas inventHolder;
 
-    public bool interactable;
-
     private GameObject bag;
     SpriteState initBagSprites;
 
@@ -32,7 +30,6 @@ public class Inventory : MonoBehaviour {
             initSlotPosx += 70;
         }
         inventHolder = GameObject.Find("Inventory UI").GetComponent<Canvas>();
-        interactable = false;
         inventHolder.enabled = false;
         bag = GameObject.Find("Bag");
         initBagSprites = bag.GetComponent<Button>().spriteState;
@@ -44,20 +41,6 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (interactable)
-        {
-            foreach (GameObject slot in slotList)
-            {
-                slot.GetComponent<SlotScript>().interactable = true;
-            }
-        }
-        else
-        {
-            foreach (GameObject slot in slotList)
-            {
-                slot.GetComponent<SlotScript>().interactable = false;
-            }
-        }
 	}
 
     public void AddItem(GameObject item)
@@ -70,7 +53,12 @@ public class Inventory : MonoBehaviour {
             {
                 slotData.increaseStack();
                 Debug.Log("increased Stack of " + item.name);
+                //add some kind of success noise
                 Success.SetTrigger("becameActive");
+                if (item.GetComponent<ItemData>().isInstant)
+                {
+                    slotData.interactable = true;
+                }
                 return;
             }
         }
@@ -81,10 +69,18 @@ public class Inventory : MonoBehaviour {
             if (slotData.item == null)
             {
                 slotData.item = item;
+                //add some kind of success noise
                 Success.SetTrigger("becameActive");
+                if (item.GetComponent<ItemData>().isInstant)
+                {
+                    slotData.interactable = true;
+                }
                 return;
             }
         }
+
+        //couldn't gather the item :/
+        //add some kind of fail noise?
         Fail.SetTrigger("becameActive");
 
 
@@ -130,6 +126,15 @@ public class Inventory : MonoBehaviour {
 
     public void SetInteractable(bool interact)
     {
-        interactable = interact;
+        foreach (GameObject slot in slotList)
+        {
+            SlotScript slotData = slot.GetComponent<SlotScript>();
+            slotData.interactable = interact;
+            if (slotData.item != null && slotData.m_itemData.isInstant)
+            {
+                slotData.interactable = true;
+            }
+        }
+
     }
 }

@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
     private bool isAggroed = false;
     private bool canAttack = true;             // The enemy's cooldown control
 
+    //item drops
+    public float dropRng = 1;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -67,6 +70,14 @@ public class Enemy : MonoBehaviour
         {
             // Play death animation and sound, then destroy
             m_Audio.PlayOnce ( "enemyDeath" );
+            //obtain dropable item!
+            if (GetComponent<Interactable>().gatherableItem != null)
+            {
+                if (Random.value <= dropRng)
+                {
+                    GetComponent<Interactable>().ReceiveItem();
+                }
+            }
             Destroy ( gameObject );
         }
 	}

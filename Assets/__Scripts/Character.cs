@@ -28,6 +28,9 @@ public class Character : MonoBehaviour {
     public GameObject gatherBarObj;
 	private Slider gatherBar;
 
+    //Inventory
+    private Inventory m_Inventory;
+
     //Health and Stamina sliders
     public Slider hpBar;
     public Slider staminaBar;
@@ -72,6 +75,8 @@ public class Character : MonoBehaviour {
         hpBar.value = health;
         staminaBar.maxValue = stamina;
         staminaBar.value = stamina;
+
+        m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
 	
 	// Update is called once per frame
@@ -264,4 +269,17 @@ public class Character : MonoBehaviour {
             m_State = PlayerState.Idle;
         }
     }
+
+    public void GetItem(GameObject item)
+    {
+        m_Inventory.AddItem(item);
+    }
+
+    public void useItem(GameObject item)
+    {
+        ItemData data = item.GetComponent<ItemData>();
+        hpBar.value += data.healthIncrease;
+        staminaBar.value += data.staminaIncrease;
+    }
+
 }

@@ -9,14 +9,17 @@ public class ItemData : MonoBehaviour {
     public bool healsHunger = true;
     public bool healsSickness = false;
     public bool healsTired = false;
+    public bool isInstant = false;
+    public GameObject cookedItem;
+
     
     // Use this for initialization
-	void Start () {
-	
+	void Awake () {
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
+
 }
