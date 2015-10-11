@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Combat : MonoBehaviour 
 {
@@ -62,7 +63,7 @@ public class Combat : MonoBehaviour
             m_Char.GetPlayerState () != Character.PlayerState.Interact &&
             m_Game.GetGameState() != GameManager.GameState.Tutorial )
         {
-            if ( m_Input.normalAttackButtonPressed () && !animationDelay )
+            if (m_Input.normalAttackButtonPressed() && !animationDelay && !EventSystem.current.IsPointerOverGameObject())
             {
                 if ( m_Char.UseStamina ( 30 ) )
                 {
@@ -74,7 +75,7 @@ public class Combat : MonoBehaviour
                 }
             }
 
-            if ( m_Input.smashAttackButtonPressed () && !animationDelay )
+            if (m_Input.smashAttackButtonPressed() && !animationDelay && !EventSystem.current.IsPointerOverGameObject())
             {
                 if ( m_Char.UseStamina ( 50 ) )
                 {
