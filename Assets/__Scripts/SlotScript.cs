@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SlotScript : MonoBehaviour{
 
     public GameObject item;
-    private ItemData m_itemData;
+    public ItemData m_itemData;
     Image itemImage, descriptionBG;
     Text itemCount, itemDescription;
     int stack;
@@ -38,7 +38,7 @@ public class SlotScript : MonoBehaviour{
         {
             itemImage.enabled = false;
             itemCount.enabled = false;
-            m_itemData = null;
+            //m_itemData = null;
             interactable = false;
             itemDescription.text = "";
         }
@@ -59,11 +59,17 @@ public class SlotScript : MonoBehaviour{
         {
             Debug.Log("Clicked " + item.name );
             stack--;
+            m_Character.useItem(item);
             if (stack == 0)
             {
                 item = null;
                 descriptionBG.enabled = false;
                 itemDescription.enabled = false;
+                stack = 1;
+            }
+            if (m_itemData.cookedItem != null)
+            {
+                m_Character.GetItem(m_itemData.cookedItem);
             }
         }
     }

@@ -22,7 +22,7 @@ public class Campfire : MonoBehaviour
     private bool isFadingInCircle;
     private bool canCamp;
 
-    private GameObject m_Inventory;
+    private Inventory m_Inventory;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class Campfire : MonoBehaviour
         m_Input = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
         m_CharAnimator =m_Char.GetComponent<Animator>();
-        m_Inventory = GameObject.Find("Inventory UI");
+        m_Inventory = GameObject.Find("Inventory UI").transform.GetChild(0).GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
@@ -90,7 +90,7 @@ public class Campfire : MonoBehaviour
         isFadingInCircle = true;
         campMenu.SetActive ( false );
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
-        m_Inventory.GetComponent<Canvas>().enabled = false;
+        m_Inventory.CloseInventory();
 
         // Center camera on player
         m_Camera.TargetPlayer ();
@@ -138,8 +138,8 @@ public class Campfire : MonoBehaviour
 
     public void CookandEat()
     {
-        m_Inventory.GetComponent<Canvas>().enabled = true;
-        m_Inventory.gameObject.transform.GetChild(0).GetComponent<Inventory>().SetInteractable(true);
+        m_Inventory.OpenInventory();
+        m_Inventory.SetInteractable(true);
     }
 
     void OnTriggerEnter2D ( Collider2D coll )
