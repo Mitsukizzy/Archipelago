@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     private bool isAggroed = false;
     private bool canAttack = true;             // The enemy's cooldown control
 
+    private bool isDead = false;
+
     //item drops
     public float dropRng = 1;
 
@@ -66,7 +68,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Check if dead
-        if ( health <= 0 )
+        if ( health <= 0 && !isDead )
         {
             // Play death animation and sound, then destroy
             m_Audio.PlayOnce ( "enemyDeath" );
@@ -76,11 +78,18 @@ public class Enemy : MonoBehaviour
                 if (Random.value <= dropRng)
                 {
                     GetComponent<Interactable>().ReceiveItem();
+                    GetComponent<Interactable>().gatherableItem = null;
                 }
             }
-            Destroy ( gameObject );
+            GetComponent<Animator>().SetTrigger("Death");
+            isDead = true;
         }
 	}
+
+    public void OnDeath()
+    {
+        Destroy(gameObject);
+    }
 
     IEnumerator AttackPlayer ()
     {

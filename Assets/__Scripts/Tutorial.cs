@@ -20,6 +20,7 @@ public class Tutorial : MonoBehaviour
     public GameObject dialogueBox;
     private Text dialogueText;
     private GameObject backpack;
+    private GameObject backpackUI;
 
     private Character mChar;
     private GameManager mGame;
@@ -37,6 +38,7 @@ public class Tutorial : MonoBehaviour
         mChar = GameObject.Find ( "Character" ).GetComponent<Character>();
         mGame = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
         backpack = GameObject.Find ( "Backpack" );
+        backpackUI = GameObject.Find("Bag");
 
         CloseDialogue ();
         SetHint ( "wasd" );
@@ -82,6 +84,7 @@ public class Tutorial : MonoBehaviour
             if ( curDialogue == 2 )
             {
                 Destroy ( backpack );
+                backpackUI.GetComponent<Image>().enabled = true;
                 objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
                 objective.SetActive ( true );
             }

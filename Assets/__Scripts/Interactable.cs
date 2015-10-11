@@ -8,18 +8,34 @@ public class Interactable : MonoBehaviour
 
 	public GameObject gatherableItem;
     private Inventory inventory;
+    private GameObject m_char;
+
+    bool checkForOrder;
 
 	// Use this for initialization
 	void Start () 
     {
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        m_char = GameObject.Find("Character");
+        checkForOrder = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-	
+        if (checkForOrder)
+        {
+            if (m_char.transform.position.y < transform.position.y + 1)
+            {
+                GetComponent<SpriteRenderer>().sortingOrder = -1;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
+            }
+        }
 	}
+
 
 
     void OnTriggerEnter2D ( Collider2D coll )
@@ -35,6 +51,7 @@ public class Interactable : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("inRange", true);
         }
+        checkForOrder = true;
     }
 
     void OnTriggerExit2D ( Collider2D coll )
@@ -50,6 +67,7 @@ public class Interactable : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("inRange", false);
         }
+        checkForOrder = false;
     }
 
 	public void ReceiveItem()
