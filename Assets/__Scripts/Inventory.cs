@@ -17,6 +17,9 @@ public class Inventory : MonoBehaviour {
     private GameObject bag;
     SpriteState initBagSprites;
 
+    private Animator Success;
+    private Animator Fail;
+
 	// Use this for initialization
 	void Start () {
         for (int i = 1; i < 8; i++)
@@ -33,6 +36,10 @@ public class Inventory : MonoBehaviour {
         inventHolder.enabled = false;
         bag = GameObject.Find("Bag");
         initBagSprites = bag.GetComponent<Button>().spriteState;
+
+        Success = GameObject.Find("Success").GetComponent<Animator>();
+        Fail = GameObject.Find("Fail").GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
@@ -63,19 +70,24 @@ public class Inventory : MonoBehaviour {
             {
                 slotData.increaseStack();
                 Debug.Log("increased Stack of " + item.name);
+                Success.SetTrigger("becameActive");
                 return;
             }
         }
-        //if we dont, add it to a new slot in the inventory
+        //if we dont, add it to a new slot in the inventory if we have a slot avaliable
         foreach (GameObject curSlot in slotList)
         {
             SlotScript slotData = curSlot.GetComponent<SlotScript>();
             if (slotData.item == null)
             {
                 slotData.item = item;
-                break;
+                Success.SetTrigger("becameActive");
+                return;
             }
         }
+        Fail.SetTrigger("becameActive");
+
+
     }
 
     public void ToggleInventory()
@@ -95,6 +107,25 @@ public class Inventory : MonoBehaviour {
             bag.GetComponent<Image>().sprite = initBagSprites.disabledSprite;
             bag.GetComponent<Button>().spriteState = initBagSprites;
         }
+    }
+
+    public void OpenInventory()
+    {
+        inventHolder.enabled = true;
+        bag.GetComponent<Image>().sprite = initBagSprites.pressedSprite;
+        SpriteState openBagSpriteStates = new SpriteState();
+        openBagSpriteStates.highlightedSprite = initBagSprites.pressedSprite;
+        openBagSpriteStates.pressedSprite = initBagSprites.disabledSprite;
+
+        bag.GetComponent<Button>().spriteState = openBagSpriteStates;
+    }
+
+    public void CloseInventory()
+    {
+        inventHolder.enabled = false;
+        bag.GetComponent<Image>().sprite = initBagSprites.disabledSprite;
+        bag.GetComponent<Button>().spriteState = initBagSprites;
+        SetInteractable(false);
     }
 
     public void SetInteractable(bool interact)

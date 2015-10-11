@@ -64,6 +64,7 @@ public class SlotScript : MonoBehaviour{
                 item = null;
                 descriptionBG.enabled = false;
                 itemDescription.enabled = false;
+                stack = 1;
             }
         }
     }
