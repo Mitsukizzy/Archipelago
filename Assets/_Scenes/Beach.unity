@@ -732,8 +732,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 454.5}
-  m_SizeDelta: {x: 1920, y: 909}
+  m_AnchoredPosition: {x: 499.5, y: 218}
+  m_SizeDelta: {x: 999, y: 436}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -1119,6 +1119,7 @@ GameObject:
   - 114: {fileID: 468915055}
   - 114: {fileID: 468915053}
   - 61: {fileID: 468915054}
+  - 61: {fileID: 468915058}
   m_Layer: 5
   m_Name: Boat
   m_TagString: Untagged
@@ -1203,6 +1204,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!61 &468915058
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468915052}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .277341217, y: -1.56971359}
+  serializedVersion: 2
+  m_Size: {x: 7.42881584, y: .525034606}
 --- !u!1 &469385043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2675,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &822799856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2696,7 +2710,7 @@ Transform:
   m_GameObject: {fileID: 822799850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -36, y: -2.59000015, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 653972791}
   - {fileID: 75894229}
@@ -3550,7 +3564,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: c876401e2e72a3a4cb4046e2297ca21c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1144945992
