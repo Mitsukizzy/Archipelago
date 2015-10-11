@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverOverlay;
     private GameState m_GameState;
 
+    private AudioManager m_audio;
+    private bool isPlaying = false; 
 
     public enum GameState
     {
@@ -17,26 +19,44 @@ public class GameManager : MonoBehaviour
 
 	// Use this for initialization
 	void Start () 
-    {
-        m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
-        if ( Application.loadedLevelName.Equals ( "Beach" ) )
+    {        
+        m_audio = GetComponent<AudioManager> ();
+
+        if ( Application.loadedLevelName.Equals ( "MainMenu" ) )
         {
-            m_GameState = GameState.Tutorial;
+            m_audio.PlayLoop ( "mystery" );
+            isPlaying = false; 
         }
         else
         {
-            m_GameState = GameState.Normal;
-        }
+            m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
+            isPlaying = true;
+
+
+            if ( Application.loadedLevelName.Equals ( "Beach" ) )
+            {
+                m_GameState = GameState.Tutorial;
+                m_audio.PlayLoop ( "main" );
+            }
+            else
+            {
+                m_GameState = GameState.Normal;
+                m_audio.PlayLoop ( "main" );
+            }  
+        }      
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if ( !m_Char.IsAlive () )
+        if ( isPlaying )
         {
-            // Move to Game Over screen
-            gameOverOverlay.SetActive ( true );
-            m_Char.Revive ();
+            if ( !m_Char.IsAlive () )
+            {
+                // Move to Game Over screen
+                gameOverOverlay.SetActive ( true );
+                m_Char.Revive ();
+            }
         }
 	}
 
