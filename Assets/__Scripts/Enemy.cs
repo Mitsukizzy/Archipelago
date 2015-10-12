@@ -93,6 +93,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator AttackPlayer ()
     {
+        GetComponent<Animator>().SetTrigger("Attack");
         m_Char.TakeDamage ( 40 );
         canAttack = false;
         yield return new WaitForSeconds ( attackSpeed );
@@ -106,5 +107,6 @@ public class Enemy : MonoBehaviour
         {
             m_Audio.PlayOnce ( "enemyDamaged" );
         }
+        GetComponent<Animator>().SetTrigger("Hit");
     }
 }

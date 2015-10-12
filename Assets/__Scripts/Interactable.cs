@@ -38,7 +38,7 @@ public class Interactable : MonoBehaviour
 
 
 
-    void OnTriggerEnter2D ( Collider2D coll )
+    void OnTriggerStay2D ( Collider2D coll )
     {
         if ( coll.gameObject.tag == "Char" )
         {
@@ -72,8 +72,6 @@ public class Interactable : MonoBehaviour
 
 	public void ReceiveItem()
 	{
-		//Replace this with better code once we actually implement a UI
-		//gatherableItem.SetActive(true);
         inventory.AddItem(gatherableItem);
 	}
 
