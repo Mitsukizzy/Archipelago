@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     private Text dialogueText;
     private GameObject backpack;
     private GameObject backpackUI;
+    private GameObject journalUI;
 
     private Character mChar;
     private GameManager mGame;
@@ -38,7 +39,8 @@ public class Tutorial : MonoBehaviour
         mChar = GameObject.Find ( "Character" ).GetComponent<Character>();
         mGame = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
         backpack = GameObject.Find ( "Backpack" );
-        backpackUI = GameObject.Find("Bag");
+        backpackUI = GameObject.Find( "Bag" );
+        journalUI = GameObject.Find ( "Journal" );
 
         CloseDialogue ();
         SetHint ( "wasd" );
@@ -72,6 +74,7 @@ public class Tutorial : MonoBehaviour
             }
             else if ( curDialogue == 1 )
             {
+                journalUI.GetComponent<Image>().enabled = true;
                 journal.SetActive ( true );
                 knife.SetActive ( false );
             }
