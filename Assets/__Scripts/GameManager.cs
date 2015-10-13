@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private GameState m_GameState;
 
     private AudioManager m_audio;
+    private InputManager m_input;
     private bool isPlaying = false; 
 
     public enum GameState
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 	void Start () 
     {        
         m_audio = GetComponent<AudioManager> ();
+        m_input = GetComponent<InputManager> ();
 
         if ( Application.loadedLevelName.Equals ( "MainMenu" ) )
         {
@@ -57,6 +59,17 @@ public class GameManager : MonoBehaviour
                 gameOverOverlay.SetActive ( true );
                 m_Char.Revive ();
             }
+        }
+        
+        // Our cheat reset keys
+        if ( m_input.ResetGameButtonPressed () )
+        {
+            Application.LoadLevel ( 0 ); // back to main menu
+        }
+        if ( m_input.ResetFromCampButtonPressed () )
+        {
+            // TODO (this will just load wetlands atm)
+            Application.LoadLevel ( 2 ); // back to latest campfire save
         }
 	}
 
