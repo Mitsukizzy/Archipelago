@@ -37,15 +37,8 @@ public class Inventory : MonoBehaviour {
         Success = GameObject.Find("Success").GetComponent<Animator>();
         Fail = GameObject.Find("Fail").GetComponent<Animator>();
 
-
-
 	}
-
-	void Awake() {
-		//the inventory will now not be destroyed between scenes
-		//DontDestroyOnLoad(GameObject.Find ("Inventory UI") );
-	}
-
+	
 	// Update is called once per frame
 	void Update () {
 	}
