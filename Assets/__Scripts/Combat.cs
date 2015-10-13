@@ -24,11 +24,6 @@ public class Combat : MonoBehaviour
 
     public GameObject arrow;
 
-	//trail renderer for attack effects
-    public GameObject attackTrail;
-    public GameObject CombatTrail;
-	Vector3 trailDefaultPos;
-
     bool animationDelay;
 
 	// Use this for initialization
@@ -36,7 +31,6 @@ public class Combat : MonoBehaviour
         m_Canvas = GameObject.Find ( "Canvas" );
         m_ComboTextObj = ( GameObject )Instantiate ( Resources.Load ( "ComboText" ) );
         m_ComboTextObj.SetActive ( false );
-		CombatTrail.SetActive(false);
 	    m_ComboText = m_ComboTextObj.GetComponent<Text>();
         m_ComboText.rectTransform.parent = m_Canvas.transform;
         m_ComboText.rectTransform.localPosition = transform.position;
@@ -47,7 +41,6 @@ public class Combat : MonoBehaviour
         m_Char = GameObject.Find ( "Character" ).GetComponent<Character>();
         m_Animator = GetComponent<Animator>();
 
-		trailDefaultPos = attackTrail.transform.position;
         animationDelay = false;
 	}
 	
@@ -58,7 +51,6 @@ public class Combat : MonoBehaviour
         if ( fadeTimer < 0 )
         {
 	        m_ComboTextObj.SetActive( false );
-			CombatTrail.SetActive(false);
 	    }
 
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && 
@@ -75,7 +67,6 @@ public class Combat : MonoBehaviour
                 else if ( m_Char.UseStamina ( 30 ) )
                 {
                     clickTimer = Time.time;
-                    attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
                     damageToEnemy = 10;
                     LeftClickCombo ();
                     //animationDelay = true; //uncomment when we have all animations
@@ -87,7 +78,6 @@ public class Combat : MonoBehaviour
                 if ( m_Char.UseStamina ( 50 ) )
                 {
                     clickTimer = Time.time;
-                    attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.yellow );
                     damageToEnemy = 20;
                     RightClickCombo ();
                     animationDelay = true; //uncomment when we have all animations
@@ -109,8 +99,6 @@ public class Combat : MonoBehaviour
             case 0:
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
-				attackTrail.transform.Translate(Vector3.up * -3.0f);
-                attackTrail.transform.Translate ( Vector3.right * 3.0f );
                 m_Audio.PlayOnce ( "left1" );
                 m_Animator.SetTrigger("atkL1");
                 animationDelay = true; //take this line out once we get all animations
@@ -118,8 +106,6 @@ public class Combat : MonoBehaviour
             case 1:
                 // Perform basic move 2 left click
                 ShowComboText ( "LEFT 2!" );
-				attackTrail.transform.Translate(Vector3.up * 3.0f);
-				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 m_Audio.PlayOnce ( "left2" );
                 m_Animator.SetTrigger("atkL1");
                 animationDelay = true; //take this line out once we get all animations
@@ -127,14 +113,12 @@ public class Combat : MonoBehaviour
             case 2:
                 // Perform basic move 3 left click
                 ShowComboText ( "LEFT 3!" );
-				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "left3" );
                 m_Animator.SetTrigger("atkL1");
                 animationDelay = true; //take this line out once we get all animations
 				break;
             case 3:
                 // Perform basic move 4 left click
-				attackTrail.transform.Translate(Vector3.right * -3.0f);
                 ShowComboText ( "LEFT 4!" );
                 m_Audio.PlayOnce ( "left4" );
                 m_Animator.SetTrigger("atkL1");
@@ -147,8 +131,6 @@ public class Combat : MonoBehaviour
                 // Perform basic move 1 left click
                 ShowComboText ( "LEFT 1!" );
                 m_Animator.SetTrigger("atkL1");
-				attackTrail.transform.Translate(Vector3.up * -3.0f);
-				attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "left1" );
                 animationDelay = true; //take this line out once we get all animations
 				break;
@@ -170,8 +152,6 @@ public class Combat : MonoBehaviour
             case 0:
                 // Perform smash move 0 right click
                 ShowComboText( "RIGHT 0!");
-			    attackTrail.transform.Translate(Vector3.up * 3.0f);
-			    attackTrail.transform.Translate(Vector3.right * 3.0f);
                 m_Audio.PlayOnce ( "right0" );
                 m_Animator.SetTrigger("atkR1");
                 //animationDelay = true; //take this line out once we get all animations
@@ -179,8 +159,6 @@ public class Combat : MonoBehaviour
             case 1:
                 // Perform smash move 1 right click
                 ShowComboText ( "RIGHT 1!" );
-			    attackTrail.transform.Translate(Vector3.up * -3.0f);
-			    attackTrail.transform.Translate(Vector3.right * -3.0f);
                 m_Audio.PlayOnce ( "right1" );
                 m_Animator.SetTrigger("atkR1");
 			    break;
@@ -236,7 +214,6 @@ public class Combat : MonoBehaviour
     {
         fadeTimer = 0.75f;
         m_ComboTextObj.SetActive( true );
-		CombatTrail.SetActive(true);
         m_Animator.SetBool("isAtking", true);
         m_ComboText.text = text;
     }
