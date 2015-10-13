@@ -116,12 +116,32 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
+    public bool AimButtonHeld()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKey ( KeyCode.Q ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
     public bool ResetGameButtonPressed()
     {
         switch ( controlScheme )
         {
             case InputType.Mouse:
-                if ( Input.GetKeyUp( KeyCode.Minus ) )
+                if ( Input.GetKeyDown( KeyCode.Minus ) )
                 {
                     return true;
                 }
@@ -141,7 +161,7 @@ public class InputManager : MonoBehaviour {
         switch ( controlScheme )
         {
             case InputType.Mouse:
-                if ( Input.GetKeyUp ( KeyCode.Equals ) )
+                if ( Input.GetKeyDown ( KeyCode.Equals ) )
                 {
                     return true;
                 }

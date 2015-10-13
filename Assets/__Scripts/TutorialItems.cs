@@ -6,6 +6,7 @@ public class TutorialItems : MonoBehaviour
 {
     public Tutorial tutorial;
     private InputManager mInput;
+    private AudioManager mAudio;
     private bool canPlayBackpack = false;
     private bool canPlayBoat = false;
 
@@ -13,6 +14,7 @@ public class TutorialItems : MonoBehaviour
 	void Start () 
     {
 	    mInput = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
+        mAudio = GameObject.Find ( "GameManager" ).GetComponent<AudioManager> ();
 	}
 	
 	// Update is called once per frame
@@ -30,13 +32,20 @@ public class TutorialItems : MonoBehaviour
         }
 	}
 
+    IEnumerator Transition ( int seconds = 1 )
+    {        
+        mAudio.PlayOnce ( "transition" );
+        yield return new WaitForSeconds ( seconds );
+        Application.LoadLevel ( 2 ); // Load the Wetlands
+    }
+
     void OnTriggerEnter2D ( Collider2D coll )
     {
         if ( coll.gameObject.tag == "Char" )
         {            
             if ( transform.name.Equals ( "Arrow" ) )
             {
-                Application.LoadLevel ( 2 ); // Load the Wetlands
+                StartCoroutine ( Transition () );
             }
             else
             {
