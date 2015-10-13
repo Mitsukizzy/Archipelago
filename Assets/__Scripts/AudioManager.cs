@@ -18,6 +18,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndWalk;
     public AudioClip sndRun;
     public AudioClip sndDodge;
+    public AudioClip sndTransition;
+
+    // UI
+    public AudioClip sndMenuSelect;
+    public AudioClip sndClick;
 
     // Background Music
     public AudioClip musicMystery;
@@ -135,6 +140,15 @@ public class AudioManager : MonoBehaviour
                 break;
             case "enemyDeath":
                 m_SFXSource.PlayOneShot ( sndEnemyDeath );
+                break;
+            case "click":
+                m_SFXSource.PlayOneShot ( sndClick );
+                break;
+            case "menuSelect":
+                m_SFXSource.PlayOneShot ( sndMenuSelect );
+                break;
+            case "transition":
+                m_SFXSource.PlayOneShot ( sndTransition );
                 break;
             default:
                 break;

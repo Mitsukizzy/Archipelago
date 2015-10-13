@@ -22,6 +22,8 @@ public class Combat : MonoBehaviour
     private InputManager m_Input;
     private AudioManager m_Audio;
 
+    public GameObject arrow;
+
 	//trail renderer for attack effects
     public GameObject attackTrail;
     public GameObject CombatTrail;
@@ -65,7 +67,12 @@ public class Combat : MonoBehaviour
         {
             if (m_Input.normalAttackButtonPressed() && !animationDelay && !EventSystem.current.IsPointerOverGameObject())
             {
-                if ( m_Char.UseStamina ( 30 ) )
+                if( m_Char.GetPlayerState() == Character.PlayerState.Aim )
+                {
+                    m_Audio.PlayOnce ( "click" );
+                    ShootArrow ();                    
+                }
+                else if ( m_Char.UseStamina ( 30 ) )
                 {
                     clickTimer = Time.time;
                     attackTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", Color.grey );
@@ -218,6 +225,13 @@ public class Combat : MonoBehaviour
         return false;
     }
 
+    void ShootArrow()
+    {
+        // Instantiate arrow, aiming code is in Arrow.cs
+        GameObject arrowObj = ( GameObject )Instantiate ( arrow, transform.position, Quaternion.identity );
+        m_Char.SetPlayerState ( Character.PlayerState.Idle );
+    }
+    
     void ShowComboText( string text )
     {
         fadeTimer = 0.75f;

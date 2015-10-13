@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aggroDistance: 30
-  attackDistance: 2
+  attackDistance: 10
   moveSpeed: 20
   attackSpeed: 5
   health: 250
@@ -3598,6 +3598,9 @@ MonoBehaviour:
   sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
   sndDodge: {fileID: 8300000, guid: a73a69cabc1a8d841814001fcb967063, type: 3}
+  sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
+  sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   musicMystery: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
   musicMain: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
   sndNoStamina: {fileID: 8300000, guid: b25038ae5c3b34c48bbe35910f29d72b, type: 3}
@@ -4958,6 +4961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20260f1b177847e45ab5e759d111f695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrow: {fileID: 187520, guid: b11813ff67d7dcc439cb979dc7fe66b9, type: 2}
   attackTrail: {fileID: 496745804}
   CombatTrail: {fileID: 496745804}
 --- !u!212 &2142275703
@@ -5075,7 +5079,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2142275701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0

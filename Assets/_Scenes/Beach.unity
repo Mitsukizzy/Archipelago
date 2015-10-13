@@ -974,8 +974,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 182, y: 473.5}
-  m_SizeDelta: {x: 364, y: 947}
+  m_AnchoredPosition: {x: 118, y: 403.5}
+  m_SizeDelta: {x: 236, y: 807}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -2233,7 +2233,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 34, y: 182}
+  m_AnchoredPosition: {x: 9.10000038, y: 206.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &686772156
@@ -2589,7 +2589,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 147, y: 69}
+  m_AnchoredPosition: {x: 122, y: 112}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &701528274
@@ -3120,6 +3120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20260f1b177847e45ab5e759d111f695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrow: {fileID: 0}
   attackTrail: {fileID: 955713707}
   CombatTrail: {fileID: 955713707}
 --- !u!114 &822799854
@@ -3600,7 +3601,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 34, y: 63}
+  m_AnchoredPosition: {x: 9.10000038, y: 106}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &934167378
@@ -5196,6 +5197,9 @@ MonoBehaviour:
   sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
   sndDodge: {fileID: 8300000, guid: a73a69cabc1a8d841814001fcb967063, type: 3}
+  sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
+  sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   musicMystery: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
   musicMain: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
   sndNoStamina: {fileID: 8300000, guid: b25038ae5c3b34c48bbe35910f29d72b, type: 3}

@@ -48,6 +48,7 @@ public class Character : MonoBehaviour {
         Dodge,
         Gather,
         Fight,
+        Aim,
         Interact,
         Idle
     }
@@ -94,6 +95,10 @@ public class Character : MonoBehaviour {
         {
             SetPlayerState ( PlayerState.Gather );
         }
+        if ( m_Input.AimButtonHeld() )
+        {
+            SetPlayerState ( PlayerState.Aim );
+        }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
             //gatherBarObj.GetComponent<RectTransform>().localPosition = Camera.main.WorldToScreenPoint(transform.position);
@@ -133,7 +138,7 @@ public class Character : MonoBehaviour {
             staminaTimer = 0;
         }
         
-        if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact )
+        if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact && m_State != PlayerState.Aim )
         {   
             // Move character
         	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
@@ -183,6 +188,11 @@ public class Character : MonoBehaviour {
             }
             FaceSpriteTowardDirection ();
 		}
+
+        if ( !m_Input.AimButtonHeld() && m_State == PlayerState.Aim )
+        {
+            SetPlayerState ( PlayerState.Idle );
+        }
 	}
 
     public void SetPlayerState ( PlayerState newState )
