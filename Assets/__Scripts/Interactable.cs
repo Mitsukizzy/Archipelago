@@ -25,13 +25,13 @@ public class Interactable : MonoBehaviour
     {
         if (checkForOrder)
         {
-            if (m_char.transform.position.y < transform.position.y + 1)
+            if (m_char.transform.position.y < transform.position.y)
             {
                 GetComponent<SpriteRenderer>().sortingOrder = -1;
             }
             else
             {
-                GetComponent<SpriteRenderer>().sortingOrder = 0;
+                GetComponent<SpriteRenderer>().sortingOrder = 1;
             }
         }
 	}

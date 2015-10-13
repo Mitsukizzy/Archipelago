@@ -974,8 +974,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 118, y: 403.5}
-  m_SizeDelta: {x: 236, y: 807}
+  m_AnchoredPosition: {x: 499.5, y: 218}
+  m_SizeDelta: {x: 999, y: 436}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -1135,9 +1135,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: .0554138497, y: 2.08926582}
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 3.32805395, y: 4.1830101}
 --- !u!114 &459167139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,9 +1391,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -.5}
+  m_Offset: {x: 0, y: 2.70212555}
   serializedVersion: 2
-  m_Size: {x: 9, y: 4}
+  m_Size: {x: 9, y: 5.10832977}
 --- !u!114 &468915055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,9 +1456,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .277341217, y: -1.56971359}
+  m_Offset: {x: .277341217, y: 1.01849246}
   serializedVersion: 2
-  m_Size: {x: 7.42881584, y: .525034606}
+  m_Size: {x: 7.42881584, y: .802378356}
 --- !u!1 &469385043
 GameObject:
   m_ObjectHideFlags: 0
