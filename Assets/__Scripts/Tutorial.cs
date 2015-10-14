@@ -32,6 +32,11 @@ public class Tutorial : MonoBehaviour
     private int endDialogue = 0;
     List<string> DialogueList = new List<string> ();
 
+    void Awake()
+    {
+        SetHint("wasd");
+    }
+
 	// Use this for initialization
 	void Start () 
     {
@@ -43,7 +48,7 @@ public class Tutorial : MonoBehaviour
         journalUI = GameObject.Find ( "Journal" );
 
         CloseDialogue ();
-        SetHint ( "wasd" );
+        //SetHint ( "wasd" );
 
         // Dialogue
         //DialogueList.Add ( "-Player is lying on the shoreline, face up-" );
@@ -59,9 +64,34 @@ public class Tutorial : MonoBehaviour
         DialogueList.Add ( "Shoot, it's getting dark and I don't know how long it's been since I've eaten anything." );
         DialogueList.Add ( "This beach doesn't seem to have much. I better go inland and see if I can find something edible." );
 
+        //This is for the wetlands map
+        //upon gathering a berry for the first time
+        DialogueList.Add("These berries look safe to eat, I'll put one in my bag.");
+        DialogueList.Add("I'm getting kind of tired I wonder if there's anywhere I can rest.");
+        //upon finding the campfire
+        DialogueList.Add("Well this campsite is convienient. I think I'll take a rest");
+        DialogueList.Add("Looks like there's another journal page here too. -adds to journal-");
+
         dialogueText.text = DialogueList[curDialogue];
         curDialogue++;
 	}
+
+    void OnLevelWasLoaded()
+    {
+        mChar = GameObject.Find("Character").GetComponent<Character>();
+        Debug.Log("reached the close event");
+        CloseDialogue();
+        if (Application.loadedLevelName == "Beach")
+        {
+            SetHint("wasd");
+        }
+        else if (Application.loadedLevelName == "Wetlands")
+        {
+            currentTip.SetActive(false);
+            objective.GetComponent<Text>().text = "Objective: Go inland and search for food";
+            objective.SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update ()
@@ -80,8 +110,11 @@ public class Tutorial : MonoBehaviour
             }
             else
             {
-                knife.SetActive ( false );
-                journal.SetActive ( false );
+                if (knife != null)
+                {
+                    knife.SetActive(false);
+                    journal.SetActive(false);
+                }
             }
 
             if ( curDialogue == 2 )
@@ -95,11 +128,20 @@ public class Tutorial : MonoBehaviour
             {
                 objective.SetActive ( false );
             }
-            if ( curDialogue == 6 )
+            if ( curDialogue == 6)
             {
                 objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
                 objective.SetActive ( true );
                 arrow.SetActive ( true );
+            }
+            if(curDialogue == 8)
+            {
+                objective.GetComponent<Text>().text = "Objective: Rest at the Campsite";
+                objective.SetActive(true);
+            }
+            if (curDialogue == 10)
+            {
+                objective.SetActive(false);
             }
         }
     }
@@ -113,6 +155,10 @@ public class Tutorial : MonoBehaviour
             if ( curDialogue == 2 )
             {
                 SetHint ( "shift" );
+            }
+            if(curDialogue == 10)
+            {
+                mChar.SetPlayerState(Character.PlayerState.Interact);
             }
         }
         if ( canAdvanceDialogue )
@@ -140,7 +186,8 @@ public class Tutorial : MonoBehaviour
     public void CloseDialogue ()
     {
         dialogueBox.SetActive ( false );
-        mChar.SetPlayerState ( Character.PlayerState.Idle );
+        if(mChar.GetPlayerState() != Character.PlayerState.Gather)
+            mChar.SetPlayerState ( Character.PlayerState.Idle );
     }
 
     public void SetHint ( string hint )

@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayPress ()
     {
-        Application.LoadLevel ( 1 );
+        Application.LoadLevel ( "Beach" );
     }
 
     public void ExitPress ()

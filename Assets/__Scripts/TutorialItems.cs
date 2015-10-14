@@ -9,6 +9,12 @@ public class TutorialItems : MonoBehaviour
     private AudioManager mAudio;
     private bool canPlayBackpack = false;
     private bool canPlayBoat = false;
+    private bool canPlayBush = false;
+    private bool canPlayCampfire = false;
+
+    private bool boatPlayOnce = true;
+    private bool bushPlayOnce = true;
+    private bool campfirePlayOnce = true;
 
 	// Use this for initialization
 	void Start () 
@@ -25,11 +31,25 @@ public class TutorialItems : MonoBehaviour
             tutorial.ShowDialogue ( 0, 2 );
             canPlayBackpack = false;
         }
-        if ( canPlayBoat )
+        if ( canPlayBoat && boatPlayOnce )
         {
             tutorial.ShowDialogue ( 3, 6 );
             canPlayBoat = false;
+            boatPlayOnce = false;
         }
+        if( canPlayBush && bushPlayOnce )
+        {
+            tutorial.ShowDialogue(7, 8);
+            canPlayBush = false;
+            bushPlayOnce = false;
+        }
+        if( canPlayCampfire && campfirePlayOnce )
+        {
+            tutorial.ShowDialogue(9, 10);
+            canPlayCampfire = false;
+            campfirePlayOnce = false;
+        }
+
 	}
 
     IEnumerator Transition ( int seconds = 1 )
@@ -58,14 +78,22 @@ public class TutorialItems : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" && mInput.gatheringButtonPressed () )
         {
-            if ( transform.name.Equals ( "Backpack" ) )
+            if (transform.name.Equals("Backpack"))
             {
                 canPlayBackpack = true;
             }
-            else if ( transform.name.Equals ( "Boat" ) )
+            else if (transform.name.Equals("Boat"))
             {
                 canPlayBoat = true;
-            }            
+            }
+            else if (transform.name.Equals("Bush"))
+            {
+                canPlayBush = true;
+            }
+            else if (transform.name.Equals("Campfire"))
+            {
+                canPlayCampfire = true;
+            }
             tutorial.CloseHint ();
         }
     }
