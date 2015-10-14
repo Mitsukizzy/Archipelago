@@ -18,6 +18,10 @@ public class Tutorial : MonoBehaviour
     public GameObject objective;
     public GameObject arrow;
     public GameObject dialogueBox;
+    public GameObject moveRight;
+
+    private Intro intro;
+
     private Text dialogueText;
     private GameObject backpack;
     private GameObject backpackUI;
@@ -46,6 +50,10 @@ public class Tutorial : MonoBehaviour
         backpack = GameObject.Find ( "Backpack" );
         backpackUI = GameObject.Find( "Bag" );
         journalUI = GameObject.Find ( "Journal" );
+        if (Application.loadedLevelName.Equals("Beach"))
+        {
+            intro = GameObject.Find("Intro").GetComponent<Intro>();
+        }
 
         CloseDialogue ();
         //SetHint ( "wasd" );
@@ -71,6 +79,11 @@ public class Tutorial : MonoBehaviour
         //upon finding the campfire
         DialogueList.Add("Well this campsite is convienient. I think I'll take a rest");
         DialogueList.Add("Looks like there's another journal page here too. -adds to journal-");
+
+        //Intro Dialog index starting at index 11
+        DialogueList.Add("...");
+        DialogueList.Add("......");
+        DialogueList.Add("...Where am I?");
 
         dialogueText.text = DialogueList[curDialogue];
         curDialogue++;
@@ -133,6 +146,7 @@ public class Tutorial : MonoBehaviour
                 objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
                 objective.SetActive ( true );
                 arrow.SetActive ( true );
+                SetHint("moveRight");
             }
             if(curDialogue == 8)
             {
@@ -143,6 +157,12 @@ public class Tutorial : MonoBehaviour
             {
                 objective.SetActive(false);
             }
+
+            if(curDialogue == 13)
+            {
+                intro.isFadingIn = true;
+            }
+
         }
     }
 
@@ -214,6 +234,9 @@ public class Tutorial : MonoBehaviour
             case "space":
                 currentTip = wasd;
                 StartCoroutine ( TimedHintShow () );
+                break;
+            case "moveRight":
+                StartCoroutine(CustomHintShow(moveRight, 10));
                 break;
             default:
                 break;

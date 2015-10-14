@@ -302,6 +302,8 @@ public class Character : MonoBehaviour {
         if (campLocation != null)
         {
             transform.position = campLocation;
+            m_Animator.SetBool("isAtking", false);
+            m_Animator.SetBool("isWalking", false);
         }
         else
         {
