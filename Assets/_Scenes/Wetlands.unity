@@ -4996,6 +4996,7 @@ MonoBehaviour:
   objective: {fileID: 1655783445}
   arrow: {fileID: 0}
   dialogueBox: {fileID: 402455154}
+  moveRight: {fileID: 0}
 --- !u!224 &1908982532
 RectTransform:
   m_ObjectHideFlags: 0
