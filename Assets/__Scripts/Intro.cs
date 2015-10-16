@@ -6,6 +6,7 @@ public class Intro : MonoBehaviour
 {
 
     public Image screenFadeFill;
+	public GameObject screenCover;
 
     public Tutorial tutorial;
 
@@ -46,6 +47,7 @@ public class Intro : MonoBehaviour
         if (screenFadeFill.color.a <= 0.15f)
         {
             screenFadeFill.color = Color.clear;
+			screenCover.SetActive(false);
             isFadingIn = false;
             m_Char.SetPlayerState(Character.PlayerState.Idle);
             tutorial.SetHint("wasd");

@@ -3836,6 +3836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenFadeFill: {fileID: 1381810709}
+  screenCover: {fileID: 1381810707}
   tutorial: {fileID: 455768228}
   isFadingIn: 0
   beginGame: 0
