@@ -50,7 +50,7 @@ public class Tutorial : MonoBehaviour
         backpack = GameObject.Find ( "Backpack" );
         backpackUI = GameObject.Find( "Bag" );
         journalUI = GameObject.Find ( "Journal" );
-        if (Application.loadedLevelName.Equals("Beach"))
+        if (Application.loadedLevelName.Equals("Beach")) //take out regular beach when new scene is complete
         {
             intro = GameObject.Find("Intro").GetComponent<Intro>();
         }

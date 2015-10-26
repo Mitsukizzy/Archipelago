@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class GameManager : MonoBehaviour 
 {
@@ -10,7 +12,12 @@ public class GameManager : MonoBehaviour
 
     private AudioManager m_audio;
     private InputManager m_input;
-    private bool isPlaying = false; 
+    private bool isPlaying = false;
+
+    //dictionary to hold all key items and if they have been picked up yet
+    private Dictionary<string, bool> KeyItems;
+    //TRUE = has not been found
+    //FALSE = has been found
 
     public enum GameState
     {
@@ -47,6 +54,26 @@ public class GameManager : MonoBehaviour
             }  
         }      
 	}
+
+    void OnLevelWasLoaded(int level)
+    {
+        //use this function to change what music is being played on in each level
+
+        //spawn in any key items for the level that have not been picked up yet
+        /*if (Application.loadedLevelName.Equals("Name of Level"))
+        {
+            //Check if key items have been found, if not, spawn them in the proper x,y location
+            if (KeyItems.ContainsKey("Name of item"))
+            {
+                if (KeyItems["Name of item"])
+                {
+                    //spawn the item
+                    Resources.Load("Name of item");
+                    //set location
+                }
+            }
+        }*/
+    }
 	
 	// Update is called once per frame
 	void Update () 

@@ -83,6 +83,17 @@ public class Character : MonoBehaviour {
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
+
+    void OnLevelWasLoaded(int level)
+    {
+        hpBar = GameObject.Find("HealthSlider").GetComponent<Slider>();
+        staminaBar = GameObject.Find("StaminaSlider").GetComponent<Slider>();
+        GameObject spawn = GameObject.Find("SpawnPoint");
+        if (spawn != null)
+        {
+            transform.position = spawn.transform.position;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -105,7 +116,7 @@ public class Character : MonoBehaviour {
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
-            //gatherBarObj.GetComponent<RectTransform>().localPosition = Camera.main.WorldToScreenPoint(transform.position);
+            gatherBarObj.GetComponent<RectTransform>().localPosition = Camera.main.WorldToScreenPoint(transform.position);
             gatherBarObj.SetActive(true);
             m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
