@@ -230,7 +230,8 @@ public class Combat : MonoBehaviour
     void ShootArrow()
     {
         // Instantiate arrow, aiming code is in Arrow.cs
-        GameObject arrowObj = ( GameObject )Instantiate ( arrow, transform.position, Quaternion.identity );
+		Vector3 arrowSpawn = new Vector3(transform.position.x, transform.position.y+5, 0);
+        GameObject arrowObj = ( GameObject )Instantiate ( arrow, arrowSpawn, Quaternion.identity );
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
     }
     

@@ -5,6 +5,8 @@ public class Arrow : MonoBehaviour
 {
     Vector3 pos;
 	Vector3 dir;
+	float gravity = 0.02f;
+	Quaternion rotateTo;
     public float speed = 5f;
     // Use this for initialization
     void Start ()
@@ -19,7 +21,7 @@ public class Arrow : MonoBehaviour
 			dir.Normalize ();
 		}
 
-		Quaternion rotateTo = new Quaternion();
+		rotateTo = new Quaternion();
 		rotateTo.SetFromToRotation(Vector3.right, dir);
 		transform.rotation = rotateTo;
     }
@@ -27,6 +29,9 @@ public class Arrow : MonoBehaviour
     void Update ()
     {
 		transform.position += dir * 50 * Time.deltaTime;
+		dir.y -= gravity;
+		rotateTo.SetFromToRotation(Vector3.right, dir);
+		transform.rotation = rotateTo;
 		if(transform.position.x > (Camera.main.orthographicSize * Camera.main.aspect) && 
 		   transform.position.y > (Camera.main.orthographicSize) ){
 				Destroy (gameObject);
