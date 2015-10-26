@@ -57,9 +57,11 @@ public class Combat : MonoBehaviour
         fadeTimer -= Time.deltaTime;
         if ( fadeTimer < 0 )
         {
-	        m_ComboTextObj.SetActive( false );
-			CombatTrail.SetActive(false);
+	        //m_ComboTextObj.SetActive( false );
+			//CombatTrail.SetActive(false);
 	    }
+
+        Debug.Log("In Combat Script");
 
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && 
             m_Char.GetPlayerState () != Character.PlayerState.Interact &&

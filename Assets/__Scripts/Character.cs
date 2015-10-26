@@ -93,6 +93,7 @@ public class Character : MonoBehaviour {
         {
             transform.position = spawn.transform.position;
         }
+        m_State = PlayerState.Idle;
     }
 	
 	// Update is called once per frame
