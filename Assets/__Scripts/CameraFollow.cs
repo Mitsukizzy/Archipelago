@@ -22,7 +22,7 @@ public class CameraFollow : MonoBehaviour
         // Setting up the reference.
         player = GameObject.FindGameObjectWithTag ( "Char" ).transform;
         target = player;
-        transform.position = new Vector3 ( player.position.x, player.position.y, transform.position.z );
+        transform.position = new Vector3 ( player.position.x, player.position.y+3, transform.position.z );
 
         // Setting the relative position as the initial relative position of the camera in the scene.
         relCameraPos = transform.position - target.position;

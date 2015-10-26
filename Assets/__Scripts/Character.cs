@@ -41,6 +41,10 @@ public class Character : MonoBehaviour {
     //Animator
     private Animator m_Animator;
 
+    //Campfire Checkpoint
+    private Vector3 campLocation;
+    //add char stats here as well
+
     public enum PlayerState
     {
         Run,
@@ -290,6 +294,26 @@ public class Character : MonoBehaviour {
         ItemData data = item.GetComponent<ItemData>();
         hpBar.value += data.healthIncrease;
         staminaBar.value += data.staminaIncrease;
+    }
+
+    public void ReturnToCamp()
+    {
+        //just move the character back to the campfire for the playtest, this needs to also reset stats later on
+        if (campLocation != null)
+        {
+            transform.position = campLocation;
+            m_Animator.SetBool("isAtking", false);
+            m_Animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            Application.LoadLevel("MainMenu");
+        }
+    }
+
+    public void setCampLocation(Vector3 lastCamp)
+    {
+        campLocation = lastCamp;
     }
 
 }

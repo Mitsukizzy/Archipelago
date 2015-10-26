@@ -92,6 +92,8 @@ public class Campfire : MonoBehaviour
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
         m_Inventory.CloseInventory();
 
+        m_Char.setCampLocation(transform.position);
+
         // Center camera on player
         m_Camera.TargetPlayer ();
     }

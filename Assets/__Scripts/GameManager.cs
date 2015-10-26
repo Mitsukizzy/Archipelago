@@ -106,5 +106,6 @@ public class GameManager : MonoBehaviour
     public void RetryFromCampfire ()
     {
         gameOverOverlay.SetActive ( false );
+        m_Char.ReturnToCamp();
     }
 }
