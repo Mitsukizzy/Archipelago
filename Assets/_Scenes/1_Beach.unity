@@ -729,8 +729,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 840, y: 456.5}
-  m_SizeDelta: {x: 1680, y: 913}
+  m_AnchoredPosition: {x: 141.5, y: 370.5}
+  m_SizeDelta: {x: 283, y: 741}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -4493,6 +4493,7 @@ GameObject:
   - 114: {fileID: 1664027289}
   - 114: {fileID: 1664027288}
   - 82: {fileID: 1664027291}
+  - 114: {fileID: 1664027292}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4641,6 +4642,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1664027292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664027286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0391977cf310ee4b8692e11f9fa9189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1714096051
 GameObject:
   m_ObjectHideFlags: 0
