@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
 
-        if ( Application.loadedLevelName.Equals ( "MainMenu" ) )
+        if ( Application.loadedLevelName.Equals ( "0_MainMenu" ) )
         {
             m_audio.PlayLoop ( "mystery" );
             isPlaying = false; 
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             isPlaying = true;
 
 
-            if ( Application.loadedLevelName.Equals ( "Beach" ) )
+            if ( Application.loadedLevelName.Equals ( "1_Beach" ) )
             {
                 m_GameState = GameState.Tutorial;
                 m_audio.PlayLoop ( "main" );

@@ -50,7 +50,7 @@ public class Tutorial : MonoBehaviour
         backpack = GameObject.Find ( "Backpack" );
         backpackUI = GameObject.Find( "Bag" );
         journalUI = GameObject.Find ( "Journal" );
-        if (Application.loadedLevelName.Equals("Beach"))
+        if (Application.loadedLevelName.Equals("1_Beach"))
         {
             intro = GameObject.Find("Intro").GetComponent<Intro>();
         }
