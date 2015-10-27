@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class SceneTransition : MonoBehaviour {
+    public string SceneName;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,6 @@ public class SceneTransition : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll)
     {
         Debug.Log("Entering Scene Transition Area");
-        Application.LoadLevel("Wetlands2");
+        Application.LoadLevel(SceneName);
     }
 }

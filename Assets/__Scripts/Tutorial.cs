@@ -49,16 +49,19 @@ public class Tutorial : MonoBehaviour
         //{
         //    intro = GameObject.Find("Intro").GetComponent<Intro>();
         //}
-        mDialogue.StartDialogue ( "beach1" );
 	}
 
     void OnLevelWasLoaded()
     {
+        mGame = GameObject.Find("GameManager").GetComponent<GameManager>();
+        mDialogue = mGame.GetDialogueSystem();
         mChar = GameObject.Find("Character").GetComponent<Character>();
         Debug.Log("reached the close event");
         if (Application.loadedLevelName == "1_Beach")
         {
             SetHint("wasd");
+            mDialogue.StartDialogue("beach1");
+
         }
         else if (Application.loadedLevelName == "2_Wetlands")
         {

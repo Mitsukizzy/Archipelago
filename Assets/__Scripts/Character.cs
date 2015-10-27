@@ -71,8 +71,8 @@ public class Character : MonoBehaviour {
         // Set max and starting value of health and hunger
         hpBar.maxValue = health;
         hpBar.value = health;
-        hungerBar.maxValue = hunger;
-        hungerBar.value = hunger;
+        //hungerBar.maxValue = hunger;
+        //hungerBar.value = hunger;
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
@@ -80,7 +80,7 @@ public class Character : MonoBehaviour {
     void OnLevelWasLoaded(int level)
     {
         hpBar = GameObject.Find("HealthSlider").GetComponent<Slider>();
-        staminaBar = GameObject.Find("StaminaSlider").GetComponent<Slider>();
+//        staminaBar = GameObject.Find("StaminaSlider").GetComponent<Slider>();
         GameObject spawn = GameObject.Find("SpawnPoint");
         if (spawn != null)
         {

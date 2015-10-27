@@ -18,18 +18,21 @@ public class DialogueSystem : MonoBehaviour
     private Character mChar;
 
     // Needs to be init before Start
-    void Awake()
+    void OnLevelWasLoaded()
     {
-        mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+        if (Application.loadedLevelName == "1_Beach")
+        {
+            mChar = GameObject.Find("Character").GetComponent<Character>();
 
-        mDialogueText = GameObject.Find ( "DialogueText" ).GetComponent<Text> ();
-        mDialogueBox = GameObject.Find ( "DialogueBox" );
+            mDialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
+            mDialogueBox = GameObject.Find("DialogueBox");
 
-        // Add all the TextAssets to the dicionary, use their .text to convert to string
-        mDialogues = new Dictionary<string, string> ();
-        mDialogues.Add ( "beach1", beach1.text );
-        mDialogues.Add ( "beach2", beach2.text );
-        mDialogues.Add ( "beach3", beach3.text );
+            // Add all the TextAssets to the dicionary, use their .text to convert to string
+            mDialogues = new Dictionary<string, string>();
+            mDialogues.Add("beach1", beach1.text);
+            mDialogues.Add("beach2", beach2.text);
+            mDialogues.Add("beach3", beach3.text);
+        }
     }
 
     // Update is called once per frame

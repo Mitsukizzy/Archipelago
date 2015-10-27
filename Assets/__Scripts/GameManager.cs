@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {        
+        KeyItems = new Dictionary<string,bool>();
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
 
@@ -52,7 +53,10 @@ public class GameManager : MonoBehaviour
                 m_GameState = GameState.Normal;
                 m_audio.PlayLoop ( "main" );
             }  
-        }      
+        }
+
+        KeyItems.Add("Backpack", true);
+        KeyItems.Add("Boat", true);
 	}
 
     void OnLevelWasLoaded(int level)
@@ -60,21 +64,29 @@ public class GameManager : MonoBehaviour
         //use this function to change what music is being played on in each level
 
         //spawn in any key items for the level that have not been picked up yet
-        /*if (Application.loadedLevelName.Equals("Name of Level"))
+        if (Application.loadedLevelName.Equals("1_Beach"))
         {
+            Debug.Log("Entered Beach");
             //Check if key items have been found, if not, spawn them in the proper x,y location
-            if (KeyItems.ContainsKey("Name of item"))
+            if (KeyItems["Backpack"])
             {
-                if (KeyItems["Name of item"])
-                {
-                    //spawn the item
-                    Resources.Load("Name of item");
-                    //set location
-                }
+                GameObject Backpack = Instantiate(Resources.Load("Backpack", typeof(GameObject))) as GameObject;
             }
-        }*/
+            if (KeyItems["Boat"])
+            {
+                GameObject Boat = Instantiate(Resources.Load("Boat", typeof(GameObject))) as GameObject;
+            }
+        }
     }
-	
+
+    void DoNotSpawnOnLoad(string itemName)
+    {
+        if (KeyItems.ContainsKey(itemName))
+        {
+            KeyItems[itemName] = false;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () 
     {
