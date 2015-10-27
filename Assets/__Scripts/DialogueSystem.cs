@@ -17,13 +17,13 @@ public class DialogueSystem : MonoBehaviour
     private Text mDialogueText;
     private Character mChar;
 
-    // Use this for initialization
-    void Start ()
+    // Needs to be init before Start
+    void Awake()
     {
+        mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+
         mDialogueText = GameObject.Find ( "DialogueText" ).GetComponent<Text> ();
         mDialogueBox = GameObject.Find ( "DialogueBox" );
-
-        mChar = GameObject.Find ( "Character" ).GetComponent<Character>();
 
         // Add all the TextAssets to the dicionary, use their .text to convert to string
         mDialogues = new Dictionary<string, string> ();
@@ -47,7 +47,7 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.TryGetValue ( key, out fullText );
 
         // Separate fullText into individual strings and load them into curDialogue
-        curDialogue = fullText.Split ( '\n' );
+        curDialogue = fullText.Split ( '\n' ); // using newline as delimiter
         curIndex = 0;
         mDialogueText.text = curDialogue[curIndex];
     }
