@@ -15,7 +15,7 @@ public class Character : MonoBehaviour {
     public float runSpeed = 10.0f;
     public float dodgeSpeed = 500.0f;
     public int health = 100;
-    public int stamina = 500;
+    public int hunger = 100;
 
 	//Dodge trail effect
 	public GameObject dodgeTrail;
@@ -31,12 +31,9 @@ public class Character : MonoBehaviour {
     //Inventory
     private Inventory m_Inventory;
 
-    //Health and Stamina sliders
+    //Health and Hunger sliders
     public Slider hpBar;
-    public Slider staminaBar;
-    public float timeToRegenStamina = 3.0f;
-    private float staminaTimer = 0;
-    private bool usingStamina = false;
+    public Slider hungerBar;
 
     //Animator
     private Animator m_Animator;
@@ -75,11 +72,11 @@ public class Character : MonoBehaviour {
         gatherBar.value = 0.0f;
         gatherBar.maxValue = 1;
 	
-        //health and stamina bar
+        // Set max and starting value of health and hunger
         hpBar.maxValue = health;
         hpBar.value = health;
-        staminaBar.maxValue = stamina;
-        staminaBar.value = stamina;
+        hungerBar.maxValue = hunger;
+        hungerBar.value = hunger;
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
@@ -132,15 +129,6 @@ public class Character : MonoBehaviour {
         {
             dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
         }
-        if(!usingStamina)
-        {            
-            staminaTimer += Time.deltaTime;
-        }
-        if (staminaTimer >= timeToRegenStamina && !usingStamina)
-        {
-            staminaBar.value += 100;
-            staminaTimer = 0;
-        }
         
         if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact && m_State != PlayerState.Aim )
         {   
@@ -156,15 +144,12 @@ public class Character : MonoBehaviour {
 
             if ( m_Input.DodgeButtonReleased () )
             {
-                if ( UseStamina ( 50 ) )
-                {
-                    dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 255, 255, 255, 20 ) );
+                dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 255, 255, 255, 20 ) );
 
-                    transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
-                    transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
-                    m_Audio.PlayOnce ( "dodge" );
-                    SetPlayerState ( PlayerState.Idle );
-                }
+                transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
+                transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
+                m_Audio.PlayOnce ( "dodge" );
+                SetPlayerState ( PlayerState.Idle );
             }
 
             if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
@@ -176,17 +161,12 @@ public class Character : MonoBehaviour {
             {
                 if ( m_Input.RunButtonHeld () )
                 {
-                    if ( UseStamina ( 1 ) )
-                    {
-                        speed = runSpeed;
-                        m_State = PlayerState.Run;
-                        usingStamina = true;
-                    }
+                    speed = runSpeed;
+                    m_State = PlayerState.Run;
                 }
                 else
                 {
                     speed = originalSpeed;
-                    usingStamina = false; 
                     m_State = PlayerState.Walk;
                 }
             }
@@ -227,17 +207,6 @@ public class Character : MonoBehaviour {
         }
     }
 
-    public bool UseStamina ( int cost )
-    {
-        if ( cost > staminaBar.value ) // Not enough stamina
-        {
-            m_Audio.PlayOnce ( "playerNoStamina" );
-            return false;
-        }
-        staminaBar.value -= cost;  
-        return true;
-    }
-
     public void TakeDamage ( int damage )
     {
         hpBar.value -= damage;
@@ -269,7 +238,7 @@ public class Character : MonoBehaviour {
     {
         // Both back to their default, full values
         hpBar.value = health;
-        staminaBar.value = stamina;
+        hungerBar.value = hunger;
     }
 
     public void toggleInteract()
@@ -293,7 +262,7 @@ public class Character : MonoBehaviour {
     {
         ItemData data = item.GetComponent<ItemData>();
         hpBar.value += data.healthIncrease;
-        staminaBar.value += data.staminaIncrease;
+        hungerBar.value += data.hungerIncrease;
     }
 
     public void ReturnToCamp()

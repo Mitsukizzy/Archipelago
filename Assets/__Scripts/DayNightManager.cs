@@ -28,6 +28,8 @@ public class DayNightManager : MonoBehaviour
         mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider>();
         mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image>();
 
+        mSlider.maxValue = 24;
+        mSlider.value = timeOfDay;
 
         StartCoroutine( AdvanceHour( 1 ) );
     }
