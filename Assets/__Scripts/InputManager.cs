@@ -28,7 +28,6 @@ public class InputManager : MonoBehaviour {
         {
             case InputType.Mouse:
                 return Vector2.right * Input.GetAxis ( "Horizontal" ) * Time.deltaTime;
-                break;
             case InputType.Keyboard:
                 break;
             case InputType.Controller:
@@ -45,7 +44,6 @@ public class InputManager : MonoBehaviour {
         {
             case InputType.Mouse:
                 return Vector2.up * Input.GetAxis ( "Vertical" ) * Time.deltaTime;
-                break;
             case InputType.Keyboard:
                 break;
             case InputType.Controller:
@@ -176,72 +174,83 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
-	public bool normalAttackButtonPressed(){
-		switch(controlScheme){
-		case InputType.Mouse:
-			if(Input.GetMouseButtonDown( 0 )){
-				return true;
-			}
-			break;
-		case InputType.Keyboard:
-			break;
-		case InputType.Controller:
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
+    public bool SelectButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetMouseButtonDown ( 0 ) ) // Left Click
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
-	public bool smashAttackButtonPressed(){
-		switch(controlScheme){
-		case InputType.Mouse:
-			if(Input.GetMouseButtonDown( 1 )){
-				return true;
-			}
-			break;
-		case InputType.Keyboard:
-			break;
-		case InputType.Controller:
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
+    public bool AltSelectButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetMouseButtonDown ( 1 ) ) // Right Click
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
-	public bool specialAttackButtonPressed(){
-		switch(controlScheme){
-		case InputType.Mouse:
-			if(Input.GetMouseButtonDown( 2 )){
-				return true;
-			}
-			break;
-		case InputType.Keyboard:
-			break;
-		case InputType.Controller:
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
+    public bool SpecialSelectButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetMouseButtonDown ( 2 ) ) // Middle Click
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
-	public bool gatheringButtonPressed(){
-		switch(controlScheme){
-		case InputType.Mouse:
-			if(Input.GetKey( KeyCode.E )){
-				return true;
-			}
-			break;
-		case InputType.Keyboard:
-			break;
-		case InputType.Controller:
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
-	
+    public bool InteractButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyDown ( KeyCode.E ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }	
 }
