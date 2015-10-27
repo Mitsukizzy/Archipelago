@@ -3,25 +3,38 @@ using System.Collections;
 
 public class Arrow : MonoBehaviour
 {
-    Vector3 dir;
+    Vector3 pos;
+	Vector3 dir;
+	float gravity = 0.02f;
+	Quaternion rotateTo;
+    public float speed = 5f;
     // Use this for initialization
     void Start ()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = ( transform.position.z - Camera.main.transform.position.z );
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint ( mousePos );
+		pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		pos.z = transform.position.z;
 
-        dir = mousePos - transform.position;
-        if( dir != Vector3.zero )
-        {
-            dir.Normalize ();
-        }
+		dir = pos - transform.position;
+
+		if( dir != Vector3.zero )
+		{
+			dir.Normalize ();
+		}
+
+		rotateTo = new Quaternion();
+		rotateTo.SetFromToRotation(Vector3.right, dir);
+		transform.rotation = rotateTo;
     }
 
-    // Update is called once per frame
     void Update ()
     {
-        //transform.Translate ( Vector3.forward * Time.deltaTime * 30 ); 
-        transform.position += dir * 50 * Time.deltaTime;
-    }
+		transform.position += dir * 50 * Time.deltaTime;
+		dir.y -= gravity;
+		rotateTo.SetFromToRotation(Vector3.right, dir);
+		transform.rotation = rotateTo;
+		if(transform.position.x > (Camera.main.orthographicSize * Camera.main.aspect) && 
+		   transform.position.y > (Camera.main.orthographicSize) ){
+				Destroy (gameObject);
+		}
+	}
 }

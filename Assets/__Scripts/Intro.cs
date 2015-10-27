@@ -17,6 +17,8 @@ public class Intro : MonoBehaviour
 
     private Character m_Char;
 
+	public bool playIntro = true;
+
     void Awake()
     {
         screenFadeFill.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
@@ -27,7 +29,16 @@ public class Intro : MonoBehaviour
     {
         m_Char = GameObject.Find("Character").GetComponent<Character>();
         m_Char.SetPlayerState(Character.PlayerState.Interact);
-        StartCoroutine(TimedDialogueShow());
+        if(playIntro){
+			StartCoroutine(TimedDialogueShow());
+		}
+		else{
+			screenFadeFill.color = Color.clear;
+			screenCover.SetActive(false);
+			isFadingIn = false;
+			m_Char.SetPlayerState(Character.PlayerState.Idle);
+			tutorial.SetHint("wasd");
+		}
     }
 
     void Update()
