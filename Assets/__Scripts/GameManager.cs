@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private AudioManager m_audio;
     private InputManager m_input;
-    private bool isPlaying = false; 
+    private bool isPlaying = false;
 
     public enum GameState
     {
@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
         {
             // TODO (this will just load wetlands atm)
             Application.LoadLevel ( 2 ); // back to latest campfire save
+        } 
+        if ( m_input.NextLevelButtonPressed () )
+        {
+            LoadNextLevel ();
         }
 	}
 
@@ -112,5 +116,13 @@ public class GameManager : MonoBehaviour
     {
         gameOverOverlay.SetActive ( false );
         m_Char.ReturnToCamp();
+    }
+
+    public void LoadNextLevel()
+    {
+        if( Application.loadedLevel < 6 )
+        {
+            Application.LoadLevel ( Application.loadedLevel + 1 );
+        }
     }
 }

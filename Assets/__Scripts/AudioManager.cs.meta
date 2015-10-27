@@ -1,21 +1,21 @@
 fileFormatVersion: 2
 guid: 0343ad7fc23aadd4db76127b44adacab
-timeCreated: 1445918302
+timeCreated: 1445924789
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   - sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
-  - sndShoot: {instanceID: 0}
-  - sndTransition: {instanceID: 0}
-  - sndMenuSelect: {instanceID: 0}
-  - sndClick: {instanceID: 0}
-  - musicMystery: {instanceID: 0}
-  - musicMain: {instanceID: 0}
-  - sndPlayerDamaged: {instanceID: 0}
+  - sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
+  - sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
+  - sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  - sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
+  - musicMystery: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
+  - musicMain: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
+  - sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
   - sndPlayerDeath: {instanceID: 0}
-  - sndEnemyDamaged: {instanceID: 0}
+  - sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   - sndEnemyDeath: {instanceID: 0}
   - m_MusicSource: {instanceID: 0}
   executionOrder: 0
