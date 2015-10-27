@@ -7,19 +7,16 @@ public class Character : MonoBehaviour {
     private GameManager m_Game;
     private InputManager m_Input;
     private AudioManager m_Audio;
+    private DialogueSystem m_Dialogue;
     private Camera m_Cam;
 
     private bool m_FacingRight;
 
     public float speed = 5.0f;
     public float runSpeed = 10.0f;
-    public float dodgeSpeed = 500.0f;
+    private float originalSpeed;
     public int health = 100;
     public int hunger = 100;
-
-	//Dodge trail effect
-	public GameObject dodgeTrail;
-	private float originalSpeed;
 
 	//Gathering variables
 	public GameObject gatherFrom;
@@ -44,13 +41,11 @@ public class Character : MonoBehaviour {
 
     public enum PlayerState
     {
-        Run,
         Walk,
-        Dodge,
         Gather,
-        Fight,
         Aim,
         Interact,
+        Dialogue,
         Idle
     }
     private PlayerState m_State;
@@ -64,6 +59,7 @@ public class Character : MonoBehaviour {
         m_Game = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
         m_Input = m_Game.GetInputManager ();
         m_Audio = m_Game.GetAudioManager ();
+        m_Dialogue = m_Game.GetDialogueSystem ();
         m_Animator = GetComponent<Animator>();
 
 		gatherFrom = null;
@@ -96,7 +92,15 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (m_State == PlayerState.Interact || m_State == PlayerState.Gather)
+        //Debug.Log ( m_State );
+        if( m_State == PlayerState.Dialogue )
+        {
+            if( m_Input.InteractButtonPressed() || m_Input.SelectButtonPressed() )
+            {
+                m_Dialogue.Advance ();
+            }
+        }
+        if (m_State == PlayerState.Interact || m_State == PlayerState.Gather )
         {
             m_Animator.SetBool("isWalking", false);
             if (m_State == PlayerState.Gather)
@@ -104,7 +108,7 @@ public class Character : MonoBehaviour {
                 m_Animator.SetBool("isAtking", false);
             }
         }
-        if (m_Input.gatheringButtonPressed() && gatherFrom != null)
+        if ( m_Input.InteractButtonPressed() && gatherFrom != null )
         {
             SetPlayerState ( PlayerState.Gather );
         }
@@ -132,54 +136,27 @@ public class Character : MonoBehaviour {
 			}
 		}
 
-        if ( m_State == PlayerState.Fight )
-        {
-            // Play battle music
-        }
-
-        if ( m_State != PlayerState.Dodge )
-        {
-            dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 0, 0, 0, 0 ) );
-        }
-        
-        if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact && m_State != PlayerState.Aim )
+        if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact && m_State != PlayerState.Aim && m_State != PlayerState.Dialogue )
         {   
             // Move character
         	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
         	transform.Translate ( m_Input.GetVerticalMovement() * speed );
             m_Animator.SetBool("isWalking", true);
 
-            if( m_Input.DodgeButtonPressed() )
-		    {
-                SetPlayerState ( PlayerState.Dodge );
-		    }
-
-            if ( m_Input.DodgeButtonReleased () )
-            {
-                dodgeTrail.GetComponent<TrailRenderer> ().material.SetColor ( "_TintColor", new Color ( 255, 255, 255, 20 ) );
-
-                transform.Translate ( m_Input.GetHorizontalMovement () * dodgeSpeed );
-                transform.Translate ( m_Input.GetVerticalMovement () * dodgeSpeed );
-                m_Audio.PlayOnce ( "dodge" );
-                SetPlayerState ( PlayerState.Idle );
-            }
-
             if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
                 SetPlayerState ( PlayerState.Idle );
-                m_Animator.SetBool("isWalking", false);
+                m_Animator.SetBool( "isWalking", false);
             }
             else
             {
                 if ( m_Input.RunButtonHeld () )
                 {
                     speed = runSpeed;
-                    m_State = PlayerState.Run;
                 }
                 else
                 {
                     speed = originalSpeed;
-                    m_State = PlayerState.Walk;
                 }
             }
             FaceSpriteTowardDirection ();

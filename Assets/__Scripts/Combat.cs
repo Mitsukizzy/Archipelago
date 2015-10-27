@@ -33,16 +33,16 @@ public class Combat : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( m_Char.GetPlayerState () != Character.PlayerState.Gather && 
+        if ( m_Char.GetPlayerState () != Character.PlayerState.Gather &&
             m_Char.GetPlayerState () != Character.PlayerState.Interact &&
-            m_Game.GetGameState() != GameManager.GameState.Tutorial )
+            m_Game.GetGameState () != GameManager.GameState.Tutorial )
         {
-            if (m_Input.normalAttackButtonPressed() && !animationDelay && !EventSystem.current.IsPointerOverGameObject())
+            if ( m_Input.SelectButtonPressed () && !animationDelay && !EventSystem.current.IsPointerOverGameObject () )
             {
-                if( m_Char.GetPlayerState() == Character.PlayerState.Aim )
+                if ( m_Char.GetPlayerState () == Character.PlayerState.Aim )
                 {
-                    m_Audio.PlayOnce ( "click" );
-                    ShootArrow ();                    
+                    m_Audio.PlayOnce ( "shoot" );
+                    ShootArrow ();
                 }
             }
         }

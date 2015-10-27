@@ -21,12 +21,13 @@ public class Intro : MonoBehaviour
 
     void Awake()
     {
-        screenFadeFill.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+        //screenFadeFill.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
     }
 
 
     void Start()
     {
+<<<<<<< HEAD
         m_Char = GameObject.Find("Character").GetComponent<Character>();
         m_Char.SetPlayerState(Character.PlayerState.Interact);
         if(playIntro){
@@ -39,35 +40,38 @@ public class Intro : MonoBehaviour
 			m_Char.SetPlayerState(Character.PlayerState.Idle);
 			tutorial.SetHint("wasd");
 		}
+=======
+        //m_Char = GameObject.Find("Character").GetComponent<Character>();
+        //StartCoroutine(TimedDialogueShow());
+>>>>>>> Combat_System
     }
 
     void Update()
     {
-        if (isFadingIn)
-        {
-            FadeIn();
-        }
+        //if (isFadingIn)
+        //{
+        //    FadeIn();
+        //}
     }
 
 
-    private void FadeIn()
-    {
-        // Fades to clear
-        screenFadeFill.color = Color.Lerp(screenFadeFill.color, Color.clear, fadeTime * Time.deltaTime);
-        m_Char.SetPlayerState(Character.PlayerState.Interact);
-        if (screenFadeFill.color.a <= 0.15f)
-        {
-            screenFadeFill.color = Color.clear;
-			screenCover.SetActive(false);
-            isFadingIn = false;
-            m_Char.SetPlayerState(Character.PlayerState.Idle);
-            tutorial.SetHint("wasd");
-        }
-    }
+    //private void FadeIn()
+    //{
+    //    // Fades to clear
+    //    screenFadeFill.color = Color.Lerp(screenFadeFill.color, Color.clear, fadeTime * Time.deltaTime);
+    //    m_Char.SetPlayerState(Character.PlayerState.Interact);
+    //    if (screenFadeFill.color.a <= 0.15f)
+    //    {
+    //        screenFadeFill.color = Color.clear;
+	//		screenCover.SetActive(false);
+    //        isFadingIn = false;
+    //        m_Char.SetPlayerState(Character.PlayerState.Idle);
+    //        tutorial.SetHint("wasd");
+    //    }
+    //}
 
-    IEnumerator TimedDialogueShow(int seconds = 5)
+    IEnumerator TimedDialogueShow(int seconds = 2)
     {
         yield return new WaitForSeconds(seconds);
-        tutorial.ShowDialogue(11, 13);
     }
 }

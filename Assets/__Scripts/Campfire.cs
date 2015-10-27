@@ -43,7 +43,7 @@ public class Campfire : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( m_Input.gatheringButtonPressed () && canCamp )
+        if ( m_Input.InteractButtonPressed () && canCamp )
         {
             campPopup.SetActive ( true );
             m_Char.SetPlayerState ( Character.PlayerState.Interact );

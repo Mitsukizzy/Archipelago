@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             {
                 // Follow character
                 isAggroed = true;
-                m_Char.SetPlayerState ( Character.PlayerState.Fight );
+                // Set player state to Fight
                 transform.position = Vector3.MoveTowards ( transform.position, m_Char.transform.position, moveSpeed * Time.deltaTime );
             }
             else

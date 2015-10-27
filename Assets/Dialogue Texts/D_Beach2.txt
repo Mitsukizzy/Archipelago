@@ -1,0 +1,3 @@
+A hunting knife. This should come in handy. -puts knife away- 
+This looks like someone's journal. I wonder what it says.
+-Picks up backpack- Hmm..Now to figure out, where am I?

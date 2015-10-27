@@ -115,6 +115,11 @@ public class GameManager : MonoBehaviour
         return GetComponent<AudioManager> ();
     }
 
+    public DialogueSystem GetDialogueSystem ()
+    {
+        return GetComponent<DialogueSystem> ();
+    }
+
     public void SetGameState ( GameState newState )
     {
         m_GameState = newState;

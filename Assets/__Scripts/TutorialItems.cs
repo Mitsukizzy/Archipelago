@@ -28,24 +28,20 @@ public class TutorialItems : MonoBehaviour
     {
         if ( canPlayBackpack )
         {
-            tutorial.ShowDialogue ( 0, 2 );
             canPlayBackpack = false;
         }
         if ( canPlayBoat && boatPlayOnce )
         {
-            tutorial.ShowDialogue ( 3, 6 );
             canPlayBoat = false;
             boatPlayOnce = false;
         }
         if( canPlayBush && bushPlayOnce )
         {
-            tutorial.ShowDialogue(7, 8);
             canPlayBush = false;
             bushPlayOnce = false;
         }
         if( canPlayCampfire && campfirePlayOnce )
         {
-            tutorial.ShowDialogue(9, 10);
             canPlayCampfire = false;
             campfirePlayOnce = false;
         }
@@ -76,7 +72,7 @@ public class TutorialItems : MonoBehaviour
 
     void OnTriggerStay2D ( Collider2D coll )
     {
-        if ( coll.gameObject.tag == "Char" && mInput.gatheringButtonPressed () )
+        if ( coll.gameObject.tag == "Char" && mInput.InteractButtonPressed () )
         {
             if (transform.name.Equals("Backpack"))
             {

@@ -1,10 +1,23 @@
 fileFormatVersion: 2
 guid: 0343ad7fc23aadd4db76127b44adacab
-timeCreated: 1443932953
+timeCreated: 1445918302
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
+  - sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
+  - sndShoot: {instanceID: 0}
+  - sndTransition: {instanceID: 0}
+  - sndMenuSelect: {instanceID: 0}
+  - sndClick: {instanceID: 0}
+  - musicMystery: {instanceID: 0}
+  - musicMain: {instanceID: 0}
+  - sndPlayerDamaged: {instanceID: 0}
+  - sndPlayerDeath: {instanceID: 0}
+  - sndEnemyDamaged: {instanceID: 0}
+  - sndEnemyDeath: {instanceID: 0}
+  - m_MusicSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
