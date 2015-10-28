@@ -22,16 +22,23 @@ public class DayNightManager : MonoBehaviour
     public Sprite sun;
     public Sprite moon;
 
+    private Character mChar;
+
     // Use this for initialization
-    void Start ()
+    void OnLevelWasLoaded ()
     {
-        mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider>();
-        mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image>();
+        if ( Application.loadedLevel != 0 )
+        {
+            mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
+            mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
 
-        mSlider.maxValue = 24;
-        mSlider.value = timeOfDay;
+            mSlider.maxValue = 24;
+            mSlider.value = timeOfDay;
 
-        StartCoroutine( AdvanceHour( 1 ) );
+            mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+
+            StartCoroutine ( AdvanceHour ( 1 ) );
+        }
     }
 
     // Update is called once per frame
@@ -58,6 +65,7 @@ public class DayNightManager : MonoBehaviour
         if( timeOfDay > 24 )
         {
             timeOfDay -= 24; // Start new day
+            mChar.CheckStarved ();
             RandomizeSafeLocation();
         }
         if( timeOfDay > 18 )
@@ -69,6 +77,7 @@ public class DayNightManager : MonoBehaviour
             mHandle.sprite = sun;
         }
         mSlider.value = timeOfDay;
+        mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
         StartCoroutine( AdvanceHour( 1 ) );
     }
 }

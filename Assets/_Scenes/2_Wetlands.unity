@@ -159,7 +159,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 266562487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.400002, y: -10.5, z: 0}
+  m_LocalPosition: {x: -102.139999, y: -10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -177,7 +177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420544, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.4000001
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 420544, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -252,6 +252,62 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86e3c4b687497fc4ebe025cd360c72fa, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1567772382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 115136, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1567772385}
+  - 114: {fileID: 1567772384}
+  - 61: {fileID: 1567772383}
+  m_Layer: 0
+  m_Name: PrevScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1567772383
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6153956, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567772382}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -1.69478607, y: -4.002388}
+  serializedVersion: 2
+  m_Size: {x: 14.8633938, y: 29.2718506}
+--- !u!114 &1567772384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11420572, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567772382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d8be0055f43a2429495fc5320e22bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: 1_Beach
+--- !u!4 &1567772385
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 420544, guid: 3620fdd98d3318d42b8a4a7f4c72a5a6, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1567772382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -112.300003, y: -8.19999981, z: 0}
+  m_LocalScale: {x: .564447105, y: .8753286, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1675253583
 GameObject:
   m_ObjectHideFlags: 0

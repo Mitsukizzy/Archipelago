@@ -50,10 +50,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 115136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03df671e4b2815442b7d2154d419f406, type: 3}
+  m_Script: {fileID: 11500000, guid: f9d8be0055f43a2429495fc5320e22bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: 2_Wetlands
+  SceneName: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

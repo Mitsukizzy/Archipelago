@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour 
+{
 
     private GameManager m_Game;
     private InputManager m_Input;
@@ -15,8 +16,8 @@ public class Character : MonoBehaviour {
     public float speed = 5.0f;
     public float runSpeed = 10.0f;
     private float originalSpeed;
-    public int health = 100;
-    public int hunger = 100;
+    private int health = 100;
+    private int hunger = 70;  // Starting hunger will be 70/100
 
 	//Gathering variables
 	public GameObject gatherFrom;
@@ -41,12 +42,11 @@ public class Character : MonoBehaviour {
 
     public enum PlayerState
     {
-        Walk,
+        Idle,
         Gather,
         Aim,
         Interact,
-        Dialogue,
-        Idle
+        Dialogue
     }
     private PlayerState m_State;
 
@@ -71,28 +71,28 @@ public class Character : MonoBehaviour {
         // Set max and starting value of health and hunger
         hpBar.maxValue = health;
         hpBar.value = health;
-        //hungerBar.maxValue = hunger;
-        //hungerBar.value = hunger;
+        hungerBar.maxValue = health;  // Starting hunger is 70/100
+        hungerBar.value = hunger;
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        hpBar = GameObject.Find ( "HealthSlider" ).GetComponent<Slider> ();
+        hungerBar = GameObject.Find ( "HungerSlider" ).GetComponent<Slider> ();
     }
 
-    void OnLevelWasLoaded(int level)
+    void OnLevelWasLoaded()
     {
-        hpBar = GameObject.Find("HealthSlider").GetComponent<Slider>();
-//        staminaBar = GameObject.Find("StaminaSlider").GetComponent<Slider>();
-        GameObject spawn = GameObject.Find("SpawnPoint");
-        if (spawn != null)
+        GameObject spawn = GameObject.Find ( "SpawnPoint" );
+        // TODO: Keep track of visited locations
+        // Beach initial spawn is in middle of map, spawn point changes to right side after that
+        if ( spawn != null )
         {
             transform.position = spawn.transform.position;
         }
-        m_State = PlayerState.Idle;
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
-        //Debug.Log ( m_State );
         if( m_State == PlayerState.Dialogue )
         {
             if( m_Input.InteractButtonPressed() || m_Input.SelectButtonPressed() )
@@ -170,6 +170,7 @@ public class Character : MonoBehaviour {
 
     public void SetPlayerState ( PlayerState newState )
     {
+        //Debug.Log ( newState );
         m_State = newState;
     }
 
@@ -204,14 +205,35 @@ public class Character : MonoBehaviour {
         {
             m_Audio.PlayOnce ( "playerDeath" );
         }
-        else if ( hpBar.value <= 40 )
-        {
-            m_Audio.PlayOnce( "playerNearDeath" );
-        }
         else
         {
             m_Audio.PlayOnce( "playerDamaged");
         }
+    }
+
+    // Will add the parameter to hunger value
+    // If eating, want a positive number
+    // If time passes and you don't eat, want a negative number
+    public void IncrementHunger( int amount )
+    {
+        hungerBar.value += amount;
+    }
+
+    // Starving for a day lowers max health
+    // Gets called on a new day
+    public void CheckStarved()
+    {
+        if( hungerBar.value < 50 )
+        {
+            hpBar.maxValue -= 20;
+            Debug.Log ( "Starved" );
+            if( hpBar.value > hpBar.maxValue)
+            {
+                hpBar.value = hpBar.maxValue;
+            }
+        }
+        // Since its a new day, replenish some hunger due to resting
+        hungerBar.value += 20;
     }
 
     public bool IsAlive()
