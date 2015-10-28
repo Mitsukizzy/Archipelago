@@ -30,11 +30,14 @@ public class CameraFollow : MonoBehaviour
 
         float vertExtent = GetComponent<Camera>().orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
-        spriteBounds = GameObject.Find ( "MapBackground" ).GetComponent<SpriteRenderer> ();
-        leftBound = ( float )( horzExtent - spriteBounds.bounds.size.x / 2.0f );
-        rightBound = ( float )( spriteBounds.bounds.size.x / 2.0f - horzExtent );
-        bottomBound = ( float )( vertExtent - spriteBounds.bounds.size.y / 2.0f );
-        topBound = ( float )( spriteBounds.bounds.size.y / 2.0f - vertExtent );
+        spriteBounds = GameObject.Find ( "Floor" ).GetComponent<SpriteRenderer> ();
+        //SpriteRenderer floorBounds = GameObject.Find("Floor").GetComponent<SpriteRenderer>();
+        //Vector3 offset = GameObject.Find("MapBackground").GetComponent<Transform>().position;
+        leftBound = ( float )( horzExtent - spriteBounds.bounds.size.x / 2.0f);
+        rightBound = (float)(spriteBounds.bounds.size.x / 2.0f - horzExtent);
+        bottomBound = (float)(vertExtent - spriteBounds.bounds.size.y / 2.0f);
+        topBound = 1000000; //= (float)(spriteBounds.bounds.size.y / 2.0f - vertExtent);
+		Debug.Log("Left: " + leftBound + " Right: " + rightBound + " Top: " + topBound + " Bottom: " + bottomBound); 
     }
 
     void Update()

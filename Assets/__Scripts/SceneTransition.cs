@@ -6,7 +6,7 @@ using System.Collections;
 public class SceneTransition : MonoBehaviour
 {
     private GameManager mGame;
-
+    public string SceneName;
     // Use this for initialization
     void Start ()
     {
@@ -23,7 +23,10 @@ public class SceneTransition : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" )
         {
-            mGame.LoadNextLevel ();
+            Debug.Log ( "Entering Scene Transition Area" );
+            Application.LoadLevel ( SceneName );
+
+            //mGame.LoadNextLevel ();
         }
     }
 }

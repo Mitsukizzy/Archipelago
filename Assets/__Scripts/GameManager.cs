@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class GameManager : MonoBehaviour 
 {
@@ -12,6 +14,11 @@ public class GameManager : MonoBehaviour
     private InputManager m_input;
     private bool isPlaying = false;
 
+    //dictionary to hold all key items and if they have been picked up yet
+    private Dictionary<string, bool> KeyItems;
+    //TRUE = has not been found
+    //FALSE = has been found
+
     public enum GameState
     {
         Tutorial,
@@ -21,6 +28,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {        
+        KeyItems = new Dictionary<string,bool>();
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
 
@@ -45,9 +53,50 @@ public class GameManager : MonoBehaviour
                 m_GameState = GameState.Normal;
                 m_audio.PlayLoop ( "main" );
             }  
-        }      
+        }
+
+        KeyItems.Add("Backpack", true);
+        KeyItems.Add("Boat", true);
 	}
-	
+
+    void OnLevelWasLoaded(int level)
+    {
+        m_Char = GameObject.Find("Character").GetComponent<Character>();
+
+        //use this function to change what music is being played on in each level
+
+
+        //Move the character to the proper location
+        if (!Application.loadedLevelName.Equals("1_Beach")) //the character is spawned on the beach
+        {
+            Vector3 spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
+            m_Char.transform.position = spawnLoc;
+        }
+
+        //spawn in any key items for the level that have not been picked up yet
+        if (Application.loadedLevelName.Equals("1_Beach"))
+        {
+            Debug.Log("Entered Beach");
+            //Check if key items have been found, if not, spawn them in the proper x,y location
+            if (KeyItems["Backpack"])
+            {
+                GameObject Backpack = Instantiate(Resources.Load("Backpack", typeof(GameObject))) as GameObject;
+            }
+            if (KeyItems["Boat"])
+            {
+                GameObject Boat = Instantiate(Resources.Load("Boat", typeof(GameObject))) as GameObject;
+            }
+        }
+    }
+
+    void DoNotSpawnOnLoad(string itemName)
+    {
+        if (KeyItems.ContainsKey(itemName))
+        {
+            KeyItems[itemName] = false;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () 
     {

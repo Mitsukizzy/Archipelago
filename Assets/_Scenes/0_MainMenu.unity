@@ -1205,6 +1205,8 @@ GameObject:
   - 114: {fileID: 1419522801}
   - 114: {fileID: 1419522800}
   - 82: {fileID: 1419522799}
+  - 114: {fileID: 1419522804}
+  - 114: {fileID: 1419522805}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1342,6 +1344,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1419522804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419522798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ab37536a1e94f418adaad8c121599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1419522805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419522798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849201dd70e8e1c44b945c256c974307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beach1: {fileID: 4900000, guid: 62d2d05cd67451c40ab94efeea7db6e3, type: 3}
+  beach2: {fileID: 4900000, guid: 781672c583b0c354e80703f00583fc51, type: 3}
+  beach3: {fileID: 4900000, guid: fd67a056cb006f44ca7bd734df3b7ddf, type: 3}
 --- !u!1 &1489078388
 GameObject:
   m_ObjectHideFlags: 0

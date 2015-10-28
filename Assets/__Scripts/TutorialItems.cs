@@ -21,6 +21,7 @@ public class TutorialItems : MonoBehaviour
     {
 	    mInput = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
         mAudio = GameObject.Find ( "GameManager" ).GetComponent<AudioManager> ();
+        tutorial = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 	}
 	
 	// Update is called once per frame
