@@ -32,51 +32,34 @@ public class GameManager : MonoBehaviour
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
 
-        if ( Application.loadedLevelName.Equals ( "0_MainMenu" ) )
-        {
-            m_audio.PlayLoop ( "mystery" );
-            isPlaying = false; 
-        }
-        else
-        {
-            m_Char = GameObject.Find ( "Character" ).GetComponent<Character> ();
-            isPlaying = true;
-
-
-            if ( Application.loadedLevelName.Equals ( "1_Beach" ) )
-            {
-                m_GameState = GameState.Tutorial;
-                m_audio.PlayLoop ( "main" );
-            }
-            else
-            {
-                m_GameState = GameState.Normal;
-                m_audio.PlayLoop ( "main" );
-            }  
-        }
-
         KeyItems.Add("Backpack", true);
         KeyItems.Add("Boat", true);
 	}
 
-    void OnLevelWasLoaded(int level)
+    void OnLevelWasLoaded()
     {
-        m_Char = GameObject.Find("Character").GetComponent<Character>();
+        if ( Application.loadedLevel != 0 )
+        {
+            m_Char = GameObject.Find( "Character" ).GetComponent<Character>();
+        }
 
-        //use this function to change what music is being played on in each level
-
-
-        //Move the character to the proper location
+        // Move the character to the proper location
+        // TODO: Keep track of visited locations
+        // Beach initial spawn is in middle of map, spawn point changes to right side after that
         if (!Application.loadedLevelName.Equals("1_Beach")) //the character is spawned on the beach
         {
             Vector3 spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
             m_Char.transform.position = spawnLoc;
         }
-
-        //spawn in any key items for the level that have not been picked up yet
-        if (Application.loadedLevelName.Equals("1_Beach"))
+        //use this function to change what music is being played on in each level
+        if ( Application.loadedLevel == 0 )
         {
-            Debug.Log("Entered Beach");
+            m_audio.PlayLoop( "main" );
+        }
+        else if ( Application.loadedLevelName.Equals( "1_Beach" ) )
+        {
+            Debug.Log( "Entered Beach" );
+            //spawn in any key items for the level that have not been picked up yet
             //Check if key items have been found, if not, spawn them in the proper x,y location
             if (KeyItems["Backpack"])
             {
@@ -86,7 +69,15 @@ public class GameManager : MonoBehaviour
             {
                 GameObject Boat = Instantiate(Resources.Load("Boat", typeof(GameObject))) as GameObject;
             }
+
+            m_GameState = GameState.Tutorial;
+            m_audio.PlayLoop( "beach" );
         }
+        else if ( Application.loadedLevelName.Equals( "2_Wetlands" ) )
+        {
+            m_GameState = GameState.Normal;
+            m_audio.PlayLoop( "wetlands" );
+        }  
     }
 
     void DoNotSpawnOnLoad(string itemName)

@@ -14,10 +14,20 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndClick;
 
     // Background Music
-    public AudioClip musicMystery;
     public AudioClip musicMain;
+    public AudioClip musicBeach;
+    public AudioClip musicWetlands;
+    public AudioClip musicForest;
+    public AudioClip musicDocks;
+    public AudioClip musicSeaCave;
+    public AudioClip musicPlains;
+    public AudioClip musicTemp1;        // Coalescence
+    public AudioClip musicTemp2;        // Monsoon
 
     // Other
+    public AudioClip sndCampsite;
+    public AudioClip sndGameOver;
+    public AudioClip sndRefreshed;
     public AudioClip sndPlayerDamaged;
     public AudioClip sndPlayerDeath;
     public AudioClip sndEnemyDamaged;
@@ -61,8 +71,29 @@ public class AudioManager : MonoBehaviour
             case "main":
                 m_MusicSource.clip = musicMain;
                 break;
-            case "mystery":
-                m_MusicSource.clip = musicMystery;
+            case "beach":
+                m_MusicSource.clip = musicBeach;
+                break;
+            case "wetlands":
+                m_MusicSource.clip = musicWetlands;
+                break;
+            case "forest":
+                m_MusicSource.clip = musicForest;
+                break;
+            case "docks":
+                m_MusicSource.clip = musicDocks;
+                break;
+            case "seacave":
+                m_MusicSource.clip = musicSeaCave;
+                break;
+            case "plains":
+                m_MusicSource.clip = musicPlains;
+                break;
+            case "temp1":
+                m_MusicSource.clip = musicTemp1;
+                break;
+            case "temp2":
+                m_MusicSource.clip = musicTemp2;
                 break;
             default:
                 break;
@@ -80,6 +111,15 @@ public class AudioManager : MonoBehaviour
         {
             case "shoot":
                 m_SFXSource.PlayOneShot ( sndShoot );
+                break;
+            case "campsite":
+                m_SFXSource.PlayOneShot( sndCampsite );
+                break;
+            case "gameOver":
+                m_SFXSource.PlayOneShot( sndGameOver );
+                break;
+            case "refreshed":
+                m_SFXSource.PlayOneShot( sndRefreshed );
                 break;
             case "playerDamaged":
                 m_SFXSource.PlayOneShot ( sndPlayerDamaged );

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0343ad7fc23aadd4db76127b44adacab
-timeCreated: 1445924789
+timeCreated: 1446065376
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -11,8 +11,18 @@ MonoImporter:
   - sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
   - sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
   - sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
-  - musicMystery: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
-  - musicMain: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
+  - musicMain: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+  - musicBeach: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
+  - musicWetlands: {fileID: 8300000, guid: b06f74fbd87489f48beafeb07d2b1af5, type: 3}
+  - musicForest: {instanceID: 0}
+  - musicDocks: {instanceID: 0}
+  - musicSeaCave: {instanceID: 0}
+  - musicPlains: {instanceID: 0}
+  - musicTemp1: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
+  - musicTemp2: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
+  - sndCampsite: {instanceID: 0}
+  - sndGameOver: {instanceID: 0}
+  - sndRefreshed: {instanceID: 0}
   - sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
   - sndPlayerDeath: {instanceID: 0}
   - sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
