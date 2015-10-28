@@ -9,7 +9,7 @@ public class DayNightManager : MonoBehaviour
     int timeOfDay = 1;
 
     // Number of seconds it takes to advance one hour
-    int secondsPerHour = 5;
+    int secondsPerHour = 1;
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6

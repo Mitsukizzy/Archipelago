@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     //Health and Hunger sliders
     public Slider hpBar;
     public Slider hungerBar;
+    private GameObject hpBG;
+    private GameObject hpFill;
 
     //Animator
     private Animator m_Animator;
@@ -76,18 +78,14 @@ public class Character : MonoBehaviour
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         hpBar = GameObject.Find ( "HealthSlider" ).GetComponent<Slider> ();
+        hpBG = hpBar.transform.Find( "Background" ).gameObject;
+        hpFill = hpBar.transform.Find( "Fill Area" ).gameObject;
         hungerBar = GameObject.Find ( "HungerSlider" ).GetComponent<Slider> ();
     }
 
     void OnLevelWasLoaded()
     {
         GameObject spawn = GameObject.Find ( "SpawnPoint" );
-        // TODO: Keep track of visited locations
-        // Beach initial spawn is in middle of map, spawn point changes to right side after that
-        if ( spawn != null )
-        {
-            transform.position = spawn.transform.position;
-        }
     }
 	
 	// Update is called once per frame
@@ -225,12 +223,16 @@ public class Character : MonoBehaviour
     {
         if( hungerBar.value < 50 )
         {
-            hpBar.maxValue -= 20;
+            hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
             Debug.Log ( "Starved" );
             if( hpBar.value > hpBar.maxValue)
             {
                 hpBar.value = hpBar.maxValue;
             }
+            // TODO
+            //float width = health / 5;
+            //hpBG.GetComponent<RectTransform>().sizeDelta = new Vector2( width, 0 );
+            //Debug.Log( hpBG.GetComponent<RectTransform>().sizeDelta );
         }
         // Since its a new day, replenish some hunger due to resting
         hungerBar.value += 20;
