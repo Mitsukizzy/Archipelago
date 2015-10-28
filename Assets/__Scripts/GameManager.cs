@@ -61,7 +61,17 @@ public class GameManager : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
+        m_Char = GameObject.Find("Character").GetComponent<Character>();
+
         //use this function to change what music is being played on in each level
+
+
+        //Move the character to the proper location
+        if (!Application.loadedLevelName.Equals("1_Beach")) //the character is spawned on the beach
+        {
+            Vector3 spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
+            m_Char.transform.position = spawnLoc;
+        }
 
         //spawn in any key items for the level that have not been picked up yet
         if (Application.loadedLevelName.Equals("1_Beach"))

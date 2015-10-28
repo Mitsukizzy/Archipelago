@@ -702,8 +702,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200.5, y: 202.5}
-  m_SizeDelta: {x: 401, y: 405}
+  m_AnchoredPosition: {x: 231, y: 473.5}
+  m_SizeDelta: {x: 462, y: 947}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -3728,6 +3728,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1487291088}
+  - 114: {fileID: 1487291089}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -3750,7 +3751,18 @@ Transform:
   - {fileID: 1486043315}
   - {fileID: 711717890}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
+--- !u!114 &1487291089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1487291087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ab37536a1e94f418adaad8c121599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1489123815
 GameObject:
   m_ObjectHideFlags: 0
