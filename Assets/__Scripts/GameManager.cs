@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
 
     private AudioManager m_audio;
     private InputManager m_input;
-    private bool isPlaying = false;
 
     //dictionary to hold all key items and if they have been picked up yet
     private Dictionary<string, bool> KeyItems;
     //TRUE = has not been found
     //FALSE = has been found
+
+	private int CurrentSceneIndex;
+	private int PreviousSceneIndex;
 
     public enum GameState
     {
@@ -34,10 +36,15 @@ public class GameManager : MonoBehaviour
 
         KeyItems.Add("Backpack", true);
         KeyItems.Add("Boat", true);
+
+		CurrentSceneIndex = 0;
+		PreviousSceneIndex = 0;
+
 	}
 
     void OnLevelWasLoaded()
     {
+
         if ( Application.loadedLevel != 0 )
         {
             m_Char = GameObject.Find( "Character" ).GetComponent<Character>();
@@ -48,7 +55,15 @@ public class GameManager : MonoBehaviour
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         if (!Application.loadedLevelName.Equals("1_Beach")) //the character is spawned on the beach
         {
-            Vector3 spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
+			PreviousSceneIndex = CurrentSceneIndex;
+			CurrentSceneIndex = Application.loadedLevel;
+			Vector3 spawnLoc;
+			if(CurrentSceneIndex < PreviousSceneIndex){
+				spawnLoc = GameObject.Find("SpawnPoint2").GetComponent<Transform>().position;
+			}
+			else{
+				spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
+			}
             m_Char.transform.position = spawnLoc;
         }
         //use this function to change what music is being played on in each level
@@ -59,17 +74,6 @@ public class GameManager : MonoBehaviour
         else if ( Application.loadedLevelName.Equals( "1_Beach" ) )
         {
             Debug.Log( "Entered Beach" );
-            //spawn in any key items for the level that have not been picked up yet
-            //Check if key items have been found, if not, spawn them in the proper x,y location
-            if (KeyItems["Backpack"])
-            {
-                GameObject Backpack = Instantiate(Resources.Load("Backpack", typeof(GameObject))) as GameObject;
-            }
-            if (KeyItems["Boat"])
-            {
-                GameObject Boat = Instantiate(Resources.Load("Boat", typeof(GameObject))) as GameObject;
-            }
-
             m_GameState = GameState.Tutorial;
             m_audio.PlayLoop( "beach" );
         }
@@ -79,6 +83,16 @@ public class GameManager : MonoBehaviour
             m_audio.PlayLoop( "wetlands" );
         }  
     }
+
+	public bool CheckItem(string ItemName){
+		if(!KeyItems.ContainsKey(ItemName)){
+			Debug.Log ("Checking an item that doesnt exist");
+			return false;
+		}
+		else{
+			return KeyItems[ItemName];
+		}
+	}
 
     void DoNotSpawnOnLoad(string itemName)
     {
@@ -91,7 +105,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( isPlaying )
+        if ( Application.loadedLevel != 0 ) //Not the main menu
         {
             if ( !m_Char.IsAlive () )
             {
