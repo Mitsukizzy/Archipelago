@@ -9,7 +9,7 @@ public class DayNightManager : MonoBehaviour
     int timeOfDay = 1;
 
     // Number of seconds it takes to advance one hour
-    int secondsPerHour = 1;
+    float secondsPerHour = 5;
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6
@@ -27,7 +27,7 @@ public class DayNightManager : MonoBehaviour
     // Use this for initialization
     void OnLevelWasLoaded ()
     {
-        if ( Application.loadedLevel != 0 )
+        if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
             mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();

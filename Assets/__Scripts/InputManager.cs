@@ -272,5 +272,25 @@ public class InputManager : MonoBehaviour {
                 break;
         }
         return false;
-    }	
+    }
+
+    public bool PauseButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyDown ( KeyCode.Escape ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 }

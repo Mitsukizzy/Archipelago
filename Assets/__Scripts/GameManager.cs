@@ -44,16 +44,16 @@ public class GameManager : MonoBehaviour
 
     void OnLevelWasLoaded()
     {
-
-        if ( Application.loadedLevel != 0 )
+        if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             m_Char = GameObject.Find( "Character" ).GetComponent<Character>();
         }
 
-        // Move the character to the proper location
         // TODO: Keep track of visited locations
+        // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
-        if (!Application.loadedLevelName.Equals("1_Beach")) //the character is spawned on the beach
+        // Don't spawn if on main menu(0) or game over(7)
+        if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 ) 
         {
 			PreviousSceneIndex = CurrentSceneIndex;
 			CurrentSceneIndex = Application.loadedLevel;
@@ -66,7 +66,8 @@ public class GameManager : MonoBehaviour
 			}
             m_Char.transform.position = spawnLoc;
         }
-        //use this function to change what music is being played on in each level
+
+        // Chooses music being played in each level
         if ( Application.loadedLevel == 0 )
         {
             m_audio.PlayLoop( "main" );
@@ -105,16 +106,24 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( Application.loadedLevel != 0 ) //Not the main menu
+        if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 ) //Not the main menu or game over screen
         {
+            // Check if alive
             if ( !m_Char.IsAlive () )
             {
                 // Move to Game Over screen
                 Debug.Log ( "GAME OVER" );
+                m_Char.Revive ();
                 Application.LoadLevel ( 7 ); // to game over screen
             }
+            
+            // Pause
+            if ( m_input.PauseButtonPressed () )
+            {
+                Pause ();
+            }
         }
-        
+
         // Our cheat reset keys
         if ( m_input.ResetGameButtonPressed () )
         {
@@ -161,6 +170,21 @@ public class GameManager : MonoBehaviour
         return m_GameState;
     }
 
+    public void Pause()
+    {
+        GameObject pauseOverlay = GameObject.Find ( "Status UI" ).transform.Find ( "Paused Overlay" ).gameObject; // my way of finding inactive gameobject
+        if ( Time.timeScale == 0 )
+        {
+            pauseOverlay.SetActive ( false );
+            Time.timeScale = 1;
+        }
+        else
+        {
+            pauseOverlay.SetActive ( true );
+            Time.timeScale = 0;
+        }
+    }
+
     public void MainMenu ()
     {
         Application.LoadLevel ( 0 );
@@ -168,7 +192,8 @@ public class GameManager : MonoBehaviour
 
     public void RetryFromCampfire ()
     {
-        m_Char.Revive ();
+        // TODO: Replace with code to load last level of campsite
+        Application.LoadLevel ( 2 );
         m_Char.ReturnToCamp();
     }
 

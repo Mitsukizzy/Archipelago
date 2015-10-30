@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if( m_State == PlayerState.Dialogue )
+        if( m_State == PlayerState.Dialogue && Time.timeScale != 0 ) // Make sure the game isn't paused
         {
             if( m_Input.InteractButtonPressed() || m_Input.SelectButtonPressed() )
             {
@@ -240,7 +240,7 @@ public class Character : MonoBehaviour
             }
         }
         // Since its a new day, replenish some hunger due to resting
-        hungerBar.value += 20;
+        IncrementHunger ( 10 );
     }
 
     public bool IsAlive()
@@ -257,6 +257,10 @@ public class Character : MonoBehaviour
         // Both back to their default, full values
         hpBar.value = health;
         hungerBar.value = hunger;
+        hpBar.maxValue = health; 
+        hpWidthOffset = 0;
+        hpBG.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
+        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
     }
 
     public void toggleInteract()
