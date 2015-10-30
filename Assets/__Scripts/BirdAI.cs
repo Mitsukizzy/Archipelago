@@ -1,0 +1,159 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class BirdAI : MonoBehaviour {
+
+    Vector3[] m_Waypoints;              //positions that the birds can be in
+    private Vector3 curWaypoint;        //current position
+    private Vector3 nextWaypoint;       //next position
+
+    public GameObject specialWaypoint; //use for a special waypoint
+    private Vector3 specialLoc;
+
+    public float speed = 10f;           //how fast the bird flies
+    public float moveChance = 1;        //chance for the bird to move from its current position to a different one
+    public int hitPoints = 5;           
+    public int attackDmg = 5;
+
+    private float moveTime;             //used for lerping
+    private float journeyLength;        //also used for lerping
+
+    private GameObject m_Char;
+    private bool isDead = false;
+    public float dropRng = 1.0f;        //chance to get a droppable item
+
+    private bool canAttack = true;
+    public float attackSpeed = 2.0f;
+
+    public enum BirdState
+    {
+        Idle,
+        Moving,
+        Attack
+    }
+    private BirdState m_State;
+
+	// Use this for initialization
+	void Start () {
+        GameObject[] wpObjs = GameObject.FindGameObjectsWithTag("waypoint");
+        m_Waypoints = new Vector3[wpObjs.Length];
+        for(int i=0; i<wpObjs.Length; i++){
+            m_Waypoints[i] = wpObjs[i].GetComponent<Transform>().position;
+        }
+        if(specialWaypoint != null){
+            specialLoc = specialWaypoint.GetComponent<Transform>().position;
+        }
+        m_Char = GameObject.Find("Character");
+
+        //spawn the bird wherever you want and it will fly to an arbirary waypoint
+        m_State = BirdState.Moving; 
+
+        //move the bird to an arbitrary waypoint
+        curWaypoint = transform.position;
+        nextWaypoint = m_Waypoints[(Random.Range(0, m_Waypoints.Length))];
+        moveTime = Time.time;
+        journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        int rng = Random.Range(1, 100);
+        if (m_State == BirdState.Idle)
+        {
+            if (rng <= moveChance)
+            {
+                m_State = BirdState.Moving;
+                nextWaypoint = m_Waypoints[(Random.Range(0, m_Waypoints.Length))];
+                moveTime = Time.time;
+                journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
+            }
+        }
+        else if (m_State == BirdState.Moving)
+        {
+            updateFacing();
+            float distCovered = (Time.time - moveTime) * speed;
+            float fracJourney = distCovered/journeyLength;
+            transform.position = Vector3.Lerp(curWaypoint, nextWaypoint, fracJourney);
+            if(transform.position == nextWaypoint){ //we have reached the next position
+                curWaypoint = nextWaypoint;
+                m_State = BirdState.Idle;
+            }
+        }
+        else if(m_State == BirdState.Attack){
+            if ( canAttack )
+            {
+                StartCoroutine ( AttackPlayer () );
+            }
+        }
+	}
+
+    private void updateFacing()
+    {
+        if (curWaypoint.x <= nextWaypoint.x)
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = -Mathf.Abs(newScale.x);
+            transform.localScale = newScale;
+        }
+        else
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = Mathf.Abs(newScale.x);
+            transform.localScale = newScale;
+        }
+    }
+
+    public void MoveToSpecial()
+    {
+        m_State = BirdState.Moving;
+        nextWaypoint = specialLoc;
+        moveTime = Time.time;
+        journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
+    }
+
+    public void Attack()
+    {
+        m_State = BirdState.Attack;
+        canAttack = true;
+    }
+
+    public void StopAttacking()
+    {
+        m_State = BirdState.Moving;
+        curWaypoint = transform.position;
+        nextWaypoint = m_Waypoints[(Random.Range(0, m_Waypoints.Length))];
+        moveTime = Time.time;
+        journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
+        canAttack = false;
+    }
+
+    IEnumerator AttackPlayer()
+    {
+        //GetComponent<Animator>().SetTrigger("Attack");
+        if(canAttack)
+            m_Char.GetComponent<Character>().TakeDamage(attackDmg);
+        canAttack = false;
+        yield return new WaitForSeconds(attackSpeed);
+        canAttack = true;
+    }
+
+    public void TakeDamage()
+    {
+        hitPoints--;
+        if (hitPoints <= 0 && !isDead)
+        {
+            //obtain dropable item!
+            if (GetComponent<Interactable>().gatherableItem != null)
+            {
+                if (Random.value <= dropRng)
+                {
+                    GetComponent<Interactable>().ReceiveItem();
+                    GetComponent<Interactable>().gatherableItem = null;
+                }
+            }
+            //GetComponent<Animator>().SetTrigger("Death");
+            isDead = true;
+        }
+    }
+}
