@@ -152,6 +152,22 @@ Prefab:
       propertyPath: sndTransition
       value: 
       objectReference: {fileID: 8300000, guid: 4f34eac60ede9a84da33b7589435e956, type: 3}
+    - target: {fileID: 11403342, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
+      propertyPath: musicForest
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 11403342, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
+      propertyPath: musicDocks
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
+    - target: {fileID: 11403342, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
+      propertyPath: musicSeaCave
+      value: 
+      objectReference: {fileID: 8300000, guid: b06f74fbd87489f48beafeb07d2b1af5, type: 3}
+    - target: {fileID: 11403342, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
+      propertyPath: musicPlains
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
   m_IsPrefabParent: 0

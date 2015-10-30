@@ -228,6 +228,7 @@ public class Character : MonoBehaviour
         if( hungerBar.value < 90 )
         {
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
+            m_Game.IncreaseDaysStarved ();
             Debug.Log ( "Starved" );
             if( hpBar.value > hpBar.maxValue)
             {
