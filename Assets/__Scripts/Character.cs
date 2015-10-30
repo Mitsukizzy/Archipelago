@@ -109,6 +109,7 @@ public class Character : MonoBehaviour
         }
         if ( m_Input.InteractButtonPressed() && gatherFrom != null )
         {
+            m_Audio.PlayLoop ( "rustle" );
             SetPlayerState ( PlayerState.Gather );
         }
         if ( m_Input.AimButtonHeld() )
@@ -127,11 +128,13 @@ public class Character : MonoBehaviour
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
 				Debug.Log("Finished Gathering");
+                m_Audio.PlayLoop ( "newItem" );
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
                 gatherBarObj.SetActive(false);
 			}
-			else{
-				gatherBar.value=gatherTime/secondsGathering;
+			else
+            {
+				gatherBar.value = gatherTime/secondsGathering;
 			}
 		}
 

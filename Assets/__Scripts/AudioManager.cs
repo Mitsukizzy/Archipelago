@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     // UI
     public AudioClip sndMenuSelect;
+    public AudioClip sndMenuHover;
     public AudioClip sndClick;
 
     // Background Music
@@ -28,26 +29,30 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndCampsite;
     public AudioClip sndGameOver;
     public AudioClip sndRefreshed;
+    public AudioClip sndNewItem;
+    public AudioClip sndFailed;
+    public AudioClip sndRustle;
     public AudioClip sndPlayerDamaged;
     public AudioClip sndPlayerDeath;
     public AudioClip sndEnemyDamaged;
     public AudioClip sndEnemyDeath;
 
+    private AudioSource m_MusicSource;
     private AudioSource m_SFXSource;
-    public AudioSource m_MusicSource;	
-
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
     {
-        m_SFXSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
-        m_MusicSource.volume = 0.5f;
-        m_SFXSource.loop = false;
-
+        // There's two audio sources on GameManager, one for Music and one for SFX
+        m_MusicSource = GameObject.Find ( "GameManager" ).GetComponents<AudioSource> ()[0];
         m_MusicSource.volume = 0.35f;
         m_MusicSource.loop = true;
+
+        m_SFXSource = GameObject.Find ( "GameManager" ).GetComponents<AudioSource> ()[1];
+        m_SFXSource.volume = 0.75f;
+        m_SFXSource.loop = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
     {
@@ -121,6 +126,15 @@ public class AudioManager : MonoBehaviour
             case "refreshed":
                 m_SFXSource.PlayOneShot( sndRefreshed );
                 break;
+            case "newItem":
+                m_SFXSource.PlayOneShot ( sndNewItem );
+                break;
+            case "failed":
+                m_SFXSource.PlayOneShot ( sndFailed );
+                break;
+            case "rustle":
+                m_SFXSource.PlayOneShot ( sndRustle );
+                break;
             case "playerDamaged":
                 m_SFXSource.PlayOneShot ( sndPlayerDamaged );
                 break;
@@ -138,6 +152,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "menuSelect":
                 m_SFXSource.PlayOneShot ( sndMenuSelect );
+                break;
+            case "menuHover":
+                m_SFXSource.PlayOneShot ( sndMenuHover );
                 break;
             case "transition":
                 m_SFXSource.PlayOneShot ( sndTransition );
