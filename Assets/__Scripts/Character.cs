@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public float runSpeed = 10.0f;
     private float originalSpeed;
     private int health = 100;
-    private int hunger = 70;  // Starting hunger will be 70/100
+    private int hunger = 100;
 
 	//Gathering variables
 	public GameObject gatherFrom;
@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
     public Slider hungerBar;
     private GameObject hpBG;
     private GameObject hpFill;
+    private int hpWidthOffset = 0;
 
     //Animator
     private Animator m_Animator;
@@ -73,7 +74,7 @@ public class Character : MonoBehaviour
         // Set max and starting value of health and hunger
         hpBar.maxValue = health;
         hpBar.value = health;
-        hungerBar.maxValue = health;  // Starting hunger is 70/100
+        hungerBar.maxValue = hunger;
         hungerBar.value = hunger;
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
@@ -221,7 +222,7 @@ public class Character : MonoBehaviour
     // Gets called on a new day
     public void CheckStarved()
     {
-        if( hungerBar.value < 50 )
+        if( hungerBar.value < 90 )
         {
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
             Debug.Log ( "Starved" );
@@ -229,10 +230,14 @@ public class Character : MonoBehaviour
             {
                 hpBar.value = hpBar.maxValue;
             }
-            // TODO
-            //float width = health / 5;
-            //hpBG.GetComponent<RectTransform>().sizeDelta = new Vector2( width, 0 );
-            //Debug.Log( hpBG.GetComponent<RectTransform>().sizeDelta );
+
+            if ( hpWidthOffset < 120 ) 
+            {
+                // Don't lower max hp if it would make max hp 0
+                hpWidthOffset += 30;
+                hpBG.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
+                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
+            }
         }
         // Since its a new day, replenish some hunger due to resting
         hungerBar.value += 20;

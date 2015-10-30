@@ -702,8 +702,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 768, y: 351.5}
-  m_SizeDelta: {x: 1536, y: 703}
+  m_AnchoredPosition: {x: 117, y: 478.5}
+  m_SizeDelta: {x: 234, y: 957}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &455768225
 MonoBehaviour:
@@ -1309,10 +1309,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1913343001}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .25}
-  m_AnchorMax: {x: 1, y: .75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 75, y: 0}
+  m_SizeDelta: {x: 150, y: 16}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &600508871
 MonoBehaviour:
@@ -2785,11 +2785,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2013460387}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .25}
-  m_AnchorMax: {x: 1, y: .75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 150, y: 16}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &1025589494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3355,10 +3355,10 @@ RectTransform:
   - {fileID: 2086166237}
   m_Father: {fileID: 1913343001}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .25}
-  m_AnchorMax: {x: 1, y: .75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 75, y: 0}
+  m_SizeDelta: {x: 150, y: 16}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1276855801
 GameObject:
@@ -4686,11 +4686,11 @@ RectTransform:
   - {fileID: 2063756563}
   m_Father: {fileID: 2013460387}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .25}
-  m_AnchorMax: {x: 1, y: .75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 150, y: 16}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &1989287644 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11424526, guid: d3c7c6f10232ee84f9c5ce2b68896de2,
@@ -4730,7 +4730,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6.0999999, y: -34}
+  m_AnchoredPosition: {x: 6.09996796, y: -34}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2013460388

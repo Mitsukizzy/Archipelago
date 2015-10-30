@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     private AudioManager m_audio;
     private InputManager m_input;
-    private bool isPlaying = false;
 
     //dictionary to hold all key items and if they have been picked up yet
     private Dictionary<string, bool> KeyItems;
@@ -91,11 +90,12 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( isPlaying )
+        if ( Application.loadedLevel != 0 )
         {
             if ( !m_Char.IsAlive () )
             {
                 // Move to Game Over screen
+                Debug.Log ( "GAME OVER" );
                 gameOverOverlay.SetActive ( true );
                 m_Char.Revive ();
             }
