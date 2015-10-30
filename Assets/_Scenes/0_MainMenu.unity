@@ -168,6 +168,10 @@ Prefab:
       propertyPath: musicPlains
       value: 
       objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 11446744, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
+      propertyPath: trackMetrics
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13cbe9e1b22bdcc48b6a85de3ede74ba, type: 2}
   m_IsPrefabParent: 0

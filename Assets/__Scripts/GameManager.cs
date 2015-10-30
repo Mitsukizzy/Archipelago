@@ -7,7 +7,6 @@ using System.IO;
 public class GameManager : MonoBehaviour 
 {
     private Character m_Char;
-    public GameObject gameOverOverlay;
     private GameState m_GameState;
 
     private AudioManager m_audio;
@@ -19,6 +18,7 @@ public class GameManager : MonoBehaviour
     //FALSE = has been found
 
     // Metrics trackers
+    public bool trackMetrics = false;
     private string metricsText = "";
     private Dictionary<string, float> timeSpentPerLevel = new Dictionary<string, float> ();
     private List<string> locationTimestamps = new List<string> ();
@@ -125,13 +125,16 @@ public class GameManager : MonoBehaviour
     // In Standalone, this will show up in the same directory as your executable
     void OnApplicationQuit ()
     {
-        GenerateMetricsString ();
-        string time = System.DateTime.UtcNow.ToString (); 
-        string dateTime = System.DateTime.Now.ToString (); //Get the time to tack on to the file name
-        time = time.Replace ( "/", "-" ); // Replace slashes with dashes, because Unity thinks they are directories..
-        time = time.Replace ( ":", "." ); // Replace colons with periods for time
-        string reportFile = "Archipelago_Metrics_" + time + ".txt";
-        File.WriteAllText ( reportFile, metricsText );
+        if ( trackMetrics )
+        {
+            GenerateMetricsString ();
+            string time = System.DateTime.UtcNow.ToString ();
+            string dateTime = System.DateTime.Now.ToString (); //Get the time to tack on to the file name
+            time = time.Replace ( "/", "-" ); // Replace slashes with dashes, because Unity thinks they are directories..
+            time = time.Replace ( ":", "." ); // Replace colons with periods for time
+            string reportFile = "Archipelago_Metrics_" + time + ".txt";
+            File.WriteAllText ( reportFile, metricsText );
+        }
     }
 
 	// Update is called once per frame
