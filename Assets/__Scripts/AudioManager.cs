@@ -156,10 +156,10 @@ public class AudioManager : MonoBehaviour
                 m_SFXSource.PlayOneShot ( sndClick );
                 break;
             case "menuSelect":
-                m_SFXSource.PlayOneShot ( sndMenuSelect );
+                //m_SFXSource.PlayOneShot ( sndMenuSelect );
                 break;
             case "menuHover":
-                m_SFXSource.PlayOneShot ( sndMenuHover );
+                //m_SFXSource.PlayOneShot ( sndMenuHover );
                 break;
             case "transition":
                 m_SFXSource.PlayOneShot ( sndTransition );

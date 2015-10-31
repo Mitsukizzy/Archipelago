@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &144288
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c382bf7b32154797108f40f305938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorial: {fileID: 0}
 --- !u!114 &11493740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -346,7 +345,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f3e2a6f42329c4cf0a3a194500bc1dc2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -476,7 +475,7 @@ RectTransform:
   m_Father: {fileID: 22408818}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: .546773612, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: .5, y: .5}

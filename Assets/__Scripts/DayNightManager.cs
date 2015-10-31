@@ -22,7 +22,29 @@ public class DayNightManager : MonoBehaviour
     public Sprite sun;
     public Sprite moon;
 
+	public Light daylight;
+
     private Character mChar;
+
+	bool increasing = true;
+
+
+	void Start(){
+		if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
+		{
+			mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
+			mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
+			
+			mSlider.maxValue = 12;
+			mSlider.value = timeOfDay;
+			
+			mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+			
+			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
+			
+			StartCoroutine ( AdvanceHour ( 1 ) );
+		}
+	}
 
     // Use this for initialization
     void OnLevelWasLoaded ()
@@ -32,10 +54,12 @@ public class DayNightManager : MonoBehaviour
             mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
             mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
 
-            mSlider.maxValue = 24;
+            mSlider.maxValue = 12;
             mSlider.value = timeOfDay;
 
             mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+
+			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
 
             StartCoroutine ( AdvanceHour ( 1 ) );
         }
@@ -44,7 +68,11 @@ public class DayNightManager : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-
+		if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
+		{
+			Debug.Log(timeOfDay/12.0f	);
+			daylight.intensity = Mathf.Lerp(2.0f,0.5f,timeOfDay/12.0f);
+		}
     }
 
     void RandomizeSafeLocation()
@@ -61,14 +89,23 @@ public class DayNightManager : MonoBehaviour
     IEnumerator AdvanceHour( int numHours )
     {
         yield return new WaitForSeconds( secondsPerHour );
-        timeOfDay += numHours;
-        if( timeOfDay > 24 )
+		if(increasing){
+        	timeOfDay += numHours;
+		}
+		else{
+			timeOfDay -= numHours;
+		}
+        if( timeOfDay >= 12 )
         {
-            timeOfDay -= 24; // Start new day
+            //timeOfDay -= 24; // Start new day
+			increasing = false;
             mChar.CheckStarved ();
             RandomizeSafeLocation();
         }
-        if( timeOfDay > 18 )
+		if(timeOfDay <= 0){
+			increasing = true;
+		}
+        if( timeOfDay > 8 )
         {
             mHandle.sprite = moon;
         }
