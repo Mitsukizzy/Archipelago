@@ -29,7 +29,7 @@ public class Journal : MonoBehaviour
         mPrevPageBtn = GameObject.Find ( "Prev Page Button" );
         mNextPageBtn = GameObject.Find ( "Next Page Button" );
 
-        mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
         pages.Add ( page1 );
         pages.Add ( page2 );

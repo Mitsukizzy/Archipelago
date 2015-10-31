@@ -59,34 +59,25 @@ public class Character : MonoBehaviour
         m_FacingRight = false;
         originalSpeed = speed;
 
-        m_Game = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
+        m_Game = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         m_Input = m_Game.GetInputManager ();
         m_Audio = m_Game.GetAudioManager ();
         m_Dialogue = m_Game.GetDialogueSystem ();
         m_Animator = GetComponent<Animator>();
 
 		gatherFrom = null;
-		gatherTime = 0.0f;
-        gatherBar = gatherBarObj.GetComponent<Slider>();
-        gatherBar.value = 0.0f;
-        gatherBar.maxValue = 1;
-	
-        // Set max and starting value of health and hunger
-        hpBar.maxValue = health;
-        hpBar.value = health;
-        hungerBar.maxValue = hunger;
-        hungerBar.value = hunger;
 
         m_Inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         hpBar = GameObject.Find ( "HealthSlider" ).GetComponent<Slider> ();
         hpBG = hpBar.transform.Find( "Background" ).gameObject;
         hpFill = hpBar.transform.Find( "Fill Area" ).gameObject;
         hungerBar = GameObject.Find ( "HungerSlider" ).GetComponent<Slider> ();
-    }
 
-    void OnLevelWasLoaded()
-    {
-        GameObject spawn = GameObject.Find ( "SpawnPoint" );
+        // Set max and starting value of health and hunger
+        hpBar.maxValue = health;
+        hpBar.value = health;
+        hungerBar.maxValue = hunger;
+        hungerBar.value = hunger;
     }
 	
 	// Update is called once per frame
@@ -110,6 +101,7 @@ public class Character : MonoBehaviour
         if ( m_Input.InteractButtonPressed() && gatherFrom != null )
         {
             SetPlayerState ( PlayerState.Gather );
+            BeginGather();
         }
         if ( m_Input.AimButtonHeld() )
         {
@@ -117,7 +109,7 @@ public class Character : MonoBehaviour
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
-            gatherBarObj.GetComponent<RectTransform>().localPosition = Camera.main.WorldToScreenPoint(transform.position);
+            //gatherBar = gatherBarObj.GetComponent<Slider>();
             gatherBarObj.SetActive(true);
             m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
@@ -131,7 +123,7 @@ public class Character : MonoBehaviour
                 gatherBarObj.SetActive(false);
 			}
 			else{
-				gatherBar.value=gatherTime/secondsGathering;
+				gatherBar.value=(gatherTime/secondsGathering);
 			}
 		}
 
@@ -299,6 +291,17 @@ public class Character : MonoBehaviour
         else
         {
             Application.LoadLevel("MainMenu");
+        }
+    }
+
+    public void BeginGather()
+    {
+        if (m_State != PlayerState.Gather)
+        {
+            gatherTime = 0.0f;
+            gatherBar = gatherBarObj.GetComponent<Slider>();
+            gatherBar.value = 0.0f;
+            gatherBar.maxValue = 1;
         }
     }
 

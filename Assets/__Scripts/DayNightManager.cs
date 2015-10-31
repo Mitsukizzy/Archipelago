@@ -35,7 +35,7 @@ public class DayNightManager : MonoBehaviour
             mSlider.maxValue = 24;
             mSlider.value = timeOfDay;
 
-            mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+            mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
             StartCoroutine ( AdvanceHour ( 1 ) );
         }

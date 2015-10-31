@@ -39,8 +39,8 @@ public class Tutorial : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        mChar = GameObject.Find ( "Character" ).GetComponent<Character>();
-        mGame = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
+        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         mDialogue = mGame.GetDialogueSystem ();
         backpack = GameObject.Find ( "Backpack" );
         backpackUI = GameObject.Find( "Bag" );

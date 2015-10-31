@@ -21,10 +21,10 @@ public class Combat : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         m_Canvas = GameObject.Find ( "Canvas" );
-        m_Game = GameObject.Find ( "GameManager" ).GetComponent<GameManager>();
+        m_Game = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         m_Input = m_Game.GetInputManager();
         m_Audio = m_Game.GetAudioManager();
-        m_Char = GameObject.Find ( "Character" ).GetComponent<Character>();
+        m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
         m_Animator = GetComponent<Animator>();
 
         animationDelay = false;

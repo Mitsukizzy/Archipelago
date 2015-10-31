@@ -10,7 +10,7 @@ public class SceneTransition : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        mGame = GameObject.Find ( "GameManager" ).GetComponent<GameManager> ();
+        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

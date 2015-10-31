@@ -39,14 +39,17 @@ public class GameManager : MonoBehaviour
 
 		CurrentSceneIndex = 0;
 		PreviousSceneIndex = 0;
-
+        if (Application.loadedLevelName != "0_MainMenu")
+        {
+            m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        }
 	}
 
     void OnLevelWasLoaded()
     {
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-            m_Char = GameObject.Find( "Character" ).GetComponent<Character>();
+            m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
         }
 
         // TODO: Keep track of visited locations

@@ -19,8 +19,8 @@ public class TutorialItems : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-	    mInput = GameObject.Find ( "GameManager" ).GetComponent<InputManager> ();
-        mAudio = GameObject.Find ( "GameManager" ).GetComponent<AudioManager> ();
+        mInput = GameObject.FindGameObjectWithTag("Manager").GetComponent<InputManager>();
+        mAudio = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>();
         tutorial = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 	}
 	

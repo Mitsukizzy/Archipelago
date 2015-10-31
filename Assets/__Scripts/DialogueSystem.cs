@@ -50,7 +50,7 @@ public class DialogueSystem : MonoBehaviour
     // Custom init method
     void SpecialInit()
     {
-        mChar = GameObject.Find ( "Character" ).GetComponent<Character> ();
+        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
         mDialogueText = GameObject.Find ( "DialogueText" ).GetComponent<Text> ();
         mDialogueBox = GameObject.Find ( "DialogueBox" );

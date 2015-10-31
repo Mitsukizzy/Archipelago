@@ -20,7 +20,7 @@ public class SlotScript : MonoBehaviour{
         itemDescription = gameObject.transform.GetChild(3).GetComponent<Text>();
         stack = 1;
         interactable = false;
-        m_Character = GameObject.Find("Character").GetComponent<Character>();
+        m_Character = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 	}
 	
 	// Update is called once per frame

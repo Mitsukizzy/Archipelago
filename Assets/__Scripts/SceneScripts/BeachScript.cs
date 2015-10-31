@@ -11,7 +11,7 @@ public class BeachScript : MonoBehaviour {
 	void Start () {
 
 		//Beach will have the boat that needs to be fixed and the bag to pick up
-		mGame = GameObject.Find("GameManager").GetComponent<GameManager>();
+        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
 		if(mGame.CheckItem("Backpack")){
 			GameObject Backpack = Instantiate(Resources.Load("Backpack", typeof(GameObject))) as GameObject;

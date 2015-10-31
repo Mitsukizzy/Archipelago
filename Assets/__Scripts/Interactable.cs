@@ -11,14 +11,15 @@ public class Interactable : MonoBehaviour
     private GameObject m_char;
 
     bool checkForOrder;
+    public GameObject gatherBar;
 
 	// Use this for initialization
 	void Start () 
     {
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-        m_char = GameObject.Find("Character");
+        m_char = GameObject.FindGameObjectWithTag("Char");
         checkForOrder = false;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -44,7 +45,12 @@ public class Interactable : MonoBehaviour
         {
             GetComponent<SpriteRenderer> ().sprite = activeSprite;
 			if(this.gameObject.tag == "Gatherable"){
+                gatherBar.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, 
+                                                                                                                      transform.position.y+gameObject.GetComponent<SpriteRenderer>().bounds.size.y+1, 
+                                                                                                                      transform.position.z));
+                coll.gameObject.GetComponent<Character>().gatherBarObj = gatherBar;
 				coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
+                coll.gameObject.GetComponent<Character>().BeginGather();
 			}
         }
         if (GetComponent<Animator>() != null)
