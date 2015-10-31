@@ -10,7 +10,7 @@ public class SoftFlicker : MonoBehaviour
 	
 	void Start()
 	{
-		random = Random.Range(0.0f, 65535.0f);
+		random = Random.Range(0.0f, 100.0f);
 	}
 	
 	void Update()
