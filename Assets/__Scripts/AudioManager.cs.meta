@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0343ad7fc23aadd4db76127b44adacab
-timeCreated: 1446065376
+timeCreated: 1446239868
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -8,8 +8,9 @@ MonoImporter:
   - sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   - sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
   - sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
-  - sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
+  - sndTransition: {fileID: 8300000, guid: 3d574c7cc344cdf4085b4e6ad5421d84, type: 3}
   - sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  - sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
   - sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   - musicMain: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
   - musicBeach: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
@@ -23,11 +24,13 @@ MonoImporter:
   - sndCampsite: {instanceID: 0}
   - sndGameOver: {instanceID: 0}
   - sndRefreshed: {instanceID: 0}
+  - sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
+  - sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
+  - sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
   - sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
   - sndPlayerDeath: {instanceID: 0}
   - sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   - sndEnemyDeath: {instanceID: 0}
-  - m_MusicSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

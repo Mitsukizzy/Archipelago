@@ -1,13 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.IO;
 
 public class GameManager : MonoBehaviour 
 {
     private Character m_Char;
-    public GameObject gameOverOverlay;
     private GameState m_GameState;
 
     private AudioManager m_audio;
@@ -17,6 +16,14 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, bool> KeyItems;
     //TRUE = has not been found
     //FALSE = has been found
+
+    // Metrics trackers
+    public bool trackMetrics = false;
+    private string metricsText = "";
+    private Dictionary<string, float> timeSpentPerLevel = new Dictionary<string, float> ();
+    private List<string> locationTimestamps = new List<string> ();
+    private int daysStarved = 0;
+    private int deaths = 0;
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
@@ -39,6 +46,8 @@ public class GameManager : MonoBehaviour
 
 		CurrentSceneIndex = 0;
 		PreviousSceneIndex = 0;
+
+        locationTimestamps.Add ( "Main Menu - " + Time.time );
         if (Application.loadedLevelName != "0_MainMenu")
         {
             m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
@@ -74,35 +83,61 @@ public class GameManager : MonoBehaviour
         if ( Application.loadedLevel == 0 )
         {
             m_audio.PlayLoop( "main" );
+            locationTimestamps.Add ( "Main Menu - " + Time.time );
         }
-        else if ( Application.loadedLevelName.Equals( "1_Beach" ) )
+        else if ( Application.loadedLevel == 1 )
         {
-            Debug.Log( "Entered Beach" );
             m_GameState = GameState.Tutorial;
-            m_audio.PlayLoop( "beach" );
+            m_audio.PlayLoop ( "beach" ); 
+            locationTimestamps.Add ( "Beach - " + Time.time );
         }
-        else if ( Application.loadedLevelName.Equals( "2_Wetlands" ) )
+        else if ( Application.loadedLevel == 2 )
         {
             m_GameState = GameState.Normal;
             m_audio.PlayLoop( "wetlands" );
-        }  
+            locationTimestamps.Add ( "Wetlands - " + Time.time );
+        }
+        else if ( Application.loadedLevel == 3 )
+        {
+            m_audio.PlayLoop ( "forest" );
+            locationTimestamps.Add ( "Forest - " + Time.time );
+        }
+        else if ( Application.loadedLevel == 4 )
+        {
+            m_audio.PlayLoop ( "docks" );
+            locationTimestamps.Add ( "Docks - " + Time.time );
+        }
+        else if ( Application.loadedLevel == 5 )
+        {
+            m_audio.PlayLoop ( "seacave" );
+            locationTimestamps.Add ( "Sea Cave - " + Time.time );
+        }
+        else if ( Application.loadedLevel == 6 )
+        {
+            m_audio.PlayLoop ( "plains" );
+            locationTimestamps.Add ( "Plains - " + Time.time );
+        }
+        else if ( Application.loadedLevel == 7 )
+        {
+            m_audio.PlayLoop ( "main" );
+            locationTimestamps.Add ( "Game Over - " + Time.time );
+        }
     }
 
-	public bool CheckItem(string ItemName){
-		if(!KeyItems.ContainsKey(ItemName)){
-			Debug.Log ("Checking an item that doesnt exist");
-			return false;
-		}
-		else{
-			return KeyItems[ItemName];
-		}
-	}
-
-    void DoNotSpawnOnLoad(string itemName)
+    // Write metrics on game quit
+    // In Editor, this will show up in the project folder root (with Library, Assets, etc.)
+    // In Standalone, this will show up in the same directory as your executable
+    void OnApplicationQuit ()
     {
-        if (KeyItems.ContainsKey(itemName))
+        if ( trackMetrics )
         {
-            KeyItems[itemName] = false;
+            GenerateMetricsString ();
+            string time = System.DateTime.UtcNow.ToString ();
+            string dateTime = System.DateTime.Now.ToString (); //Get the time to tack on to the file name
+            time = time.Replace ( "/", "-" ); // Replace slashes with dashes, because Unity thinks they are directories..
+            time = time.Replace ( ":", "." ); // Replace colons with periods for time
+            string reportFile = "Archipelago_Metrics_" + time + ".txt";
+            File.WriteAllText ( reportFile, metricsText );
         }
     }
 
@@ -116,6 +151,7 @@ public class GameManager : MonoBehaviour
             {
                 // Move to Game Over screen
                 Debug.Log ( "GAME OVER" );
+                deaths++;
                 m_Char.Revive ();
                 Application.LoadLevel ( 7 ); // to game over screen
             }
@@ -205,6 +241,44 @@ public class GameManager : MonoBehaviour
         if( Application.loadedLevel < 6 )
         {
             Application.LoadLevel ( Application.loadedLevel + 1 );
+        }
+    }
+
+    void GenerateMetricsString ()
+    {
+        metricsText += "Days Starved: " + daysStarved + '\n';
+        metricsText += '\n' + "Player Deaths: " + deaths + '\n';
+
+        metricsText += '\n' + "Timestamps of visits to each location. (in seconds since game start)" + '\n';
+        for ( int i = 0; i < locationTimestamps.Count; i++ )
+        {
+            metricsText += locationTimestamps[i] + '\n';
+        }
+    }
+
+    public void IncreaseDaysStarved()
+    {
+        daysStarved++;
+    }
+
+    public bool CheckItem ( string ItemName )
+    {
+        if ( !KeyItems.ContainsKey ( ItemName ) )
+        {
+            Debug.Log ( "Checking an item that doesnt exist" );
+            return false;
+        }
+        else
+        {
+            return KeyItems[ItemName];
+        }
+    }
+
+    void DoNotSpawnOnLoad ( string itemName )
+    {
+        if ( KeyItems.ContainsKey ( itemName ) )
+        {
+            KeyItems[itemName] = false;
         }
     }
 }
