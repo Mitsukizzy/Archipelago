@@ -34,8 +34,7 @@ public class Combat : MonoBehaviour
 	void Update () 
     {
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather &&
-            m_Char.GetPlayerState () != Character.PlayerState.Interact &&
-            m_Game.GetGameState () != GameManager.GameState.Tutorial )
+            m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
             if ( m_Input.SelectButtonPressed () && !animationDelay && !EventSystem.current.IsPointerOverGameObject () )
             {

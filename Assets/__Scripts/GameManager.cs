@@ -7,7 +7,6 @@ using System.IO;
 public class GameManager : MonoBehaviour 
 {
     private Character m_Char;
-    private GameState m_GameState;
 
     private AudioManager m_audio;
     private InputManager m_input;
@@ -27,12 +26,6 @@ public class GameManager : MonoBehaviour
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
-
-    public enum GameState
-    {
-        Tutorial,
-        Normal
-    }
 
 	// Use this for initialization
 	void Start () 
@@ -92,13 +85,11 @@ public class GameManager : MonoBehaviour
         }
         else if ( Application.loadedLevel == 1 )
         {
-            m_GameState = GameState.Tutorial;
             m_audio.PlayLoop ( "beach" ); 
             locationTimestamps.Add ( "Beach - " + Time.time );
         }
         else if ( Application.loadedLevel == 2 )
         {
-            m_GameState = GameState.Normal;
             m_audio.PlayLoop( "wetlands" );
             locationTimestamps.Add ( "Wetlands - " + Time.time );
         }
@@ -204,19 +195,9 @@ public class GameManager : MonoBehaviour
         return GetComponent<DialogueSystem> ();
     }
 
-    public void SetGameState ( GameState newState )
-    {
-        m_GameState = newState;
-    }
-
-    public GameState GetGameState()
-    {
-        return m_GameState;
-    }
-
     public void Pause()
     {
-        GameObject pauseOverlay = GameObject.Find ( "Pause UI" ).transform.Find ( "Paused Overlay" ).gameObject; // my way of finding inactive gameobject
+        GameObject pauseOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Pause UI" ).gameObject; // my way of finding inactive gameobject
         if ( Time.timeScale == 0 )
         {
             pauseOverlay.SetActive ( false );
@@ -231,6 +212,14 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu ()
     {
+        // Make sure it's not paused
+        GameObject pauseOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Pause UI" ).gameObject; // my way of finding inactive gameobject
+        if( pauseOverlay )
+        {
+            pauseOverlay.SetActive ( false );
+            Time.timeScale = 1;
+        }
+
         Application.LoadLevel ( 0 );
     }
 
