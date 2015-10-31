@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 // USAGE: Attach to invisible object with 2D Collider set to trigger
@@ -6,11 +6,14 @@ using System.Collections;
 public class SceneTransition : MonoBehaviour
 {
     private GameManager mGame;
+    private AudioManager mAudio;
     public string SceneName;
+
     // Use this for initialization
     void Start ()
     {
         mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        mAudio = mGame.GetAudioManager ();
     }
 
     // Update is called once per frame
@@ -23,10 +26,8 @@ public class SceneTransition : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" )
         {
-            Debug.Log ( "Entering Scene Transition Area" );
+            mAudio.PlayOnce ( "transition" );
             Application.LoadLevel ( SceneName );
-
-            //mGame.LoadNextLevel ();
         }
     }
 }
