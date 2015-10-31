@@ -43,21 +43,26 @@ public class AudioManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        // There's two audio sources on GameManager, one for Music and one for SFX
-        m_MusicSource = GameObject.Find ( "GameManager" ).GetComponents<AudioSource> ()[0];
-        m_MusicSource.volume = 0.35f;
-        m_MusicSource.loop = true;
-
-        m_SFXSource = GameObject.Find ( "GameManager" ).GetComponents<AudioSource> ()[1];
-        m_SFXSource.volume = 0.75f;
-        m_SFXSource.loop = false;
+       
 	}
 
 	// Update is called once per frame
 	void Update () 
     {
-	
+
 	}
+
+    // Called from SpawnPersistant due to dependency issues
+    public void SpecialInit()
+    {
+        m_MusicSource = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponents<AudioSource> ()[0];
+        m_MusicSource.volume = 0.35f;
+        m_MusicSource.loop = true;
+
+        m_SFXSource = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponents<AudioSource> ()[0];
+        m_SFXSource.volume = 0.75f;
+        m_SFXSource.loop = false;
+    }
 
     public void StopSFX ()
     {

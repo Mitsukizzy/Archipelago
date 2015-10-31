@@ -12,6 +12,8 @@ public class Journal : MonoBehaviour
     public TextAsset page1;
     public TextAsset page2;
     public TextAsset page3;
+    public TextAsset page4;
+    public TextAsset page5;
 
     private Text mLeftPage;
     private Text mRightPage;
@@ -29,11 +31,10 @@ public class Journal : MonoBehaviour
         mPrevPageBtn = GameObject.Find ( "Prev Page Button" );
         mNextPageBtn = GameObject.Find ( "Next Page Button" );
 
-        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
 
         pages.Add ( page1 );
         pages.Add ( page2 );
-        pages.Add ( page3 );
 	}
 	
 	// Update is called once per frame
@@ -111,9 +112,21 @@ public class Journal : MonoBehaviour
         }
     }
 
-    public void AddJournalPage( int index )
+    public void AddJournalPage( string pageName )
     {
-        // TODO: Use a dictionary of all acquireable journal pages to index found pages
-        //pages.Insert ( index, newPage );
+        Debug.Log ( "Page Added: " + pageName );
+        if( pageName.Equals( "JPBeach" ) )
+        {
+            pages.Add ( page3 );
+        }
+        if ( pageName.Equals ( "JPSeaCave" ) )
+        {
+            pages.Add ( page4 );
+        }
+        if ( pageName.Equals ( "JPDocks" ) )
+        {
+            pages.Add ( page5 );
+        }
+        UpdatePages ();
     }
 }

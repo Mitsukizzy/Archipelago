@@ -11,10 +11,11 @@ GameObject:
   - 114: {fileID: 11446744}
   - 114: {fileID: 11403342}
   - 114: {fileID: 11485780}
-  - 82: {fileID: 8239294}
   - 114: {fileID: 11451224}
   - 114: {fileID: 11462830}
   - 114: {fileID: 11448892}
+  - 82: {fileID: 8239294}
+  - 82: {fileID: 8294312}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Manager
@@ -43,7 +44,77 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8294312
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185774}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -117,27 +188,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
-  sndShoot: {fileID: 0}
-  sndTransition: {fileID: 8300000, guid: 9a6f56951388c3a4ebbc696f3c0f9404, type: 3}
+  sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
+  sndTransition: {fileID: 8300000, guid: b8b30a404d18a1b4bb0313c957af16b0, type: 3}
   sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
   sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   musicMain: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
   musicBeach: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
   musicWetlands: {fileID: 8300000, guid: b06f74fbd87489f48beafeb07d2b1af5, type: 3}
-  musicForest: {fileID: 0}
-  musicDocks: {fileID: 0}
-  musicSeaCave: {fileID: 0}
-  musicPlains: {fileID: 0}
+  musicForest: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+  musicDocks: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
+  musicSeaCave: {fileID: 8300000, guid: b06f74fbd87489f48beafeb07d2b1af5, type: 3}
+  musicPlains: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
   musicTemp1: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
   musicTemp2: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
   sndCampsite: {fileID: 0}
-  sndGameOver: {fileID: 0}
+  sndGameOver: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
   sndRefreshed: {fileID: 0}
+  sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
+  sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
+  sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
   sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
   sndPlayerDeath: {fileID: 8300000, guid: 9b230e8e018685b44bfd90364072e84a, type: 3}
   sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   sndEnemyDeath: {fileID: 0}
-  m_MusicSource: {fileID: 8239294}
+  m_MusicSource: {fileID: 8294312}
+  m_SFXSource: {fileID: 8239294}
 --- !u!114 &11446744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcff1c37af8f45c45b0dc8873046333d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverOverlay: {fileID: 0}
+  trackMetrics: 0
 --- !u!114 &11448892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,6 +287,62 @@ Prefab:
       propertyPath: m_TagString
       value: Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sndMenuHover
+      value: 
+      objectReference: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicForest
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicDocks
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cd06902920515f40ac3171d1932a4ff, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicSeaCave
+      value: 
+      objectReference: {fileID: 8300000, guid: b06f74fbd87489f48beafeb07d2b1af5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicPlains
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndGameOver
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndRustle
+      value: 
+      objectReference: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndFailed
+      value: 
+      objectReference: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndNewItem
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndTransition
+      value: 
+      objectReference: {fileID: 8300000, guid: b8b30a404d18a1b4bb0313c957af16b0, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_MusicSource
+      value: 
+      objectReference: {fileID: 8294312}
+    - target: {fileID: 0}
+      propertyPath: m_SFXSource
+      value: 
+      objectReference: {fileID: 8239294}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}

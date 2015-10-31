@@ -41,12 +41,15 @@ public class GameManager : MonoBehaviour
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
 
-        KeyItems.Add("Backpack", true);
-        KeyItems.Add("Boat", true);
+        KeyItems.Add ( "Backpack", true );
+        KeyItems.Add ( "Boat", true );
+        KeyItems.Add ( "JournalPageBeach", true );
+        KeyItems.Add ( "JournalPageSeaCave", true );
 
 		CurrentSceneIndex = 0;
 		PreviousSceneIndex = 0;
 
+        m_audio.PlayLoop ( "main" ); // Start with main theme music
         locationTimestamps.Add ( "Main Menu - " + Time.time );
         if (Application.loadedLevelName != "0_MainMenu")
         {
@@ -65,17 +68,19 @@ public class GameManager : MonoBehaviour
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         // Don't spawn if on main menu(0) or game over(7)
-        if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 ) 
+        if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-			PreviousSceneIndex = CurrentSceneIndex;
-			CurrentSceneIndex = Application.loadedLevel;
-			Vector3 spawnLoc;
-			if(CurrentSceneIndex < PreviousSceneIndex){
-				spawnLoc = GameObject.Find("SpawnPoint2").GetComponent<Transform>().position;
-			}
-			else{
-				spawnLoc = GameObject.Find("SpawnPoint").GetComponent<Transform>().position;
-			}
+            PreviousSceneIndex = CurrentSceneIndex;
+            CurrentSceneIndex = Application.loadedLevel;
+            Vector3 spawnLoc;
+            if ( CurrentSceneIndex < PreviousSceneIndex )
+            {
+                spawnLoc = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position;
+            }
+            else
+            {
+                spawnLoc = GameObject.Find ( "SpawnPoint" ).GetComponent<Transform> ().position;
+            }
             m_Char.transform.position = spawnLoc;
         }
 
@@ -211,7 +216,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        GameObject pauseOverlay = GameObject.Find ( "Status UI" ).transform.Find ( "Paused Overlay" ).gameObject; // my way of finding inactive gameobject
+        GameObject pauseOverlay = GameObject.Find ( "Pause UI" ).transform.Find ( "Paused Overlay" ).gameObject; // my way of finding inactive gameobject
         if ( Time.timeScale == 0 )
         {
             pauseOverlay.SetActive ( false );

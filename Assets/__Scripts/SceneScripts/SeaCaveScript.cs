@@ -1,15 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SeaCaveScript : MonoBehaviour {
+public class SeaCaveScript : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private GameManager mGame;
+
+    // Use this for initialization
+    void Start ()
+    {
+        //Beach will have the boat that needs to be fixed and the bag to pick up
+        mGame = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
+
+        if ( mGame.CheckItem ( "JournalPageSeaCave" ) )
+        {
+            GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageSeaCave", typeof ( GameObject ) ) ) as GameObject;
+        }
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+
+    }
 }

@@ -78,6 +78,7 @@ GameObject:
   - 224: {fileID: 22477866}
   - 222: {fileID: 22202264}
   - 114: {fileID: 11471754}
+  - 223: {fileID: 22350100}
   m_Layer: 5
   m_Name: Paused Overlay
   m_TagString: Untagged
@@ -472,7 +473,7 @@ GameObject:
   - 114: {fileID: 11427354}
   m_Layer: 5
   m_Name: Journal UI
-  m_TagString: Untagged
+  m_TagString: Journal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -537,7 +538,7 @@ GameObject:
   - 114: {fileID: 11478316}
   - 114: {fileID: 11413376}
   m_Layer: 5
-  m_Name: UI Buttons
+  m_Name: Buttons UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,6 +744,24 @@ GameObject:
   - 114: {fileID: 11422120}
   m_Layer: 5
   m_Name: HealthSlider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &175906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22488092}
+  - 223: {fileID: 22314638}
+  - 114: {fileID: 11429186}
+  - 114: {fileID: 11475226}
+  m_Layer: 0
+  m_Name: Pause UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1016,6 +1035,7 @@ Transform:
   - {fileID: 22454958}
   - {fileID: 22421100}
   - {fileID: 22432388}
+  - {fileID: 22488092}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!95 &9545970
@@ -1637,6 +1657,8 @@ MonoBehaviour:
   page1: {fileID: 4900000, guid: fb0196b01e68b784c80054d5653bb0dc, type: 3}
   page2: {fileID: 4900000, guid: 0b27782b1897cc24faa1e23dafc0b976, type: 3}
   page3: {fileID: 4900000, guid: 6bf9802e290eeda4a85b60a6445d667d, type: 3}
+  page4: {fileID: 4900000, guid: 6d4b216739a977b4e817682a9e077eea, type: 3}
+  page5: {fileID: 4900000, guid: d39c8e0fb771ff5468e6aa26c5971f3f, type: 3}
 --- !u!114 &11429060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1664,6 +1686,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11429186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!114 &11430180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2541,6 +2584,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11475226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &11475300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3377,6 +3436,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156448}
+--- !u!223 &22314638
+Canvas:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175906}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!223 &22316190
 Canvas:
   m_ObjectHideFlags: 1
@@ -3437,6 +3513,23 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!223 &22350100
+Canvas:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105304}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -3740,7 +3833,6 @@ RectTransform:
   - {fileID: 22483398}
   - {fileID: 22473548}
   - {fileID: 22484616}
-  - {fileID: 22477866}
   m_Father: {fileID: 435040}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -4227,11 +4319,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22434018}
-  m_Father: {fileID: 22432388}
-  m_RootOrder: 4
+  m_Father: {fileID: 22488092}
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -21.5, y: 3.05175781e-05}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22478078
@@ -4395,6 +4487,24 @@ RectTransform:
   m_AnchoredPosition: {x: 16, y: 221}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!224 &22488092
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 22477866}
+  m_Father: {fileID: 435040}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!224 &22488554
 RectTransform:
   m_ObjectHideFlags: 1
@@ -4522,7 +4632,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: UI
+      value: Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: page4
+      value: 
+      objectReference: {fileID: 4900000, guid: 6d4b216739a977b4e817682a9e077eea, type: 3}
+    - target: {fileID: 0}
+      propertyPath: page5
+      value: 
+      objectReference: {fileID: 4900000, guid: d39c8e0fb771ff5468e6aa26c5971f3f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Buttons UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

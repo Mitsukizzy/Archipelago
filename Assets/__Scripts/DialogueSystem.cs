@@ -18,13 +18,18 @@ public class DialogueSystem : MonoBehaviour
     private Character mChar;
 
     // Needs to be init before Start
-    void Awake()
+    void Start()
     {
         // Add all the TextAssets to the dicionary, use their .text to convert to string
-        mDialogues = new Dictionary<string, string>();
-        mDialogues.Add("beach1", beach1.text);
-        mDialogues.Add("beach2", beach2.text);
-        mDialogues.Add("beach3", beach3.text);
+        mDialogues = new Dictionary<string, string> ();
+        mDialogues.Add ( "beach1", beach1.text );
+        mDialogues.Add ( "beach2", beach2.text );
+        mDialogues.Add ( "beach3", beach3.text );
+
+        if ( mChar == null && Application.loadedLevel != 0 )
+        {
+            SpecialInit (); // Initialize character and dialogue objects
+        }
     }
 
     void OnLevelWasLoaded()
@@ -59,6 +64,7 @@ public class DialogueSystem : MonoBehaviour
     public void StartDialogue( string key )
     {
         mChar.SetPlayerState ( Character.PlayerState.Dialogue );
+        mDialogueBox.SetActive ( true );
 
         // Get the full text, save in a large string
         string fullText;

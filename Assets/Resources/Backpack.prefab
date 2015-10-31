@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11491568}
   m_Layer: 5
   m_Name: Backpack
-  m_TagString: Untagged
+  m_TagString: Backpack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,7 @@ MonoBehaviour:
   defaultSprite: {fileID: 21300000, guid: 5b31f8adc2c13b54e9e818957f34cae5, type: 3}
   activeSprite: {fileID: 21300000, guid: 7d0b6b20bcf833b47aeb6ad0214ed933, type: 3}
   gatherableItem: {fileID: 0}
+  gatherBar: {fileID: 0}
 --- !u!114 &11491568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,6 +107,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: -1.29999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Backpack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

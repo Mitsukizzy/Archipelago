@@ -10,6 +10,12 @@ TagManager:
   - waypoint
   - Manager
   - UI
+  - Backpack
+  - Boat
+  - JPBeach
+  - JPSeaCave
+  - JPDocks
+  - Journal
   layers:
   - Default
   - TransparentFX
