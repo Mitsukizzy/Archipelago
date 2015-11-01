@@ -10,7 +10,7 @@ public class KeyItems : MonoBehaviour
     private DialogueSystem mDialogue;
     private Journal mJournal;
 
-
+    private Animator animNewPage;
 
     private GameObject buttonsUI;
     private GameObject journalUI;
@@ -25,12 +25,17 @@ public class KeyItems : MonoBehaviour
 
         buttonsUI = GameObject.Find ( "Buttons UI" );
         journalUI = GameObject.Find ( "Journal UI" );
+
+        if( transform.tag.Contains( "JP" )) // Journal Page
+        {
+            animNewPage = GameObject.Find ( "NewPage" ).GetComponent<Animator> (); // Animator on NewPage under Journal Button
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-
+        
 	}
 
     void OnTriggerStay2D ( Collider2D coll )
@@ -41,7 +46,8 @@ public class KeyItems : MonoBehaviour
             if ( transform.tag.Equals ( "Backpack" ) )
             {
                 mDialogue.StartDialogue ( "beach2" );
-                buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true;
+                buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true; 
+                gameObject.SetActive ( false ); // Picked up, so hide
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
@@ -61,6 +67,8 @@ public class KeyItems : MonoBehaviour
             if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) )
             {
                 mJournal.AddJournalPage ( transform.tag );
+                animNewPage.SetTrigger ( "becameActive" );
+                gameObject.SetActive ( false ); // Picked up, so hide
             }
         }
     }

@@ -39,28 +39,28 @@ public class Tutorial : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
-        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
-        mDialogue = mGame.GetDialogueSystem ();
-        backpack = GameObject.Find ( "Backpack" );
-        backpackUI = GameObject.Find( "Bag" );
-        journalUI = GameObject.Find ( "Journal" );
+        //mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        //mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        //mDialogue = mGame.GetDialogueSystem ();
+        //backpack = GameObject.Find ( "Backpack" );
+        //backpackUI = GameObject.Find( "Bag" );
+        //journalUI = GameObject.Find ( "Journal" );
         //if (Application.loadedLevelName.Equals("1_Beach"))
         //{
         //    intro = GameObject.Find("Intro").GetComponent<Intro>();
         //}
 
-        Debug.Log ( "reached the close event" );
-        if ( Application.loadedLevelName == "1_Beach" )
-        {
-            SetHint ( "wasd" );
-        }
-        else if ( Application.loadedLevelName == "2_Wetlands" )
-        {
-            currentTip.SetActive ( false );
-            objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
-            objective.SetActive ( true );
-        }
+        //Debug.Log ( "reached the close event" );
+        //if ( Application.loadedLevelName == "1_Beach" )
+        //{
+        //    SetHint ( "wasd" );
+        //}
+        //else if ( Application.loadedLevelName == "2_Wetlands" )
+        //{
+        //    currentTip.SetActive ( false );
+        //    objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
+        //    objective.SetActive ( true );
+        //}
 	}
 
     // Update is called once per frame
