@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Chooses music being played in each level
+        m_audio.SpecialInit ();
         if ( Application.loadedLevel == 0 )
         {
             m_audio.PlayLoop( "main" );

@@ -38,20 +38,22 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndEnemyDamaged;
     public AudioClip sndEnemyDeath;
 
-    private AudioSource m_AudioSource;
+    public AudioSource m_AudioSource;
+    private AudioSource m_MusicSource;
 
     private float sfxVolume = 1.0f;
 
 	// Use this for initialization
 	void Start ()
     {
-        m_AudioSource.volume = 0.35f;
-        m_AudioSource.loop = true;
+
 	}
 
     public void SpecialInit()
     {
-        m_AudioSource = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioSource> ();
+        m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
+        m_MusicSource.volume = 0.35f;
+        m_MusicSource.loop = true;
     }
 
 	// Update is called once per frame
@@ -71,39 +73,39 @@ public class AudioManager : MonoBehaviour
         switch( soundToLoop )
         {
             case "main":
-                m_AudioSource.clip = musicMain;
+                m_MusicSource.clip = musicMain;
                 break;
             case "beach":
-                m_AudioSource.clip = musicBeach;
+                m_MusicSource.clip = musicBeach;
                 break;
             case "wetlands":
-                m_AudioSource.clip = musicWetlands;
+                m_MusicSource.clip = musicWetlands;
                 break;
             case "forest":
-                m_AudioSource.clip = musicForest;
+                m_MusicSource.clip = musicForest;
                 break;
             case "docks":
-                m_AudioSource.clip = musicDocks;
+                m_MusicSource.clip = musicDocks;
                 break;
             case "seacave":
-                m_AudioSource.clip = musicSeaCave;
+                m_MusicSource.clip = musicSeaCave;
                 break;
             case "plains":
-                m_AudioSource.clip = musicPlains;
+                m_MusicSource.clip = musicPlains;
                 break;
             case "temp1":
-                m_AudioSource.clip = musicTemp1;
+                m_MusicSource.clip = musicTemp1;
                 break;
             case "temp2":
-                m_AudioSource.clip = musicTemp2;
+                m_MusicSource.clip = musicTemp2;
                 break;
             default:
                 break;
         }
 
-        if ( !m_AudioSource.isPlaying )
+        if ( !m_MusicSource.isPlaying )
         {
-            m_AudioSource.Play ();
+            m_MusicSource.Play ();
         }
     }
 

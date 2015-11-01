@@ -240,7 +240,7 @@ public class Character : MonoBehaviour
     // Gets called on a new day
     public void CheckStarved()
     {
-        if( hungerBar.value < 90 )
+        if( hungerBar.value < 60 )
         {
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
             m_Game.IncreaseDaysStarved ();

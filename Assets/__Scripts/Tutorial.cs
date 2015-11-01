@@ -33,7 +33,7 @@ public class Tutorial : MonoBehaviour
 
     void Awake()
     {
-        SetHint("wasd");
+        //SetHint("wasd");
     }
 
 	// Use this for initialization

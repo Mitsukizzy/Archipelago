@@ -4,12 +4,12 @@ using System.Collections;
 
 public class DayNightManager : MonoBehaviour
 {
-    // Time will be 3/4 day and 1/4 night
-    // Daytime: 1-18, Nighttime: 19-24
+    const float maxTime = 50.0f;
     int timeOfDay = 1;
+    int lightTimer = 1;
 
     // Number of seconds it takes to advance one hour
-    float secondsPerHour = 2;
+    float secondsPerHour = 4.0f;
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6
@@ -41,8 +41,8 @@ public class DayNightManager : MonoBehaviour
 		{
 			mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
 			mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
-			
-			mSlider.maxValue = 12;
+
+            mSlider.maxValue = maxTime;
 			mSlider.value = timeOfDay;
 			
 			mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
@@ -66,7 +66,7 @@ public class DayNightManager : MonoBehaviour
             mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
             mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
 
-            mSlider.maxValue = 12;
+            mSlider.maxValue = maxTime;
             mSlider.value = timeOfDay;
 
             mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
@@ -110,29 +110,39 @@ public class DayNightManager : MonoBehaviour
     IEnumerator AdvanceHour( int numHours )
     {
         yield return new WaitForSeconds( secondsPerHour );
-		if(increasing){
-        	timeOfDay += numHours;
-		}
-		else{
-			timeOfDay -= numHours;
-		}
+        timeOfDay += numHours;
+
+        // Deal with light intensity
+        if ( increasing )
+        {
+            lightTimer += numHours;
+        }
+        else
+        {
+            lightTimer -= numHours;
+        }
         //Debug.Log("Time of day: " + timeOfDay);
         //Debug.Log("Time of day out of 12: " + timeOfDay / 12.0f);
         startTime = Time.time;
         curTime = Time.time;
         curIntensity = daylight.intensity;
-        targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
-        if( timeOfDay >= 12 )
+        targetIntensity = Mathf.Lerp ( 2.0f, 0.5f, ( lightTimer / ( maxTime * 0.5f ) ) );
+        
+        if( timeOfDay >= maxTime )
         {
-            //timeOfDay -= 24; // Start new day
-			increasing = false;
+            timeOfDay = 1; // Start new day
             mChar.CheckStarved ();
-            RandomizeSafeLocation();
+            RandomizeSafeLocation ();
         }
-		if(timeOfDay <= 1){
-			increasing = true;
-		}
-        if( timeOfDay > 8 )
+        if ( timeOfDay >= ( maxTime * 0.5) )
+        {
+			increasing = false;
+        }
+        if ( timeOfDay <= 1 )
+        {
+            increasing = true;
+        }
+        if( timeOfDay > ( maxTime * 0.35 ) && timeOfDay < ( maxTime * .75 ) )
         {
             mHandle.sprite = moon;
         }
