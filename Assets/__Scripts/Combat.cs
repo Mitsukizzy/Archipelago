@@ -15,6 +15,7 @@ public class Combat : MonoBehaviour
     private AudioManager m_Audio;
 
     public GameObject arrow;
+    public GameObject bow;
 
     bool animationDelay;
 
@@ -36,7 +37,7 @@ public class Combat : MonoBehaviour
         if ( m_Char.GetPlayerState () != Character.PlayerState.Gather &&
             m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
-            if ( m_Input.SelectButtonPressed () && !animationDelay && !EventSystem.current.IsPointerOverGameObject () )
+            if ( m_Input.SelectButtonPressed () && !animationDelay )
             {
                 if ( m_Char.GetPlayerState () == Character.PlayerState.Aim )
                 {
@@ -45,13 +46,15 @@ public class Combat : MonoBehaviour
                 }
             }
         }
+        
 	}
 
     void ShootArrow()
     {
         // Instantiate arrow, aiming code is in Arrow.cs
-        GameObject arrowObj = ( GameObject )Instantiate ( arrow, transform.position, Quaternion.identity );
+        GameObject arrowObj = ( GameObject )Instantiate ( arrow, bow.transform.position, Quaternion.identity );
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
+        bow.SetActive(false);
     }
 
     public void finishedAttacking()

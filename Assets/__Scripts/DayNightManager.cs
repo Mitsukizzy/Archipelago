@@ -89,6 +89,7 @@ public class DayNightManager : MonoBehaviour
             if (curTime - startTime < numSecondsToChange)
             {
                 daylight.intensity = Mathf.Lerp(curIntensity, targetIntensity, (curTime-startTime)/numSecondsToChange);
+                //Debug.Log(daylight.intensity);
                 curTime += Time.deltaTime;
             }
         }

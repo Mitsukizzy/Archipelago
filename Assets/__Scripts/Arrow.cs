@@ -5,7 +5,7 @@ public class Arrow : MonoBehaviour
 {
     Vector3 pos;
 	Vector3 dir;
-	float gravity = 0.02f;
+	public float gravity = 0.02f;
 	Quaternion rotateTo;
     public float speed = 5f;
     // Use this for initialization
@@ -32,9 +32,10 @@ public class Arrow : MonoBehaviour
 		dir.y -= gravity;
 		rotateTo.SetFromToRotation(Vector3.right, dir);
 		transform.rotation = rotateTo;
-		if(transform.position.x > (Camera.main.orthographicSize * Camera.main.aspect) && 
-		   transform.position.y > (Camera.main.orthographicSize) ){
-				Destroy (gameObject);
-		}
 	}
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }

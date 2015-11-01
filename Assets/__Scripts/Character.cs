@@ -38,6 +38,7 @@ public class Character : MonoBehaviour
 
     //Animator
     private Animator m_Animator;
+    public GameObject bow;
 
     //Campfire Checkpoint
     private Vector3 campLocation;
@@ -106,7 +107,29 @@ public class Character : MonoBehaviour
         }
         if ( m_Input.AimButtonHeld() )
         {
+            m_Animator.SetBool("isWalking", false);
             SetPlayerState ( PlayerState.Aim );
+            bow.SetActive(true);
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = transform.position.z;
+            
+            Vector3 dir = pos - bow.transform.position;
+
+            if (transform.localScale.x < 0)
+            {
+                dir.x = -dir.x;
+            }
+
+            Quaternion rotateTo = new Quaternion();
+          
+            //TODO clamp the rotation so you cant go over her head
+            rotateTo.SetFromToRotation(Vector3.left, dir);
+
+            bow.transform.rotation = rotateTo;
+        }
+        else
+        {
+            bow.SetActive(false);
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {

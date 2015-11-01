@@ -7,7 +7,7 @@ public class BirdAI : MonoBehaviour {
     private Vector3 curWaypoint;        //current position
     private Vector3 nextWaypoint;       //next position
 
-    public GameObject specialWaypoint; //use for a special waypoint
+    public GameObject specialWaypoint;  //use for a special waypoint
     private Vector3 specialLoc;
 
     public float speed = 10f;           //how fast the bird flies
@@ -21,6 +21,7 @@ public class BirdAI : MonoBehaviour {
     private GameObject m_Char;
     private bool isDead = false;
     public float dropRng = 1.0f;        //chance to get a droppable item
+    public float attackRange = 10.0f;    //How far the bird can be to do damage to the player
 
     private bool canAttack = true;
     public float attackSpeed = 2.0f;
@@ -43,7 +44,7 @@ public class BirdAI : MonoBehaviour {
         if(specialWaypoint != null){
             specialLoc = specialWaypoint.GetComponent<Transform>().position;
         }
-        m_Char = GameObject.Find("Character");
+        m_Char = GameObject.FindGameObjectWithTag("Char");
 
         //spawn the bird wherever you want and it will fly to an arbirary waypoint
         m_State = BirdState.Moving; 
@@ -81,10 +82,30 @@ public class BirdAI : MonoBehaviour {
             }
         }
         else if(m_State == BirdState.Attack){
+            Vector3 charOffset = m_Char.transform.position;
+            charOffset.y += m_Char.GetComponent<SpriteRenderer>().bounds.size.y;
+            charOffset.x += m_Char.GetComponent<SpriteRenderer>().bounds.size.x;
+            if (m_Char.transform.position.x > transform.position.x)
+            {
+                Vector3 newScale = transform.localScale;
+                newScale.x = -Mathf.Abs(newScale.x);
+                transform.localScale = newScale;
+            }
+            else
+            {
+                Vector3 newScale = transform.localScale;
+                newScale.x = Mathf.Abs(newScale.x);
+                transform.localScale = newScale;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, charOffset, Time.deltaTime*speed);
             if ( canAttack )
             {
                 StartCoroutine ( AttackPlayer () );
             }
+        }
+        if(isDead){
+            //play death sound
+            Destroy(gameObject);
         }
 	}
 
@@ -130,18 +151,34 @@ public class BirdAI : MonoBehaviour {
 
     IEnumerator AttackPlayer()
     {
-        //GetComponent<Animator>().SetTrigger("Attack");
-        if(canAttack)
+        if (canAttack && Mathf.Abs(m_Char.transform.position.x - transform.position.x) <= attackRange)
+        {
+            GetComponent<Animator>().SetTrigger("Attack");
             m_Char.GetComponent<Character>().TakeDamage(attackDmg);
+        }
         canAttack = false;
         yield return new WaitForSeconds(attackSpeed);
         canAttack = true;
     }
 
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.tag == "arrow")
+        {
+            Destroy(other.gameObject);
+            //if you hit the bird, it aggros to you
+            if (m_State != BirdState.Attack)
+            {
+                m_State = BirdState.Attack;
+            }
+            TakeDamage();
+        }
+    }
+
     public void TakeDamage()
     {
         hitPoints--;
-        if (hitPoints <= 0 && !isDead)
+        if (hitPoints <= 0)// && !isDead)
         {
             //obtain dropable item!
             if (GetComponent<Interactable>().gatherableItem != null)

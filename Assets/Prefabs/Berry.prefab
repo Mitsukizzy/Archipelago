@@ -40,9 +40,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7398dd85b474344abc83beaa6650ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Berry. Instant. +10 health/Stamina
+  description: Berry. Instant. +10 health/Fullness
   healthIncrease: 10
-  staminaIncrease: 10
+  hungerIncrease: 10
   healsHunger: 1
   healsSickness: 0
   healsTired: 0
@@ -95,7 +95,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: description
-      value: Berry. Instant. +10 health/Stamina
+      value: Berry. Instant. +10 health/Fullness
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: isInstant
