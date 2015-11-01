@@ -210,6 +210,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ExitGame ()
+    {
+        Application.Quit ();
+    }
+
     public void MainMenu ()
     {
         // Make sure it's not paused

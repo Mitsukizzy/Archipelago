@@ -52,7 +52,7 @@ public class KeyItems : MonoBehaviour
             {
                 mAudio.PlayOnce ( "rustle" );
             }
-            else if ( transform.tag.Equals ( "Campfire" ) )
+            else if ( transform.tag.Equals ( "Campsite" ) )
             {
                 //mAudio.PlayOnce ( "campsite" );
             }

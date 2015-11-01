@@ -16,6 +16,7 @@ TagManager:
   - JPSeaCave
   - JPDocks
   - Journal
+  - Campsite
   layers:
   - Default
   - TransparentFX
