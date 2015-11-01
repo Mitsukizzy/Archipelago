@@ -27,6 +27,13 @@ public class DayNightManager : MonoBehaviour
     private Character mChar;
 
 	bool increasing = true;
+    bool startOnce = true;
+
+    float startTime;
+    float curTime;
+    float numSecondsToChange = 2.0f;
+    float curIntensity = 2.0f;
+    float targetIntensity = 2.0f;
 
 
 	void Start(){
@@ -41,8 +48,12 @@ public class DayNightManager : MonoBehaviour
 			mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 			
 			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-			
-			StartCoroutine ( AdvanceHour ( 1 ) );
+
+            if (startOnce)
+            {
+                StartCoroutine(AdvanceHour(1));
+                startOnce = false;
+            }
 		}
 	}
 
@@ -60,9 +71,14 @@ public class DayNightManager : MonoBehaviour
             mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
 			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-
-            StartCoroutine ( AdvanceHour ( 1 ) );
+            if (startOnce)
+            {
+                StartCoroutine(AdvanceHour(1));
+                startOnce = false;
+            }
         }
+        daylight.intensity = targetIntensity;
+
     }
 
     // Update is called once per frame
@@ -70,9 +86,12 @@ public class DayNightManager : MonoBehaviour
     {
 		if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
 		{
-			Debug.Log(timeOfDay/12.0f	);
-			daylight.intensity = Mathf.Lerp(2.0f,0.5f,timeOfDay/12.0f);
-		}
+            if (curTime - startTime < numSecondsToChange)
+            {
+                daylight.intensity = Mathf.Lerp(curIntensity, targetIntensity, (curTime-startTime)/numSecondsToChange);
+                curTime += Time.deltaTime;
+            }
+        }
     }
 
     void RandomizeSafeLocation()
@@ -91,9 +110,15 @@ public class DayNightManager : MonoBehaviour
         yield return new WaitForSeconds( secondsPerHour );
 		if(increasing){
         	timeOfDay += numHours;
+            startTime = Time.time;
+            curIntensity = daylight.intensity;
+            targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
 		}
 		else{
 			timeOfDay -= numHours;
+            startTime = Time.time;
+            curIntensity = daylight.intensity;
+            targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
 		}
         if( timeOfDay >= 12 )
         {
