@@ -9,7 +9,7 @@ public class DayNightManager : MonoBehaviour
     int timeOfDay = 1;
 
     // Number of seconds it takes to advance one hour
-    float secondsPerHour = 5;
+    float secondsPerHour = 2;
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6
@@ -31,7 +31,7 @@ public class DayNightManager : MonoBehaviour
 
     float startTime;
     float curTime;
-    float numSecondsToChange = 2.0f;
+    float numSecondsToChange = 1.0f;
     float curIntensity = 2.0f;
     float targetIntensity = 2.0f;
 
@@ -51,6 +51,7 @@ public class DayNightManager : MonoBehaviour
 
             if (startOnce)
             {
+                Debug.Log("this should never happen in the main menu");
                 StartCoroutine(AdvanceHour(1));
                 startOnce = false;
             }
@@ -111,16 +112,16 @@ public class DayNightManager : MonoBehaviour
         yield return new WaitForSeconds( secondsPerHour );
 		if(increasing){
         	timeOfDay += numHours;
-            startTime = Time.time;
-            curIntensity = daylight.intensity;
-            targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
 		}
 		else{
 			timeOfDay -= numHours;
-            startTime = Time.time;
-            curIntensity = daylight.intensity;
-            targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
 		}
+        //Debug.Log("Time of day: " + timeOfDay);
+        //Debug.Log("Time of day out of 12: " + timeOfDay / 12.0f);
+        startTime = Time.time;
+        curTime = Time.time;
+        curIntensity = daylight.intensity;
+        targetIntensity = Mathf.Lerp(2.0f, 0.5f, (timeOfDay / 12.0f));
         if( timeOfDay >= 12 )
         {
             //timeOfDay -= 24; // Start new day
@@ -128,7 +129,7 @@ public class DayNightManager : MonoBehaviour
             mChar.CheckStarved ();
             RandomizeSafeLocation();
         }
-		if(timeOfDay <= 0){
+		if(timeOfDay <= 1){
 			increasing = true;
 		}
         if( timeOfDay > 8 )
