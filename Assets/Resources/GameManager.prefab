@@ -14,7 +14,6 @@ GameObject:
   - 114: {fileID: 11451224}
   - 114: {fileID: 11462830}
   - 114: {fileID: 11448892}
-  - 82: {fileID: 8239294}
   - 82: {fileID: 8294312}
   m_Layer: 0
   m_Name: GameManager
@@ -35,76 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8239294
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185774}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!82 &8294312
 AudioSource:
   m_ObjectHideFlags: 1
@@ -186,13 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0343ad7fc23aadd4db76127b44adacab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
-  sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
-  sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
-  sndTransition: {fileID: 8300000, guid: b8b30a404d18a1b4bb0313c957af16b0, type: 3}
-  sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
-  sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
-  sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   musicMain: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
   musicBeach: {fileID: 8300000, guid: b31702853d5bf18489b56b476d31be7c, type: 3}
   musicWetlands: {fileID: 8300000, guid: adad9c8ee6e9e0a419d1fd5b1a7fda96, type: 3}
@@ -202,6 +124,13 @@ MonoBehaviour:
   musicPlains: {fileID: 8300000, guid: adad9c8ee6e9e0a419d1fd5b1a7fda96, type: 3}
   musicTemp1: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
   musicTemp2: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
+  sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
+  sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
+  sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
+  sndTransition: {fileID: 8300000, guid: b8b30a404d18a1b4bb0313c957af16b0, type: 3}
+  sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
+  sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
+  sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   sndCampsite: {fileID: 0}
   sndGameOver: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
   sndRefreshed: {fileID: 0}
@@ -329,7 +258,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: d5657519e8895184593713fdb26eedbb, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sndTransition
       value: 
@@ -341,7 +270,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SFXSource
       value: 
-      objectReference: {fileID: 8239294}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: musicMain
       value: 
@@ -354,6 +283,18 @@ Prefab:
       propertyPath: musicWetlands
       value: 
       objectReference: {fileID: 8300000, guid: adad9c8ee6e9e0a419d1fd5b1a7fda96, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AudioSource
+      value: 
+      objectReference: {fileID: 8294312}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
