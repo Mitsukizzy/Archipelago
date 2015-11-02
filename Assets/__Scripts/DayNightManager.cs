@@ -38,19 +38,7 @@ public class DayNightManager : MonoBehaviour
 
 	void Start()
     {
-		if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
-		{
-			mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
-			mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
 
-            mSlider.maxValue = maxTime;
-			mSlider.value = timeOfDay;
-			
-			mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
-			
-			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-            StartCoroutine ( AdvanceHour ( 1 ) );
-		}
 	}
 
     // Use this for initialization
@@ -66,8 +54,11 @@ public class DayNightManager : MonoBehaviour
 
             mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
+            if( GetComponent<GameManager>().GetPreviousSceneIndex() == -1 ) // Is the first time this is loaded
+            {
+                StartCoroutine ( AdvanceHour ( 1 ) );
+            }
 			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-            StartCoroutine ( AdvanceHour ( 1 ) );
             daylight.intensity = targetIntensity;
         }
 

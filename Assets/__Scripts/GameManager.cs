@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         KeyItems.Add ( "JournalPageDocks", true );
 
 		CurrentSceneIndex = 0;
-		PreviousSceneIndex = 0;
+		PreviousSceneIndex = -1; // On purpose for day night check
 
         m_audio.PlayLoop ( "main" ); // Start with main theme music
         locationTimestamps.Add ( "Main Menu - " + Time.time );
@@ -218,6 +218,11 @@ public class GameManager : MonoBehaviour
     public bool CheckHasVisitedBeach()
     {
         return hasVisitedBeach;
+    }
+
+    public int GetPreviousSceneIndex()
+    {
+        return PreviousSceneIndex;
     }
 
     public void Pause()
