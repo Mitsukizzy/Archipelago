@@ -35,9 +35,9 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "beach3", beach3.text );
         mDialogues.Add ( "wood", foundWood.text );
         mDialogues.Add ( "rope", foundRope.text );
-        mDialogues.Add("hammer", foundHammer.text);
-        mDialogues.Add("NotYet", boatNotDone.text);
-        mDialogues.Add("YouWin", boatDone.text);
+        mDialogues.Add ( "hammer", foundHammer.text );
+        mDialogues.Add ( "NotYet", boatNotDone.text );
+        mDialogues.Add ( "YouWin", boatDone.text );
 
 
         mGame = GetComponent<GameManager> ();
@@ -88,6 +88,7 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.TryGetValue ( key, out fullText );
 
         // Separate fullText into individual strings and load them into curDialogue
+        Debug.Log ( key );
         Debug.Log(fullText);
         curDialogue = fullText.Split ( '\n' ); // using newline as delimiter
         curIndex = 0;

@@ -15,8 +15,7 @@ public class KeyItems : MonoBehaviour
     private GameObject buttonsUI;
     private GameObject journalUI;
 
-    private bool firstTimeBoat = true;
-    private bool secondTimeBoat = true; //Im sorry this is so hacky :'(
+    private bool canInteract = true;
 
 	// Use this for initialization
 	void Start ()
@@ -39,8 +38,10 @@ public class KeyItems : MonoBehaviour
 
     void OnTriggerStay2D ( Collider2D coll )
     {
-        if ( coll.gameObject.tag == "Char" && mInput.InteractButtonPressed () )
+        if ( coll.gameObject.tag == "Char" && mInput.InteractButtonPressed () && canInteract )
         {
+            canInteract = false; // prevent double interactions from happening on accident
+
             // Main Key Items
             if ( transform.tag.Equals ( "Backpack" ) )
             {
@@ -52,25 +53,17 @@ public class KeyItems : MonoBehaviour
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
-
-                if (firstTimeBoat || secondTimeBoat)
+                if ( !mGame.CheckItem ( "wood" ) && !mGame.CheckItem ( "rope" ) && !mGame.CheckItem ( "hammer" ) )
                 {
-                    Debug.Log("First: " + firstTimeBoat);
-                    Debug.Log("Second: " + secondTimeBoat);
-                    mDialogue.StartDialogue("beach3");
-                    if (!firstTimeBoat)
-                    {
-                        secondTimeBoat = false;
-                    }
-                    firstTimeBoat = false;
+                    mDialogue.StartDialogue ( "YouWin" );
                 }
-                else if (!mGame.CheckItem("wood") && !mGame.CheckItem("rope") && !mGame.CheckItem("hammer") )
+                else if ( !mGame.CheckHasVisitedBeach() )
                 {
-                    mDialogue.StartDialogue("YouwWin");
+                    mDialogue.StartDialogue ( "beach3" );
                 }
                 else
                 {
-                    mDialogue.StartDialogue("NotYet");
+                    mDialogue.StartDialogue ( "NotYet" );
                 }
             }
             else if ( transform.tag.Equals ( "Bush" ) )
@@ -116,6 +109,14 @@ public class KeyItems : MonoBehaviour
                 gameObject.GetComponent<Interactable>().ReceiveItem();
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void OnTriggerExit2D ( Collider2D coll )
+    {
+        if ( coll.gameObject.tag == "Char" )
+        {
+            canInteract = true;
         }
     }
 }

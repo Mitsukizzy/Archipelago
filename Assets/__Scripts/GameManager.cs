@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private int daysStarved = 0;
     private int deaths = 0;
 
+    private bool hasVisitedBeach = false;
+
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
 
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
         else if ( Application.loadedLevel == 1 && CurrentSceneIndex > 1 ) // Coming from wetlands to beach
         {
             m_Char.transform.position = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position;
+            hasVisitedBeach = true;
         }
 
         // Chooses music being played in each level
@@ -210,6 +213,11 @@ public class GameManager : MonoBehaviour
     public DialogueSystem GetDialogueSystem ()
     {
         return GetComponent<DialogueSystem> ();
+    }
+
+    public void CheckHasVisitedBeach()
+    {
+        return hasVisitedBeach;
     }
 
     public void Pause()
