@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     //Health and Hunger sliders
     public Slider hpBar;
     public Slider hungerBar;
+    private Image hungerFill;
+    private Color hungerColorDefault;
     private GameObject hpBG;
     private GameObject hpFill;
     private int hpWidthOffset = 0;
@@ -73,6 +75,8 @@ public class Character : MonoBehaviour
         hpBG = hpBar.transform.Find( "Background" ).gameObject;
         hpFill = hpBar.transform.Find( "Fill Area" ).gameObject;
         hungerBar = GameObject.Find ( "HungerSlider" ).GetComponent<Slider> ();
+        hungerFill = hungerBar.transform.Find ( "Fill Area" ).transform.Find ( "Fill" ).GetComponent<Image> ();
+        hungerColorDefault = hungerFill.color;
 
         // Set max and starting value of health and hunger
         hpBar.maxValue = health;
@@ -234,6 +238,14 @@ public class Character : MonoBehaviour
     public void IncrementHunger( int amount )
     {
         hungerBar.value += amount;
+        if ( hungerBar.value < 60 )
+        {
+            hungerFill.color = new Color ( 0.88627f, 0.20784f, 0.20784f, 0.7843f );
+        }
+        else
+        {
+            hungerFill.color = hungerColorDefault;
+        }
     }
 
     // Starving for a day lowers max health

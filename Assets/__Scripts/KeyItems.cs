@@ -60,7 +60,7 @@ public class KeyItems : MonoBehaviour
             }
             else if ( transform.tag.Equals ( "Campsite" ) )
             {
-                //mAudio.PlayOnce ( "campsite" );
+                mAudio.PlayOnce ( "campsite" );
             }
 
             // Journal Pages
