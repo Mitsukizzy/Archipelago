@@ -34,6 +34,7 @@ public class DayNightManager : MonoBehaviour
     public float numSecondsToChange = 1.0f;
     float curIntensity = 2.0f;
     float targetIntensity = 2.0f;
+    float maxIntensity = 2.0f;
 
 
 	void Start(){
@@ -78,6 +79,13 @@ public class DayNightManager : MonoBehaviour
                 startOnce = false;
             }
         }
+        if (Application.loadedLevelName == "0_Beach")
+        {
+            maxIntensity = 1.0f;
+            targetIntensity = 1.0f;
+            curIntensity = 1.0f;
+        }
+
         daylight.intensity = targetIntensity;
 
     }
@@ -131,7 +139,7 @@ public class DayNightManager : MonoBehaviour
         startTime = Time.time;
         curTime = Time.time;
         curIntensity = daylight.intensity;
-        targetIntensity = Mathf.Lerp ( 2.0f, 0.5f, ( lightTimer / ( maxTime * 0.5f ) ) );
+        targetIntensity = Mathf.Lerp ( maxIntensity, 0.5f, ( lightTimer / ( maxTime * 0.5f ) ) );
         
         if( timeOfDay >= maxTime )
         {
