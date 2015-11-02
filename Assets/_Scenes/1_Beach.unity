@@ -542,41 +542,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
---- !u!1 &992275187 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 151658, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-  m_PrefabInternal: {fileID: 1230954350}
---- !u!114 &992275189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 992275187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1706616337}
-          m_MethodName: PlayOneShot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!1 &1103233840
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,64 +602,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &1230954350
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 466628, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 22422084, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 22422084, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 459.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22422084, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 22422084, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 919
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1514210314
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,46 +682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283c382bf7b32154797108f40f305938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1638658225 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 109630, guid: b1034f5c2fc4b48da924644f55f6fc8e, type: 2}
-  m_PrefabInternal: {fileID: 1230954350}
---- !u!114 &1638658227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1638658225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1706616337}
-          m_MethodName: PlayOneShot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!82 &1706616337 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 8201512, guid: b1034f5c2fc4b48da924644f55f6fc8e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1230954350}
 --- !u!1 &1762928952
 GameObject:
   m_ObjectHideFlags: 0
