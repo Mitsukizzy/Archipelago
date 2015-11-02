@@ -11,6 +11,7 @@ public class ItemData : MonoBehaviour
     public bool healsSickness = false;
     public bool healsTired = false;
     public bool isInstant = false;
+    public bool isKey = false;
     public GameObject cookedItem;
 
 

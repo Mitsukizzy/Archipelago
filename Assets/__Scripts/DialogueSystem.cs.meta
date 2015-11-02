@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 849201dd70e8e1c44b945c256c974307
-timeCreated: 1446005831
+timeCreated: 1446418721
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -8,6 +8,7 @@ MonoImporter:
   - beach1: {fileID: 4900000, guid: 62d2d05cd67451c40ab94efeea7db6e3, type: 3}
   - beach2: {fileID: 4900000, guid: 781672c583b0c354e80703f00583fc51, type: 3}
   - beach3: {fileID: 4900000, guid: fd67a056cb006f44ca7bd734df3b7ddf, type: 3}
+  - foundWood: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
   executionOrder: 200
   icon: {instanceID: 0}
   userData: 

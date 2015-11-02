@@ -17,6 +17,8 @@ TagManager:
   - JPDocks
   - Journal
   - Campsite
+  - arrow
+  - Key
   layers:
   - Default
   - TransparentFX

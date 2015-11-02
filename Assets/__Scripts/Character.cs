@@ -86,6 +86,7 @@ public class Character : MonoBehaviour
     {
         if( m_State == PlayerState.Dialogue && Time.timeScale != 0 ) // Make sure the game isn't paused
         {
+            m_Animator.SetBool("isWalking", false);
             if( m_Input.InteractButtonPressed() || m_Input.SelectButtonPressed() )
             {
                 m_Dialogue.Advance ();

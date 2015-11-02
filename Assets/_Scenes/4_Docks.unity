@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 161913714}
   - 114: {fileID: 161913713}
+  - 114: {fileID: 161913715}
   m_Layer: 0
   m_Name: DockItemSpawner
   m_TagString: Untagged
@@ -124,6 +125,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &161913715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 161913712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a68bb2827f79094aa326e7faa5f67f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &381252083
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1672874164
 GameObject:
   m_ObjectHideFlags: 0

@@ -192,6 +192,8 @@ MonoBehaviour:
   beach1: {fileID: 4900000, guid: 62d2d05cd67451c40ab94efeea7db6e3, type: 3}
   beach2: {fileID: 4900000, guid: 781672c583b0c354e80703f00583fc51, type: 3}
   beach3: {fileID: 4900000, guid: fd67a056cb006f44ca7bd734df3b7ddf, type: 3}
+  foundWood: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
+  foundRope: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +297,14 @@ Prefab:
       propertyPath: m_AudioSource
       value: 
       objectReference: {fileID: 8294312}
+    - target: {fileID: 0}
+      propertyPath: foundWood
+      value: 
+      objectReference: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
+    - target: {fileID: 0}
+      propertyPath: foundRope
+      value: 
+      objectReference: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}

@@ -68,6 +68,7 @@ public class Interactable : MonoBehaviour
 			if(this.gameObject.tag == "Gatherable"){
 				coll.gameObject.GetComponent<Character>().gatherFrom = null;
 			}
+
 		}
         if (GetComponent<Animator>() != null)
         {

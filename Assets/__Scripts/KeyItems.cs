@@ -8,6 +8,7 @@ public class KeyItems : MonoBehaviour
     private InputManager mInput;
     private AudioManager mAudio;
     private DialogueSystem mDialogue;
+    private GameManager mGame;
     private Journal mJournal;
 
 
@@ -22,6 +23,7 @@ public class KeyItems : MonoBehaviour
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
         mDialogue = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<DialogueSystem> ();
         mJournal = GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ();
+        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
         buttonsUI = GameObject.Find ( "Buttons UI" );
         journalUI = GameObject.Find ( "Journal UI" );
@@ -42,6 +44,8 @@ public class KeyItems : MonoBehaviour
             {
                 mDialogue.StartDialogue ( "beach2" );
                 buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true;
+                Destroy(gameObject);
+                mGame.DoNotSpawnOnLoad("Backpack");
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
@@ -61,6 +65,33 @@ public class KeyItems : MonoBehaviour
             if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) )
             {
                 mJournal.AddJournalPage ( transform.tag );
+            }
+            Debug.Log("pressed interact button");
+
+            if (gameObject.name.Contains("wood"))
+            {
+                //Debug.Log("interacted with wood");
+                mDialogue.StartDialogue("wood");
+                mGame.DoNotSpawnOnLoad("wood");
+                gameObject.GetComponent<Interactable>().ReceiveItem();
+                Destroy(gameObject);
+            }
+
+            if (gameObject.name.Contains("rope"))
+            {
+                //Debug.Log("interacted with wood");
+                mDialogue.StartDialogue("rope");
+                mGame.DoNotSpawnOnLoad("rope");
+                gameObject.GetComponent<Interactable>().ReceiveItem();
+                Destroy(gameObject);
+            }
+            if (gameObject.name.Contains("hammer"))
+            {
+                //Debug.Log("interacted with wood");
+                mDialogue.StartDialogue("hammer");
+                mGame.DoNotSpawnOnLoad("hammer");
+                gameObject.GetComponent<Interactable>().ReceiveItem();
+                Destroy(gameObject);
             }
         }
     }

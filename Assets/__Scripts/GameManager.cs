@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
         KeyItems.Add ( "Backpack", true );
         KeyItems.Add ( "Boat", true );
+        KeyItems.Add("wood", true);
+        KeyItems.Add("rope", true);
+        KeyItems.Add("hammer", true);
         KeyItems.Add ( "JournalPageBeach", true );
         KeyItems.Add ( "JournalPageSeaCave", true );
 
@@ -262,6 +265,10 @@ public class GameManager : MonoBehaviour
 
     public bool CheckItem ( string ItemName )
     {
+        if (KeyItems == null)
+        {
+            Debug.Log("why is this null");
+        }
         if ( !KeyItems.ContainsKey ( ItemName ) )
         {
             Debug.Log ( "Checking an item that doesnt exist" );
@@ -273,7 +280,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void DoNotSpawnOnLoad ( string itemName )
+    public void DoNotSpawnOnLoad ( string itemName )
     {
         if ( KeyItems.ContainsKey ( itemName ) )
         {

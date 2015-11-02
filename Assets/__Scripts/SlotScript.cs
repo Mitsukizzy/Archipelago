@@ -30,8 +30,15 @@ public class SlotScript : MonoBehaviour{
             itemImage.enabled = true;
             itemImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
             itemCount.enabled = true;
-            itemCount.text = stack.ToString();
             m_itemData = item.GetComponent<ItemData>();
+            if (m_itemData.isKey)
+            {
+                itemCount.text = "";
+            }
+            else
+            {
+                itemCount.text = stack.ToString();
+            }
             itemDescription.text = m_itemData.description;
         }
         else

@@ -8,6 +8,9 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset beach1; // Intro
     public TextAsset beach2; // Bag + Journal
     public TextAsset beach3; // Boat
+    public TextAsset foundWood; // wood for the boat
+    public TextAsset foundRope; // rope for the boat
+    public TextAsset foundHammer; //hammer for boat
 
     public Dictionary<string, string> mDialogues;
     private string[] curDialogue;
@@ -17,6 +20,8 @@ public class DialogueSystem : MonoBehaviour
     private Text mDialogueText;
     private Character mChar;
 
+    private bool visitedBeach = false;
+
     // Needs to be init before Start
     void Start()
     {
@@ -25,6 +30,9 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "beach1", beach1.text );
         mDialogues.Add ( "beach2", beach2.text );
         mDialogues.Add ( "beach3", beach3.text );
+        mDialogues.Add( "wood" , foundWood.text);
+        mDialogues.Add("rope", foundRope.text);
+        mDialogues.Add("hammer", foundHammer.text);
 
         if ( mChar == null && Application.loadedLevel != 0 )
         {
@@ -40,9 +48,11 @@ public class DialogueSystem : MonoBehaviour
         }
 
         // Will need to avoid showing again if revisiting location
-        if ( Application.loadedLevelName == "1_Beach" )
+        if ( Application.loadedLevelName == "1_Beach" && !visitedBeach)
         {
             StartDialogue ( "beach1" );
+            visitedBeach = true;
+
         }
     }
 

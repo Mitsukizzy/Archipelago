@@ -16,6 +16,10 @@ public class SeaCaveScript : MonoBehaviour
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageSeaCave", typeof ( GameObject ) ) ) as GameObject;
         }
+        if (mGame.CheckItem("hammer"))
+        {
+            GameObject Backpack = Instantiate(Resources.Load("hammer", typeof(GameObject))) as GameObject;
+        }
     }
 
     // Update is called once per frame

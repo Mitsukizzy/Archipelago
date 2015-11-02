@@ -45,13 +45,14 @@ public class AudioManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        //m_AudioSource = gameObject.GetComponent<AudioSource>();
         m_AudioSource.volume = 0.35f;
         m_AudioSource.loop = true;
 	}
 
     public void SpecialInit()
     {
-        m_AudioSource = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioSource> ();
+        m_AudioSource = gameObject.GetComponent<AudioSource>();
     }
 
 	// Update is called once per frame
