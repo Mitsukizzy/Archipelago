@@ -159,7 +159,6 @@ public class BirdAI : MonoBehaviour {
         nextWaypoint = m_Waypoints[(Random.Range(0, m_Waypoints.Length))];
         moveTime = Time.time;
         journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
-        canAttack = false;
         isSafe = true;
     }
     public void exitedSafeArea()

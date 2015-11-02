@@ -85,140 +85,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &36851384
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 36851385}
-  m_Layer: 0
-  m_Name: BirdHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &36851385
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 36851384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .791015267, y: 9.19229317, z: -.548057556}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 61575296}
-  - {fileID: 97433836}
-  - {fileID: 1416182729}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
---- !u!1001 &61575295
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 36851385}
-    m_Modifications:
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.69101524
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 8.20770645
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: .548057556
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_TagString
-      value: Bird
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &61575296 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_PrefabInternal: {fileID: 61575295}
---- !u!1001 &97433835
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 36851385}
-    m_Modifications:
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 79.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 18.3999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: .548057556
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_Name
-      value: Bird (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_TagString
-      value: Bird
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &97433836 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_PrefabInternal: {fileID: 97433835}
 --- !u!1001 &243396931
 Prefab:
   m_ObjectHideFlags: 0
@@ -887,6 +753,60 @@ RectTransform:
   m_AnchoredPosition: {x: 18, y: 28}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!1001 &1346621689
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .791015267
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 9.19229317
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.548057556
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 460614, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 105294, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_TagString
+      value: Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 163552, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_TagString
+      value: Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 166044, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: m_TagString
+      value: Bird
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1349776355
 Prefab:
   m_ObjectHideFlags: 0
@@ -929,60 +849,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1a9c0a5bc3bd63499c73f3669ab96d3, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1416182728
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 36851385}
-    m_Modifications:
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -82.8000031
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 15.8000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: .548057556
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_Name
-      value: Bird (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-      propertyPath: m_TagString
-      value: Bird
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1416182729 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
-  m_PrefabInternal: {fileID: 1416182728}
 --- !u!1001 &1557283637
 Prefab:
   m_ObjectHideFlags: 0
