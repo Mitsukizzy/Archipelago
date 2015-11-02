@@ -27,6 +27,7 @@ public class BirdAI : MonoBehaviour {
     public float attackSpeed = 2.0f;
 
     private DayNightManager daynight;
+    private AudioManager mAudio;
 
     bool isSafe = false;
 
@@ -60,7 +61,7 @@ public class BirdAI : MonoBehaviour {
         journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
 
         daynight = GameObject.FindGameObjectWithTag("Manager").GetComponent<DayNightManager>();
-        
+        mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 	}
 	
 	// Update is called once per frame
@@ -198,7 +199,7 @@ public class BirdAI : MonoBehaviour {
 
     public void TakeDamage()
     {
-        hitPoints--;
+        hitPoints--;        
         if (hitPoints <= 0)// && !isDead)
         {
             //obtain dropable item!
@@ -212,6 +213,11 @@ public class BirdAI : MonoBehaviour {
             }
             //GetComponent<Animator>().SetTrigger("Death");
             isDead = true;
+            mAudio.PlayOnce ( "enemyDeath" );
+        }
+        else
+        {
+            mAudio.PlayOnce ( "enemyDamaged" );
         }
     }
 }

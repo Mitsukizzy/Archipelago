@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour {
 
     private Animator Success;
     private Animator Fail;
+    private AudioManager mAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,7 @@ public class Inventory : MonoBehaviour {
         Success = GameObject.Find("Success").GetComponent<Animator>();
         Fail = GameObject.Find("Fail").GetComponent<Animator>();
 
+        mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 	}
 	
 	// Update is called once per frame
@@ -69,7 +71,7 @@ public class Inventory : MonoBehaviour {
             if (slotData.item == null)
             {
                 slotData.item = item;
-                //add some kind of success noise
+                mAudio.PlayOnce ( "newItem" );
                 Success.SetTrigger("becameActive");
                 if (item.GetComponent<ItemData>().isInstant)
                 {
@@ -80,7 +82,7 @@ public class Inventory : MonoBehaviour {
         }
 
         //couldn't gather the item :/
-        //add some kind of fail noise?
+        mAudio.PlayOnce ( "failed" );
         Fail.SetTrigger("becameActive");
 
 
@@ -88,6 +90,7 @@ public class Inventory : MonoBehaviour {
 
     public void ToggleInventory()
     {
+        mAudio.PlayOnce ( "newItem" );
         inventHolder.enabled = !inventHolder.enabled;
         if (inventHolder.enabled)
         {

@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
             if ( !m_Char.IsAlive () )
             {
                 // Move to Game Over screen
-                m_audio.PlayOnce ( "gameover" );
+                m_audio.PlayOnce ( "playerDeath" );
                 deaths++;
                 Application.LoadLevel ( 7 ); // to game over screen
                 m_Char.Revive ();
