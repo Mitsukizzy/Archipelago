@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
         return GetComponent<DialogueSystem> ();
     }
 
-    public void CheckHasVisitedBeach()
+    public bool CheckHasVisitedBeach()
     {
         return hasVisitedBeach;
     }

@@ -138,7 +138,6 @@ MonoBehaviour:
   sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
   sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
   sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
-  sndPlayerDeath: {fileID: 8300000, guid: 5809852316c7c1943ad9ed2712d33832, type: 3}
   sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   sndEnemyDeath: {fileID: 8300000, guid: 0bedab25e883fd743a9e321815893094, type: 3}
 --- !u!114 &11446744
@@ -198,6 +197,8 @@ MonoBehaviour:
   foundWood: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
   foundRope: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
   foundHammer: {fileID: 4900000, guid: 0f369fb19afca8f4393fad11578dc1be, type: 3}
+  boatNotDone: {fileID: 4900000, guid: f47ed44348e1dde4896f99417f94c184, type: 3}
+  boatDone: {fileID: 4900000, guid: 203e481f3cbd4404e9ca0c456c5ddc31, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,6 +334,14 @@ Prefab:
       propertyPath: sndPlayerDeath
       value: 
       objectReference: {fileID: 8300000, guid: 5809852316c7c1943ad9ed2712d33832, type: 3}
+    - target: {fileID: 0}
+      propertyPath: boatNotDone
+      value: 
+      objectReference: {fileID: 4900000, guid: f47ed44348e1dde4896f99417f94c184, type: 3}
+    - target: {fileID: 0}
+      propertyPath: boatDone
+      value: 
+      objectReference: {fileID: 4900000, guid: 203e481f3cbd4404e9ca0c456c5ddc31, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
