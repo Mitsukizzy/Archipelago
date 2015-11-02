@@ -5,11 +5,11 @@ using System.Collections;
 public class DayNightManager : MonoBehaviour
 {
     const float maxTime = 50.0f;
-    int timeOfDay = 1;
+    public int timeOfDay = 1;
     int lightTimer = 1;
 
     // Number of seconds it takes to advance one hour
-    float secondsPerHour = 4.0f;
+    public float secondsPerHour = 4.0f;
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6
@@ -31,7 +31,7 @@ public class DayNightManager : MonoBehaviour
 
     float startTime;
     float curTime;
-    float numSecondsToChange = 1.0f;
+    public float numSecondsToChange = 1.0f;
     float curIntensity = 2.0f;
     float targetIntensity = 2.0f;
 
@@ -105,6 +105,11 @@ public class DayNightManager : MonoBehaviour
     int GetSafeLocation()
     {
         return safeLocation;
+    }
+
+    public int GetTimeOfDay()
+    {
+        return timeOfDay;
     }
 
     IEnumerator AdvanceHour( int numHours )
