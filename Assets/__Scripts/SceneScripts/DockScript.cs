@@ -17,6 +17,7 @@ public class DockScript : MonoBehaviour {
         if ( mGame.CheckItem ( "JournalPageDocks" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageDocks", typeof ( GameObject ) ) ) as GameObject;
+            mGame.DoNotSpawnOnLoad ( "JournalPageDocks" );
         }
         if (mGame.CheckItem("rope"))
         {

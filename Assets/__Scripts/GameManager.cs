@@ -267,6 +267,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        // Delete persistent objects that will be spawned again in Main Menu
+        Destroy ( GameObject.FindGameObjectWithTag ( "UI" ).gameObject );
+        Destroy ( GameObject.FindGameObjectWithTag ( "Char" ).gameObject );
         Application.LoadLevel ( 0 );
     }
 

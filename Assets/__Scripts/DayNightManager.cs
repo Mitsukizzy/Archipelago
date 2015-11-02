@@ -27,7 +27,6 @@ public class DayNightManager : MonoBehaviour
     private Character mChar;
 
 	bool increasing = true;
-    bool startOnce = true;
 
     float startTime;
     float curTime;
@@ -37,7 +36,8 @@ public class DayNightManager : MonoBehaviour
     float maxIntensity = 1.0f;
 
 
-	void Start(){
+	void Start()
+    {
 		if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
 		{
 			mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
@@ -49,13 +49,7 @@ public class DayNightManager : MonoBehaviour
 			mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 			
 			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-
-            if (startOnce)
-            {
-                Debug.Log("this should never happen in the main menu");
-                StartCoroutine(AdvanceHour(1));
-                startOnce = false;
-            }
+            StartCoroutine ( AdvanceHour ( 1 ) );
 		}
 	}
 
@@ -73,21 +67,16 @@ public class DayNightManager : MonoBehaviour
             mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 
 			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-            if (startOnce)
-            {
-                StartCoroutine(AdvanceHour(1));
-                startOnce = false;
-            }
+            StartCoroutine ( AdvanceHour ( 1 ) );
+            daylight.intensity = targetIntensity;
         }
+
         if (Application.loadedLevelName == "0_Beach")
         {
             maxIntensity = 1.0f;
             targetIntensity = 1.0f;
             curIntensity = 1.0f;
         }
-
-        daylight.intensity = targetIntensity;
-
     }
 
     // Update is called once per frame
@@ -123,6 +112,12 @@ public class DayNightManager : MonoBehaviour
     IEnumerator AdvanceHour( int numHours )
     {
         yield return new WaitForSeconds( secondsPerHour );
+
+        // Ensure the timer stops when on the menu screens
+        if ( Application.loadedLevel == 0 || Application.loadedLevel == 7 )
+        {
+            return false;
+        }
         timeOfDay += numHours;
 
         // Deal with light intensity
@@ -166,6 +161,7 @@ public class DayNightManager : MonoBehaviour
         }
         mSlider.value = timeOfDay;
         mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
-        StartCoroutine( AdvanceHour( 1 ) );
+        
+        StartCoroutine ( AdvanceHour ( 1 ) );
     }
 }

@@ -15,6 +15,7 @@ public class SeaCaveScript : MonoBehaviour
         if ( mGame.CheckItem ( "JournalPageSeaCave" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageSeaCave", typeof ( GameObject ) ) ) as GameObject;
+            mGame.DoNotSpawnOnLoad ( "JournalPageSeaCave" );
         }
         if (mGame.CheckItem("hammer"))
         {

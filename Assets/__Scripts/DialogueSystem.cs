@@ -23,8 +23,6 @@ public class DialogueSystem : MonoBehaviour
     private Character mChar;
     private GameManager mGame;
 
-    private bool visitedBeach = false;
-
     // Needs to be init before Start
     void Start()
     {
@@ -56,10 +54,9 @@ public class DialogueSystem : MonoBehaviour
         }
 
         // Start dialogue if never been to beach, assume picked up backpack
-        if ( Application.loadedLevelName == "1_Beach" && !visitedBeach )
+        if ( Application.loadedLevelName == "1_Beach" && !mGame.CheckHasVisitedBeach() )
         {
             StartDialogue ( "beach1" );
-            visitedBeach = true;
         }
     }
 
@@ -88,8 +85,6 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.TryGetValue ( key, out fullText );
 
         // Separate fullText into individual strings and load them into curDialogue
-        Debug.Log ( key );
-        Debug.Log(fullText);
         curDialogue = fullText.Split ( '\n' ); // using newline as delimiter
         curIndex = 0;
         mDialogueText.text = curDialogue[curIndex];

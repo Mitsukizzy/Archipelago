@@ -25,6 +25,7 @@ public class BeachScript : MonoBehaviour
         if ( mGame.CheckItem ( "JournalPageBeach" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageBeach", typeof ( GameObject ) ) ) as GameObject;
+            mGame.DoNotSpawnOnLoad ( "JournalPageBeach" );
         }
     }
 
