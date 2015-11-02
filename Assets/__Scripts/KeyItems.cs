@@ -10,9 +10,13 @@ public class KeyItems : MonoBehaviour
     private DialogueSystem mDialogue;
     private GameManager mGame;
     private Journal mJournal;
+    private Inventory mInvent;
 
     private GameObject buttonsUI;
     private GameObject journalUI;
+
+    private bool firstTimeBoat = true;
+    private bool secondTimeBoat = true; //Im sorry this is so hacky :'(
 
 	// Use this for initialization
 	void Start ()
@@ -42,13 +46,32 @@ public class KeyItems : MonoBehaviour
             {
                 mDialogue.StartDialogue ( "beach2" );
                 buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true;
+                buttonsUI.transform.Find("Journal").GetComponent<Image>().enabled = true;
                 Destroy ( gameObject );
                 mGame.DoNotSpawnOnLoad ( "Backpack" );
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
-                mDialogue.StartDialogue ( "beach3" );
-                buttonsUI.transform.Find ( "Journal" ).GetComponent<Image> ().enabled = true;
+
+                if (firstTimeBoat || secondTimeBoat)
+                {
+                    Debug.Log("First: " + firstTimeBoat);
+                    Debug.Log("Second: " + secondTimeBoat);
+                    mDialogue.StartDialogue("beach3");
+                    if (!firstTimeBoat)
+                    {
+                        secondTimeBoat = false;
+                    }
+                    firstTimeBoat = false;
+                }
+                else if (!mGame.CheckItem("wood") && !mGame.CheckItem("rope") && !mGame.CheckItem("hammer") )
+                {
+                    mDialogue.StartDialogue("YouwWin");
+                }
+                else
+                {
+                    mDialogue.StartDialogue("NotYet");
+                }
             }
             else if ( transform.tag.Equals ( "Bush" ) )
             {
