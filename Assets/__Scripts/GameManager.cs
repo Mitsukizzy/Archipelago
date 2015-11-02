@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Chooses music being played in each level
+        m_audio.SpecialInit ();
         if ( Application.loadedLevel == 0 )
         {
             m_audio.PlayLoop( "main" );
@@ -149,10 +150,10 @@ public class GameManager : MonoBehaviour
             if ( !m_Char.IsAlive () )
             {
                 // Move to Game Over screen
-                Debug.Log ( "GAME OVER" );
+                m_audio.PlayOnce ( "gameover" );
                 deaths++;
-                m_Char.Revive ();
                 Application.LoadLevel ( 7 ); // to game over screen
+                m_Char.Revive ();
             }
             
             // Pause

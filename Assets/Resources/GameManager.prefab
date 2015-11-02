@@ -131,9 +131,9 @@ MonoBehaviour:
   sndMenuSelect: {fileID: 8300000, guid: 45305df47bf986f4c9fbb2521222ebb3, type: 3}
   sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
   sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
-  sndCampsite: {fileID: 0}
+  sndCampsite: {fileID: 8300000, guid: cbead7f5601143d4f9a5b34701fd5b0e, type: 3}
   sndGameOver: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
-  sndRefreshed: {fileID: 0}
+  sndRefreshed: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
   sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
   sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
   sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
@@ -141,6 +141,7 @@ MonoBehaviour:
   sndPlayerDeath: {fileID: 8300000, guid: 9b230e8e018685b44bfd90364072e84a, type: 3}
   sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   sndEnemyDeath: {fileID: 0}
+  m_AudioSource: {fileID: 8294312}
 --- !u!114 &11446744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +195,7 @@ MonoBehaviour:
   beach3: {fileID: 4900000, guid: fd67a056cb006f44ca7bd734df3b7ddf, type: 3}
   foundWood: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
   foundRope: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
+  foundHammer: {fileID: 4900000, guid: 0f369fb19afca8f4393fad11578dc1be, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,6 +307,18 @@ Prefab:
       propertyPath: foundRope
       value: 
       objectReference: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
+    - target: {fileID: 0}
+      propertyPath: foundHammer
+      value: 
+      objectReference: {fileID: 4900000, guid: 0f369fb19afca8f4393fad11578dc1be, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndCampsite
+      value: 
+      objectReference: {fileID: 8300000, guid: cbead7f5601143d4f9a5b34701fd5b0e, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndRefreshed
+      value: 
+      objectReference: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
