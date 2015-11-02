@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource m_AudioSource;
     private AudioSource m_MusicSource;
 
-    private float sfxVolume = 1.0f;
+    private float sfxVolume = 0.6f;
 
 	// Use this for initialization
 	void Start ()
@@ -54,6 +54,8 @@ public class AudioManager : MonoBehaviour
         m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
         m_MusicSource.volume = 0.35f;
         m_MusicSource.loop = true;
+
+        m_AudioSource.enabled = true;
     }
 
 	// Update is called once per frame

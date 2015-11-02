@@ -11,19 +11,17 @@ public class KeyItems : MonoBehaviour
     private GameManager mGame;
     private Journal mJournal;
 
-
-
     private GameObject buttonsUI;
     private GameObject journalUI;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
     {
         mInput = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<InputManager> ();
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
         mDialogue = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<DialogueSystem> ();
         mJournal = GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ();
-        mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        mGame = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
 
         buttonsUI = GameObject.Find ( "Buttons UI" );
         journalUI = GameObject.Find ( "Journal UI" );
@@ -44,8 +42,8 @@ public class KeyItems : MonoBehaviour
             {
                 mDialogue.StartDialogue ( "beach2" );
                 buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true;
-                Destroy(gameObject);
-                mGame.DoNotSpawnOnLoad("Backpack");
+                Destroy ( gameObject );
+                mGame.DoNotSpawnOnLoad ( "Backpack" );
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
@@ -64,9 +62,11 @@ public class KeyItems : MonoBehaviour
             // Journal Pages
             if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) )
             {
+                Debug.Log ( "tag " + transform.tag );
+                GameObject.Find ( "NewPage" ).GetComponent<Animator> ().SetTrigger ( "becameActive" );
                 mJournal.AddJournalPage ( transform.tag );
+                Destroy ( gameObject ); //picked up, not needed anymore
             }
-            Debug.Log("pressed interact button");
 
             if (gameObject.name.Contains("wood"))
             {

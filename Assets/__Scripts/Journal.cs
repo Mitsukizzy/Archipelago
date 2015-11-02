@@ -115,7 +115,7 @@ public class Journal : MonoBehaviour
     public void AddJournalPage( string pageName )
     {
         Debug.Log ( "Page Added: " + pageName );
-        if( pageName.Equals( "JPBeach" ) )
+        if( pageName.Equals( "JPBeach" ) && pages.Count < 3 )
         {
             pages.Add ( page3 );
         }

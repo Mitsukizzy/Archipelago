@@ -69,6 +69,7 @@ public class Campfire : MonoBehaviour
         campPopup.SetActive ( false );
         canCamp = false;
         m_Char.SetPlayerState ( Character.PlayerState.Interact );
+        GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ().PlayOnce ( "campsite" );
 
         // Fade out and fade in
         isFadingOut = true;
@@ -90,6 +91,7 @@ public class Campfire : MonoBehaviour
         isFadingInCircle = true;
         campMenu.SetActive ( false );
         m_Char.SetPlayerState ( Character.PlayerState.Idle );
+        GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ().Stop ();
         m_Inventory.CloseInventory();
 
         m_Char.setCampLocation(transform.position);

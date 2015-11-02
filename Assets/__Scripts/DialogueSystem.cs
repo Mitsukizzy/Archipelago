@@ -19,6 +19,7 @@ public class DialogueSystem : MonoBehaviour
     private GameObject mDialogueBox;
     private Text mDialogueText;
     private Character mChar;
+    private GameManager mGame;
 
     private bool visitedBeach = false;
 
@@ -30,9 +31,11 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "beach1", beach1.text );
         mDialogues.Add ( "beach2", beach2.text );
         mDialogues.Add ( "beach3", beach3.text );
-        mDialogues.Add( "wood" , foundWood.text);
-        mDialogues.Add("rope", foundRope.text);
-        mDialogues.Add("hammer", foundHammer.text);
+        mDialogues.Add ( "wood", foundWood.text );
+        mDialogues.Add ( "rope", foundRope.text );
+        mDialogues.Add ( "hammer", foundHammer.text );
+
+        mGame = GetComponent<GameManager> ();
 
         if ( mChar == null && Application.loadedLevel != 0 )
         {
@@ -47,12 +50,11 @@ public class DialogueSystem : MonoBehaviour
             SpecialInit (); // Initialize character and dialogue objects
         }
 
-        // Will need to avoid showing again if revisiting location
-        if ( Application.loadedLevelName == "1_Beach" && !visitedBeach)
+        // Start dialogue if never been to beach, assume picked up backpack
+        if ( Application.loadedLevelName == "1_Beach" && !visitedBeach )
         {
             StartDialogue ( "beach1" );
             visitedBeach = true;
-
         }
     }
 
