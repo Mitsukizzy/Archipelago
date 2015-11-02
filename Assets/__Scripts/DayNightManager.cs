@@ -32,9 +32,9 @@ public class DayNightManager : MonoBehaviour
     float startTime;
     float curTime;
     public float numSecondsToChange = 1.0f;
-    float curIntensity = 2.0f;
-    float targetIntensity = 2.0f;
-    float maxIntensity = 2.0f;
+    float curIntensity = 1.0f;
+    float targetIntensity = 1.0f;
+    float maxIntensity = 1.0f;
 
 
 	void Start(){
@@ -139,8 +139,9 @@ public class DayNightManager : MonoBehaviour
         startTime = Time.time;
         curTime = Time.time;
         curIntensity = daylight.intensity;
-        targetIntensity = Mathf.Lerp ( maxIntensity, 0.5f, ( lightTimer / ( maxTime * 0.5f ) ) );
-        
+        targetIntensity = Mathf.Lerp ( maxIntensity, 0.01f, ( lightTimer / ( maxTime * 0.5f ) ) );
+        //Debug.Log(targetIntensity);
+
         if( timeOfDay >= maxTime )
         {
             timeOfDay = 1; // Start new day
