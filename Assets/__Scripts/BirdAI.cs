@@ -26,6 +26,10 @@ public class BirdAI : MonoBehaviour {
     private bool canAttack = true;
     public float attackSpeed = 2.0f;
 
+    private DayNightManager daynight;
+
+    bool isSafe = false;
+
     public enum BirdState
     {
         Idle,
@@ -54,6 +58,8 @@ public class BirdAI : MonoBehaviour {
         nextWaypoint = m_Waypoints[(Random.Range(0, m_Waypoints.Length))];
         moveTime = Time.time;
         journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
+
+        daynight = GameObject.FindGameObjectWithTag("Manager").GetComponent<DayNightManager>();
         
 	}
 	
@@ -107,6 +113,13 @@ public class BirdAI : MonoBehaviour {
             //play death sound
             Destroy(gameObject);
         }
+        if (daynight.GetTimeOfDay() > (50 * 0.35) && daynight.GetTimeOfDay() < (50 * 0.75f)) //this is night time
+        {
+            if (!isSafe)
+            {
+                m_State = BirdState.Attack;
+            }
+        }
 	}
 
     private void updateFacing()
@@ -147,6 +160,15 @@ public class BirdAI : MonoBehaviour {
         moveTime = Time.time;
         journeyLength = Vector3.Distance(curWaypoint, nextWaypoint);
         canAttack = false;
+        isSafe = true;
+    }
+    public void exitedSafeArea()
+    {
+        isSafe = false;
+    }
+    public void enterSafeArea()
+    {
+        isSafe = true;
     }
 
     IEnumerator AttackPlayer()

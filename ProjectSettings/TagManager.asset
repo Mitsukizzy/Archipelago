@@ -19,6 +19,7 @@ TagManager:
   - Campsite
   - arrow
   - Key
+  - Bird
   layers:
   - Default
   - TransparentFX
