@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         KeyItems.Add("hammer", true);
         KeyItems.Add ( "JournalPageBeach", true );
         KeyItems.Add ( "JournalPageSeaCave", true );
+        KeyItems.Add ( "JournalPageDocks", true );
 
 		CurrentSceneIndex = 0;
 		PreviousSceneIndex = 0;
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
             m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
         }
 
-        // TODO: Keep track of visited locations
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         // Don't spawn if on main menu(0) or game over(7)
@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
                 spawnLoc = GameObject.Find ( "SpawnPoint" ).GetComponent<Transform> ().position;
             }
             m_Char.transform.position = spawnLoc;
+        }
+        else if ( Application.loadedLevel == 1 && CurrentSceneIndex > 1 ) // Coming from wetlands to beach
+        {
+            m_Char.transform.position = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position;
         }
 
         // Chooses music being played in each level
@@ -162,6 +166,15 @@ public class GameManager : MonoBehaviour
                 Pause ();
             }
         }
+        else
+        {
+            // Pause press in main menu
+            if ( m_input.PauseButtonPressed () )
+            {
+                ShowSplash ( false ); // close splash
+            }
+        }
+
 
         // Our cheat reset keys
         if ( m_input.ResetGameButtonPressed () )
@@ -202,16 +215,33 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         GameObject pauseOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Pause UI" ).gameObject; // my way of finding inactive gameobject
+
         if ( Time.timeScale == 0 )
         {
-            pauseOverlay.SetActive ( false );
-            Time.timeScale = 1;
+            GameObject splashOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Splash UI" ).gameObject; 
+
+            if ( splashOverlay.activeSelf )
+            {
+                ShowSplash ( false );
+            }
+            else
+            {
+                pauseOverlay.SetActive ( false );
+                ShowSplash ( false );
+                Time.timeScale = 1;
+            }
         }
         else
         {
             pauseOverlay.SetActive ( true );
             Time.timeScale = 0;
         }
+    }
+
+    public void ShowSplash( bool shouldShow )
+    {
+        GameObject splashOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Splash UI" ).gameObject; // my way of finding inactive gameobject
+        splashOverlay.SetActive ( shouldShow );
     }
 
     public void ExitGame ()
@@ -241,6 +271,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if( Application.loadedLevel == 0 )
+        {
+
+        }
+
         if( Application.loadedLevel < 6 )
         {
             Application.LoadLevel ( Application.loadedLevel + 1 );
