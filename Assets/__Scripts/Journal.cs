@@ -7,6 +7,7 @@ public class Journal : MonoBehaviour
 {
     public Canvas mJournal;
     private Character mChar;
+    private AudioManager mAudio;
 
     public List<TextAsset> pages = new List<TextAsset>();
     public TextAsset page1;
@@ -32,6 +33,7 @@ public class Journal : MonoBehaviour
         mNextPageBtn = GameObject.Find ( "Next Page Button" );
 
         mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
+        mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 
         pages.Add ( page1 );
         pages.Add ( page2 );
@@ -45,6 +47,7 @@ public class Journal : MonoBehaviour
 
     public void ToggleJournal()
     {
+        mAudio.PlayOnce ( "newItem" );
         mJournal.enabled = !mJournal.enabled;
 
         if ( mJournal.enabled )
@@ -115,6 +118,7 @@ public class Journal : MonoBehaviour
     public void AddJournalPage( string pageName )
     {
         Debug.Log ( "Page Added: " + pageName );
+        mAudio.PlayOnce ( "newItem" );
         if( pageName.Equals( "JPBeach" ) && pages.Count < 3 )
         {
             pages.Add ( page3 );

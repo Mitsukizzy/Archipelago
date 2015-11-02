@@ -9,7 +9,7 @@ public class DayNightManager : MonoBehaviour
     int lightTimer = 1;
 
     // Number of seconds it takes to advance one hour
-    public float secondsPerHour = 4.0f;
+    public float secondsPerHour = 2.5f; // Overwritten by w/e is in inspector
 
     // Indicates which scene is the safe location (index)
     // Scenes 1-6

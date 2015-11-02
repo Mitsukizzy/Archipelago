@@ -106,7 +106,7 @@ public class Character : MonoBehaviour
         }
         if ( m_Input.InteractButtonPressed() && gatherFrom != null )
         {
-            m_Audio.PlayLoop ( "rustle" );
+            m_Audio.PlayOnce ( "rustle" );
             SetPlayerState ( PlayerState.Gather );
             BeginGather();
         }
@@ -140,7 +140,6 @@ public class Character : MonoBehaviour
         {
             //gatherBar = gatherBarObj.GetComponent<Slider>();
             gatherBarObj.SetActive(true);
-            m_State = PlayerState.Gather;
 			gatherTime += Time.deltaTime;
 			if( gatherTime >= secondsGathering )
             {
@@ -148,7 +147,7 @@ public class Character : MonoBehaviour
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
 				Debug.Log("Finished Gathering");
-                m_Audio.PlayLoop ( "newItem" );
+                m_Audio.PlayOnce ( "newItem" );
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
                 gatherBarObj.SetActive(false);
 			}
@@ -314,6 +313,7 @@ public class Character : MonoBehaviour
 
     public void useItem(GameObject item)
     {
+        m_Audio.PlayOnce ( "refreshed" );
         ItemData data = item.GetComponent<ItemData>();
         hpBar.value += data.healthIncrease;
         hungerBar.value += data.hungerIncrease;

@@ -34,14 +34,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndFailed;
     public AudioClip sndRustle;
     public AudioClip sndPlayerDamaged;
-    public AudioClip sndPlayerDeath;
+    //public AudioClip sndPlayerDeath;
     public AudioClip sndEnemyDamaged;
     public AudioClip sndEnemyDeath;
 
-    public AudioSource m_AudioSource;
+    private AudioSource m_AudioSource;
     private AudioSource m_MusicSource;
 
-    private float sfxVolume = 0.6f;
+    private float sfxVolume = 0.5f;
 
 	// Use this for initialization
 	void Start ()
@@ -51,11 +51,11 @@ public class AudioManager : MonoBehaviour
 
     public void SpecialInit()
     {
-        m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
-        m_MusicSource.volume = 0.35f;
-        m_MusicSource.loop = true;
+        m_AudioSource = GetComponent<AudioSource> ();
 
-        m_AudioSource.enabled = true;
+        m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
+        m_MusicSource.volume = 0.4f;
+        m_MusicSource.loop = true;
     }
 
 	// Update is called once per frame
@@ -113,6 +113,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOnce ( string soundToPlay )
     {
+        Debug.Log ( "ONE SHOT " + soundToPlay );
         switch ( soundToPlay )
         {
             case "shoot":
@@ -125,7 +126,7 @@ public class AudioManager : MonoBehaviour
                 m_AudioSource.PlayOneShot ( sndGameOver, sfxVolume );
                 break;
             case "refreshed":
-                m_AudioSource.PlayOneShot ( sndRefreshed, sfxVolume );
+                m_AudioSource.PlayOneShot ( sndRefreshed, 0.2f );
                 break;
             case "newItem":
                 m_AudioSource.PlayOneShot ( sndNewItem, sfxVolume );
@@ -139,14 +140,14 @@ public class AudioManager : MonoBehaviour
             case "playerDamaged":
                 m_AudioSource.PlayOneShot ( sndPlayerDamaged, sfxVolume );
                 break;
-            case "playerDeath":
-                m_AudioSource.PlayOneShot ( sndPlayerDeath, sfxVolume );
-                break;
+            //case "playerDeath":
+            //    m_AudioSource.PlayOneShot ( sndPlayerDeath, sfxVolume );
+            //    break;
             case "enemyDamaged":
-                m_AudioSource.PlayOneShot ( sndEnemyDamaged, sfxVolume );
+                m_AudioSource.PlayOneShot ( sndEnemyDamaged, 0.1f );
                 break;
             case "enemyDeath":
-                m_AudioSource.PlayOneShot ( sndEnemyDeath, sfxVolume );
+                m_AudioSource.PlayOneShot ( sndEnemyDeath, 0.3f );
                 break;
             case "click":
                 m_AudioSource.PlayOneShot ( sndClick, sfxVolume );
@@ -158,7 +159,7 @@ public class AudioManager : MonoBehaviour
                 m_AudioSource.PlayOneShot ( sndMenuHover, sfxVolume );
                 break;
             case "transition":
-                m_AudioSource.PlayOneShot ( sndTransition, sfxVolume );
+                m_AudioSource.PlayOneShot ( sndTransition, 0.2f );
                 break;
             default:
                 break;

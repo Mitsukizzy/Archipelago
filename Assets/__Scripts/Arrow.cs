@@ -38,4 +38,13 @@ public class Arrow : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D ( Collider2D other )
+    {
+        if ( other.gameObject.tag == "Char" )
+        {
+            GameObject.FindGameObjectWithTag("Char").GetComponent<Character>().TakeDamage ( 10 );
+            Destroy ( gameObject );
+        }
+    }
 }
