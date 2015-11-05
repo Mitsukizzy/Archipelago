@@ -6,10 +6,13 @@ using System.IO;
 
 public class GameManager : MonoBehaviour 
 {
+    public static GameManager instance;
+
     private Character m_Char;
 
     private AudioManager m_audio;
     private InputManager m_input;
+    private DayNightManager m_daynight;
 
     //dictionary to hold all key items and if they have been picked up yet
     private Dictionary<string, bool> KeyItems;
@@ -23,11 +26,26 @@ public class GameManager : MonoBehaviour
     private List<string> locationTimestamps = new List<string> ();
     private int daysStarved = 0;
     private int deaths = 0;
+    private int numPlays = 1;
 
     private bool hasVisitedBeach = false;
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
+
+    // Persistent (Singleton)
+    void Awake ()
+    {
+        if ( instance == null )
+        {
+            instance = this;
+            DontDestroyOnLoad ( gameObject );
+        }
+        else
+        {
+            Destroy ( this );
+        }
+    }
 
 	// Use this for initialization
 	void Start () 
@@ -35,6 +53,7 @@ public class GameManager : MonoBehaviour
         KeyItems = new Dictionary<string,bool>();
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
+        m_daynight = GetComponent<DayNightManager> ();
 
         KeyItems.Add ( "Backpack", true );
         KeyItems.Add ( "Boat", true );
@@ -157,10 +176,10 @@ public class GameManager : MonoBehaviour
             if ( !m_Char.IsAlive () )
             {
                 // Move to Game Over screen
+                m_Char.Revive ();
                 m_audio.PlayOnce ( "playerDeath" );
                 deaths++;
                 Application.LoadLevel ( 7 ); // to game over screen
-                m_Char.Revive ();
             }
             
             // Pause
@@ -272,6 +291,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        // Going to MM indicates end of one playthrough
+        GenerateMetricsString ();
+
         // Delete persistent objects that will be spawned again in Main Menu
         Destroy ( GameObject.FindGameObjectWithTag ( "UI" ).gameObject );
         Destroy ( GameObject.FindGameObjectWithTag ( "Char" ).gameObject );
@@ -282,16 +304,12 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Replace with code to load last level of campsite
         Application.LoadLevel ( 2 );
-        m_Char.ReturnToCamp();
+        m_Char.ReturnToCamp ();
+        m_daynight.ContinueDay ();
     }
 
     public void LoadNextLevel()
     {
-        if( Application.loadedLevel == 0 )
-        {
-
-        }
-
         if( Application.loadedLevel < 6 )
         {
             Application.LoadLevel ( Application.loadedLevel + 1 );
@@ -300,6 +318,7 @@ public class GameManager : MonoBehaviour
 
     void GenerateMetricsString ()
     {
+        metricsText += "-------- Playthrough " + numPlays + " --------";
         metricsText += "Days Starved: " + daysStarved + '\n';
         metricsText += '\n' + "Player Deaths: " + deaths + '\n';
 
@@ -308,6 +327,15 @@ public class GameManager : MonoBehaviour
         {
             metricsText += locationTimestamps[i] + '\n';
         }
+        metricsText += '\n';
+
+        numPlays++;
+
+        // Clear these out in case there is another playthrough
+        timeSpentPerLevel = new Dictionary<string, float> ();
+        locationTimestamps = new List<string> ();
+        daysStarved = 0;
+        deaths = 0;
     }
 
     public void IncreaseDaysStarved()

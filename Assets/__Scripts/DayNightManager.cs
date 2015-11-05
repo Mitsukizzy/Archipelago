@@ -46,24 +46,12 @@ public class DayNightManager : MonoBehaviour
     {
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-            mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
-            mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
-
-            mSlider.maxValue = maxTime;
-            mSlider.value = timeOfDay;
-
-            mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
-
-            if( GetComponent<GameManager>().GetPreviousSceneIndex() == -1 ) // Is the first time this is loaded
-            {
-                StartCoroutine ( AdvanceHour ( 1 ) );
-            }
-			daylight = GameObject.Find("Directional Light").GetComponent<Light>();
-            daylight.intensity = targetIntensity;
+            ContinueDay ();
         }
-
-        if (Application.loadedLevelName == "0_Beach")
+        else
         {
+            // If main menu or game over, reset the lights
+            timeOfDay = 0;
             maxIntensity = 1.0f;
             targetIntensity = 1.0f;
             curIntensity = 1.0f;
@@ -95,6 +83,24 @@ public class DayNightManager : MonoBehaviour
         return safeLocation;
     }
 
+    public void ContinueDay()
+    {
+        mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
+        mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
+
+        mSlider.maxValue = maxTime;
+        mSlider.value = timeOfDay;
+
+        mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
+
+        if ( GetComponent<GameManager> ().GetPreviousSceneIndex () == -1 ) // Is the first time this is loaded
+        {
+            StartCoroutine ( AdvanceHour ( 1 ) );
+        }
+        daylight = GameObject.Find ( "Directional Light" ).GetComponent<Light> ();
+        daylight.intensity = targetIntensity;
+    }
+
     public int GetTimeOfDay()
     {
         return timeOfDay;
@@ -107,7 +113,7 @@ public class DayNightManager : MonoBehaviour
         // Ensure the timer stops when on the menu screens
         if ( Application.loadedLevel == 0 || Application.loadedLevel == 7 )
         {
-            return false;
+            yield break;
         }
         timeOfDay += numHours;
 

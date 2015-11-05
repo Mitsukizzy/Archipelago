@@ -261,13 +261,13 @@ public class Character : MonoBehaviour
             {
                 hpBar.value = hpBar.maxValue;
             }
-
-            if ( hpWidthOffset < 120 ) 
+            
+            // TODO: Implement better way to indicate permanent reduction of max health
+            if ( hpWidthOffset < ( 400 * 0.8f ) )
             {
                 // Don't lower max hp if it would make max hp 0
-                hpWidthOffset += 30;
-                hpBG.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
-                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
+                hpWidthOffset += ( 400 / 5 );
+                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 400 - hpWidthOffset, 40 );
             }
         }
         // Since its a new day, replenish some hunger due to resting
@@ -288,10 +288,9 @@ public class Character : MonoBehaviour
         // Both back to their default, full values
         hpBar.value = health;
         hungerBar.value = hunger;
-        hpBar.maxValue = health; 
-        hpWidthOffset = 0;
-        hpBG.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
-        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 150 - hpWidthOffset, 16 );
+        hpBar.maxValue = health;
+        hpWidthOffset = 0; 
+        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 400 - hpWidthOffset, 40 );
     }
 
     public void toggleInteract()
