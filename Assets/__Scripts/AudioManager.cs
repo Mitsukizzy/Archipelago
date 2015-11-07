@@ -30,11 +30,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndCampsite;
     public AudioClip sndGameOver;
     public AudioClip sndRefreshed;
+    public AudioClip sndCook;
     public AudioClip sndNewItem;
     public AudioClip sndFailed;
     public AudioClip sndRustle;
     public AudioClip sndPlayerDamaged;
-    //public AudioClip sndPlayerDeath;
     public AudioClip sndEnemyDamaged;
     public AudioClip sndEnemyDeath;
 
@@ -128,6 +128,9 @@ public class AudioManager : MonoBehaviour
             case "refreshed":
                 m_AudioSource.PlayOneShot ( sndRefreshed, 0.2f );
                 break;
+            case "cook":
+                m_AudioSource.PlayOneShot ( sndCook, 0.3f );
+                break;
             case "newItem":
                 m_AudioSource.PlayOneShot ( sndNewItem, sfxVolume );
                 break;
@@ -140,9 +143,6 @@ public class AudioManager : MonoBehaviour
             case "playerDamaged":
                 m_AudioSource.PlayOneShot ( sndPlayerDamaged, sfxVolume );
                 break;
-            //case "playerDeath":
-            //    m_AudioSource.PlayOneShot ( sndPlayerDeath, sfxVolume );
-            //    break;
             case "enemyDamaged":
                 m_AudioSource.PlayOneShot ( sndEnemyDamaged, 0.1f );
                 break;

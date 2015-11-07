@@ -77,7 +77,7 @@ public class Campfire : MonoBehaviour
         // Center camera on campfire
         m_Camera.ChangeTarget ( transform );
 
-        // Move MC next to campfire, sitting cross legged
+        // TODO: Move MC next to campfire, sitting cross legged
     }
 
     public void NoCamp()
