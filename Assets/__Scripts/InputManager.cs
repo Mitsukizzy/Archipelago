@@ -274,6 +274,46 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
+    public bool InventoryButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyDown ( KeyCode.I ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    public bool JournalButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyDown ( KeyCode.J ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
     public bool PauseButtonPressed ()
     {
         switch ( controlScheme )

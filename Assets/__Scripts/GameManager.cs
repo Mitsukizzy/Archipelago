@@ -187,6 +187,18 @@ public class GameManager : MonoBehaviour
             {
                 Pause ();
             }
+
+            // Inventory
+            if( m_input.InventoryButtonPressed() )
+            {
+                GameObject.Find ( "Inventory" ).GetComponent<Inventory> ().ToggleInventory ();
+            }
+
+            // Journal
+            if( m_input.JournalButtonPressed() )
+            {
+                GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ().ToggleJournal ();
+            }
         }
         else
         {

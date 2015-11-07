@@ -134,6 +134,7 @@ MonoBehaviour:
   sndCampsite: {fileID: 8300000, guid: cbead7f5601143d4f9a5b34701fd5b0e, type: 3}
   sndGameOver: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
   sndRefreshed: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
+  sndCook: {fileID: 8300000, guid: c4756e54a48b0e64fbb34d87c5e92fe1, type: 3}
   sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
   sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
   sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
@@ -378,6 +379,10 @@ Prefab:
       propertyPath: minIntensity
       value: .300000012
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sndCook
+      value: 
+      objectReference: {fileID: 8300000, guid: c4756e54a48b0e64fbb34d87c5e92fe1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
