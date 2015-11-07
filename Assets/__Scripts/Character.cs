@@ -29,6 +29,9 @@ public class Character : MonoBehaviour
     //Inventory
     private Inventory m_Inventory;
 
+    //Arrows
+    public int numArrows = 10;
+
     //Health and Hunger sliders
     public Slider hpBar;
     public Slider hungerBar;
@@ -106,9 +109,21 @@ public class Character : MonoBehaviour
         }
         if ( m_Input.InteractButtonPressed() && gatherFrom != null )
         {
-            m_Audio.PlayOnce ( "rustle" );
-            SetPlayerState ( PlayerState.Gather );
-            BeginGather();
+            if (gatherFrom.tag != "arrow")
+            {
+                m_Audio.PlayOnce("rustle");
+                SetPlayerState(PlayerState.Gather);
+                BeginGather();
+            }
+            else if (gatherFrom.tag == "arrow")
+            {
+                numArrows++;
+                if (numArrows == 1)
+                {
+                    bow.GetComponent<BowScript>().swapSprite();
+                }
+                Destroy(gatherFrom);
+            }
         }
         if ( m_Input.AimButtonHeld() )
         {

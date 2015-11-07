@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11426202}
   - 60: {fileID: 6079148}
   - 50: {fileID: 5026168}
+  - 114: {fileID: 11438698}
   m_Layer: 0
   m_Name: Hunting Arrow
   m_TagString: arrow
@@ -60,19 +61,24 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 3.63000011, y: .125}
-      - {x: 3.63000011, y: .194999993}
-      - {x: 3.36999989, y: .254999995}
-      - {x: 3.20000005, y: .254999995}
-      - {x: 3.18000007, y: .194999993}
-      - {x: 1.24000001, y: .224999994}
-      - {x: 1.12, y: .254999995}
-      - {x: .790000021, y: .254999995}
-      - {x: .790000021, y: .0149999997}
-      - {x: 1.19000006, y: .0149999997}
-      - {x: 3.1400001, y: .0649999976}
-      - {x: 3.22000003, y: .0149999997}
-      - {x: 3.44000006, y: .0149999997}
+    - - {x: 3.22000003, y: -.0250000004}
+      - {x: 3.42000008, y: -.0149999997}
+      - {x: 3.6500001, y: .075000003}
+      - {x: 3.66000009, y: .115000002}
+      - {x: 3.66000009, y: .215000004}
+      - {x: 3.51999998, y: .294999987}
+      - {x: 3.17000008, y: .294999987}
+      - {x: 3.1400001, y: .224999994}
+      - {x: 1.23000002, y: .254999995}
+      - {x: 1.15999997, y: .294999987}
+      - {x: .810000002, y: .294999987}
+      - {x: .75999999, y: .284999996}
+      - {x: .75999999, y: -.0149999997}
+      - {x: .790000021, y: -.0350000001}
+      - {x: 1.21000004, y: -.0350000001}
+      - {x: 1.25999999, y: .0549999997}
+      - {x: 2.02999997, y: .0250000004}
+      - {x: 3.16000009, y: .0450000018}
 --- !u!114 &11426202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +92,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: .00999999978
   speed: 35
+--- !u!114 &11438698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe60c6a157cadbd4587ae6959024d9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675, type: 3}
+  activeSprite: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458, type: 3}
+  gatherableItem: {fileID: 0}
+  gatherBar: {fileID: 0}
 --- !u!212 &21245308
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -133,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
-      value: 1.215132
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.y
@@ -184,6 +205,16 @@ Prefab:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: defaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: activeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187520}

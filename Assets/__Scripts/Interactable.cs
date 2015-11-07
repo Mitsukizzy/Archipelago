@@ -52,6 +52,10 @@ public class Interactable : MonoBehaviour
 				coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
                 coll.gameObject.GetComponent<Character>().BeginGather();
 			}
+            if (this.gameObject.tag == "arrow")
+            {
+                coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
+            }
         }
         if (GetComponent<Animator>() != null)
         {

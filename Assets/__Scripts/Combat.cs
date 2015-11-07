@@ -51,10 +51,19 @@ public class Combat : MonoBehaviour
 
     void ShootArrow()
     {
+        Debug.Log("Arrow Count: " + m_Char.numArrows);
         // Instantiate arrow, aiming code is in Arrow.cs
-        GameObject arrowObj = ( GameObject )Instantiate ( arrow, bow.transform.position, Quaternion.identity );
-        m_Char.SetPlayerState ( Character.PlayerState.Idle );
-        bow.SetActive(false);
+        if (m_Char.numArrows > 0)
+        {
+            GameObject arrowObj = (GameObject)Instantiate(arrow, bow.transform.position, Quaternion.identity);
+            m_Char.SetPlayerState(Character.PlayerState.Idle);
+            bow.SetActive(false);
+            m_Char.numArrows--;
+            if (m_Char.numArrows <= 0)
+            {
+                m_Char.bow.GetComponent<BowScript>().swapSprite();
+            }
+        }
     }
 
     public void finishedAttacking()

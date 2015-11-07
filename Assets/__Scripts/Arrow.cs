@@ -8,6 +8,9 @@ public class Arrow : MonoBehaviour
 	public float gravity = 0.02f;
 	Quaternion rotateTo;
     public float speed = 5f;
+    private float floorY;
+    private float origY;
+
     // Use this for initialization
     void Start ()
     {
@@ -24,27 +27,34 @@ public class Arrow : MonoBehaviour
 		rotateTo = new Quaternion();
 		rotateTo.SetFromToRotation(Vector3.right, dir);
 		transform.rotation = rotateTo;
+
+        origY = transform.position.y;
+        floorY = Random.Range(-19, origY);
+        floorY += Random.Range(0, 9) / 10;
     }
 
     void Update ()
     {
-		transform.position += dir * 50 * Time.deltaTime;
-		dir.y -= gravity;
-		rotateTo.SetFromToRotation(Vector3.right, dir);
-		transform.rotation = rotateTo;
+        if (transform.position.y >= floorY)
+        {
+            transform.position += dir * 50 * Time.deltaTime;
+            dir.y -= gravity;
+            rotateTo.SetFromToRotation(Vector3.right, dir);
+            transform.rotation = rotateTo;
+        }
+        else
+        {
+            GetComponent<Interactable>().enabled = true;
+        }
 	}
 
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
     void OnTriggerEnter2D ( Collider2D other )
     {
         if ( other.gameObject.tag == "Char" )
         {
-            GameObject.FindGameObjectWithTag("Char").GetComponent<Character>().TakeDamage ( 10 );
-            Destroy ( gameObject );
+            //GameObject.FindGameObjectWithTag("Char").GetComponent<Character>().TakeDamage ( 10 );
+            //Destroy ( gameObject );
         }
     }
 }
