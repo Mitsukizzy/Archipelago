@@ -33,12 +33,18 @@ public class DayNightManager : MonoBehaviour
     public float numSecondsToChange = 1.0f;
     float curIntensity = 1.0f;
     float targetIntensity = 1.0f;
-    float maxIntensity = 1.0f;
+    public float maxIntensity = 1.0f;
+    public float minIntensity = 0.5f;
 
+    public Color dayColor;
+    public Color nightColor;
+    Color curColor;
+    Color targetColor;
 
 	void Start()
     {
-
+        curColor = Color.white;
+        targetColor = Color.white;
 	}
 
     // Use this for initialization
@@ -67,6 +73,7 @@ public class DayNightManager : MonoBehaviour
             {
                 daylight.intensity = Mathf.Lerp(curIntensity, targetIntensity, (curTime-startTime)/numSecondsToChange);
                 //Debug.Log(daylight.intensity);
+                daylight.color = Color.Lerp(curColor, targetColor, (curTime - startTime) / numSecondsToChange);
                 curTime += Time.deltaTime;
             }
         }
@@ -131,8 +138,9 @@ public class DayNightManager : MonoBehaviour
         startTime = Time.time;
         curTime = Time.time;
         curIntensity = daylight.intensity;
-        targetIntensity = Mathf.Lerp ( maxIntensity, 0.01f, ( lightTimer / ( maxTime * 0.5f ) ) );
-        //Debug.Log(targetIntensity);
+        targetIntensity = Mathf.Lerp ( maxIntensity, minIntensity, ( lightTimer / ( maxTime * 0.5f ) ) );
+        curColor = daylight.color;
+        targetColor = Color.Lerp(dayColor, nightColor, (lightTimer / (maxTime * 0.5f)));
 
         if( timeOfDay >= maxTime )
         {

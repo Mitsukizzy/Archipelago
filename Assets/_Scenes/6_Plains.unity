@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightmapSnapshot: {fileID: 0}
+  m_LightmapSnapshot: {fileID: 112000001, guid: 74fe965e6ce50c84a9c954b4b0799e4f,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -482,6 +483,7 @@ GameObject:
   - 4: {fileID: 444258925}
   - 114: {fileID: 444258924}
   - 114: {fileID: 444258923}
+  - 114: {fileID: 444258926}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -518,11 +520,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 444258922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.0836029, y: -3.01275516, z: 0}
+  m_LocalPosition: {x: -65.0836029, y: 43.0999985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &444258926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444258922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c264e66654726469079533eec9971f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyToSpawn: {fileID: 187870, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
+  minAmount: 2
 --- !u!1001 &499728080
 Prefab:
   m_ObjectHideFlags: 0

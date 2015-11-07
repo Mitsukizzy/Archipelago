@@ -41,7 +41,6 @@ public class Combat : MonoBehaviour
             {
                 if ( m_Char.GetPlayerState () == Character.PlayerState.Aim )
                 {
-                    m_Audio.PlayOnce ( "shoot" );
                     ShootArrow ();
                 }
             }
@@ -51,10 +50,21 @@ public class Combat : MonoBehaviour
 
     void ShootArrow()
     {
+        Debug.Log("Arrow Count: " + m_Char.numArrows);
         // Instantiate arrow, aiming code is in Arrow.cs
-        GameObject arrowObj = ( GameObject )Instantiate ( arrow, bow.transform.position, Quaternion.identity );
-        m_Char.SetPlayerState ( Character.PlayerState.Idle );
-        bow.SetActive(false);
+        if (m_Char.numArrows > 0)
+        {
+            m_Audio.PlayOnce("shoot");
+            GameObject arrowObj = (GameObject)Instantiate(arrow, bow.transform.position, Quaternion.identity);
+            arrowObj.GetComponent<Arrow>().mouseDir();
+            m_Char.SetPlayerState(Character.PlayerState.Idle);
+            bow.SetActive(false);
+            m_Char.numArrows--;
+            if (m_Char.numArrows <= 0)
+            {
+                m_Char.bow.GetComponent<BowScript>().swapSprite();
+            }
+        }
     }
 
     public void finishedAttacking()

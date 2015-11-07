@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 483692}
   - 212: {fileID: 21208332}
+  - 114: {fileID: 11439148}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -123,6 +124,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11439148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200673981e83c374794bcafd06b5d86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasArrow: {fileID: 21300000, guid: 7bd8f25d01273f746b2bac7147956ec4, type: 3}
+  noArrows: {fileID: 21300000, guid: 021e05e4f8fc12343aeef6c3ddcab668, type: 3}
 --- !u!114 &11445896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +166,7 @@ MonoBehaviour:
   gatherFrom: {fileID: 0}
   secondsGathering: 3
   gatherBarObj: {fileID: 0}
+  numArrows: 10
   hpBar: {fileID: 0}
   hungerBar: {fileID: 0}
   bow: {fileID: 112930}

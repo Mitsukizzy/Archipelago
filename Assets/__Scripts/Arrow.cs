@@ -7,9 +7,14 @@ public class Arrow : MonoBehaviour
 	Vector3 dir;
 	public float gravity = 0.02f;
 	Quaternion rotateTo;
-    public float speed = 5f;
+    public float speed = 50f;
+    private float floorY;
+    private float origY;
+    public bool hasHit = false;
+    public bool inMap = false;
+
     // Use this for initialization
-    void Start ()
+    public void mouseDir ()
     {
 		pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		pos.z = transform.position.z;
@@ -20,31 +25,47 @@ public class Arrow : MonoBehaviour
 		{
 			dir.Normalize ();
 		}
-
-		rotateTo = new Quaternion();
-		rotateTo.SetFromToRotation(Vector3.right, dir);
-		transform.rotation = rotateTo;
+        if (!inMap)
+        {
+            rotateTo = new Quaternion();
+            rotateTo.SetFromToRotation(Vector3.right, dir);
+            transform.rotation = rotateTo;
+        }
+    }
+    void Start()
+    {
+        origY = transform.position.y;
+        floorY = Random.Range(-19, GameObject.FindGameObjectWithTag("Char").transform.position.y);
+        floorY += Random.Range(0, 9) / 10;
     }
 
     void Update ()
     {
-		transform.position += dir * 50 * Time.deltaTime;
-		dir.y -= gravity;
-		rotateTo.SetFromToRotation(Vector3.right, dir);
-		transform.rotation = rotateTo;
+        if (transform.position.y >= floorY && !inMap)
+        {
+            transform.position += dir * speed * Time.deltaTime;
+            dir.y -= gravity;
+            rotateTo.SetFromToRotation(Vector3.right, dir);
+            transform.rotation = rotateTo;
+        }
+        else
+        {
+            GetComponent<Interactable>().enabled = true;
+            hasHit = true;
+        }
 	}
 
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 
     void OnTriggerEnter2D ( Collider2D other )
     {
-        if ( other.gameObject.tag == "Char" )
+        if ( other.gameObject.tag == "Bird" )
         {
-            GameObject.FindGameObjectWithTag("Char").GetComponent<Character>().TakeDamage ( 10 );
-            Destroy ( gameObject );
+            
         }
+    }
+
+    public void setDir(Vector3 direction)
+    {
+        dir = direction;
     }
 }

@@ -62,7 +62,7 @@ public class SlotScript : MonoBehaviour{
 
     public void Clicked()
     {
-        if (interactable)
+        if (interactable && !m_itemData.isKey)
         {
             Debug.Log("Clicked " + item.name );
             stack--;

@@ -134,7 +134,6 @@ MonoBehaviour:
   sndCampsite: {fileID: 8300000, guid: cbead7f5601143d4f9a5b34701fd5b0e, type: 3}
   sndGameOver: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
   sndRefreshed: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
-  sndCook: {fileID: 8300000, guid: c4756e54a48b0e64fbb34d87c5e92fe1, type: 3}
   sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
   sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
   sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
@@ -169,7 +168,11 @@ MonoBehaviour:
   sun: {fileID: 21300000, guid: b2feccdaab4e4ab4da1fb6e56d38c8c5, type: 3}
   moon: {fileID: 21300000, guid: 17578e74db4920d4fb0781f6d8d4a8c7, type: 3}
   daylight: {fileID: 0}
-  numSecondsToChange: 1
+  numSecondsToChange: 2
+  maxIntensity: 1
+  minIntensity: .300000012
+  dayColor: {r: 1, g: 1, b: 1, a: 0}
+  nightColor: {r: 0, g: .0823529437, b: .278431386, a: 0}
 --- !u!114 &11451224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,9 +347,37 @@ Prefab:
       value: 
       objectReference: {fileID: 4900000, guid: f47ed44348e1dde4896f99417f94c184, type: 3}
     - target: {fileID: 0}
-      propertyPath: sndCook
-      value: 
-      objectReference: {fileID: 8300000, guid: c4756e54a48b0e64fbb34d87c5e92fe1, type: 3}
+      propertyPath: dayColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dayColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dayColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightColor.g
+      value: .0823529437
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightColor.b
+      value: .278431386
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: numSecondsToChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minIntensity
+      value: .300000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
