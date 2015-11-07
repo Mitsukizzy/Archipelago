@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         origY = transform.position.y;
-        floorY = Random.Range(-19, origY);
+        floorY = Random.Range(-19, -3);
         floorY += Random.Range(0, 9) / 10;
     }
 
