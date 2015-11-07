@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
 
     //Arrows
     public int numArrows = 10;
+    Text arrowUIText;
 
     //Health and Hunger sliders
     public Slider hpBar;
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
         hpFill = hpBar.transform.Find( "Fill Area" ).gameObject;
         hungerBar = GameObject.Find ( "HungerSlider" ).GetComponent<Slider> ();
         hungerFill = hungerBar.transform.Find ( "Fill Area" ).transform.Find ( "Fill" ).GetComponent<Image> ();
+        arrowUIText = GameObject.Find("ArrowCount").GetComponent<Text>();
         hungerColorDefault = hungerFill.color;
 
         // Set max and starting value of health and hunger
@@ -91,6 +93,7 @@ public class Character : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        arrowUIText.text = numArrows.ToString();
         if( m_State == PlayerState.Dialogue && Time.timeScale != 0 ) // Make sure the game isn't paused
         {
             m_Animator.SetBool("isWalking", false);
