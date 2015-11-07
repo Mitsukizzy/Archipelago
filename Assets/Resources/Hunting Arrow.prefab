@@ -92,20 +92,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: .00999999978
   speed: 35
+  hasHit: 0
+  inMap: 0
 --- !u!114 &11438698
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187520}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe60c6a157cadbd4587ae6959024d9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675, type: 3}
   activeSprite: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458, type: 3}
-  gatherableItem: {fileID: 0}
+  gatherableItem: {fileID: 187520}
   gatherBar: {fileID: 0}
 --- !u!212 &21245308
 SpriteRenderer:
@@ -215,6 +217,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: gatherableItem
+      value: 
+      objectReference: {fileID: 187520}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187520}

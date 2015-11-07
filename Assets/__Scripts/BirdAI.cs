@@ -12,7 +12,7 @@ public class BirdAI : MonoBehaviour {
 
     public float speed = 10f;           //how fast the bird flies
     public float moveChance = 1;        //chance for the bird to move from its current position to a different one
-    public int hitPoints = 5;           
+    public int hitPoints = 3;           
     public int attackDmg = 5;
 
     private float moveTime;             //used for lerping
@@ -187,13 +187,16 @@ public class BirdAI : MonoBehaviour {
     {
         if (other.gameObject.tag == "arrow")
         {
-            Destroy(other.gameObject);
-            //if you hit the bird, it aggros to you
-            if (m_State != BirdState.Attack)
+            if (!other.gameObject.GetComponent<Arrow>().hasHit)
             {
-                m_State = BirdState.Attack;
+                //if you hit the bird, it aggros to you
+                Destroy(other.gameObject);
+                if (m_State != BirdState.Attack)
+                {
+                    m_State = BirdState.Attack;
+                }
+                TakeDamage();
             }
-            TakeDamage();
         }
     }
 
@@ -213,6 +216,14 @@ public class BirdAI : MonoBehaviour {
             }
             //GetComponent<Animator>().SetTrigger("Death");
             isDead = true;
+            int arrowReward = Random.Range(3, 5);
+            for (int i = 0; i < arrowReward; i++)
+            {
+                GameObject arrowObj = Instantiate(Resources.Load("Hunting Arrow", typeof(GameObject))) as GameObject;
+                Vector3 arrowPos = new Vector3(transform.position.x + Random.Range(1, 3), transform.position.y, transform.position.z);
+                arrowObj.transform.position = arrowPos;
+                arrowObj.GetComponent<Arrow>().setDir(Vector3.down);
+            }
             mAudio.PlayOnce ( "enemyDeath" );
         }
         else

@@ -41,7 +41,6 @@ public class Combat : MonoBehaviour
             {
                 if ( m_Char.GetPlayerState () == Character.PlayerState.Aim )
                 {
-                    m_Audio.PlayOnce ( "shoot" );
                     ShootArrow ();
                 }
             }
@@ -55,7 +54,9 @@ public class Combat : MonoBehaviour
         // Instantiate arrow, aiming code is in Arrow.cs
         if (m_Char.numArrows > 0)
         {
+            m_Audio.PlayOnce("shoot");
             GameObject arrowObj = (GameObject)Instantiate(arrow, bow.transform.position, Quaternion.identity);
+            arrowObj.GetComponent<Arrow>().mouseDir();
             m_Char.SetPlayerState(Character.PlayerState.Idle);
             bow.SetActive(false);
             m_Char.numArrows--;
