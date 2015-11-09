@@ -57,10 +57,13 @@ public class DayNightManager : MonoBehaviour
         else
         {
             // If main menu or game over, reset the lights
-            timeOfDay = 0;
+            timeOfDay = 1;
             maxIntensity = 1.0f;
             targetIntensity = 1.0f;
             curIntensity = 1.0f;
+            curColor = Color.white;
+            targetColor = Color.white;
+            lightTimer = 1;
         }
     }
 
