@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe60c6a157cadbd4587ae6959024d9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 21300000, guid: e33dea4c44c864d479c249421c0510e5, type: 3}
-  activeSprite: {fileID: 21300000, guid: fc0e33e842792c44291d8a15344bf825, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 827d2764c33704c9598e916e938ca721, type: 3}
+  activeSprite: {fileID: 21300000, guid: 56e1eb0c2733b42d19a6c92da2255cfe, type: 3}
   gatherableItem: {fileID: 103944, guid: 37c43a33dff914341a046bf5390306ac, type: 2}
   gatherBar: {fileID: 0}
 --- !u!114 &11482150
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: e33dea4c44c864d479c249421c0510e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 827d2764c33704c9598e916e938ca721, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -102,7 +102,22 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 827d2764c33704c9598e916e938ca721,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: defaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 827d2764c33704c9598e916e938ca721,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: activeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 56e1eb0c2733b42d19a6c92da2255cfe,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120942}

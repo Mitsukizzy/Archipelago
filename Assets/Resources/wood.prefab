@@ -66,8 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe60c6a157cadbd4587ae6959024d9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 21300000, guid: d0e06bd23bc5ff34d9ee14239f5dfe0d, type: 3}
-  activeSprite: {fileID: 21300000, guid: 4f9c6593e08e62341b15aa93bd4f1473, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 58632a3e9a86d444fa6ed63884343d4d, type: 3}
+  activeSprite: {fileID: 21300000, guid: e64c4db4858c44f14a05061464cfa667, type: 3}
   gatherableItem: {fileID: 142226, guid: ffd6738489045c4449b8bf536a6883b2, type: 2}
   gatherBar: {fileID: 0}
 --- !u!212 &21261258
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: d0e06bd23bc5ff34d9ee14239f5dfe0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58632a3e9a86d444fa6ed63884343d4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -106,17 +106,17 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: activeSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4f9c6593e08e62341b15aa93bd4f1473,
+      objectReference: {fileID: 21300000, guid: e64c4db4858c44f14a05061464cfa667,
         type: 3}
     - target: {fileID: 0}
       propertyPath: defaultSprite
       value: 
-      objectReference: {fileID: 21300000, guid: d0e06bd23bc5ff34d9ee14239f5dfe0d,
+      objectReference: {fileID: 21300000, guid: 58632a3e9a86d444fa6ed63884343d4d,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d0e06bd23bc5ff34d9ee14239f5dfe0d,
+      objectReference: {fileID: 21300000, guid: 58632a3e9a86d444fa6ed63884343d4d,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
