@@ -180,9 +180,13 @@ public class Character : MonoBehaviour
         if ( m_State != PlayerState.Gather && m_State != PlayerState.Interact && m_State != PlayerState.Aim && m_State != PlayerState.Dialogue )
         {   
             // Move character
-        	transform.Translate ( m_Input.GetHorizontalMovement() * speed );
-        	transform.Translate ( m_Input.GetVerticalMovement() * speed );
-            m_Animator.SetBool("isWalking", true);
+            if ( m_Input.GetHorizontalMovement () != Vector3.zero || m_Input.GetVerticalMovement () != Vector3.zero )
+            {
+                transform.Translate ( m_Input.GetHorizontalMovement () * speed );
+                transform.Translate ( m_Input.GetVerticalMovement () * speed );
+                m_Animator.SetBool ( "isWalking", true );
+                m_Inventory.CloseInventory (); // Close inventory if moving
+            }
 
             if ( m_State != PlayerState.Gather && m_Input.GetHorizontalMovement () == Vector3.zero && m_Input.GetVerticalMovement () == Vector3.zero )
             {
@@ -309,8 +313,8 @@ public class Character : MonoBehaviour
         hpBar.value = health;
         hungerBar.value = hunger;
         hpBar.maxValue = health;
-        hpWidthOffset = 0; 
-        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 400 - hpWidthOffset, 40 );
+        hpWidthOffset = 0;
+        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 12.5f );
     }
 
     public void toggleInteract()
