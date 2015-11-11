@@ -126,10 +126,10 @@ public class AudioManager : MonoBehaviour
                 m_AudioSource.PlayOneShot ( sndGameOver, sfxVolume );
                 break;
             case "refreshed":
-                m_AudioSource.PlayOneShot ( sndRefreshed, 0.2f );
+                m_AudioSource.PlayOneShot ( sndRefreshed, 0.3f );
                 break;
             case "cook":
-                m_AudioSource.PlayOneShot ( sndCook, 0.3f );
+                m_AudioSource.PlayOneShot ( sndCook, 0.4f );
                 break;
             case "newItem":
                 m_AudioSource.PlayOneShot ( sndNewItem, sfxVolume );

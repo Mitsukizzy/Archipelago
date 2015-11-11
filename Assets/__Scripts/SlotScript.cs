@@ -11,6 +11,7 @@ public class SlotScript : MonoBehaviour{
     int stack;
     public bool interactable;
     private Character m_Character;
+    private AudioManager mAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class SlotScript : MonoBehaviour{
         stack = 1;
         interactable = false;
         m_Character = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 	}
 	
 	// Update is called once per frame
@@ -76,7 +78,14 @@ public class SlotScript : MonoBehaviour{
             }
             if (m_itemData.cookedItem != null)
             {
+                // Cooking here, not eating it
+                mAudio.PlayOnce ( "cook" );
                 m_Character.GetItem(m_itemData.cookedItem);
+            }
+            else
+            {
+                // Using item and not cooking it (assume eating)
+                mAudio.PlayOnce ( "refreshed" );
             }
         }
     }
