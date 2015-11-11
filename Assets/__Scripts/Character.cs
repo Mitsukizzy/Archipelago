@@ -40,7 +40,8 @@ public class Character : MonoBehaviour
     private Color hungerColorDefault;
     private GameObject hpBG;
     private GameObject hpFill;
-    private int hpWidthOffset = 0;
+    private float hpFillWidth;
+    private float hpWidthOffset = 0.0f;
 
     //Animator
     private Animator m_Animator;
@@ -82,6 +83,7 @@ public class Character : MonoBehaviour
         hungerFill = hungerBar.transform.Find ( "Fill Area" ).transform.Find ( "Fill" ).GetComponent<Image> ();
         arrowUIText = GameObject.Find("ArrowCount").GetComponent<Text>();
         hungerColorDefault = hungerFill.color;
+        hpFillWidth = hungerFill.rectTransform.rect.width;
 
         // Set max and starting value of health and hunger
         hpBar.maxValue = health;
@@ -281,11 +283,11 @@ public class Character : MonoBehaviour
             }
             
             // TODO: Implement better way to indicate permanent reduction of max health
-            if ( hpWidthOffset < ( 400 * 0.8f ) )
+            if ( hpWidthOffset < ( hpFillWidth * 0.8f ) )
             {
                 // Don't lower max hp if it would make max hp 0
-                hpWidthOffset += ( 400 / 5 );
-                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( 400 - hpWidthOffset, 40 );
+                hpWidthOffset += ( hpFillWidth / 5.0f );
+                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 12.5f );
             }
         }
         // Since its a new day, replenish some hunger due to resting
@@ -330,7 +332,6 @@ public class Character : MonoBehaviour
 
     public void useItem(GameObject item)
     {
-        m_Audio.PlayOnce ( "refreshed" );
         ItemData data = item.GetComponent<ItemData>();
         hpBar.value += data.healthIncrease;
         hungerBar.value += data.hungerIncrease;
