@@ -20,6 +20,9 @@ TagManager:
   - arrow
   - Key
   - Bird
+  - Objective
+  - RightArrow
+  - Tutorial
   layers:
   - Default
   - TransparentFX

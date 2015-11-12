@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private Character m_Char;
-
     private AudioManager m_audio;
     private InputManager m_input;
     private DayNightManager m_daynight;
+    private DialogueSystem m_dialogue;
 
     //dictionary to hold all key items and if they have been picked up yet
     private Dictionary<string, bool> KeyItems;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private int numPlays = 1;
 
     private bool hasVisitedBeach = false;
+    private bool hasVisitedWetlands = false;
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         m_audio = GetComponent<AudioManager> ();
         m_input = GetComponent<InputManager> ();
         m_daynight = GetComponent<DayNightManager> ();
+        m_dialogue = GetComponent<DialogueSystem> ();
 
         KeyItems.Add ( "Backpack", true );
         KeyItems.Add ( "Boat", true );
@@ -99,6 +101,12 @@ public class GameManager : MonoBehaviour
                 spawnLoc = GameObject.Find ( "SpawnPoint" ).GetComponent<Transform> ().position;
             }
             m_Char.transform.position = spawnLoc;
+
+            if( !hasVisitedWetlands )
+            {
+                m_dialogue.StartDialogue ( "wetlands1" );
+                hasVisitedWetlands = true;
+            }
         }
         else if ( Application.loadedLevel == 1 && CurrentSceneIndex > 1 ) // Coming from wetlands to beach
         {

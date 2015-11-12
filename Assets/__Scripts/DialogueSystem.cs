@@ -8,6 +8,9 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset beach1; // Intro
     public TextAsset beach2; // Bag + Journal
     public TextAsset beach3; // Boat
+    public TextAsset wetlands1; // Enter wetlands, shoot birds
+    public TextAsset wetlands2; // Berries
+    public TextAsset wetlands3; // Camp
     public TextAsset foundWood; // wood for the boat
     public TextAsset foundRope; // rope for the boat
     public TextAsset foundHammer; //hammer for boat
@@ -17,6 +20,11 @@ public class DialogueSystem : MonoBehaviour
     public Dictionary<string, string> mDialogues;
     private string[] curDialogue;
     private int curIndex = 0;
+    private string curKey;  // Keep track of the current dialogue to show special hints at the end of it
+    
+    private GameObject objective;
+    private GameObject objBackground;
+    private GameObject rightArrow;
 
     private GameObject mDialogueBox;
     private Text mDialogueText;
@@ -31,6 +39,9 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "beach1", beach1.text );
         mDialogues.Add ( "beach2", beach2.text );
         mDialogues.Add ( "beach3", beach3.text );
+        mDialogues.Add ( "wetlands1", wetlands1.text );
+        mDialogues.Add ( "wetlands2", wetlands2.text );
+        mDialogues.Add ( "wetlands3", wetlands3.text );
         mDialogues.Add ( "wood", foundWood.text );
         mDialogues.Add ( "rope", foundRope.text );
         mDialogues.Add ( "hammer", foundHammer.text );
@@ -73,10 +84,16 @@ public class DialogueSystem : MonoBehaviour
 
         mDialogueText = GameObject.Find ( "DialogueText" ).GetComponent<Text> ();
         mDialogueBox = GameObject.Find ( "DialogueBox" );
+
+        // able to find inactive objects
+        objective = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjText" ).gameObject;
+        objBackground = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjBackground" ).gameObject; 
+        rightArrow = GameObject.FindGameObjectWithTag ( "Tutorial" ).transform.Find ( "Right" ).gameObject; 
     }
 
     public void StartDialogue( string key )
     {
+        curKey = key;
         mChar.SetPlayerState ( Character.PlayerState.Dialogue );
         mDialogueBox.SetActive ( true );
 
@@ -103,6 +120,36 @@ public class DialogueSystem : MonoBehaviour
             mDialogueText.text = "";
             mChar.SetPlayerState ( Character.PlayerState.Idle );
             mDialogueBox.SetActive ( false );
+            ShowHint ();
         }
+    }
+
+    // Handle special hints or tutorials
+    private void ShowHint()
+    {
+        //objBackground.SetActive ( true );
+        switch( curKey )
+        {
+            case "beach2":  // backpack
+                objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
+                break;
+            case "beach3":  // boat
+                objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
+                rightArrow.SetActive ( true );
+                StartCoroutine ( HideHint () );
+                break;
+            case "wetlands1":  // shoot birds
+                objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n\n(Q to AIM and LEFT CLICK to SHOOT)";
+                break;
+        }
+        //StartCoroutine ( HideHint () );
+    }
+
+    IEnumerator HideHint( int seconds = 5 )
+    {
+        yield return new WaitForSeconds ( seconds );
+        //objective.GetComponent<Text> ().text = "";
+        //objBackground.SetActive ( false );
+        rightArrow.SetActive ( false );
     }
 }
