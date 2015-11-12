@@ -42,11 +42,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Uncooked Meat. Cook at a campfire
   healthIncrease: 0
-  staminaIncrease: 0
+  hungerIncrease: 0
   healsHunger: 0
   healsSickness: 0
   healsTired: 0
   isInstant: 0
+  isKey: 0
   cookedItem: {fileID: 113372, guid: 05fac8435b6cfcd48a740e1b211e3690, type: 2}
 --- !u!212 &21276350
 SpriteRenderer:
@@ -104,6 +105,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_inventory
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hungerIncrease
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
