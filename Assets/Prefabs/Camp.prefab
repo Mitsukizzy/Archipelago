@@ -292,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 188110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -119.599998, y: 36.0999985, z: 0}
-  m_LocalScale: {x: 12.4175196, y: 12.4175253, z: 12.4175253}
+  m_LocalScale: {x: 3.43813062, y: 3.43813252, z: 3.43813252}
   m_Children: []
   m_Father: {fileID: 481072}
   m_RootOrder: 2
@@ -335,9 +335,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -.0162775647, y: .0712693334}
+  m_Offset: {x: -.0650803894, y: .276109964}
   serializedVersion: 2
-  m_Size: {x: .459201276, y: .12125966}
+  m_Size: {x: 1.52798867, y: .530937016}
 --- !u!61 &6191466
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -348,9 +348,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: .276415914}
+  m_Offset: {x: -.0406929962, y: .946932614}
   serializedVersion: 2
-  m_Size: {x: .639999986, y: .729688525}
+  m_Size: {x: 1.90691352, y: 2.07071924}
 --- !u!82 &8280134
 AudioSource:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> slotList; //use this to know what items we have and what slots they're in
     int initSlotPosx = 40;
     int initSlotPosy = 40;
+    private bool isKeepingBagOpen = false;
 
     private Canvas inventHolder;
 
@@ -61,6 +62,7 @@ public class Inventory : MonoBehaviour {
                 {
                     slotData.interactable = true;
                 }
+                StartCoroutine( KeepInventoryOpen () ); // Opens the inventory for a few seconds then closes it
                 return;
             }
         }
@@ -77,6 +79,7 @@ public class Inventory : MonoBehaviour {
                 {
                     slotData.interactable = true;
                 }
+                StartCoroutine( KeepInventoryOpen () ); // Opens the inventory for a few seconds then closes it
                 return;
             }
         }
@@ -86,6 +89,15 @@ public class Inventory : MonoBehaviour {
         Fail.SetTrigger("becameActive");
 
 
+    }
+
+    IEnumerator KeepInventoryOpen( int numSeconds = 3 )
+    {
+        isKeepingBagOpen = true;
+        OpenInventory ();
+        yield return new WaitForSeconds ( numSeconds );
+        isKeepingBagOpen = false;
+        CloseInventory ();
     }
 
     public void ToggleInventory()
@@ -121,10 +133,13 @@ public class Inventory : MonoBehaviour {
 
     public void CloseInventory()
     {
-        inventHolder.enabled = false;
-        bag.GetComponent<Image>().sprite = initBagSprites.disabledSprite;
-        bag.GetComponent<Button>().spriteState = initBagSprites;
-        SetInteractable(false);
+        if ( !isKeepingBagOpen )
+        {
+            inventHolder.enabled = false;
+            bag.GetComponent<Image> ().sprite = initBagSprites.disabledSprite;
+            bag.GetComponent<Button> ().spriteState = initBagSprites;
+            SetInteractable ( false );
+        }
     }
 
     public void SetInteractable(bool interact)
