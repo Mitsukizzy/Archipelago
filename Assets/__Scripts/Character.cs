@@ -112,7 +112,7 @@ public class Character : MonoBehaviour
                 m_Animator.SetBool("isAtking", false);
             }
         }
-        if ( m_Input.InteractButtonPressed() && gatherFrom != null )
+        if ( m_Input.InteractButtonPressed() && gatherFrom != null  && m_State != PlayerState.Aim)
         {
             if (gatherFrom.tag != "arrow")
             {
@@ -120,23 +120,28 @@ public class Character : MonoBehaviour
                 SetPlayerState(PlayerState.Gather);
                 BeginGather();
             }
-            else if (gatherFrom.tag == "arrow")
-            {
-                numArrows++;
-                if (numArrows == 1)
-                {
-                    bow.GetComponent<BowScript>().swapSprite();
-                }
-                Destroy(gatherFrom);
-            }
+            
         }
-        if ( m_Input.AimButtonHeld() )
+        if ( m_Input.AimButtonHeld() && m_State != PlayerState.Gather)
         {
             m_Animator.SetBool("isWalking", false);
             SetPlayerState ( PlayerState.Aim );
             bow.SetActive(true);
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = transform.position.z;
+            //face player towards mouse
+            Vector3 FacePos = transform.localScale;
+            if (pos.x > transform.position.x)
+            {
+                m_FacingRight = true;
+                FacePos.x = -Mathf.Abs(FacePos.x);
+            }
+            else
+            {
+                m_FacingRight = false;
+                FacePos.x = Mathf.Abs(FacePos.x);
+            }
+            transform.localScale = FacePos;
             
             Vector3 dir = pos - bow.transform.position;
 
@@ -230,16 +235,29 @@ public class Character : MonoBehaviour
         {
             m_FacingRight = true;
             Vector3 newScale = transform.localScale;
-            newScale.x *= -1;
+            newScale.x = -Mathf.Abs(newScale.x);
             transform.localScale = newScale;
         }
         else if ( m_Input.GetHorizontalMovement ().x < 0 && m_FacingRight )
         {
             m_FacingRight = false;
             Vector3 newScale = transform.localScale;
-            newScale.x *= -1;
+            newScale.x = Mathf.Abs(newScale.x);
             transform.localScale = newScale;
         }
+    }
+
+    public void CollectArrow()
+    {
+        if (gatherFrom.tag == "arrow")
+            {
+                numArrows++;
+                if (numArrows == 1)
+                {
+                    bow.GetComponent<BowScript>().swapSprite();
+                }
+                Destroy(gatherFrom);
+            }
     }
 
     public void TakeDamage ( int damage )

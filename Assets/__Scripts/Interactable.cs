@@ -56,6 +56,7 @@ public class Interactable : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
                 coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
+                coll.gameObject.GetComponent<Character>().CollectArrow();
             }
             else
             {

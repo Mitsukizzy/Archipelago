@@ -91,7 +91,7 @@ public class BirdAI : MonoBehaviour {
         else if(m_State == BirdState.Attack){
             Vector3 charOffset = m_Char.transform.position;
             charOffset.y += m_Char.GetComponent<SpriteRenderer>().bounds.size.y;
-            charOffset.x += m_Char.GetComponent<SpriteRenderer>().bounds.size.x;
+            //charOffset.x += m_Char.GetComponent<SpriteRenderer>().bounds.size.x;
             if (m_Char.transform.position.x > transform.position.x)
             {
                 Vector3 newScale = transform.localScale;
@@ -104,6 +104,9 @@ public class BirdAI : MonoBehaviour {
                 newScale.x = Mathf.Abs(newScale.x);
                 transform.localScale = newScale;
             }
+            if ((transform.position.x < charOffset.x - m_Char.GetComponent<SpriteRenderer>().bounds.size.x ||
+                transform.position.x > charOffset.x + m_Char.GetComponent<SpriteRenderer>().bounds.size.x) ||
+                (transform.position.y > charOffset.y + 5 || transform.position.y < charOffset.y - 5)) 
             transform.position = Vector3.MoveTowards(transform.position, charOffset, Time.deltaTime*speed);
             if ( canAttack )
             {
