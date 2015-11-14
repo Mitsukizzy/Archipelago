@@ -219,7 +219,7 @@ public class BirdAI : MonoBehaviour {
             }
             //GetComponent<Animator>().SetTrigger("Death");
             isDead = true;
-            int arrowReward = Random.Range(1, hitPoints);
+            int arrowReward = Random.Range(1, 3);
             for (int i = 0; i < arrowReward; i++)
             {
                 GameObject arrowObj = Instantiate(Resources.Load("Hunting Arrow", typeof(GameObject))) as GameObject;

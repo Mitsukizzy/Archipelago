@@ -31,7 +31,8 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         origY = transform.position.y;
-        floorY = Random.Range(-18, GameObject.FindGameObjectWithTag("Char").transform.position.y+1);
+		int lowerBound = (int)Mathf.Max(GameObject.FindGameObjectWithTag("Char").transform.position.y - 2, Camera.main.ScreenToWorldPoint(new Vector3(0,0,0)).y+4);
+        floorY = Random.Range(lowerBound, Camera.main.ScreenToWorldPoint(new Vector3(0,0,0)).y+4);
         floorY += Random.Range(0, 9) / 10;
 
     }
