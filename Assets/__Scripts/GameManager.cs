@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private DayNightManager m_daynight;
     private DialogueSystem m_dialogue;
 
+    private GameObject uiObj;
+
     //dictionary to hold all key items and if they have been picked up yet
     private Dictionary<string, bool> KeyItems;
     //TRUE = has not been found
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private bool hasVisitedBeach = false;
     private bool hasVisitedWetlands = false;
+    private bool hasPlayedIntroSplash = false;
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
@@ -82,11 +85,9 @@ public class GameManager : MonoBehaviour
     {
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-            m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+            m_Char = GameObject.FindGameObjectWithTag( "Char" ).GetComponent<Character>();
+            uiObj = GameObject.FindGameObjectWithTag( "UI" ).gameObject;
         }
-
-        PreviousSceneIndex = CurrentSceneIndex;
-        CurrentSceneIndex = Application.loadedLevel;
 
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
@@ -94,6 +95,9 @@ public class GameManager : MonoBehaviour
         if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             Vector3 spawnLoc;
+            PreviousSceneIndex = CurrentSceneIndex;
+            CurrentSceneIndex = Application.loadedLevel;
+
             if ( CurrentSceneIndex < PreviousSceneIndex )
             {
                 spawnLoc = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position;
@@ -121,7 +125,8 @@ public class GameManager : MonoBehaviour
         if ( Application.loadedLevel == 0 )
         {
             m_audio.PlayLoop( "main" );
-            locationTimestamps.Add ( "Main Menu - " + Time.time );
+            locationTimestamps.Add("Main Menu - " + Time.time);
+            hasPlayedIntroSplash = true;
         }
         else if ( Application.loadedLevel == 1 )
         {
@@ -195,6 +200,8 @@ public class GameManager : MonoBehaviour
                 m_Char.Revive ();
                 m_audio.PlayOnce ( "playerDeath" );
                 deaths++;
+                Debug.Log( "mchar: " + m_Char);
+                uiObj.SetActive( false );
                 Application.LoadLevel ( 7 ); // to game over screen
             }
             
@@ -224,7 +231,6 @@ public class GameManager : MonoBehaviour
                 ShowSplash ( false ); // close splash
             }
         }
-
 
         // Our cheat reset keys
         if ( m_input.ResetGameButtonPressed () )
@@ -332,7 +338,9 @@ public class GameManager : MonoBehaviour
     public void RetryFromCampfire ()
     {
         // TODO: Replace with code to load last level of campsite
-        Application.LoadLevel ( 2 );
+        Application.LoadLevel(2);
+
+        Debug.Log("mchar: " + m_Char);
         m_Char.ReturnToCamp ();
         m_daynight.ContinueDay ();
     }
@@ -413,5 +421,10 @@ public class GameManager : MonoBehaviour
     public int GetPreviousSceneIndex ()
     {
         return PreviousSceneIndex;
+    }
+
+    public bool GetHasPlayedIntroSplash ()
+    {
+        return hasPlayedIntroSplash;
     }
 }

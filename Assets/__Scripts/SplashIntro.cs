@@ -12,8 +12,7 @@ public class SplashIntro : MonoBehaviour
     void Start ()
     {
         // Only load on first playthrough
-        Debug.Log(GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetPreviousSceneIndex());
-        if ( GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetPreviousSceneIndex() < 1 )
+        if ( !GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasPlayedIntroSplash() )
         {
             splashBG.SetActive(true);
             logoUSC.canvasRenderer.SetAlpha(0.0f);
