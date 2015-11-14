@@ -82,7 +82,7 @@ public class KeyItems : MonoBehaviour
             }
 
             // Journal Pages
-            if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) )
+            if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) || transform.tag.Equals("JPPlains") )
             {
                 Debug.Log ( "tag " + transform.tag );
                 GameObject.Find ( "NewPage" ).GetComponent<Animator> ().SetTrigger ( "becameActive" );

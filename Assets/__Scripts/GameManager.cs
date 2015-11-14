@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         KeyItems.Add ( "JournalPageBeach", true );
         KeyItems.Add ( "JournalPageSeaCave", true );
         KeyItems.Add ( "JournalPageDocks", true );
+		KeyItems.Add ( "JournalPagePlains", true);
 
 		CurrentSceneIndex = 0;
 		PreviousSceneIndex = -1; // On purpose for day night check

@@ -23,6 +23,7 @@ TagManager:
   - Objective
   - RightArrow
   - Tutorial
+  - JPPlains
   layers:
   - Default
   - TransparentFX
