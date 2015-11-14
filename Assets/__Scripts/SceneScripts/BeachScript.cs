@@ -18,10 +18,6 @@ public class BeachScript : MonoBehaviour
         {
             GameObject Backpack = Instantiate ( Resources.Load ( "Backpack", typeof ( GameObject ) ) ) as GameObject;
         }
-        if ( mGame.CheckItem ( "Boat" ) )
-        {
-            GameObject Boat = Instantiate ( Resources.Load ( "Boat", typeof ( GameObject ) ) ) as GameObject;
-        }
         if ( mGame.CheckItem ( "JournalPageBeach" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageBeach", typeof ( GameObject ) ) ) as GameObject;
