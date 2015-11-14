@@ -103,7 +103,7 @@ MonoBehaviour:
   specialWaypoint: {fileID: 0}
   speed: 10
   moveChance: 1
-  hitPoints: 5
+  hitPoints: 3
   attackDmg: 5
   dropRng: 1
   attackRange: 10
@@ -121,7 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 9f54d2a318f85464a91de0ae5c227469, type: 3}
   activeSprite: {fileID: 21300000, guid: 9f54d2a318f85464a91de0ae5c227469, type: 3}
+  gatheredSprite: {fileID: 0}
   gatherableItem: {fileID: 143314, guid: f6578b3077035544c8a7109e3b87e458, type: 2}
+  gathersRemaining: 1
   gatherBar: {fileID: 0}
 --- !u!212 &21216450
 SpriteRenderer:
@@ -181,6 +183,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hitPoints
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
