@@ -178,6 +178,12 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        // Help
+        if ( m_input.HelpButtonPressed() )
+        {
+            ToggleSplash();
+        }
+
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 ) //Not the main menu or game over screen
         {
             // Check if alive
@@ -194,12 +200,6 @@ public class GameManager : MonoBehaviour
             if ( m_input.PauseButtonPressed () )
             {
                 Pause ();
-            }
-
-            // Help
-            if( m_input.HelpButtonPressed() )
-            {
-                ToggleSplash();
             }
 
             // Inventory
