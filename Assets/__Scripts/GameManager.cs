@@ -196,6 +196,12 @@ public class GameManager : MonoBehaviour
                 Pause ();
             }
 
+            // Help
+            if( m_input.HelpButtonPressed() )
+            {
+                ToggleSplash();
+            }
+
             // Inventory
             if( m_input.InventoryButtonPressed() )
             {
@@ -294,6 +300,12 @@ public class GameManager : MonoBehaviour
     {
         GameObject splashOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Splash UI" ).gameObject; // my way of finding inactive gameobject
         splashOverlay.SetActive ( shouldShow );
+    }
+
+    public void ToggleSplash ()
+    {
+        GameObject splashOverlay = GameObject.FindGameObjectWithTag("UI").transform.Find("Splash UI").gameObject; // my way of finding inactive gameobject
+        splashOverlay.SetActive( !splashOverlay.activeSelf );
     }
 
     public void ExitGame ()

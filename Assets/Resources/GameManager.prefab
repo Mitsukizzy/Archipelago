@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOfDay: 1
-  secondsPerHour: 2.5
+  secondsPerHour: 4
   sun: {fileID: 21300000, guid: b2feccdaab4e4ab4da1fb6e56d38c8c5, type: 3}
   moon: {fileID: 21300000, guid: 17578e74db4920d4fb0781f6d8d4a8c7, type: 3}
   daylight: {fileID: 0}
@@ -202,6 +202,8 @@ MonoBehaviour:
   wetlands1: {fileID: 4900000, guid: 5ca9bab538d02e6409108fb4db1ab56d, type: 3}
   wetlands2: {fileID: 4900000, guid: 55cf4a81af238b34196474b9dd4eac0c, type: 3}
   wetlands3: {fileID: 4900000, guid: 304c88d5df9a4c84c8ef8850635ea966, type: 3}
+  afterBagBoat: {fileID: 4900000, guid: 528aa5be49ea59a4b9e4f127130d9970, type: 3}
+  afterBow: {fileID: 4900000, guid: 9340efba248c8bf4d952c8af8e239f57, type: 3}
   foundWood: {fileID: 4900000, guid: 3623999410b3c8342b3015ff1488f389, type: 3}
   foundRope: {fileID: 4900000, guid: 8bfe98f0dfdf2e644966a78aad10a5ea, type: 3}
   foundHammer: {fileID: 4900000, guid: 0f369fb19afca8f4393fad11578dc1be, type: 3}
@@ -332,7 +334,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
     - target: {fileID: 0}
       propertyPath: secondsPerHour
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sndEnemyDeath
@@ -398,6 +400,14 @@ Prefab:
       propertyPath: wetlands3
       value: 
       objectReference: {fileID: 4900000, guid: 304c88d5df9a4c84c8ef8850635ea966, type: 3}
+    - target: {fileID: 0}
+      propertyPath: afterBagBoat
+      value: 
+      objectReference: {fileID: 4900000, guid: 528aa5be49ea59a4b9e4f127130d9970, type: 3}
+    - target: {fileID: 0}
+      propertyPath: afterBow
+      value: 
+      objectReference: {fileID: 4900000, guid: 9340efba248c8bf4d952c8af8e239f57, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}

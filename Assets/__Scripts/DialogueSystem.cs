@@ -11,6 +11,8 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset wetlands1; // Enter wetlands, shoot birds
     public TextAsset wetlands2; // Berries
     public TextAsset wetlands3; // Camp
+    public TextAsset afterBagBoat; // On beach after interacting with bag and boat
+    public TextAsset afterBow;  // After interacting with bow
     public TextAsset foundWood; // wood for the boat
     public TextAsset foundRope; // rope for the boat
     public TextAsset foundHammer; //hammer for boat
@@ -42,6 +44,8 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "wetlands1", wetlands1.text );
         mDialogues.Add ( "wetlands2", wetlands2.text );
         mDialogues.Add ( "wetlands3", wetlands3.text );
+        mDialogues.Add ( "afterBagBoat", afterBagBoat.text );
+        mDialogues.Add ( "afterBow", afterBow.text );
         mDialogues.Add ( "wood", foundWood.text );
         mDialogues.Add ( "rope", foundRope.text );
         mDialogues.Add ( "hammer", foundHammer.text );
@@ -130,15 +134,24 @@ public class DialogueSystem : MonoBehaviour
         //objBackground.SetActive ( true );
         switch( curKey )
         {
+            case "beach1":  // spawned on island
+                objective.GetComponent<Text> ().text = "Tip: Press H to view help";
+                break;
             case "beach2":  // backpack
                 objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
                 break;
             case "beach3":  // boat
+                if ( !mGame.CheckItem( "Backpack" ) ) // If backpack has been interacted with
+                {
+                    StartDialogue( "afterBagBoat" );
+                }
+                break;
+            case "afterBagBoat":  // after bag and boat             
                 objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
                 rightArrow.SetActive ( true );
                 StartCoroutine ( HideHint () );
                 break;
-            case "wetlands1":  // shoot birds
+            case "afterBow":  // shoot birds
                 objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n\n(Q to AIM and LEFT CLICK to SHOOT)";
                 break;
         }
