@@ -85,7 +85,6 @@ public class KeyItems : MonoBehaviour
             if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) || transform.tag.Equals("JPPlains") )
             {
                 Debug.Log ( "tag " + transform.tag );
-                GameObject.Find ( "NewPage" ).GetComponent<Animator> ().SetTrigger ( "becameActive" );
                 mJournal.AddJournalPage ( transform.tag );
                 Destroy ( gameObject ); //picked up, not needed anymore
             }

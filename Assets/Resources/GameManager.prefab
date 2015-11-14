@@ -209,6 +209,7 @@ MonoBehaviour:
   foundHammer: {fileID: 4900000, guid: 0f369fb19afca8f4393fad11578dc1be, type: 3}
   boatNotDone: {fileID: 4900000, guid: f47ed44348e1dde4896f99417f94c184, type: 3}
   boatDone: {fileID: 4900000, guid: 203e481f3cbd4404e9ca0c456c5ddc31, type: 3}
+  afterPlainsJP: {fileID: 4900000, guid: f2e5bf26042544411a75dee81514f94c, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1

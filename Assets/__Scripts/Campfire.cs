@@ -25,7 +25,7 @@ public class Campfire : MonoBehaviour
     private Inventory m_Inventory;
 	
 	private Journal m_Journal;
-	private bool willRecieveJP = false;
+	private bool willRecieveWetlandJP = false;
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class Campfire : MonoBehaviour
 		Debug.Log(GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands());
 		if(!GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands())
 		{
-			willRecieveJP = true;
+			willRecieveWetlandJP = true;
 			GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().SetHasVisitedWetlands(true);
 		}
 	}
@@ -61,10 +61,10 @@ public class Campfire : MonoBehaviour
             campPopup.SetActive ( true );
             m_Char.SetPlayerState ( Character.PlayerState.Interact );
             m_CharAnimator.SetBool("isWalking", false);
-			if(willRecieveJP)
+			if(willRecieveWetlandJP)
 			{
 				m_Journal.AddJournalPage("JPWetlands");
-				willRecieveJP = false;
+				willRecieveWetlandJP = false;
 			}
         }
 
