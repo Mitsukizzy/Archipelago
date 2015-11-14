@@ -15,6 +15,8 @@ public class Journal : MonoBehaviour
     public TextAsset page3;
     public TextAsset page4;
     public TextAsset page5;
+	public TextAsset page6;
+	public TextAsset page7;
 
     private Text mLeftPage;
     private Text mRightPage;
@@ -36,7 +38,7 @@ public class Journal : MonoBehaviour
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 
         pages.Add ( page1 );
-        pages.Add ( page2 );
+        //pages.Add ( page2 );
 	}
 	
 	// Update is called once per frame
@@ -121,8 +123,12 @@ public class Journal : MonoBehaviour
         mAudio.PlayOnce ( "newItem" );
         if( pageName.Equals( "JPBeach" ) && pages.Count < 3 )
         {
-            pages.Add ( page3 );
+            pages.Add ( page2 );
         }
+		if( pageName.Equals("JPWetlands") )
+		{
+			pages.Add ( page3 );
+		}
         if ( pageName.Equals ( "JPSeaCave" ) )
         {
             pages.Add ( page4 );
@@ -131,6 +137,10 @@ public class Journal : MonoBehaviour
         {
             pages.Add ( page5 );
         }
+		if ( pageName.Equals ( "JPDocks2") )
+		{
+			pages.Add ( page6 );
+		}
         UpdatePages ();
     }
 }

@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             if( !hasVisitedWetlands )
             {
                 m_dialogue.StartDialogue ( "wetlands1" );
-                hasVisitedWetlands = true;
+                //hasVisitedWetlands = true; //moved to campfire
             }
         }
         else if ( Application.loadedLevel == 1 && CurrentSceneIndex > 1 ) // Coming from wetlands to beach
@@ -399,4 +399,12 @@ public class GameManager : MonoBehaviour
             KeyItems[itemName] = false;
         }
     }
+
+	public bool GetHasVisitedWetlands(){
+		return hasVisitedWetlands;
+	}
+
+	public void SetHasVisitedWetlands(bool hasVisited){
+		hasVisitedWetlands = hasVisited;
+	}
 }

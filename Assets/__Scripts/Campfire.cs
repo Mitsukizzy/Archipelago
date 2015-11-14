@@ -23,6 +23,9 @@ public class Campfire : MonoBehaviour
     private bool canCamp;
 
     private Inventory m_Inventory;
+	
+	private Journal m_Journal;
+	private bool willRecieveJP = false;
 
     void Awake()
     {
@@ -38,16 +41,31 @@ public class Campfire : MonoBehaviour
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
         m_CharAnimator =m_Char.GetComponent<Animator>();
         m_Inventory = GameObject.Find("Inventory UI").transform.GetChild(0).GetComponent<Inventory>();
+
+		m_Journal = GameObject.Find("Journal UI").GetComponent<Journal>();
+		//if this is the first time visiting the wetlands, have the campfire give a journal page when she gets there
+		Debug.Log(GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands());
+		if(!GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands())
+		{
+			willRecieveJP = true;
+			GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().SetHasVisitedWetlands(true);
+		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
     {
+
         if ( m_Input.InteractButtonPressed () && canCamp )
         {
             campPopup.SetActive ( true );
             m_Char.SetPlayerState ( Character.PlayerState.Interact );
             m_CharAnimator.SetBool("isWalking", false);
+			if(willRecieveJP)
+			{
+				m_Journal.AddJournalPage("JPWetlands");
+				willRecieveJP = false;
+			}
         }
 
         if ( isFadingIn )
