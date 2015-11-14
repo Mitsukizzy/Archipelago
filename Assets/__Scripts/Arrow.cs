@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         origY = transform.position.y;
-        floorY = Random.Range(-18, GameObject.FindGameObjectWithTag("Char").transform.position.y);
+        floorY = Random.Range(-18, GameObject.FindGameObjectWithTag("Char").transform.position.y+1);
         floorY += Random.Range(0, 9) / 10;
     }
 

@@ -18,6 +18,7 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset foundHammer; //hammer for boat
     public TextAsset boatNotDone; //interact with the boat when you dont have all the objects
     public TextAsset boatDone; //interact with the boat when you have all the objects
+	public TextAsset afterPlainsJP;
 
     public Dictionary<string, string> mDialogues;
     private string[] curDialogue;
@@ -51,7 +52,7 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "hammer", foundHammer.text );
         mDialogues.Add ( "NotYet", boatNotDone.text );
         mDialogues.Add ( "YouWin", boatDone.text );
-
+		mDialogues.Add ( "afterPlains", afterPlainsJP.text);
 
         mGame = GetComponent<GameManager> ();
 
