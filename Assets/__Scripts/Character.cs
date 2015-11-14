@@ -112,15 +112,14 @@ public class Character : MonoBehaviour
                 m_Animator.SetBool("isAtking", false);
             }
         }
-        if ( m_Input.InteractButtonPressed() && gatherFrom != null  && m_State != PlayerState.Aim)
+        if ( m_Input.InteractButtonPressed() && gatherFrom != null && m_State != PlayerState.Aim )
         {
-            if (gatherFrom.tag != "arrow")
+            if (gatherFrom.tag != "arrow" && gatherFrom.GetComponent<Interactable>().GetCanGather() )
             {
                 m_Audio.PlayOnce("rustle");
                 SetPlayerState(PlayerState.Gather);
                 BeginGather();
-            }
-            
+            }            
         }
         if ( m_Input.AimButtonHeld() && m_State != PlayerState.Gather)
         {
@@ -174,6 +173,7 @@ public class Character : MonoBehaviour
 				Debug.Log("Finished Gathering");
                 m_Audio.PlayOnce ( "newItem" );
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
+                gatherFrom.GetComponent<Interactable>().SwitchToGatheredSprite();
                 gatherBarObj.SetActive(false);
 			}
 			else
