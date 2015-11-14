@@ -25,6 +25,8 @@ public class Journal : MonoBehaviour
 
     private int curPage = 0; // Indicates the index of the left page
 
+	private bool firstPlains = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -38,7 +40,6 @@ public class Journal : MonoBehaviour
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
 
         pages.Add ( page1 );
-        //pages.Add ( page2 );
 	}
 	
 	// Update is called once per frame
@@ -61,6 +62,13 @@ public class Journal : MonoBehaviour
         {
             mChar.SetPlayerState ( Character.PlayerState.Idle );
         }
+
+		if(pages.Contains(page7) && firstPlains)
+		{
+			//DialogueSystem mDialogue = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem();
+
+		}
+
     }
 
     public void NextPage ()
@@ -140,6 +148,11 @@ public class Journal : MonoBehaviour
 		if ( pageName.Equals ( "JPDocks2") )
 		{
 			pages.Add ( page6 );
+		}
+		if ( pageName.Equals ( "JPPlains") )
+		{
+			pages.Add ( page7 );
+			firstPlains = true;
 		}
         UpdatePages ();
     }
