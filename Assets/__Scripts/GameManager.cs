@@ -85,13 +85,14 @@ public class GameManager : MonoBehaviour
             m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
         }
 
+        PreviousSceneIndex = CurrentSceneIndex;
+        CurrentSceneIndex = Application.loadedLevel;
+
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         // Don't spawn if on main menu(0) or game over(7)
         if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-            PreviousSceneIndex = CurrentSceneIndex;
-            CurrentSceneIndex = Application.loadedLevel;
             Vector3 spawnLoc;
             if ( CurrentSceneIndex < PreviousSceneIndex )
             {
@@ -266,11 +267,6 @@ public class GameManager : MonoBehaviour
         return hasVisitedBeach;
     }
 
-    public int GetPreviousSceneIndex()
-    {
-        return PreviousSceneIndex;
-    }
-
     public void Pause()
     {
         GameObject pauseOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Pause UI" ).gameObject; // my way of finding inactive gameobject
@@ -408,4 +404,14 @@ public class GameManager : MonoBehaviour
 	public void SetHasVisitedWetlands(bool hasVisited){
 		hasVisitedWetlands = hasVisited;
 	}
+
+    public int GetCurrentSceneIndex ()
+    {
+        return CurrentSceneIndex;
+    }
+
+    public int GetPreviousSceneIndex ()
+    {
+        return PreviousSceneIndex;
+    }
 }
