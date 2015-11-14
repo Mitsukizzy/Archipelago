@@ -5,12 +5,14 @@ public class Interactable : MonoBehaviour
 {
     public Sprite defaultSprite;
     public Sprite activeSprite;
+    public Sprite gatheredSprite;
 
 	public GameObject gatherableItem;
     private Inventory inventory;
     private GameObject m_char;
 
     bool checkForOrder;
+    public int gathersRemaining = 1;
     public GameObject gatherBar;
 
 	// Use this for initialization
@@ -37,13 +39,13 @@ public class Interactable : MonoBehaviour
         }
 	}
 
-
-
     void OnTriggerStay2D ( Collider2D coll )
     {
         if ( coll.gameObject.tag == "Char" )
         {
-			if(this.gameObject.tag == "Gatherable"){
+            Debug.Log(gathersRemaining);
+            if ( this.gameObject.tag == "Gatherable" && gathersRemaining > 0 )
+            {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
                 gatherBar.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, 
                                                                                                                       transform.position.y+gameObject.GetComponent<SpriteRenderer>().bounds.size.y+1, 
@@ -58,7 +60,7 @@ public class Interactable : MonoBehaviour
                 coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
                 coll.gameObject.GetComponent<Character>().CollectArrow();
             }
-            else
+            else if ( gathersRemaining > 0 )
             {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
             }
@@ -72,10 +74,11 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerExit2D ( Collider2D coll )
     {
-        if ( coll.gameObject.tag == "Char" )
+        if ( coll.gameObject.tag == "Char" && gathersRemaining > 0 )
         {
             GetComponent<SpriteRenderer> ().sprite = defaultSprite;
-			if(this.gameObject.tag == "Gatherable"){
+			if(this.gameObject.tag == "Gatherable")
+            {
 				coll.gameObject.GetComponent<Character>().gatherFrom = null;
 			}
 
@@ -90,6 +93,19 @@ public class Interactable : MonoBehaviour
 	public void ReceiveItem()
 	{
         inventory.AddItem(gatherableItem);
+        gathersRemaining--;
 	}
 
+    public bool GetCanGather()
+    {
+        return ( gathersRemaining > 0 ) ? true : false;
+    }
+
+    public void SwitchToGatheredSprite()
+    {
+        if( gatheredSprite != null )
+        {
+            GetComponent<SpriteRenderer>().sprite = gatheredSprite;
+        }
+    }
 }

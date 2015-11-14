@@ -274,7 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: f2b4933f46dcc4c4086c667694935691, type: 3}
   activeSprite: {fileID: 21300000, guid: b38c87a80a6a31b4389b9ebda72e5520, type: 3}
+  gatheredSprite: {fileID: 21300000, guid: de6ff633c983f4d7798402a341d791af, type: 3}
   gatherableItem: {fileID: 106894, guid: de29f40635977a54c83f502ecb4d0e25, type: 2}
+  gathersRemaining: 2
   gatherBar: {fileID: 130530}
 --- !u!114 &11476084
 MonoBehaviour:
@@ -485,7 +487,20 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: gatherablesRemaining
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gatheredSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de6ff633c983f4d7798402a341d791af,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: gathersRemaining
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180094}
