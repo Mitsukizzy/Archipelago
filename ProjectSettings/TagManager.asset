@@ -24,6 +24,7 @@ TagManager:
   - RightArrow
   - Tutorial
   - JPPlains
+  - Dialogue
   layers:
   - Default
   - TransparentFX

@@ -86,11 +86,11 @@ public class DialogueSystem : MonoBehaviour
     void SpecialInit()
     {
         mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
-
-        mDialogueText = GameObject.Find ( "DialogueText" ).GetComponent<Text> ();
-        mDialogueBox = GameObject.Find ( "DialogueBox" );
-
+        
         // able to find inactive objects
+        mDialogueBox = GameObject.FindGameObjectWithTag( "Dialogue" ).transform.Find ( "DialogueBox" ).gameObject;
+        mDialogueText = mDialogueBox.transform.Find ( "DialogueText" ).GetComponent<Text> ();
+
         objective = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjText" ).gameObject;
         objBackground = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjBackground" ).gameObject; 
         rightArrow = GameObject.FindGameObjectWithTag ( "Tutorial" ).transform.Find ( "Right" ).gameObject; 

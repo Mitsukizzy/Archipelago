@@ -339,8 +339,9 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Replace with code to load last level of campsite
         Application.LoadLevel(2);
-
-        Debug.Log("mchar: " + m_Char);
+        m_Char = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
+        m_daynight = GetComponent<DayNightManager> ();
+        
         m_Char.ReturnToCamp ();
         m_daynight.ContinueDay ();
     }
