@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     private Button m_Start;
     private Button m_Exit;
 
+    private GameObject m_Credits;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -15,6 +17,8 @@ public class MainMenu : MonoBehaviour
         m_Start = GameObject.Find ( "Play" ).GetComponent<Button> ();
         m_Exit = GameObject.Find ( "Exit" ).GetComponent<Button> ();
         m_QuitMenu.enabled = false;
+
+        m_Credits = GameObject.Find ( "UI" ).transform.Find ( "Credits UI" ).gameObject;
 	}
 
     public void PlayPress ()
@@ -32,6 +36,16 @@ public class MainMenu : MonoBehaviour
     public void ExitGame ()
     {
         Application.Quit ();
+    }
+
+    public void OpenCredits()
+    {
+        m_Credits.SetActive ( true );
+    }
+
+    public void CloseCredits ()
+    {
+        m_Credits.SetActive ( false );
     }
 
     public void NoPress ()
