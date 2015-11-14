@@ -27,6 +27,9 @@ public class Journal : MonoBehaviour
 
 	private bool firstPlains = false;
 
+	public Sprite ActiveSprite;
+	public Sprite InactiveSprite;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -52,6 +55,7 @@ public class Journal : MonoBehaviour
     {
         mAudio.PlayOnce ( "newItem" );
         mJournal.enabled = !mJournal.enabled;
+		GameObject.Find ("Journal").GetComponent<Image>().sprite = InactiveSprite;
 
         if ( mJournal.enabled )
         {
@@ -63,7 +67,7 @@ public class Journal : MonoBehaviour
             mChar.SetPlayerState ( Character.PlayerState.Idle );
         }
 
-		if(pages.Contains(page7) && firstPlains && mJournal.enabled == false )
+		if(pages.Contains(page7) && firstPlains && !mJournal.enabled)
 		{
 			DialogueSystem mDialogue = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem();
 			mDialogue.StartDialogue("afterPlains");
@@ -130,6 +134,7 @@ public class Journal : MonoBehaviour
     public void AddJournalPage( string pageName )
     {
         Debug.Log ( "Page Added: " + pageName );
+		GameObject.Find ("Journal").GetComponent<Image>().sprite = ActiveSprite;
 		GameObject.Find ( "NewPage" ).GetComponent<Animator> ().SetTrigger ( "becameActive" );
         mAudio.PlayOnce ( "newItem" );
         if( pageName.Equals( "JPBeach" ) && pages.Count < 3 )
@@ -156,4 +161,5 @@ public class Journal : MonoBehaviour
 		}
         UpdatePages ();
     }
+	
 }
