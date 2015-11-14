@@ -274,6 +274,26 @@ public class InputManager : MonoBehaviour {
         return false;
     }
 
+    public bool HelpButtonPressed ()
+    {
+        switch ( controlScheme )
+        {
+            case InputType.Mouse:
+                if ( Input.GetKeyDown( KeyCode.H ) )
+                {
+                    return true;
+                }
+                break;
+            case InputType.Keyboard:
+                break;
+            case InputType.Controller:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
     public bool InventoryButtonPressed ()
     {
         switch ( controlScheme )

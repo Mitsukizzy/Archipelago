@@ -48,8 +48,13 @@ public class KeyItems : MonoBehaviour
                 mDialogue.StartDialogue ( "beach2" );
                 buttonsUI.transform.Find ( "Bag" ).GetComponent<Image> ().enabled = true;
                 buttonsUI.transform.Find("Journal").GetComponent<Image>().enabled = true;
-                Destroy ( gameObject );
+                Destroy ( gameObject );                
                 mGame.DoNotSpawnOnLoad ( "Backpack" );
+
+                if ( !mGame.CheckItem( "Boat" ) ) // If boat has been interacted with
+                {
+                    mDialogue.StartDialogue( "AfterBagBoat" );
+                }
             }
             else if ( transform.tag.Equals ( "Boat" ) )
             {
@@ -60,6 +65,7 @@ public class KeyItems : MonoBehaviour
                 else if ( !mGame.CheckHasVisitedBeach() )
                 {
                     mDialogue.StartDialogue ( "beach3" );
+                    mGame.DoNotSpawnOnLoad( "Boat" );
                 }
                 else
                 {

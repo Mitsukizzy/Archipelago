@@ -26,8 +26,20 @@ public class SceneTransition : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" )
         {
-            mAudio.PlayOnce ( "transition" );
-            Application.LoadLevel ( SceneName );
+            if( Application.loadedLevel == 1 ) // special condition for beach
+            {
+                Debug.Log(mGame.CheckItem( "Backpack" ) + " " + mGame.CheckItem( "Boat" ) );
+                if( !mGame.CheckItem( "Backpack" ) && !mGame.CheckItem( "Boat" ) ) // Can only leave if they've been interacted with
+                {
+                    mAudio.PlayOnce( "transition" );
+                    Application.LoadLevel( SceneName );
+                }
+            }
+            else
+            {
+                mAudio.PlayOnce( "transition" );
+                Application.LoadLevel( SceneName );
+            }
         }
     }
 }
