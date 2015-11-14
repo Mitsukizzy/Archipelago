@@ -26,6 +26,7 @@ public class Journal : MonoBehaviour
     private int curPage = 0; // Indicates the index of the left page
 
 	private bool firstPlains = false;
+    private bool isOpen = false;
 
 	public Sprite ActiveSprite;
 	public Sprite InactiveSprite;
@@ -61,10 +62,12 @@ public class Journal : MonoBehaviour
         {
             mChar.SetPlayerState ( Character.PlayerState.Interact );
             UpdatePages ();
+            isOpen = true;
         }
         else
         {
             mChar.SetPlayerState ( Character.PlayerState.Idle );
+            isOpen = false;
         }
 
 		if(pages.Contains(page7) && firstPlains && !mJournal.enabled)
@@ -74,7 +77,6 @@ public class Journal : MonoBehaviour
 			firstPlains = false;
 
 		}
-
     }
 
     public void NextPage ()
@@ -162,4 +164,8 @@ public class Journal : MonoBehaviour
         UpdatePages ();
     }
 	
+    public bool GetIsOpen()
+    {
+        return isOpen;
+    }
 }

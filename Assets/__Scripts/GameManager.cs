@@ -218,9 +218,14 @@ public class GameManager : MonoBehaviour
             }
 
             // Journal
-            if( m_input.JournalButtonPressed() )
+            if ( m_input.JournalButtonPressed () )
             {
-                GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ().ToggleJournal ();
+                Journal journal = GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ();
+                if( journal.GetIsOpen() || ( m_Char.GetPlayerState () != Character.PlayerState.Dialogue && m_Char.GetPlayerState () != Character.PlayerState.Interact ) )
+                {
+                    // Toggle if journal is already open OR player is not in dialogue or interact mode
+                    journal.ToggleJournal ();
+                }
             }
         }
         else
