@@ -55,7 +55,6 @@ public class Interactable : MonoBehaviour
     {
         if ( coll.gameObject.tag == "Char" )
         {
-            Debug.Log(gathersRemaining);
             if ( this.gameObject.tag == "Gatherable" && gathersRemaining > 0 )
             {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;

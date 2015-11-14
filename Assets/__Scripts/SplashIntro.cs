@@ -11,10 +11,14 @@ public class SplashIntro : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        splashBG.SetActive ( true );
-        logoUSC.canvasRenderer.SetAlpha ( 0.0f );
-        logoBerklee.canvasRenderer.SetAlpha ( 0.0f );
-        StartCoroutine ( FadeInThenOut () );
+        // Only load on first playthrough
+        if ( !GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasPlayedIntroSplash() )
+        {
+            splashBG.SetActive(true);
+            logoUSC.canvasRenderer.SetAlpha(0.0f);
+            logoBerklee.canvasRenderer.SetAlpha(0.0f);
+            StartCoroutine(FadeInThenOut());
+        }
     }
 
     // Update is called once per frame

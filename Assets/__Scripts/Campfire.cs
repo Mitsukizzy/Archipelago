@@ -44,7 +44,6 @@ public class Campfire : MonoBehaviour
 
 		m_Journal = GameObject.Find("Journal UI").GetComponent<Journal>();
 		//if this is the first time visiting the wetlands, have the campfire give a journal page when she gets there
-		Debug.Log(GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands());
 		if(!GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands())
 		{
 			willRecieveWetlandJP = true;
