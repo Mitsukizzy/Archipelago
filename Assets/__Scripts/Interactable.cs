@@ -39,6 +39,18 @@ public class Interactable : MonoBehaviour
         }
 	}
 
+	void OnTriggerEnter2D (Collider2D coll)
+	{
+		if (this.gameObject.tag == "arrow" && gameObject.GetComponent<Arrow>().hasHit)
+		{
+			if(coll.gameObject.GetComponent<Character>() != null)
+			{
+				coll.gameObject.GetComponent<Character>().CollectArrow();
+				Destroy(gameObject);
+			}
+		}
+	}
+
     void OnTriggerStay2D ( Collider2D coll )
     {
         if ( coll.gameObject.tag == "Char" )
@@ -54,12 +66,6 @@ public class Interactable : MonoBehaviour
 				coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
                 coll.gameObject.GetComponent<Character>().BeginGather();
 			}
-            else if (this.gameObject.tag == "arrow" && gameObject.GetComponent<Arrow>().hasHit)
-            {
-                GetComponent<SpriteRenderer>().sprite = activeSprite;
-                coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
-                coll.gameObject.GetComponent<Character>().CollectArrow();
-            }
             else if ( gathersRemaining > 0 )
             {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Arrow : MonoBehaviour
 {
-    Vector3 pos;
 	Vector3 dir;
 	public float gravity = 0.02f;
 	Quaternion rotateTo;
@@ -16,10 +15,7 @@ public class Arrow : MonoBehaviour
     // Use this for initialization
     public void mouseDir ()
     {
-		pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		pos.z = transform.position.z;
-
-		dir = pos - transform.position;
+		dir = transform.rotation * Vector3.down;
 
 		if( dir != Vector3.zero )
 		{
@@ -27,9 +23,9 @@ public class Arrow : MonoBehaviour
 		}
         if (!inMap)
         {
-            rotateTo = new Quaternion();
-            rotateTo.SetFromToRotation(Vector3.right, dir);
-            transform.rotation = rotateTo;
+            //rotateTo = new Quaternion();
+            //rotateTo.SetFromToRotation(Vector3.down, dir);
+            //transform.rotation = GameObject.Find ("Bow").transform.rotation;
         }
     }
     void Start()
@@ -37,6 +33,7 @@ public class Arrow : MonoBehaviour
         origY = transform.position.y;
         floorY = Random.Range(-18, GameObject.FindGameObjectWithTag("Char").transform.position.y+1);
         floorY += Random.Range(0, 9) / 10;
+
     }
 
     void Update ()
@@ -45,7 +42,7 @@ public class Arrow : MonoBehaviour
         {
             transform.position += dir * speed * Time.deltaTime;
             dir.y -= gravity;
-            rotateTo.SetFromToRotation(Vector3.right, dir);
+            rotateTo.SetFromToRotation(Vector3.down, dir);
             transform.rotation = rotateTo;
         }
         else
@@ -58,9 +55,9 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter2D ( Collider2D other )
     {
-        if ( other.gameObject.tag == "Bird" )
+        if ( other.gameObject.tag == "Char" && !hasHit )
         {
-            
+			//other.gameObject.GetComponent<Character>().TakeDamage(10);
         }
     }
 

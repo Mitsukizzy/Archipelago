@@ -152,9 +152,16 @@ public class Character : MonoBehaviour
             Quaternion rotateTo = new Quaternion();
           
             //TODO clamp the rotation so you cant go over her head
-            rotateTo.SetFromToRotation(Vector3.left, dir);
+            rotateTo.SetFromToRotation(Vector3.down, dir);
 
             bow.transform.rotation = rotateTo;
+			Vector3 ClampedRotation = new Vector3(
+				bow.transform.rotation.eulerAngles.x,
+				bow.transform.rotation.eulerAngles.y,
+				Mathf.Clamp(bow.transform.rotation.eulerAngles.z, 210, 320)
+				);
+			Quaternion ClampedQuaternion = Quaternion.Euler(ClampedRotation);
+			bow.transform.rotation = ClampedQuaternion;
         }
         else
         {
@@ -249,15 +256,12 @@ public class Character : MonoBehaviour
 
     public void CollectArrow()
     {
-        if (gatherFrom.tag == "arrow")
-            {
-                numArrows++;
-                if (numArrows == 1)
-                {
-                    bow.GetComponent<BowScript>().swapSprite();
-                }
-                Destroy(gatherFrom);
-            }
+        numArrows++;
+        if (numArrows == 1)
+        {
+            bow.GetComponent<BowScript>().swapSprite();
+        }
+
     }
 
     public void TakeDamage ( int damage )

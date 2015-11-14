@@ -61,24 +61,20 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 3.22000003, y: -.0250000004}
-      - {x: 3.42000008, y: -.0149999997}
-      - {x: 3.6500001, y: .075000003}
-      - {x: 3.66000009, y: .115000002}
-      - {x: 3.66000009, y: .215000004}
-      - {x: 3.51999998, y: .294999987}
-      - {x: 3.17000008, y: .294999987}
-      - {x: 3.1400001, y: .224999994}
-      - {x: 1.23000002, y: .254999995}
-      - {x: 1.15999997, y: .294999987}
-      - {x: .810000002, y: .294999987}
-      - {x: .75999999, y: .284999996}
-      - {x: .75999999, y: -.0149999997}
-      - {x: .790000021, y: -.0350000001}
-      - {x: 1.21000004, y: -.0350000001}
-      - {x: 1.25999999, y: .0549999997}
-      - {x: 2.02999997, y: .0250000004}
-      - {x: 3.16000009, y: .0450000018}
+    - - {x: .224999994, y: -1.24000001}
+      - {x: .254999995, y: -1.12}
+      - {x: .254999995, y: -.790000021}
+      - {x: .0149999997, y: -.790000021}
+      - {x: .0149999997, y: -1.16999996}
+      - {x: .0350000001, y: -1.25999999}
+      - {x: .0350000001, y: -3.18000007}
+      - {x: .0149999997, y: -3.23000002}
+      - {x: .0149999997, y: -3.4000001}
+      - {x: .125, y: -3.63000011}
+      - {x: .194999993, y: -3.63000011}
+      - {x: .254999995, y: -3.3900001}
+      - {x: .254999995, y: -3.19000006}
+      - {x: .194999993, y: -3.18000007}
 --- !u!114 &11426202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,8 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675, type: 3}
-  activeSprite: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458, type: 3}
+  activeSprite: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675, type: 3}
+  gatheredSprite: {fileID: 0}
   gatherableItem: {fileID: 187520}
+  gathersRemaining: 1
   gatherBar: {fileID: 0}
 --- !u!212 &21245308
 SpriteRenderer:
@@ -215,7 +213,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: activeSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2788acdf1ba411142a1359057faa1458,
+      objectReference: {fileID: 21300000, guid: 5a2ce7eae2b8b27439eb270fb4e44675,
         type: 3}
     - target: {fileID: 0}
       propertyPath: gatherableItem

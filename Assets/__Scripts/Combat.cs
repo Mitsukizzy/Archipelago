@@ -55,7 +55,13 @@ public class Combat : MonoBehaviour
         if (m_Char.numArrows > 0)
         {
             m_Audio.PlayOnce("shoot");
-            GameObject arrowObj = (GameObject)Instantiate(arrow, bow.transform.position, Quaternion.identity);
+			Quaternion arrowRotation = Quaternion.Euler(new Vector3(bow.transform.rotation.eulerAngles.x,
+			                                                        bow.transform.rotation.eulerAngles.y,
+			                                                        bow.transform.rotation.eulerAngles.z * (transform.localScale.x/Mathf.Abs(transform.localScale.x))));
+            GameObject arrowObj = (GameObject)Instantiate(arrow, bow.transform.position, arrowRotation);
+			arrowObj.transform.localScale =new Vector3( arrowObj.transform.localScale.x *  -(transform.localScale.x/Mathf.Abs(transform.localScale.x)),
+			                                            arrowObj.transform.localScale.y,
+			                                            arrowObj.transform.localScale.z);
             arrowObj.GetComponent<Arrow>().mouseDir();
             m_Char.SetPlayerState(Character.PlayerState.Idle);
             bow.SetActive(false);
