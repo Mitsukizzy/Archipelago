@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba16c65e3d5a87948b62bcd8f660e81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseCursor: {fileID: 2800000, guid: 459d77dab119e432a97035a64fdfedb1, type: 3}
 --- !u!114 &297044804
 MonoBehaviour:
   m_ObjectHideFlags: 0
