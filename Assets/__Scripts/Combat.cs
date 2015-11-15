@@ -18,6 +18,7 @@ public class Combat : MonoBehaviour
     public GameObject bow;
 
     bool animationDelay;
+    private bool hasBow = false; // only allow shooting once bow is obtained
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +40,7 @@ public class Combat : MonoBehaviour
         {
             if ( m_Input.SelectButtonPressed () && !animationDelay )
             {
-                if ( m_Char.GetPlayerState () == Character.PlayerState.Aim )
+                if ( m_Char.GetPlayerState () == Character.PlayerState.Aim && hasBow )
                 {
                     ShootArrow ();
                 }
@@ -47,6 +48,16 @@ public class Combat : MonoBehaviour
         }
         
 	}
+
+    public void GiveBow()
+    {
+        hasBow = true; // you can shoot now!
+    }
+
+    public bool GetHasBow()
+    {
+        return hasBow;
+    }
 
     void ShootArrow()
     {

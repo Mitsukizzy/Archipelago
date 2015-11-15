@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     private AudioManager m_Audio;
     private DialogueSystem m_Dialogue;
     private Camera m_Cam;
+    private Combat m_Combat;
 
     private bool m_FacingRight;
 
@@ -69,6 +70,7 @@ public class Character : MonoBehaviour
         originalSpeed = speed;
 
         m_Game = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        m_Combat = GetComponent<Combat> ();
         m_Input = m_Game.GetInputManager ();
         m_Audio = m_Game.GetAudioManager ();
         m_Dialogue = m_Game.GetDialogueSystem ();
@@ -122,7 +124,7 @@ public class Character : MonoBehaviour
                 BeginGather();
             }            
         }
-        if ( m_Input.AimButtonHeld() && m_State != PlayerState.Gather)
+        if ( m_Input.AimButtonHeld () && m_State != PlayerState.Gather && m_Combat.GetHasBow () )
         {
             m_Animator.SetBool("isWalking", false);
             SetPlayerState ( PlayerState.Aim );
@@ -173,7 +175,7 @@ public class Character : MonoBehaviour
         {
             m_Animator.SetBool("isAiming", false);
         }
-        if(m_State == PlayerState.Gather && gatherFrom != null)
+        if ( m_State == PlayerState.Gather && gatherFrom != null )
         {
             //gatherBar = gatherBarObj.GetComponent<Slider>();
             gatherBarObj.SetActive(true);
