@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip musicBeachDay;
     public AudioClip musicWetlandsDay;
     public AudioClip musicForestDay;
+    public AudioClip musicPlainsDay;
 
     /** SFX **/
     // Player
@@ -125,6 +126,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "forestDay":
                 m_LayerSource.clip = musicForestDay;
+                break;
+            case "plainsDay":
+                m_LayerSource.clip = musicPlainsDay;
                 break;
             default:
                 break;

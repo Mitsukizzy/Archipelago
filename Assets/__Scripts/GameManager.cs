@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
         else if ( Application.loadedLevel == 6 )
         {
             m_audio.PlayLoop ( "plains" );
+            m_audio.PlayLayer ( "plainsDay" );
             locationTimestamps.Add ( "Plains - " + Time.time );
         }
         else if ( Application.loadedLevel == 7 )
