@@ -77,9 +77,6 @@ public class CameraFollow : MonoBehaviour
         newPosition.x = Mathf.Clamp ( newPosition.x, leftBound, rightBound );
         newPosition.y = Mathf.Clamp ( newPosition.y, bottomBound, topBound );
         transform.position = newPosition;
-
-        // Make sure the camera is looking at the player.
-        SmoothLookAt();
     }
 
 
@@ -97,19 +94,6 @@ public class CameraFollow : MonoBehaviour
         // If we haven't hit anything or we've hit the player, this is an appropriate position.
         newPos = checkPos;
         return true;
-    }
-
-
-    void SmoothLookAt()
-    {
-        // Create a vector from the camera towards the player.
-        Vector3 relPlayerPosition = target.position - transform.position;
-
-        // Create a rotation based on the relative position of the player being the forward vector.
-        Quaternion lookAtRotation = Quaternion.LookRotation(relPlayerPosition, Vector3.up);
-
-        // Lerp the camera's rotation between it's current rotation and the rotation that looks at the player.
-        //transform.rotation = Quaternion.Lerp(transform.rotation, lookAtRotation, smooth * Time.deltaTime);
     }
 
     public void ChangeTarget ( Transform newTarget )

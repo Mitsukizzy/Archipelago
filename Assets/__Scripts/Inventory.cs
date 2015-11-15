@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour {
         for (int i = 1; i < 8; i++)
         {
             GameObject slot = (GameObject)Instantiate(slots);
-            slot.transform.parent = this.gameObject.transform;
+            slot.transform.SetParent( this.gameObject.transform );
             slot.name = "Slot " + i; 
             slot.GetComponent<RectTransform>().localPosition = new Vector3(initSlotPosx, initSlotPosy, 0);
             slotList.Add(slot);

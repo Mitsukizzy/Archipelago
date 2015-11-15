@@ -69,7 +69,6 @@ public class DayNightManager : MonoBehaviour
             curColor = Color.white;
             targetColor = Color.white;
             lightTimer = 1;
-            CheckTime ();
         }
     }
 
@@ -175,14 +174,13 @@ public class DayNightManager : MonoBehaviour
 
     public void CheckTime()
     {
-        Debug.Log ( "Checking time!" );
-        if ( timeOfDay > ( maxTime * 0.35 ) && timeOfDay < ( maxTime * .75 ) && isDay )
-        {
-            StartNight ();
-        }
-        if ( timeOfDay <= ( maxTime * 0.35 ) && timeOfDay >= ( maxTime * .75 ) && !isDay )
+        if ( ( timeOfDay <= ( maxTime * 0.35 ) || timeOfDay >= ( maxTime * .75 ) ) && !isDay )
         {
             StartDay ();
+        }
+        else if ( ( timeOfDay > ( maxTime * 0.35 ) && timeOfDay < ( maxTime * .75 ) ) && isDay )
+        {
+            StartNight();
         }
     }
 
@@ -190,13 +188,13 @@ public class DayNightManager : MonoBehaviour
     {
         isDay = true;
         mHandle.sprite = sun;
-        mAudio.PlayLayer ( mGame.GetCurrentSceneIndex () );
+        StartCoroutine( mAudio.FadeInLayer() );
     }
 
     public void StartNight()
     {
         isDay = false;
         mHandle.sprite = moon;
-        mAudio.StopLayer ();
+        StartCoroutine( mAudio.FadeOutLayer () );
     }
 }

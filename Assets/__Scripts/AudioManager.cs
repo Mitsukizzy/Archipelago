@@ -61,13 +61,10 @@ public class AudioManager : MonoBehaviour
         m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
         m_MusicSource.volume = 0.4f;
         m_MusicSource.loop = true;
-    }
 
-    void OnLevelWasLoaded()
-    {
-        if( Application.loadedLevel != 1 && Application.loadedLevel != 7 )
+        if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
-            m_LayerSource = GameObject.Find ( "AudioSlave" ).GetComponent<AudioSource> ();
+            m_LayerSource = GameObject.Find("AudioSlave").GetComponent<AudioSource>();
             m_LayerSource.volume = 0.4f;
             m_LayerSource.loop = true;
         }
@@ -116,19 +113,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayLayer ( int curScene )
+    public void PlayLayer ( string layerToPlay )
     {
-        Debug.Log ( "PLAY LAYER " + curScene );
-        switch ( curScene )
+        Debug.Log("PLAY LAYER " + layerToPlay);
+        switch ( layerToPlay )
         {
             // Day Layers
-            case 2:
+            case "beachDay":
                 m_LayerSource.clip = musicBeachDay;
                 break;
-            case 3:
+            case "wetlandsDay":
                 m_LayerSource.clip = musicWetlandsDay;
                 break;
-            case 4:
+            case "forestDay":
                 m_LayerSource.clip = musicForestDay;
                 break;
             default:
@@ -137,13 +134,26 @@ public class AudioManager : MonoBehaviour
 
         if ( !m_LayerSource.isPlaying )
         {
-            m_LayerSource.Play ();
+            StartCoroutine( FadeInLayer () );
         }
     }
 
-    public void StopLayer()
+    public IEnumerator FadeInLayer ()
     {
-        m_LayerSource.Stop ();
+        for ( float f = 0.0f; f >= 0.4f; f += 0.05f )
+        {
+            m_LayerSource.volume = f;
+            yield return new WaitForSeconds( 0.1f );
+        }
+    }
+
+    public IEnumerator FadeOutLayer ()
+    {
+        for ( float f = 0.4f; f >= 0; f -= 0.05f )
+        {
+            m_LayerSource.volume = f;
+            yield return new WaitForSeconds( 0.1f );
+        }
     }
 
     public void PlayOnce ( string soundToPlay )
