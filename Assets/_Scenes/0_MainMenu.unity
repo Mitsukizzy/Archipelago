@@ -2559,6 +2559,7 @@ MonoBehaviour:
   logoUSC: {fileID: 81020937}
   logoBerklee: {fileID: 480282661}
   splashBG: {fileID: 1502096514}
+  playIntro: 0
 --- !u!114 &1546746112
 MonoBehaviour:
   m_ObjectHideFlags: 0

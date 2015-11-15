@@ -8,11 +8,13 @@ public class SplashIntro : MonoBehaviour
     public Image logoBerklee;
     public GameObject splashBG;
 
+    public bool playIntro = false;
+
     // Use this for initialization
     void Start ()
     {
         // Only load on first playthrough
-        if ( !GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasPlayedIntroSplash() )
+        if ( !GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ().GetHasPlayedIntroSplash () && playIntro )
         {
             splashBG.SetActive(true);
             logoUSC.canvasRenderer.SetAlpha(0.0f);

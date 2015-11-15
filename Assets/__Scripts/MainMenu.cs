@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public Image creditsArt;
     public Image creditsMusic;
 
+    private GameManager m_Game;
     private GameObject m_Credits;
 
 	// Use this for initialization
@@ -23,6 +24,13 @@ public class MainMenu : MonoBehaviour
         m_QuitMenu.enabled = false;
 
         m_Credits = GameObject.Find ( "UI" ).transform.Find ( "Credits UI" ).gameObject;
+        m_Game = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
+
+        if( m_Game.GetHasJustWon() )
+        {
+            m_Game.SetHasJustWon ( false );
+            OpenCredits ();
+        }
 	}
 
     public void PlayPress ()

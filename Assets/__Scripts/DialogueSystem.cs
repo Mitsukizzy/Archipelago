@@ -166,8 +166,8 @@ public class DialogueSystem : MonoBehaviour
                 objective.GetComponent<Text>().text = "Objective: Find a way off the island";
                 break;
             case "YouWin":
+                mGame.SetHasJustWon ( true );
                 mGame.MainMenu();
-                GameObject.Find( "MainMenu" ).GetComponent<MainMenu>().OpenCredits();
                 break;
         }
     }

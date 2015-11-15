@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private bool hasVisitedBeach = false;
     private bool hasVisitedWetlands = false;
     private bool hasPlayedIntroSplash = false;
+    private bool hasJustWon = false; // trigger for credits
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
@@ -323,6 +324,16 @@ public class GameManager : MonoBehaviour
     public void ExitGame ()
     {
         Application.Quit ();
+    }
+
+    public void SetHasJustWon( bool won )
+    {
+        hasJustWon = won;
+    }
+
+    public bool GetHasJustWon()
+    {
+        return hasJustWon;
     }
 
     public void MainMenu ()
