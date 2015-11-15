@@ -38,6 +38,10 @@ public class KeyItems : MonoBehaviour
 
     void OnTriggerStay2D ( Collider2D coll )
     {
+		if( coll.gameObject.tag == "Char" && transform.name.Equals("Boat"))
+		{
+			GameObject.Find ("Silhouette UI").GetComponent<Silhouette>().ShowItems();
+		}
         if ( coll.gameObject.tag == "Char" && mInput.InteractButtonPressed () && canInteract )
         {
             canInteract = false; // prevent double interactions from happening on accident
@@ -122,6 +126,10 @@ public class KeyItems : MonoBehaviour
 
     void OnTriggerExit2D ( Collider2D coll )
     {
+		if( coll.gameObject.tag == "Char" && transform.name.Equals("Boat"))
+		{
+			GameObject.Find ("Silhouette UI").GetComponent<Silhouette>().Close();
+		}
         if ( coll.gameObject.tag == "Char" )
         {
             canInteract = true;
