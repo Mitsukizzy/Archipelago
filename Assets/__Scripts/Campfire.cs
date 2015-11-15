@@ -58,16 +58,11 @@ public class Campfire : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if ( m_Input.InteractButtonPressed () && canCamp )
+        if ( m_Input.InteractButtonPressed () && canCamp && m_Char.GetPlayerState() != Character.PlayerState.Dialogue )
         {
             campPopup.SetActive ( true );
             m_Char.SetPlayerState ( Character.PlayerState.Interact );
             m_CharAnimator.SetBool("isWalking", false);
-			if(willRecieveWetlandJP)
-			{
-                GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem ().StartDialogue( "wetlands3" );
-				willRecieveWetlandJP = false;
-			}
         }
 
         if ( isFadingIn )
@@ -171,6 +166,11 @@ public class Campfire : MonoBehaviour
         if ( coll.gameObject.tag == "Char" && m_Char.GetPlayerState () != Character.PlayerState.Interact )
         {
             canCamp = true;
+            if ( willRecieveWetlandJP )
+            {
+                GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ().GetDialogueSystem ().StartDialogue ( "wetlands3" );
+                willRecieveWetlandJP = false;
+            }
         }
     }
 

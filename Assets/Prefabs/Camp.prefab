@@ -767,7 +767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Camp for the night?
+  m_Text: Rest at the camp?
 --- !u!114 &11445930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1154,7 +1154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 4025eae623f46654f9cb84d221f845e2, type: 3}
   activeSprite: {fileID: 21300000, guid: 6e82310ece027974b9fd248567136854, type: 3}
+  gatheredSprite: {fileID: 0}
   gatherableItem: {fileID: 0}
+  gathersRemaining: 1
   gatherBar: {fileID: 0}
 --- !u!114 &11492302
 MonoBehaviour:

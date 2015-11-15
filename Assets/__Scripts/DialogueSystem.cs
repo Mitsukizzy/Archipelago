@@ -26,6 +26,7 @@ public class DialogueSystem : MonoBehaviour
     private string curKey;  // Keep track of the current dialogue to show special hints at the end of it
     
     private GameObject objective;
+    private Color objTextColor;
     private GameObject objBackground;
     private GameObject rightArrow;
 
@@ -70,6 +71,15 @@ public class DialogueSystem : MonoBehaviour
             SpecialInit (); // Initialize character and dialogue objects
         }
 
+        if( Application.loadedLevel == 5 ) // sea cave is dark, hard to read obj text
+        {
+            objective.GetComponent<Text> ().color = Color.white;
+        }
+        else if( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
+        {
+            objective.GetComponent<Text> ().color = objTextColor;
+        }
+
         // Start dialogue if never been to beach, assume picked up backpack
         if ( Application.loadedLevelName == "1_Beach" && !mGame.CheckHasVisitedBeach() )
         {
@@ -95,7 +105,8 @@ public class DialogueSystem : MonoBehaviour
 
         objective = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjText" ).gameObject;
         objBackground = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjBackground" ).gameObject; 
-        rightArrow = GameObject.FindGameObjectWithTag ( "Tutorial" ).transform.Find ( "Right" ).gameObject; 
+        rightArrow = GameObject.FindGameObjectWithTag ( "Tutorial" ).transform.Find ( "Right" ).gameObject;
+        objTextColor = objective.GetComponent<Text> ().color;
     }
 
     public void StartDialogue( string key )
@@ -134,7 +145,6 @@ public class DialogueSystem : MonoBehaviour
     // Handle special hints or tutorials
     private void ShowHint()
     {
-        //objBackground.SetActive ( true );
         int hintDuration = 8;
         switch( curKey )
         {
@@ -177,6 +187,5 @@ public class DialogueSystem : MonoBehaviour
         yield return new WaitForSeconds ( seconds );
         //objective.GetComponent<Text> ().text = "";
         rightArrow.SetActive(false);
-        //objBackground.SetActive ( false );
     }
 }
