@@ -125,6 +125,7 @@ public class Character : MonoBehaviour
         {
             m_Animator.SetBool("isWalking", false);
             SetPlayerState ( PlayerState.Aim );
+            m_Animator.SetBool("isAiming", true);
             bow.SetActive(true);
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = transform.position.z;
@@ -166,6 +167,10 @@ public class Character : MonoBehaviour
         else
         {
             bow.SetActive(false);
+        }
+        if (m_Input.AimButtonReleased() && m_State == PlayerState.Aim)
+        {
+            m_Animator.SetBool("isAiming", false);
         }
         if(m_State == PlayerState.Gather && gatherFrom != null)
         {
