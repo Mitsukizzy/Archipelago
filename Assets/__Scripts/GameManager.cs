@@ -319,7 +319,16 @@ public class GameManager : MonoBehaviour
     public void ToggleSplash ()
     {
         GameObject splashOverlay = GameObject.FindGameObjectWithTag("UI").transform.Find("Splash UI").gameObject; // my way of finding inactive gameobject
-        splashOverlay.SetActive( !splashOverlay.activeSelf );
+        if ( !splashOverlay.activeSelf )
+        {
+            Pause (); // order matters
+            splashOverlay.SetActive ( !splashOverlay.activeSelf ); 
+        }
+        else
+        {
+            splashOverlay.SetActive ( !splashOverlay.activeSelf ); 
+            Pause ();
+        }
     }
 
     public void ExitGame ()
