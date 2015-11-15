@@ -11,6 +11,7 @@ public class KeyItems : MonoBehaviour
     private GameManager mGame;
     private Journal mJournal;
     private Inventory mInvent;
+    private Combat mCombat;
 
     private GameObject buttonsUI;
     private GameObject journalUI;
@@ -25,6 +26,7 @@ public class KeyItems : MonoBehaviour
         mDialogue = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<DialogueSystem> ();
         mJournal = GameObject.FindGameObjectWithTag ( "Journal" ).GetComponent<Journal> ();
         mGame = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
+        mCombat = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Combat> ();
 
         buttonsUI = GameObject.Find ( "Buttons UI" );
         journalUI = GameObject.Find ( "Journal UI" );
@@ -88,6 +90,9 @@ public class KeyItems : MonoBehaviour
             else if ( transform.tag.Equals ( "Bow" ) )
             {
                 mDialogue.StartDialogue( "afterBow" );
+                buttonsUI.transform.Find ( "ArrowUI" ).GetComponent<Image> ().enabled = true;
+                buttonsUI.transform.Find ( "ArrowUI" ).transform.Find("ArrowCount").GetComponent<Text> ().enabled = true;
+                mCombat.GiveBow ();
                 Destroy( gameObject );
                 mGame.DoNotSpawnOnLoad( "Bow" );
             }
