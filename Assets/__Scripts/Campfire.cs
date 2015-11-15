@@ -52,7 +52,6 @@ public class Campfire : MonoBehaviour
 		{
 			willRecieveWetlandJP = true;
             m_Game.SetHasVisitedWetlands(true); 
-            m_Dialogue.StartDialogue( "wetlands3" );
 		}
 	}
 
@@ -66,7 +65,6 @@ public class Campfire : MonoBehaviour
             m_CharAnimator.SetBool("isWalking", false);
 			if(willRecieveWetlandJP)
 			{
-				m_Journal.AddJournalPage("JPWetlands");
                 GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem ().StartDialogue( "wetlands3" );
 				willRecieveWetlandJP = false;
 			}

@@ -33,6 +33,7 @@ public class DialogueSystem : MonoBehaviour
     private Text mDialogueText;
     private Character mChar;
     private GameManager mGame;
+    private Journal mJournal;
 
     // Needs to be init before Start
     void Start()
@@ -86,6 +87,7 @@ public class DialogueSystem : MonoBehaviour
     void SpecialInit()
     {
         mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
+        mJournal = GameObject.FindGameObjectWithTag("Journal").GetComponent<Journal>();
         
         // able to find inactive objects
         mDialogueBox = GameObject.FindGameObjectWithTag( "Dialogue" ).transform.Find ( "DialogueBox" ).gameObject;
@@ -149,23 +151,32 @@ public class DialogueSystem : MonoBehaviour
                 }
                 break;
             case "afterBagBoat":  // after bag and boat             
-                objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
+                objective.GetComponent<Text> ().text = "Objective: Go inland and explore";
                 rightArrow.SetActive ( true );
-                hintDuration = 10;
+                StartCoroutine ( HideHint ( hintDuration ) );
                 break;
             case "afterBow":  // shoot birds
                 objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n<i>Q</i> to AIM and <i>LEFT CLICK</i> to SHOOT";
-                hintDuration = 10;
+                break;
+            case "wetlands2":
+                objective.GetComponent<Text>().text = "Objective: Rest at the campsite";
+                break;
+            case "wetlands3":
+				mJournal.AddJournalPage("JPWetlands");
+                objective.GetComponent<Text>().text = "Objective: Find a way off the island";
+                break;
+            case "YouWin":
+                mGame.MainMenu();
+                GameObject.Find( "MainMenu" ).GetComponent<MainMenu>().OpenCredits();
                 break;
         }
-        StartCoroutine ( HideHint ( hintDuration ) );
     }
 
     IEnumerator HideHint( int seconds )
     {
         yield return new WaitForSeconds ( seconds );
-        objective.GetComponent<Text> ().text = "";
+        //objective.GetComponent<Text> ().text = "";
+        rightArrow.SetActive(false);
         //objBackground.SetActive ( false );
-        rightArrow.SetActive ( false );
     }
 }

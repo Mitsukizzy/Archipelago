@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour
     private Button m_Start;
     private Button m_Exit;
 
+    public Image creditsDev;
+    public Image creditsArt;
+    public Image creditsMusic;
+
     private GameObject m_Credits;
 
 	// Use this for initialization
@@ -41,6 +45,19 @@ public class MainMenu : MonoBehaviour
     public void OpenCredits()
     {
         m_Credits.SetActive ( true );
+        creditsDev.canvasRenderer.SetAlpha(0.0f);
+        creditsArt.canvasRenderer.SetAlpha(0.0f);
+        creditsMusic.canvasRenderer.SetAlpha(0.0f);
+        StartCoroutine( FadeInCredits() );
+    }
+
+    IEnumerator FadeInCredits()
+    {
+        creditsDev.CrossFadeAlpha(1.0f, 1.5f, false);
+        yield return new WaitForSeconds ( 2.0f );
+        creditsArt.CrossFadeAlpha(1.0f, 1.5f, false);
+        yield return new WaitForSeconds ( 2.0f );
+        creditsMusic.CrossFadeAlpha(1.0f, 1.5f, false);
     }
 
     public void CloseCredits ()
