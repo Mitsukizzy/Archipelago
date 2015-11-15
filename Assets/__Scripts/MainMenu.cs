@@ -11,6 +11,12 @@ public class MainMenu : MonoBehaviour
     public Image creditsDev;
     public Image creditsArt;
     public Image creditsMusic;
+    public Image creditsThanks;
+    public Image creditsHeader;
+    public Image creditsLogos;
+
+    private float waitDur = 2.0f;
+    private float fadeDur = 1.5f;
 
     private GameManager m_Game;
     private GameObject m_Credits;
@@ -56,16 +62,25 @@ public class MainMenu : MonoBehaviour
         creditsDev.canvasRenderer.SetAlpha(0.0f);
         creditsArt.canvasRenderer.SetAlpha(0.0f);
         creditsMusic.canvasRenderer.SetAlpha(0.0f);
+        creditsThanks.canvasRenderer.SetAlpha ( 0.0f );
+        creditsHeader.canvasRenderer.SetAlpha ( 0.0f );
+        creditsLogos.canvasRenderer.SetAlpha ( 0.0f );
         StartCoroutine( FadeInCredits() );
     }
 
     IEnumerator FadeInCredits()
     {
-        creditsDev.CrossFadeAlpha(1.0f, 1.5f, false);
-        yield return new WaitForSeconds ( 2.0f );
-        creditsArt.CrossFadeAlpha(1.0f, 1.5f, false);
-        yield return new WaitForSeconds ( 2.0f );
-        creditsMusic.CrossFadeAlpha(1.0f, 1.5f, false);
+        creditsThanks.CrossFadeAlpha(1.0f, fadeDur, false);
+        yield return new WaitForSeconds ( waitDur );
+        creditsHeader.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        yield return new WaitForSeconds ( waitDur );
+        creditsDev.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        yield return new WaitForSeconds ( waitDur );
+        creditsArt.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        creditsMusic.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        yield return new WaitForSeconds ( waitDur );
+        //yield return new WaitForSeconds ( waitDur );
+        creditsLogos.CrossFadeAlpha ( 1.0f, fadeDur, false );
     }
 
     public void CloseCredits ()
