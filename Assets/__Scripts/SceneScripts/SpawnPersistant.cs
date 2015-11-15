@@ -3,10 +3,14 @@ using System.Collections;
 
 public class SpawnPersistant : MonoBehaviour
 {
+	public Texture2D mouseCursor;
 
     // Use this for initialization
     void Awake ()
     {
+		if(mouseCursor != null){
+			Cursor.SetCursor(mouseCursor, new Vector2(0,0), CursorMode.ForceSoftware);
+		}
         GameObject manager = GameObject.FindGameObjectWithTag ( "Manager" );
         if ( manager == null )
         {
