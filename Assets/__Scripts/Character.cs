@@ -25,6 +25,7 @@ public class Character : MonoBehaviour
 	private float gatherTime;
     public GameObject gatherBarObj;
 	private Slider gatherBar;
+    private bool firstGatherDone = false;
 
     //Inventory
     private Inventory m_Inventory;
@@ -178,6 +179,11 @@ public class Character : MonoBehaviour
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
 				Debug.Log("Finished Gathering");
+                if( !firstGatherDone )
+                {
+                    firstGatherDone = true;
+                    m_Dialogue.StartDialogue( "wetlands2" );
+                }
                 m_Audio.PlayOnce ( "newItem" );
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
                 gatherFrom.GetComponent<Interactable>().SwitchToGatheredSprite();

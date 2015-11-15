@@ -414,11 +414,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public bool GetHasVisitedWetlands(){
+	public bool GetHasVisitedWetlands()
+    {
 		return hasVisitedWetlands;
 	}
 
-	public void SetHasVisitedWetlands(bool hasVisited){
+	public void SetHasVisitedWetlands(bool hasVisited)
+    {
 		hasVisitedWetlands = hasVisited;
 	}
 

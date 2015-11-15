@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour {
     private Animator Success;
     private Animator Fail;
     private AudioManager mAudio;
+    private Character mChar;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,7 @@ public class Inventory : MonoBehaviour {
         Fail = GameObject.Find("Fail").GetComponent<Animator>();
 
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
+        mChar = GameObject.FindGameObjectWithTag("Char").GetComponent<Character>();
 	}
 	
 	// Update is called once per frame
@@ -97,7 +99,10 @@ public class Inventory : MonoBehaviour {
         OpenInventory ();
         yield return new WaitForSeconds ( numSeconds );
         isKeepingBagOpen = false;
-        CloseInventory ();
+        if ( mChar.GetPlayerState() != Character.PlayerState.Interact )
+        {
+            CloseInventory();
+        }
     }
 
     public void ToggleInventory()

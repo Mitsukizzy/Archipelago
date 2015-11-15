@@ -23,6 +23,8 @@ public class Campfire : MonoBehaviour
     private bool canCamp;
 
     private Inventory m_Inventory;
+    private DialogueSystem m_Dialogue;
+    private GameManager m_Game;
 	
 	private Journal m_Journal;
 	private bool willRecieveWetlandJP = false;
@@ -39,22 +41,24 @@ public class Campfire : MonoBehaviour
         m_Char = GameObject.FindGameObjectWithTag("Char").GetComponent<Character> ();
         m_Input = GameObject.FindGameObjectWithTag("Manager").GetComponent<InputManager>();
         m_Camera = GameObject.Find ( "Main Camera" ).GetComponent<CameraFollow> ();
+        m_Game = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        m_Dialogue = m_Game.GetDialogueSystem();
         m_CharAnimator =m_Char.GetComponent<Animator>();
         m_Inventory = GameObject.Find("Inventory UI").transform.GetChild(0).GetComponent<Inventory>();
 
 		m_Journal = GameObject.Find("Journal UI").GetComponent<Journal>();
 		//if this is the first time visiting the wetlands, have the campfire give a journal page when she gets there
-		if(!GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetHasVisitedWetlands())
+        if ( !m_Game.GetHasVisitedWetlands() )
 		{
 			willRecieveWetlandJP = true;
-			GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().SetHasVisitedWetlands(true);
+            m_Game.SetHasVisitedWetlands(true); 
+            m_Dialogue.StartDialogue( "wetlands3" );
 		}
 	}
 
 	// Update is called once per frame
 	void Update () 
     {
-
         if ( m_Input.InteractButtonPressed () && canCamp )
         {
             campPopup.SetActive ( true );
@@ -63,6 +67,7 @@ public class Campfire : MonoBehaviour
 			if(willRecieveWetlandJP)
 			{
 				m_Journal.AddJournalPage("JPWetlands");
+                GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem ().StartDialogue( "wetlands3" );
 				willRecieveWetlandJP = false;
 			}
         }
