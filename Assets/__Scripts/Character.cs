@@ -128,7 +128,10 @@ public class Character : MonoBehaviour
         {
             m_Animator.SetBool("isWalking", false);
             SetPlayerState ( PlayerState.Aim );
-            m_Animator.SetBool("isAiming", true);
+            if (!m_Animator.GetBool("isAiming"))
+            {
+                m_Animator.SetBool("isAiming", true);
+            }
             bow.SetActive(true);
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = transform.position.z;
@@ -177,12 +180,16 @@ public class Character : MonoBehaviour
         }
         if ( m_State == PlayerState.Gather && gatherFrom != null )
         {
-            //gatherBar = gatherBarObj.GetComponent<Slider>();
+            if (!m_Animator.GetBool("isGathering"))
+            {
+                m_Animator.SetBool("isGathering", true);
+            }
             gatherBarObj.SetActive(true);
 			gatherTime += Time.deltaTime;
 			if( gatherTime >= secondsGathering )
             {
                 SetPlayerState( PlayerState.Idle );
+                m_Animator.SetBool("isGathering", false);
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
                 if( !firstGatherDone )
@@ -277,6 +284,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage ( int damage )
     {
+        m_Animator.SetTrigger("Hit");
         hpBar.value -= damage;
         
         if ( hpBar.value <= 0 )
