@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         KeyItems.Add ( "Backpack", true );
         KeyItems.Add ( "Boat", true );
+        KeyItems.Add ( "Bow", true );
         KeyItems.Add("wood", true);
         KeyItems.Add("rope", true);
         KeyItems.Add("hammer", true);

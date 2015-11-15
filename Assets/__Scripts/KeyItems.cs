@@ -76,9 +76,11 @@ public class KeyItems : MonoBehaviour
             {
                 mAudio.PlayOnce ( "rustle" );
             }
-            else if ( transform.tag.Equals ( "Campsite" ) )
+            else if ( transform.tag.Equals ( "Bow" ) )
             {
-                //mAudio.PlayOnce ( "campsite" );
+                mDialogue.StartDialogue( "afterBow" );
+                Destroy( gameObject );
+                mGame.DoNotSpawnOnLoad( "Bow" );
             }
 
             // Journal Pages
