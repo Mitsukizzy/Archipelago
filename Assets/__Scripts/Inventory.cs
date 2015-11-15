@@ -57,7 +57,6 @@ public class Inventory : MonoBehaviour {
             if (slotData.item != null && slotData.item.name == item.name)
             {
                 slotData.increaseStack();
-                Debug.Log("increased Stack of " + item.name);
                 //add some kind of success noise
                 Success.SetTrigger("becameActive");
                 if (item.GetComponent<ItemData>().isInstant)

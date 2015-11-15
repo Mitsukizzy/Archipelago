@@ -183,7 +183,6 @@ public class Character : MonoBehaviour
                 SetPlayerState( PlayerState.Idle );
 				gatherBar.value = 0;
 				gatherTime = 0.0f;
-				Debug.Log("Finished Gathering");
                 if( !firstGatherDone )
                 {
                     firstGatherDone = true;
@@ -238,7 +237,6 @@ public class Character : MonoBehaviour
 
     public void SetPlayerState ( PlayerState newState )
     {
-        //Debug.Log ( newState );
         m_State = newState;
     }
 
@@ -313,7 +311,6 @@ public class Character : MonoBehaviour
         {
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
             m_Game.IncreaseDaysStarved ();
-            Debug.Log ( "Starved" );
             if( hpBar.value > hpBar.maxValue)
             {
                 hpBar.value = hpBar.maxValue;

@@ -78,7 +78,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLoop ( string soundToLoop )
     {
-        Debug.Log ( "PLAY LOOP " + soundToLoop );
         switch( soundToLoop )
         {
             // Constants
@@ -115,7 +114,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLayer ( string layerToPlay )
     {
-        Debug.Log("PLAY LAYER " + layerToPlay);
         switch ( layerToPlay )
         {
             // Day Layers
@@ -158,7 +156,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOnce ( string soundToPlay )
     {
-        Debug.Log ( "ONE SHOT " + soundToPlay );
         switch ( soundToPlay )
         {
             case "shoot":

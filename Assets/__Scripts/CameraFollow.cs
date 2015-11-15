@@ -37,7 +37,6 @@ public class CameraFollow : MonoBehaviour
         rightBound = (float)(spriteBounds.bounds.size.x / 2.0f - horzExtent);
         bottomBound = (float)(vertExtent - spriteBounds.bounds.size.y / 2.0f);
         topBound = 1000000; //= (float)(spriteBounds.bounds.size.y / 2.0f - vertExtent);
-		Debug.Log("Left: " + leftBound + " Right: " + rightBound + " Top: " + topBound + " Bottom: " + bottomBound); 
     }
 
     void Update()
