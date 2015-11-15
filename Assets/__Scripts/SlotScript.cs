@@ -27,6 +27,7 @@ public class SlotScript : MonoBehaviour{
 	
 	// Update is called once per frame
 	void Update () {
+
         if (item != null)
         {
             itemImage.enabled = true;
@@ -42,6 +43,14 @@ public class SlotScript : MonoBehaviour{
                 itemCount.text = stack.ToString();
             }
             itemDescription.text = m_itemData.description;
+            if(interactable && m_itemData.cookedItem != null)
+            {
+                GetComponent<Image>().color = new Color32(238, 193, 17, 100);
+            }
+            else
+            {
+                GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+            }
         }
         else
         {
@@ -50,6 +59,7 @@ public class SlotScript : MonoBehaviour{
             //m_itemData = null;
             interactable = false;
             itemDescription.text = "";
+            GetComponent<Image>().color = new Color32(255, 255, 255, 100);
         }
 	}
 
