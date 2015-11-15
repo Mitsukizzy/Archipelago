@@ -50,7 +50,6 @@ public class Tutorial : MonoBehaviour
         //    intro = GameObject.Find("Intro").GetComponent<Intro>();
         //}
 
-        //Debug.Log ( "reached the close event" );
         //if ( Application.loadedLevelName == "1_Beach" )
         //{
         //    SetHint ( "wasd" );

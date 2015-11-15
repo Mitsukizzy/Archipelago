@@ -135,7 +135,6 @@ public class Journal : MonoBehaviour
 
     public void AddJournalPage( string pageName )
     {
-        Debug.Log ( "Page Added: " + pageName );
 		GameObject.Find ("Journal").GetComponent<Image>().sprite = ActiveSprite;
 		GameObject.Find ( "NewPage" ).GetComponent<Animator> ().SetTrigger ( "becameActive" );
         mAudio.PlayOnce ( "newItem" );

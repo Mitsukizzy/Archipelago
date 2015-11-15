@@ -75,7 +75,6 @@ public class KeyItems : MonoBehaviour
             else if ( transform.name.Equals ( "Bush" ) )
             {
                 //mAudio.PlayOnce("rustle");
-                //Debug.Log( "visited wetlands"  + mGame.GetHasVisitedWetlands());
                 //if( !mGame.GetHasVisitedWetlands() )
                 //{
                 //    mDialogue.StartDialogue("wetlands2");
@@ -92,14 +91,12 @@ public class KeyItems : MonoBehaviour
             // Journal Pages
             if ( transform.tag.Equals ( "JPBeach" ) || transform.tag.Equals ( "JPSeaCave" ) || transform.tag.Equals ( "JPDocks" ) || transform.tag.Equals("JPPlains") )
             {
-                Debug.Log ( "tag " + transform.tag );
                 mJournal.AddJournalPage ( transform.tag );
                 Destroy ( gameObject ); //picked up, not needed anymore
             }
 
             if (gameObject.name.Contains("wood"))
             {
-                //Debug.Log("interacted with wood");
                 mDialogue.StartDialogue("wood");
                 mGame.DoNotSpawnOnLoad("wood");
                 gameObject.GetComponent<Interactable>().ReceiveItem();
@@ -108,7 +105,6 @@ public class KeyItems : MonoBehaviour
 
             if (gameObject.name.Contains("rope"))
             {
-                //Debug.Log("interacted with wood");
                 mDialogue.StartDialogue("rope");
                 mGame.DoNotSpawnOnLoad("rope");
                 gameObject.GetComponent<Interactable>().ReceiveItem();
@@ -116,7 +112,6 @@ public class KeyItems : MonoBehaviour
             }
             if (gameObject.name.Contains("hammer"))
             {
-                //Debug.Log("interacted with wood");
                 mDialogue.StartDialogue("hammer");
                 mGame.DoNotSpawnOnLoad("hammer");
                 gameObject.GetComponent<Interactable>().ReceiveItem();

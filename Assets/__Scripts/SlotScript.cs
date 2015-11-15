@@ -66,7 +66,6 @@ public class SlotScript : MonoBehaviour{
     {
         if (interactable && !m_itemData.isKey)
         {
-            Debug.Log("Clicked " + item.name );
             stack--;
             m_Character.useItem(item);
             if (stack == 0)
@@ -96,7 +95,6 @@ public class SlotScript : MonoBehaviour{
         {
             descriptionBG.enabled = true;
             itemDescription.enabled = true;
-            Debug.Log("MouseOver");
         }
     }
 

@@ -80,7 +80,6 @@ public class DayNightManager : MonoBehaviour
             if (curTime - startTime < numSecondsToChange)
             {
                 daylight.intensity = Mathf.Lerp(curIntensity, targetIntensity, (curTime-startTime)/numSecondsToChange);
-                //Debug.Log(daylight.intensity);
                 daylight.color = Color.Lerp(curColor, targetColor, (curTime - startTime) / numSecondsToChange);
                 curTime += Time.deltaTime;
             }
@@ -142,8 +141,6 @@ public class DayNightManager : MonoBehaviour
         {
             lightTimer -= numHours;
         }
-        //Debug.Log("Time of day: " + timeOfDay);
-        //Debug.Log("Time of day out of 12: " + timeOfDay / 12.0f);
         startTime = Time.time;
         curTime = Time.time;
         curIntensity = daylight.intensity;

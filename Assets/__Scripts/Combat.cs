@@ -50,7 +50,6 @@ public class Combat : MonoBehaviour
 
     void ShootArrow()
     {
-        Debug.Log("Arrow Count: " + m_Char.numArrows);
         // Instantiate arrow, aiming code is in Arrow.cs
         if (m_Char.numArrows > 0)
         {

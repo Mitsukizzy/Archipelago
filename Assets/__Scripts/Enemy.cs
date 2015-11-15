@@ -34,7 +34,6 @@ public class Enemy : MonoBehaviour
         float distFromCharAggro = ( m_StartingPosition - m_Char.transform.position ).magnitude;
         float distFromCharAttack = ( transform.position - m_Char.transform.position ).magnitude;
 
-        Debug.Log ( "Enemy Health: " + health );
         if ( m_Char.IsAlive () )
         {
             if ( distFromCharAttack <= attackDistance )
