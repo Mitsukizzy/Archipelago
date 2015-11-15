@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             m_Char = GameObject.FindGameObjectWithTag( "Char" ).GetComponent<Character>();
-            uiObj = GameObject.FindGameObjectWithTag( "UI" ).gameObject;
+            uiObj = GameObject.FindGameObjectWithTag ( "UI" ).gameObject;
+            uiObj.transform.localScale = new Vector3( 1, 1, 1 ); // unhide the UI
         }
 
         // Move the character to the proper location
@@ -200,8 +201,7 @@ public class GameManager : MonoBehaviour
                 m_Char.Revive ();
                 m_audio.PlayOnce ( "playerDeath" );
                 deaths++;
-                Debug.Log( "mchar: " + m_Char);
-                uiObj.SetActive( false );
+                uiObj.transform.localScale = Vector3.zero; // hide the UI
                 Application.LoadLevel ( 7 ); // to game over screen
             }
             
@@ -346,7 +346,6 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel(2);
         m_Char = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
         m_daynight = GetComponent<DayNightManager> ();
-        
         m_Char.ReturnToCamp ();
         m_daynight.ContinueDay ();
     }

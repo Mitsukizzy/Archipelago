@@ -4,6 +4,7 @@ using System.Collections;
 public class AudioManager : MonoBehaviour
 {
     /** MUSIC **/
+    // Constants
     public AudioClip musicMain;
     public AudioClip musicBeach;
     public AudioClip musicWetlands;
@@ -11,8 +12,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip musicDocks;
     public AudioClip musicSeaCave;
     public AudioClip musicPlains;
-    public AudioClip musicTemp1;        // Coalescence
-    public AudioClip musicTemp2;        // Monsoon
+
+    // Day
+    public AudioClip musicBeachDay;
+    public AudioClip musicWetlandsDay;
+    public AudioClip musicForestDay;
 
     /** SFX **/
     // Player
@@ -74,6 +78,7 @@ public class AudioManager : MonoBehaviour
         Debug.Log ( "PLAY LOOP " + soundToLoop );
         switch( soundToLoop )
         {
+            // Constants
             case "main":
                 m_MusicSource.clip = musicMain;
                 break;
@@ -95,11 +100,15 @@ public class AudioManager : MonoBehaviour
             case "plains":
                 m_MusicSource.clip = musicPlains;
                 break;
-            case "temp1":
-                m_MusicSource.clip = musicTemp1;
+            // Day
+            case "beachDay":
+                m_MusicSource.clip = musicBeachDay;
                 break;
-            case "temp2":
-                m_MusicSource.clip = musicTemp2;
+            case "wetlandsDay":
+                m_MusicSource.clip = musicWetlandsDay;
+                break;
+            case "forestDay":
+                m_MusicSource.clip = musicForestDay;
                 break;
             default:
                 break;

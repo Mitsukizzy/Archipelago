@@ -115,15 +115,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0343ad7fc23aadd4db76127b44adacab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicMain: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
-  musicBeach: {fileID: 8300000, guid: b31702853d5bf18489b56b476d31be7c, type: 3}
-  musicWetlands: {fileID: 8300000, guid: adad9c8ee6e9e0a419d1fd5b1a7fda96, type: 3}
-  musicForest: {fileID: 8300000, guid: b2438ceaa80ab4448a018a1dcd92805f, type: 3}
-  musicDocks: {fileID: 8300000, guid: efc588e1ad8a7a14e9a49f9fc0981f40, type: 3}
-  musicSeaCave: {fileID: 8300000, guid: 8957a147ddc3f714b84c029974eba778, type: 3}
+  musicMain: {fileID: 8300000, guid: 7964925d460b4c54494ddf7faae7d64e, type: 3}
+  musicBeach: {fileID: 8300000, guid: 3822afbdc4594aa45b5705e1604af276, type: 3}
+  musicWetlands: {fileID: 8300000, guid: cdb3a2531dae1a7468de22985461d77e, type: 3}
+  musicForest: {fileID: 8300000, guid: 6bab1c9de32abe942af4681b365c3aab, type: 3}
+  musicDocks: {fileID: 8300000, guid: b456285345d735049a7a4c8669c8c3ed, type: 3}
+  musicSeaCave: {fileID: 8300000, guid: 804ff580bb68b7a4cb98384630538210, type: 3}
   musicPlains: {fileID: 8300000, guid: 9f1eb05f2e16c5c4e813efe1b30f3dcc, type: 3}
-  musicTemp1: {fileID: 8300000, guid: a005f309ebc858645b4dcb6566a42c0d, type: 3}
-  musicTemp2: {fileID: 8300000, guid: 1503550b0c01cb54c842e73a5cb00674, type: 3}
+  musicBeachDay: {fileID: 8300000, guid: 8465020b8ee742d48a06db0531fae450, type: 3}
+  musicWetlandsDay: {fileID: 8300000, guid: 3badf2ba84bb18f48b1b8f154719d133, type: 3}
+  musicForestDay: {fileID: 8300000, guid: 06ccc1e97ae3e6b449ee9f8b3859ece4, type: 3}
   sndWalk: {fileID: 8300000, guid: f16e7bedd74475e42acc487bd5077a1d, type: 3}
   sndRun: {fileID: 8300000, guid: 29989d865bb8b3a4591971678a28d875, type: 3}
   sndShoot: {fileID: 8300000, guid: 66fbf7db6bb8ef4489751916b264dcbb, type: 3}
@@ -132,7 +133,7 @@ MonoBehaviour:
   sndMenuHover: {fileID: 8300000, guid: 2897f13de7f0ac64f96534f574e003f5, type: 3}
   sndClick: {fileID: 8300000, guid: 4331eb91536d3bb4ca8fd2ade6e8c192, type: 3}
   sndCampsite: {fileID: 8300000, guid: cbead7f5601143d4f9a5b34701fd5b0e, type: 3}
-  sndGameOver: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
+  sndGameOver: {fileID: 8300000, guid: 5809852316c7c1943ad9ed2712d33832, type: 3}
   sndRefreshed: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
   sndCook: {fileID: 8300000, guid: c81960a9fcf62bf48978eec0cab0c9f3, type: 3}
   sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
@@ -244,15 +245,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: musicForest
       value: 
-      objectReference: {fileID: 8300000, guid: b2438ceaa80ab4448a018a1dcd92805f, type: 3}
+      objectReference: {fileID: 8300000, guid: 6bab1c9de32abe942af4681b365c3aab, type: 3}
     - target: {fileID: 0}
       propertyPath: musicDocks
       value: 
-      objectReference: {fileID: 8300000, guid: efc588e1ad8a7a14e9a49f9fc0981f40, type: 3}
+      objectReference: {fileID: 8300000, guid: b456285345d735049a7a4c8669c8c3ed, type: 3}
     - target: {fileID: 0}
       propertyPath: musicSeaCave
       value: 
-      objectReference: {fileID: 8300000, guid: 8957a147ddc3f714b84c029974eba778, type: 3}
+      objectReference: {fileID: 8300000, guid: 804ff580bb68b7a4cb98384630538210, type: 3}
     - target: {fileID: 0}
       propertyPath: musicPlains
       value: 
@@ -260,7 +261,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: sndGameOver
       value: 
-      objectReference: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
+      objectReference: {fileID: 8300000, guid: 5809852316c7c1943ad9ed2712d33832, type: 3}
     - target: {fileID: 0}
       propertyPath: sndRustle
       value: 
@@ -292,15 +293,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: musicMain
       value: 
-      objectReference: {fileID: 8300000, guid: 242dfa2849bbdb041a7169796b72bc23, type: 3}
+      objectReference: {fileID: 8300000, guid: 7964925d460b4c54494ddf7faae7d64e, type: 3}
     - target: {fileID: 0}
       propertyPath: musicBeach
       value: 
-      objectReference: {fileID: 8300000, guid: b31702853d5bf18489b56b476d31be7c, type: 3}
+      objectReference: {fileID: 8300000, guid: 3822afbdc4594aa45b5705e1604af276, type: 3}
     - target: {fileID: 0}
       propertyPath: musicWetlands
       value: 
-      objectReference: {fileID: 8300000, guid: adad9c8ee6e9e0a419d1fd5b1a7fda96, type: 3}
+      objectReference: {fileID: 8300000, guid: cdb3a2531dae1a7468de22985461d77e, type: 3}
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -409,6 +410,18 @@ Prefab:
       propertyPath: afterBow
       value: 
       objectReference: {fileID: 4900000, guid: 9340efba248c8bf4d952c8af8e239f57, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicBeachDay
+      value: 
+      objectReference: {fileID: 8300000, guid: 8465020b8ee742d48a06db0531fae450, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicWetlandsDay
+      value: 
+      objectReference: {fileID: 8300000, guid: 3badf2ba84bb18f48b1b8f154719d133, type: 3}
+    - target: {fileID: 0}
+      propertyPath: musicForestDay
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ccc1e97ae3e6b449ee9f8b3859ece4, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}
