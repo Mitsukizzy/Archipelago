@@ -18,6 +18,8 @@ public class DayNightManager : MonoBehaviour
     // The Day Night Slider in the UI system. Goes 1 - 24
     private Slider mSlider;
     private Image mHandle;
+    private GameManager mGame;
+    private AudioManager mAudio;
 
     public Sprite sun;
     public Sprite moon;
@@ -27,6 +29,7 @@ public class DayNightManager : MonoBehaviour
     private Character mChar;
 
 	bool increasing = true;
+    private bool isDay = false;
 
     float startTime;
     float curTime;
@@ -45,6 +48,8 @@ public class DayNightManager : MonoBehaviour
     {
         curColor = Color.white;
         targetColor = Color.white;
+        mGame = GetComponent<GameManager> ();
+        mAudio = GetComponent<AudioManager> ();
 	}
 
     // Use this for initialization
@@ -64,6 +69,7 @@ public class DayNightManager : MonoBehaviour
             curColor = Color.white;
             targetColor = Color.white;
             lightTimer = 1;
+            CheckTime ();
         }
     }
 
@@ -103,12 +109,13 @@ public class DayNightManager : MonoBehaviour
 
         mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
 
-        if ( GetComponent<GameManager> ().GetPreviousSceneIndex () == -1 ) // Is the first time this is loaded
+        if ( mGame.GetPreviousSceneIndex () == -1 ) // Is the first time this is loaded
         {
             StartCoroutine ( AdvanceHour ( 1 ) );
         }
         daylight = GameObject.Find ( "Directional Light" ).GetComponent<Light> ();
-        daylight.intensity = targetIntensity;
+        daylight.intensity = targetIntensity; 
+        CheckTime ();
     }
 
     public int GetTimeOfDay()
@@ -159,17 +166,37 @@ public class DayNightManager : MonoBehaviour
         {
             increasing = true;
         }
-        if( timeOfDay > ( maxTime * 0.35 ) && timeOfDay < ( maxTime * .75 ) )
-        {
-            mHandle.sprite = moon;
-        }
-        else
-        {
-            mHandle.sprite = sun;
-        }
+        CheckTime ();
         mSlider.value = timeOfDay;
         mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
         
         StartCoroutine ( AdvanceHour ( 1 ) );
+    }
+
+    public void CheckTime()
+    {
+        Debug.Log ( "Checking time!" );
+        if ( timeOfDay > ( maxTime * 0.35 ) && timeOfDay < ( maxTime * .75 ) && isDay )
+        {
+            StartNight ();
+        }
+        if ( timeOfDay <= ( maxTime * 0.35 ) && timeOfDay >= ( maxTime * .75 ) && !isDay )
+        {
+            StartDay ();
+        }
+    }
+
+    public void StartDay()
+    {
+        isDay = true;
+        mHandle.sprite = sun;
+        mAudio.PlayLayer ( mGame.GetCurrentSceneIndex () );
+    }
+
+    public void StartNight()
+    {
+        isDay = false;
+        mHandle.sprite = moon;
+        mAudio.StopLayer ();
     }
 }

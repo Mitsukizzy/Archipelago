@@ -44,6 +44,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource m_AudioSource;
     private AudioSource m_MusicSource;
+    private AudioSource m_LayerSource;
 
     private float sfxVolume = 0.5f;
 
@@ -62,16 +63,21 @@ public class AudioManager : MonoBehaviour
         m_MusicSource.loop = true;
     }
 
+    void OnLevelWasLoaded()
+    {
+        if( Application.loadedLevel != 1 && Application.loadedLevel != 7 )
+        {
+            m_LayerSource = GameObject.Find ( "AudioSlave" ).GetComponent<AudioSource> ();
+            m_LayerSource.volume = 0.4f;
+            m_LayerSource.loop = true;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () 
     {
 
 	}
-
-    public void Stop()
-    {
-        m_AudioSource.Stop ();
-    }
 
     public void PlayLoop ( string soundToLoop )
     {
@@ -100,16 +106,6 @@ public class AudioManager : MonoBehaviour
             case "plains":
                 m_MusicSource.clip = musicPlains;
                 break;
-            // Day
-            case "beachDay":
-                m_MusicSource.clip = musicBeachDay;
-                break;
-            case "wetlandsDay":
-                m_MusicSource.clip = musicWetlandsDay;
-                break;
-            case "forestDay":
-                m_MusicSource.clip = musicForestDay;
-                break;
             default:
                 break;
         }
@@ -118,6 +114,36 @@ public class AudioManager : MonoBehaviour
         {
             m_MusicSource.Play ();
         }
+    }
+
+    public void PlayLayer ( int curScene )
+    {
+        Debug.Log ( "PLAY LAYER " + curScene );
+        switch ( curScene )
+        {
+            // Day Layers
+            case 2:
+                m_LayerSource.clip = musicBeachDay;
+                break;
+            case 3:
+                m_LayerSource.clip = musicWetlandsDay;
+                break;
+            case 4:
+                m_LayerSource.clip = musicForestDay;
+                break;
+            default:
+                break;
+        }
+
+        if ( !m_LayerSource.isPlaying )
+        {
+            m_LayerSource.Play ();
+        }
+    }
+
+    public void StopLayer()
+    {
+        m_LayerSource.Stop ();
     }
 
     public void PlayOnce ( string soundToPlay )
@@ -173,5 +199,10 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void Stop ()
+    {
+        m_AudioSource.Stop ();
     }
 }
