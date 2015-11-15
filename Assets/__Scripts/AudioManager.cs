@@ -44,6 +44,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource m_AudioSource;
     private AudioSource m_MusicSource;
+    private AudioSource m_LayerSource;
 
     private float sfxVolume = 0.5f;
 
@@ -60,6 +61,13 @@ public class AudioManager : MonoBehaviour
         m_MusicSource = GameObject.Find ( "Main Camera" ).GetComponent<AudioSource> ();
         m_MusicSource.volume = 0.4f;
         m_MusicSource.loop = true;
+
+        if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
+        {
+            m_LayerSource = GameObject.Find("AudioSlave").GetComponent<AudioSource>();
+            m_LayerSource.volume = 0.4f;
+            m_LayerSource.loop = true;
+        }
     }
 
 	// Update is called once per frame
@@ -67,11 +75,6 @@ public class AudioManager : MonoBehaviour
     {
 
 	}
-
-    public void Stop()
-    {
-        m_AudioSource.Stop ();
-    }
 
     public void PlayLoop ( string soundToLoop )
     {
@@ -100,16 +103,6 @@ public class AudioManager : MonoBehaviour
             case "plains":
                 m_MusicSource.clip = musicPlains;
                 break;
-            // Day
-            case "beachDay":
-                m_MusicSource.clip = musicBeachDay;
-                break;
-            case "wetlandsDay":
-                m_MusicSource.clip = musicWetlandsDay;
-                break;
-            case "forestDay":
-                m_MusicSource.clip = musicForestDay;
-                break;
             default:
                 break;
         }
@@ -117,6 +110,49 @@ public class AudioManager : MonoBehaviour
         if ( !m_MusicSource.isPlaying )
         {
             m_MusicSource.Play ();
+        }
+    }
+
+    public void PlayLayer ( string layerToPlay )
+    {
+        Debug.Log("PLAY LAYER " + layerToPlay);
+        switch ( layerToPlay )
+        {
+            // Day Layers
+            case "beachDay":
+                m_LayerSource.clip = musicBeachDay;
+                break;
+            case "wetlandsDay":
+                m_LayerSource.clip = musicWetlandsDay;
+                break;
+            case "forestDay":
+                m_LayerSource.clip = musicForestDay;
+                break;
+            default:
+                break;
+        }
+
+        if ( !m_LayerSource.isPlaying )
+        {
+            StartCoroutine( FadeInLayer () );
+        }
+    }
+
+    public IEnumerator FadeInLayer ()
+    {
+        for ( float f = 0.0f; f >= 0.4f; f += 0.05f )
+        {
+            m_LayerSource.volume = f;
+            yield return new WaitForSeconds( 0.1f );
+        }
+    }
+
+    public IEnumerator FadeOutLayer ()
+    {
+        for ( float f = 0.4f; f >= 0; f -= 0.05f )
+        {
+            m_LayerSource.volume = f;
+            yield return new WaitForSeconds( 0.1f );
         }
     }
 
@@ -173,5 +209,10 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void Stop ()
+    {
+        m_AudioSource.Stop ();
     }
 }

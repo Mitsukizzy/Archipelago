@@ -133,10 +133,11 @@ public class DialogueSystem : MonoBehaviour
     private void ShowHint()
     {
         //objBackground.SetActive ( true );
+        int hintDuration = 8;
         switch( curKey )
         {
             case "beach1":  // spawned on island
-                objective.GetComponent<Text> ().text = "Tip: Press H to view help";
+                objective.GetComponent<Text> ().text = "Tip: Press <i>H</i> to view help\nTap <i>E</i> to interact with objects";
                 break;
             case "beach2":  // backpack
                 objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
@@ -150,19 +151,20 @@ public class DialogueSystem : MonoBehaviour
             case "afterBagBoat":  // after bag and boat             
                 objective.GetComponent<Text> ().text = "Objective: Go inland and search for food";
                 rightArrow.SetActive ( true );
-                StartCoroutine ( HideHint () );
+                hintDuration = 10;
                 break;
             case "afterBow":  // shoot birds
-                objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n\n(Q to AIM and LEFT CLICK to SHOOT)";
+                objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n<i>Q</i> to AIM and <i>LEFT CLICK</i> to SHOOT";
+                hintDuration = 10;
                 break;
         }
-        //StartCoroutine ( HideHint () );
+        StartCoroutine ( HideHint ( hintDuration ) );
     }
 
-    IEnumerator HideHint( int seconds = 5 )
+    IEnumerator HideHint( int seconds )
     {
         yield return new WaitForSeconds ( seconds );
-        //objective.GetComponent<Text> ().text = "";
+        objective.GetComponent<Text> ().text = "";
         //objBackground.SetActive ( false );
         rightArrow.SetActive ( false );
     }

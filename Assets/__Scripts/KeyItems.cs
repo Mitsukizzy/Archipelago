@@ -72,13 +72,21 @@ public class KeyItems : MonoBehaviour
                     mDialogue.StartDialogue ( "NotYet" );
                 }
             }
-            else if ( transform.tag.Equals ( "Bush" ) )
+            else if ( transform.name.Equals ( "Bush" ) )
             {
-                mAudio.PlayOnce ( "rustle" );
+                //mAudio.PlayOnce("rustle");
+                //Debug.Log( "visited wetlands"  + mGame.GetHasVisitedWetlands());
+                //if( !mGame.GetHasVisitedWetlands() )
+                //{
+                //    mDialogue.StartDialogue("wetlands2");
+                //    mGame.SetHasVisitedWetlands( true );
+                //}
             }
-            else if ( transform.tag.Equals ( "Campsite" ) )
+            else if ( transform.tag.Equals ( "Bow" ) )
             {
-                //mAudio.PlayOnce ( "campsite" );
+                mDialogue.StartDialogue( "afterBow" );
+                Destroy( gameObject );
+                mGame.DoNotSpawnOnLoad( "Bow" );
             }
 
             // Journal Pages

@@ -25,6 +25,7 @@ TagManager:
   - Tutorial
   - JPPlains
   - Dialogue
+  - Bow
   layers:
   - Default
   - TransparentFX

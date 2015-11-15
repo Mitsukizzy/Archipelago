@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         KeyItems.Add ( "Backpack", true );
         KeyItems.Add ( "Boat", true );
+        KeyItems.Add ( "Bow", true );
         KeyItems.Add("wood", true);
         KeyItems.Add("rope", true);
         KeyItems.Add("hammer", true);
@@ -132,16 +133,19 @@ public class GameManager : MonoBehaviour
         else if ( Application.loadedLevel == 1 )
         {
             m_audio.PlayLoop ( "beach" ); 
+            m_audio.PlayLayer( "beachDay" );
             locationTimestamps.Add ( "Beach - " + Time.time );
         }
         else if ( Application.loadedLevel == 2 )
         {
             m_audio.PlayLoop( "wetlands" );
+            m_audio.PlayLayer( "wetlandsDay" );
             locationTimestamps.Add ( "Wetlands - " + Time.time );
         }
         else if ( Application.loadedLevel == 3 )
         {
             m_audio.PlayLoop ( "forest" );
+            m_audio.PlayLayer( "forestDay" );
             locationTimestamps.Add ( "Forest - " + Time.time );
         }
         else if ( Application.loadedLevel == 4 )
@@ -410,11 +414,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public bool GetHasVisitedWetlands(){
+	public bool GetHasVisitedWetlands()
+    {
 		return hasVisitedWetlands;
 	}
 
-	public void SetHasVisitedWetlands(bool hasVisited){
+	public void SetHasVisitedWetlands(bool hasVisited)
+    {
 		hasVisitedWetlands = hasVisited;
 	}
 
