@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public Image creditsThanks;
     public Image creditsHeader;
     public Image creditsLogos;
+    public Image creditsSpecial;
 
     private float waitDur = 2.0f;
     private float fadeDur = 1.5f;
@@ -59,12 +60,13 @@ public class MainMenu : MonoBehaviour
     public void OpenCredits()
     {
         m_Credits.SetActive ( true );
-        creditsDev.canvasRenderer.SetAlpha(0.0f);
-        creditsArt.canvasRenderer.SetAlpha(0.0f);
-        creditsMusic.canvasRenderer.SetAlpha(0.0f);
+        creditsDev.canvasRenderer.SetAlpha ( 0.0f );
+        creditsArt.canvasRenderer.SetAlpha ( 0.0f );
+        creditsMusic.canvasRenderer.SetAlpha ( 0.0f );
         creditsThanks.canvasRenderer.SetAlpha ( 0.0f );
         creditsHeader.canvasRenderer.SetAlpha ( 0.0f );
         creditsLogos.canvasRenderer.SetAlpha ( 0.0f );
+        creditsSpecial.canvasRenderer.SetAlpha ( 0.0f );
         StartCoroutine( FadeInCredits() );
     }
 
@@ -77,10 +79,12 @@ public class MainMenu : MonoBehaviour
         creditsDev.CrossFadeAlpha ( 1.0f, fadeDur, false );
         yield return new WaitForSeconds ( waitDur );
         creditsArt.CrossFadeAlpha ( 1.0f, fadeDur, false );
-        creditsMusic.CrossFadeAlpha ( 1.0f, fadeDur, false );
         yield return new WaitForSeconds ( waitDur );
-        //yield return new WaitForSeconds ( waitDur );
-        creditsLogos.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        creditsMusic.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        yield return new WaitForSeconds ( waitDur * 1.25f );
+        creditsSpecial.CrossFadeAlpha ( 1.0f, fadeDur * 1.25f, false );
+        yield return new WaitForSeconds ( waitDur * 1.5f );
+        creditsLogos.CrossFadeAlpha ( 1.0f, fadeDur * 1.5f, false );
     }
 
     public void CloseCredits ()

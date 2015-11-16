@@ -93,14 +93,15 @@ public class GameManager : MonoBehaviour
             uiObj.transform.localScale = new Vector3( 1, 1, 1 ); // unhide the UI
         }
 
+        PreviousSceneIndex = CurrentSceneIndex;
+        CurrentSceneIndex = Application.loadedLevel;
+
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         // Don't spawn if on main menu(0) or game over(7)
         if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             Vector3 spawnLoc;
-            PreviousSceneIndex = CurrentSceneIndex;
-            CurrentSceneIndex = Application.loadedLevel;
 
             if ( CurrentSceneIndex < PreviousSceneIndex )
             {
@@ -118,10 +119,12 @@ public class GameManager : MonoBehaviour
                 //hasVisitedWetlands = true; //moved to campfire
             }
         }
-        else if ( Application.loadedLevel == 1 && CurrentSceneIndex > 1 ) // Coming from wetlands to beach
+        else if ( Application.loadedLevelName.Equals ( "1_Beach" ) )
         {
-            m_Char.transform.position = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position;
-            hasVisitedBeach = true;
+            if ( CurrentSceneIndex < PreviousSceneIndex )
+            {
+                m_Char.transform.position = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position; 
+            }
         }
 
         // Chooses music being played in each level
@@ -280,11 +283,6 @@ public class GameManager : MonoBehaviour
         return GetComponent<DialogueSystem> ();
     }
 
-    public bool CheckHasVisitedBeach()
-    {
-        return hasVisitedBeach;
-    }
-
     public void Pause()
     {
         GameObject pauseOverlay = GameObject.FindGameObjectWithTag ( "UI" ).transform.Find ( "Pause UI" ).gameObject; // my way of finding inactive gameobject
@@ -434,6 +432,16 @@ public class GameManager : MonoBehaviour
         {
             KeyItems[itemName] = false;
         }
+    }
+
+    public bool CheckHasVisitedBeach ()
+    {
+        return hasVisitedBeach;
+    }
+
+    public void SetHasVisitedBeach ( bool hasVisited )
+    {
+        hasVisitedBeach = hasVisited;
     }
 
 	public bool GetHasVisitedWetlands()
