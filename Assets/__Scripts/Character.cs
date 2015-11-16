@@ -384,15 +384,12 @@ public class Character : MonoBehaviour
     public void ReturnToCamp()
     {
         //just move the character back to the campfire for the playtest, this needs to also reset stats later on
+        campLocation = GameObject.FindGameObjectWithTag( "Campsite" ).transform.position;
         if (campLocation != null)
         {
             transform.position = campLocation;
             m_Animator.SetBool("isAtking", false);
             m_Animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            Application.LoadLevel("MainMenu");
         }
     }
 

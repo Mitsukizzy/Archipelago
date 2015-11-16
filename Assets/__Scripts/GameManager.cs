@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private bool hasVisitedWetlands = false;
     private bool hasPlayedIntroSplash = false;
     private bool hasJustWon = false; // trigger for credits
+    private bool isRetrying = false; // allow spawn point to be set by campfire location
 
 	private int CurrentSceneIndex;
 	private int PreviousSceneIndex;
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
         // Move the character to the proper location
         // Beach initial spawn is in middle of map, spawn point changes to right side after that
         // Don't spawn if on main menu(0) or game over(7)
-        if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 )
+        if ( !Application.loadedLevelName.Equals ( "1_Beach" ) && Application.loadedLevel != 0 && Application.loadedLevel != 7 && !isRetrying )
         {
             Vector3 spawnLoc;
 
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour
                 m_Char.transform.position = GameObject.Find ( "SpawnPoint2" ).GetComponent<Transform> ().position; 
             }
         }
+        isRetrying = false;
 
         // Chooses music being played in each level
         m_audio.SpecialInit ();
@@ -366,11 +368,11 @@ public class GameManager : MonoBehaviour
     public void RetryFromCampfire ()
     {
         // TODO: Replace with code to load last level of campsite
-        Application.LoadLevel(2);
+        GameManager game = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
+        Application.LoadLevel ( game.GetPreviousSceneIndex () );
+        game.SetIsRetrying ( true );
         m_Char = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
-        m_daynight = GetComponent<DayNightManager> ();
         m_Char.ReturnToCamp ();
-        m_daynight.ContinueDay ();
     }
 
     public void LoadNextLevel()
@@ -452,6 +454,11 @@ public class GameManager : MonoBehaviour
     {
 		hasVisitedWetlands = hasVisited;
 	}
+
+    public void SetIsRetrying( bool retrying )
+    {
+        isRetrying = retrying;
+    }
 
     public int GetCurrentSceneIndex ()
     {

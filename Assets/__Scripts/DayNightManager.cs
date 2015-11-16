@@ -108,8 +108,6 @@ public class DayNightManager : MonoBehaviour
         mSlider.value = timeOfDay;
 
         mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
-
-        Debug.Log ( "PrevL " + mGame.GetPreviousSceneIndex () );
         if ( mGame.GetPreviousSceneIndex () == 0 || mGame.GetPreviousSceneIndex () == 7 ) // Is the first time this is loaded, or resuming from gameover
         {
             StartCoroutine ( AdvanceHour ( 1 ) );
