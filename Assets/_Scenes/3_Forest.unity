@@ -742,6 +742,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f3e2a6f42329c4cf0a3a194500bc1dc2, type: 2}
+    - target: {fileID: 474592, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -16.8999996
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
   m_IsPrefabParent: 0
@@ -1267,6 +1271,18 @@ Prefab:
     - target: {fileID: 166044, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
       propertyPath: m_TagString
       value: Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453472, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: hitPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473768, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: hitPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461992, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
+      propertyPath: hitPoints
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc077ee2b80d0864299ae3c52314a3bb, type: 2}
