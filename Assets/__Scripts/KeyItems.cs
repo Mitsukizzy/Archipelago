@@ -129,6 +129,7 @@ public class KeyItems : MonoBehaviour
             if (gameObject.tag == "Story")
             {
                 mDialogue.StartDialogue(transform.name);
+                mGame.DoNotSpawnOnLoad(transform.name);
                 GetComponent<Interactable>().StoryItem.SetActive(true);
             }
 

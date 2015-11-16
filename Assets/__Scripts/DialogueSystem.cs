@@ -22,6 +22,7 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset watch;
     public TextAsset glasses;
     public TextAsset map;
+    public TextAsset photo;
 
     public Dictionary<string, string> mDialogues;
     private string[] curDialogue;
@@ -61,6 +62,7 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add("watch", watch.text);
         mDialogues.Add("glasses", glasses.text);
         mDialogues.Add("map", map.text);
+        mDialogues.Add("photo", photo.text);
 
         mGame = GetComponent<GameManager> ();
 

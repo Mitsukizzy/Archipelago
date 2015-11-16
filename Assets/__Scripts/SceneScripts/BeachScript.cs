@@ -23,6 +23,11 @@ public class BeachScript : MonoBehaviour
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageBeach", typeof ( GameObject ) ) ) as GameObject;
             mGame.DoNotSpawnOnLoad ( "JournalPageBeach" );
         }
+        if (!(mGame.CheckItem("glasses") && mGame.CheckItem("watch")))
+        {
+            GameObject photo = Instantiate(Resources.Load("photo", typeof(GameObject))) as GameObject;
+            photo.name = "photo";
+        }
     }
 
     // Update is called once per frame

@@ -216,6 +216,7 @@ MonoBehaviour:
   watch: {fileID: 4900000, guid: 2c16833bf3efac745b94045a5f85fa86, type: 3}
   glasses: {fileID: 4900000, guid: 6f2c12d389227f141a634861e2fbd8ee, type: 3}
   map: {fileID: 4900000, guid: cb8708389e185bf4693ccf3893abfee6, type: 3}
+  photo: {fileID: 4900000, guid: babafcbd275be59429304e6f390ac7fb, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1

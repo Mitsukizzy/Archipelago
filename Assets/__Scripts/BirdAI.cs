@@ -118,10 +118,7 @@ public class BirdAI : MonoBehaviour {
                 StartCoroutine ( AttackPlayer () );
             }
         }
-        if(isDead){
-            //play death sound
-            Destroy(gameObject);
-        }
+
         if (daynight.GetTimeOfDay() > (50 * 0.35) && daynight.GetTimeOfDay() < (50 * 0.75f)) //this is night time
         {
             if (!isSafe)
@@ -212,7 +209,7 @@ public class BirdAI : MonoBehaviour {
     public void TakeDamage()
     {
         hitPoints--;        
-        if (hitPoints <= 0)// && !isDead)
+        if (hitPoints <= 0 && !isDead)
         {
             //obtain dropable item!
             if (GetComponent<Interactable>().gatherableItem != null)
@@ -232,6 +229,7 @@ public class BirdAI : MonoBehaviour {
                 arrowObj.GetComponent<Arrow>().setDir(Vector3.down);
             }
             mAudio.PlayOnce ( "enemyDeath" );
+            isDead = true;
             GetComponent<Animator>().SetTrigger("Dead");
         }
         else
