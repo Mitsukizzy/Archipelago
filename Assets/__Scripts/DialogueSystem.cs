@@ -80,10 +80,11 @@ public class DialogueSystem : MonoBehaviour
             objective.GetComponent<Text> ().color = objTextColor;
         }
 
-        // Start dialogue if never been to beach, assume picked up backpack
+        // Start dialogue if never been to beach
         if ( Application.loadedLevelName == "1_Beach" && !mGame.CheckHasVisitedBeach() )
         {
             StartDialogue ( "beach1" );
+            mGame.SetHasVisitedBeach ( true );
         }
     }
 

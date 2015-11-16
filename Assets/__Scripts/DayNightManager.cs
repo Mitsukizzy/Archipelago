@@ -99,6 +99,8 @@ public class DayNightManager : MonoBehaviour
 
     public void ContinueDay()
     {
+        mGame = GetComponent<GameManager> ();
+        mAudio = GetComponent<AudioManager> ();
         mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
         mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
 
@@ -107,7 +109,8 @@ public class DayNightManager : MonoBehaviour
 
         mChar = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
 
-        if ( mGame.GetPreviousSceneIndex () == -1 ) // Is the first time this is loaded
+        Debug.Log ( "PrevL " + mGame.GetPreviousSceneIndex () );
+        if ( mGame.GetPreviousSceneIndex () == 0 || mGame.GetPreviousSceneIndex () == 7 ) // Is the first time this is loaded, or resuming from gameover
         {
             StartCoroutine ( AdvanceHour ( 1 ) );
         }
@@ -165,7 +168,7 @@ public class DayNightManager : MonoBehaviour
         CheckTime ();
         mSlider.value = timeOfDay;
         mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
-        
+        Debug.Log ( "Time of Day: " + timeOfDay );
         StartCoroutine ( AdvanceHour ( 1 ) );
     }
 
