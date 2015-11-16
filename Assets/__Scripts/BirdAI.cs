@@ -28,6 +28,7 @@ public class BirdAI : MonoBehaviour {
 
     private DayNightManager daynight;
     private AudioManager mAudio;
+    private Animator mAnimator;
 
     bool isSafe = false;
 
@@ -62,6 +63,7 @@ public class BirdAI : MonoBehaviour {
 
         daynight = GameObject.FindGameObjectWithTag("Manager").GetComponent<DayNightManager>();
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
+        mAnimator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -69,6 +71,7 @@ public class BirdAI : MonoBehaviour {
         int rng = Random.Range(1, 100);
         if (m_State == BirdState.Idle)
         {
+            mAnimator.SetBool("isAggrod", false);
             if (rng <= moveChance)
             {
                 m_State = BirdState.Moving;
@@ -79,6 +82,7 @@ public class BirdAI : MonoBehaviour {
         }
         else if (m_State == BirdState.Moving)
         {
+            mAnimator.SetBool("isAggrod", false);
             updateFacing();
             float distCovered = (Time.time - moveTime) * speed;
             float fracJourney = distCovered/journeyLength;
@@ -89,6 +93,7 @@ public class BirdAI : MonoBehaviour {
             }
         }
         else if(m_State == BirdState.Attack){
+            mAnimator.SetBool("isAggrod", true);
             Vector3 charOffset = m_Char.transform.position;
             charOffset.y += m_Char.GetComponent<SpriteRenderer>().bounds.size.y;
             //charOffset.x += m_Char.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -178,7 +183,7 @@ public class BirdAI : MonoBehaviour {
     {
         if (canAttack && Mathf.Abs(m_Char.transform.position.x - transform.position.x) <= attackRange)
         {
-            GetComponent<Animator>().SetTrigger("Attack");
+           mAnimator.SetTrigger("Attack");
             m_Char.GetComponent<Character>().TakeDamage(attackDmg);
         }
         canAttack = false;
@@ -199,6 +204,7 @@ public class BirdAI : MonoBehaviour {
                     m_State = BirdState.Attack;
                 }
                 TakeDamage();
+                mAnimator.SetTrigger("Hit");
             }
         }
     }
@@ -217,8 +223,6 @@ public class BirdAI : MonoBehaviour {
                     GetComponent<Interactable>().gatherableItem = null;
                 }
             }
-            //GetComponent<Animator>().SetTrigger("Death");
-            isDead = true;
             int arrowReward = Random.Range(1, 3);
             for (int i = 0; i < arrowReward; i++)
             {
@@ -228,10 +232,16 @@ public class BirdAI : MonoBehaviour {
                 arrowObj.GetComponent<Arrow>().setDir(Vector3.down);
             }
             mAudio.PlayOnce ( "enemyDeath" );
+            GetComponent<Animator>().SetTrigger("Dead");
         }
         else
         {
             mAudio.PlayOnce ( "enemyDamaged" );
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

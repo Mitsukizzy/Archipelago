@@ -115,7 +115,7 @@ public class Character : MonoBehaviour
                 m_Animator.SetBool("isAtking", false);
             }
         }
-        if ( m_Input.InteractButtonPressed() && gatherFrom != null && m_State != PlayerState.Aim )
+        if ( m_Input.InteractButtonPressed() && gatherFrom != null && m_State != PlayerState.Aim && m_State != PlayerState.Dialogue)
         {
             if (gatherFrom.tag != "arrow" && gatherFrom.GetComponent<Interactable>().GetCanGather() )
             {

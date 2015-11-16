@@ -276,15 +276,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.x
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.y
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.z
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
@@ -751,6 +751,11 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 115982, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
   m_IsPrefabParent: 0
@@ -1061,15 +1066,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.x
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.y
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.z
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
@@ -1117,6 +1122,11 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 115982, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
   m_IsPrefabParent: 0
@@ -1366,6 +1376,11 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 115982, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
   m_IsPrefabParent: 0
@@ -1510,15 +1525,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.x
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.y
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     - target: {fileID: 410454, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
       propertyPath: m_LocalScale.z
-      value: 7.05758095
+      value: 2.13143492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66b3821c2ecb0954d8d4c5cff53d10ac, type: 2}
@@ -1632,6 +1647,11 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 115982, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
   m_IsPrefabParent: 0
@@ -1823,6 +1843,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 115982, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e72ace3437ba8c346adab841d7b1c94a, type: 2}
   m_IsPrefabParent: 0
