@@ -138,6 +138,7 @@ MonoBehaviour:
   sndRefreshed: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
   sndCook: {fileID: 8300000, guid: c81960a9fcf62bf48978eec0cab0c9f3, type: 3}
   sndNewItem: {fileID: 8300000, guid: 3fe4c300b06b24e4aaa7abab24bc4099, type: 3}
+  sndArrowPickup: {fileID: 8300000, guid: 158183f0d8ed9c84fb1c841be30ce3cf, type: 3}
   sndFailed: {fileID: 8300000, guid: f0607021e665d52458fa3628db33c7aa, type: 3}
   sndRustle: {fileID: 8300000, guid: bbbd468dc0249e044b4965e28f7c2cc9, type: 3}
   sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
@@ -430,6 +431,10 @@ Prefab:
       propertyPath: musicPlainsDay
       value: 
       objectReference: {fileID: 8300000, guid: fa4489b050f959b429b28c9362a55d51, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndArrowPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 158183f0d8ed9c84fb1c841be30ce3cf, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}

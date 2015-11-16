@@ -166,7 +166,6 @@ public class DayNightManager : MonoBehaviour
         CheckTime ();
         mSlider.value = timeOfDay;
         mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
-        Debug.Log ( "Time of Day: " + timeOfDay );
         StartCoroutine ( AdvanceHour ( 1 ) );
     }
 

@@ -275,6 +275,7 @@ public class Character : MonoBehaviour
     public void CollectArrow()
     {
         numArrows++;
+        m_Audio.PlayOnce ( "arrowPickup" );
         if (numArrows == 1)
         {
             bow.GetComponent<BowScript>().swapSprite();

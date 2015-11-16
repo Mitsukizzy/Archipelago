@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndRefreshed;
     public AudioClip sndCook;
     public AudioClip sndNewItem;
+    public AudioClip sndArrowPickup;
     public AudioClip sndFailed;
     public AudioClip sndRustle;
     public AudioClip sndPlayerDamaged;
@@ -179,6 +180,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "newItem":
                 m_AudioSource.PlayOneShot ( sndNewItem, sfxVolume );
+                break;
+            case "arrowPickup":
+                m_AudioSource.PlayOneShot ( sndArrowPickup, sfxVolume );
                 break;
             case "failed":
                 m_AudioSource.PlayOneShot ( sndFailed, sfxVolume );
