@@ -90,7 +90,6 @@ public class DialogueSystem : MonoBehaviour
         if ( Application.loadedLevelName == "1_Beach" && !mGame.CheckHasVisitedBeach() )
         {
             StartDialogue ( "beach1" );
-            mGame.SetHasVisitedBeach ( true );
         }
     }
 
@@ -162,6 +161,7 @@ public class DialogueSystem : MonoBehaviour
                 objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
                 break;
             case "beach3":  // boat
+                mGame.SetHasVisitedBeach ( true );
                 if ( !mGame.CheckItem( "Backpack" ) ) // If backpack has been interacted with
                 {
                     StartDialogue( "afterBagBoat" );
