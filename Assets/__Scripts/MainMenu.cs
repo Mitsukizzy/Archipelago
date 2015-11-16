@@ -78,11 +78,11 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds ( waitDur );
         creditsDev.CrossFadeAlpha ( 1.0f, fadeDur, false );
         yield return new WaitForSeconds ( waitDur );
+        creditsMusic.CrossFadeAlpha ( 1.0f, fadeDur, false );
+        yield return new WaitForSeconds ( waitDur );
         creditsArt.CrossFadeAlpha ( 1.0f, fadeDur, false );
         yield return new WaitForSeconds ( waitDur );
-        creditsMusic.CrossFadeAlpha ( 1.0f, fadeDur, false );
-        yield return new WaitForSeconds ( waitDur * 1.25f );
-        creditsSpecial.CrossFadeAlpha ( 1.0f, fadeDur * 1.25f, false );
+        creditsSpecial.CrossFadeAlpha ( 1.0f, fadeDur, false );
         yield return new WaitForSeconds ( waitDur * 1.5f );
         creditsLogos.CrossFadeAlpha ( 1.0f, fadeDur * 1.5f, false );
     }
