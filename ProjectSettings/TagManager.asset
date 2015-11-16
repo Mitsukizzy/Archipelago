@@ -26,6 +26,7 @@ TagManager:
   - JPPlains
   - Dialogue
   - Bow
+  - Story
   layers:
   - Default
   - TransparentFX

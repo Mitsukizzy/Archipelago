@@ -15,6 +15,8 @@ public class Interactable : MonoBehaviour
     public int gathersRemaining = 1;
     public GameObject gatherBar;
 
+    public GameObject StoryItem;
+
 	// Use this for initialization
 	void Start () 
     {
