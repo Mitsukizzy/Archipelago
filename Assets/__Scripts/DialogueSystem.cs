@@ -186,7 +186,8 @@ public class DialogueSystem : MonoBehaviour
                 break;
             case "YouWin":
                 mGame.SetHasJustWon ( true );
-                mGame.MainMenu();
+                GameObject.Find("WinCanvas").GetComponent<WinFade>().StartOverlay();
+                StartCoroutine(WaitForFinish(5));
                 break;
         }
     }
@@ -196,5 +197,11 @@ public class DialogueSystem : MonoBehaviour
         yield return new WaitForSeconds ( seconds );
         //objective.GetComponent<Text> ().text = "";
         rightArrow.SetActive(false);
+    }
+
+    IEnumerator WaitForFinish(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        mGame.MainMenu();
     }
 }

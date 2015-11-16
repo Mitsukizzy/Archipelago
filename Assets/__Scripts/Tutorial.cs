@@ -19,8 +19,6 @@ public class Tutorial : MonoBehaviour
     public GameObject dialogueBox;
     public GameObject moveRight;
 
-    private Intro intro;
-
     private DialogueSystem mDialogue;
     private GameObject backpack;
     private GameObject backpackUI;

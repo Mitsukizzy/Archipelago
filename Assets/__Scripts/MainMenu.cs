@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
     private GameManager m_Game;
     private GameObject m_Credits;
 
+    public GameObject winBoat;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -37,6 +39,7 @@ public class MainMenu : MonoBehaviour
         {
             m_Game.SetHasJustWon ( false );
             OpenCredits ();
+            winBoat.SetActive(true);
         }
 	}
 
@@ -90,6 +93,7 @@ public class MainMenu : MonoBehaviour
     public void CloseCredits ()
     {
         m_Credits.SetActive ( false );
+        winBoat.SetActive(false);
     }
 
     public void NoPress ()
