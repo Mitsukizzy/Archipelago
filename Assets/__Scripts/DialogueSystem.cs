@@ -19,6 +19,9 @@ public class DialogueSystem : MonoBehaviour
     public TextAsset boatNotDone; //interact with the boat when you dont have all the objects
     public TextAsset boatDone; //interact with the boat when you have all the objects
 	public TextAsset afterPlainsJP;
+    public TextAsset watch;
+    public TextAsset glasses;
+    public TextAsset map;
 
     public Dictionary<string, string> mDialogues;
     private string[] curDialogue;
@@ -55,6 +58,9 @@ public class DialogueSystem : MonoBehaviour
         mDialogues.Add ( "NotYet", boatNotDone.text );
         mDialogues.Add ( "YouWin", boatDone.text );
 		mDialogues.Add ( "afterPlains", afterPlainsJP.text);
+        mDialogues.Add("watch", watch.text);
+        mDialogues.Add("glasses", glasses.text);
+        mDialogues.Add("map", map.text);
 
         mGame = GetComponent<GameManager> ();
 

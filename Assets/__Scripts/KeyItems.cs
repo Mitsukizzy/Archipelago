@@ -126,6 +126,12 @@ public class KeyItems : MonoBehaviour
                 gameObject.GetComponent<Interactable>().ReceiveItem();
                 Destroy(gameObject);
             }
+            if (gameObject.tag == "Story")
+            {
+                mDialogue.StartDialogue(transform.name);
+                GetComponent<Interactable>().StoryItem.SetActive(true);
+            }
+
         }
     }
 
@@ -138,6 +144,10 @@ public class KeyItems : MonoBehaviour
         if ( coll.gameObject.tag == "Char" )
         {
             canInteract = true;
+        }
+        if (gameObject.tag == "Story")
+        {
+            GetComponent<Interactable>().StoryItem.SetActive(false);
         }
     }
 }

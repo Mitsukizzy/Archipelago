@@ -212,6 +212,9 @@ MonoBehaviour:
   boatNotDone: {fileID: 4900000, guid: f47ed44348e1dde4896f99417f94c184, type: 3}
   boatDone: {fileID: 4900000, guid: 203e481f3cbd4404e9ca0c456c5ddc31, type: 3}
   afterPlainsJP: {fileID: 4900000, guid: f2e5bf26042544411a75dee81514f94c, type: 3}
+  watch: {fileID: 4900000, guid: 2c16833bf3efac745b94045a5f85fa86, type: 3}
+  glasses: {fileID: 4900000, guid: 6f2c12d389227f141a634861e2fbd8ee, type: 3}
+  map: {fileID: 4900000, guid: cb8708389e185bf4693ccf3893abfee6, type: 3}
 --- !u!114 &11485780
 MonoBehaviour:
   m_ObjectHideFlags: 1
