@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sndPlayerDamaged;
     public AudioClip sndEnemyDamaged;
     public AudioClip sndEnemyDeath;
+    public AudioClip sndFixBoat;
 
     private AudioSource m_AudioSource;
     private AudioSource m_MusicSource;
@@ -210,6 +211,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "transition":
                 m_AudioSource.PlayOneShot ( sndTransition, 0.2f );
+                break;
+            case "fixBoat":
+                m_AudioSource.PlayOneShot ( sndFixBoat, 0.3f );
                 break;
             default:
                 break;

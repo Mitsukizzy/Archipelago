@@ -144,6 +144,7 @@ MonoBehaviour:
   sndPlayerDamaged: {fileID: 8300000, guid: 1416bafefdff77243a7ad6304668eaea, type: 3}
   sndEnemyDamaged: {fileID: 8300000, guid: 4163136d236ff674db97174f4378c24d, type: 3}
   sndEnemyDeath: {fileID: 8300000, guid: 0bedab25e883fd743a9e321815893094, type: 3}
+  sndFixBoat: {fileID: 8300000, guid: 17a4aeb1773b3e340a263c1022baaa57, type: 3}
 --- !u!114 &11446744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcff1c37af8f45c45b0dc8873046333d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackMetrics: 0
+  trackMetrics: 1
 --- !u!114 &11448892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -436,6 +437,14 @@ Prefab:
       propertyPath: sndArrowPickup
       value: 
       objectReference: {fileID: 8300000, guid: 158183f0d8ed9c84fb1c841be30ce3cf, type: 3}
+    - target: {fileID: 0}
+      propertyPath: sndFixBoat
+      value: 
+      objectReference: {fileID: 8300000, guid: 17a4aeb1773b3e340a263c1022baaa57, type: 3}
+    - target: {fileID: 0}
+      propertyPath: trackMetrics
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185774}

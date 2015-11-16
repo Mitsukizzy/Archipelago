@@ -66,6 +66,7 @@ public class KeyItems : MonoBehaviour
             {
                 if ( !mGame.CheckItem ( "wood" ) && !mGame.CheckItem ( "rope" ) && !mGame.CheckItem ( "hammer" ) )
                 {
+                    mAudio.PlayOnce ( "fixBoat" );
                     mDialogue.StartDialogue ( "YouWin" );
                 }
                 else if ( !mGame.CheckHasVisitedBeach() )
