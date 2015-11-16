@@ -72,10 +72,6 @@ public class Interactable : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
             }
         }
-        if (GetComponent<Animator>() != null)
-        {
-            GetComponent<Animator>().SetBool("inRange", true);
-        }
         checkForOrder = true;
     }
 

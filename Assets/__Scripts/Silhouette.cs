@@ -26,7 +26,7 @@ public class Silhouette : MonoBehaviour {
 	{
 		SilhouetteCanvas.enabled = true; 
 		SilhouetteBG.anchoredPosition = Camera.main.WorldToScreenPoint(new Vector3(Boat.transform.position.x, 
-		                                                                           Boat.transform.position.y + Boat.GetComponent<SpriteRenderer>().bounds.size.y + 3, 
+		                                                                           Boat.transform.position.y + Boat.GetComponent<SpriteRenderer>().bounds.size.y - 4.2f, 
 		                                                                           Boat.transform.position.z));
 		if(!mGame.CheckItem("wood"))
 		{
