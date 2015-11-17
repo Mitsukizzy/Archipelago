@@ -255,16 +255,16 @@ public class GameManager : MonoBehaviour
         // Our cheat reset keys
         if ( m_input.ResetGameButtonPressed () )
         {
-            //Application.LoadLevel ( 0 ); // back to main menu
+            Application.LoadLevel ( 0 ); // back to main menu
         }
         if ( m_input.ResetFromCampButtonPressed () )
         {
-            // TODO (this will just load wetlands atm)
-            //Application.LoadLevel ( 2 ); // back to latest campfire save
+            // TODO (this will just load beach atm)
+            Application.LoadLevel ( 1 ); 
         } 
         if ( m_input.NextLevelButtonPressed () )
         {
-            //LoadNextLevel ();
+            LoadNextLevel ();
         }
 	}
 
