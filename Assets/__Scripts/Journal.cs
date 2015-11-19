@@ -161,6 +161,13 @@ public class Journal : MonoBehaviour
 			pages.Add ( page7 );
 			firstPlains = true;
 		}
+
+        ToggleJournal();
+        curPage = pages.Count - 1; // Flip to latest page
+        if( curPage % 2 == 1 ) // If the latest page is odd, subtract one
+        {
+            curPage -= 1;   // Needs to be even for updates pages to work
+        }
         UpdatePages ();
     }
 	
