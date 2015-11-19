@@ -63,8 +63,7 @@ public class Journal : MonoBehaviour
             mChar.SetPlayerState ( Character.PlayerState.Interact );
             UpdatePages ();
             isOpen = true;
-            Time.timeScale = 0;
-            
+            Time.timeScale = 0;            
         }
         else
         {
