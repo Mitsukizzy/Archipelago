@@ -76,6 +76,7 @@ public class Combat : MonoBehaviour
             m_Char.SetPlayerState(Character.PlayerState.Idle);
             bow.SetActive(false);
             m_Char.numArrows--;
+            m_Game.IncreaseArrowsShot();
             if (m_Char.numArrows <= 0)
             {
                 m_Char.bow.GetComponent<BowScript>().swapSprite();

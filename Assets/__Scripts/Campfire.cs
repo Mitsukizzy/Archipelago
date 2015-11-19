@@ -85,6 +85,7 @@ public class Campfire : MonoBehaviour
         canCamp = false;
         m_Char.SetPlayerState ( Character.PlayerState.Interact );
         GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ().PlayOnce ( "campsite" );
+        m_Game.IncreaseTimesCamped();
 
         // Fade out and fade in
         isFadingOut = true;

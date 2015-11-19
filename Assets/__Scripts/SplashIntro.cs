@@ -32,15 +32,15 @@ public class SplashIntro : MonoBehaviour
     IEnumerator FadeInThenOut()
     {
         logoUSC.CrossFadeAlpha ( 1.0f, 2.0f, false );
-        yield return new WaitForSeconds ( 4 );
+        yield return new WaitForSeconds ( 3 );
         logoUSC.CrossFadeAlpha ( 0.0f, 1.5f, false );
         yield return new WaitForSeconds ( 1.5f );
         logoBerklee.CrossFadeAlpha ( 1.0f, 2.0f, false );
-        yield return new WaitForSeconds ( 4 );
+        yield return new WaitForSeconds ( 3 );
         logoBerklee.CrossFadeAlpha ( 0.0f, 1.5f, false );
         yield return new WaitForSeconds ( 1.5f );
-        splashBG.GetComponent<Image> ().CrossFadeAlpha ( 0.0f, 3.0f, false );
-        yield return new WaitForSeconds ( 3 );
+        splashBG.GetComponent<Image> ().CrossFadeAlpha ( 0.0f, 2.0f, false );
+        yield return new WaitForSeconds ( 2.5f );
         gameObject.SetActive ( false );
     }
 }

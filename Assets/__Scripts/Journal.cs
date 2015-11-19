@@ -63,11 +63,13 @@ public class Journal : MonoBehaviour
             mChar.SetPlayerState ( Character.PlayerState.Interact );
             UpdatePages ();
             isOpen = true;
+            Time.timeScale = 0;            
         }
         else
         {
             mChar.SetPlayerState ( Character.PlayerState.Idle );
             isOpen = false;
+            Time.timeScale = 1;
         }
 
 		if(pages.Contains(page7) && firstPlains && !mJournal.enabled)
@@ -75,7 +77,6 @@ public class Journal : MonoBehaviour
 			DialogueSystem mDialogue = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().GetDialogueSystem();
 			mDialogue.StartDialogue("afterPlains");
 			firstPlains = false;
-
 		}
     }
 
