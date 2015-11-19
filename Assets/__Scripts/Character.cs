@@ -99,6 +99,23 @@ public class Character : MonoBehaviour
 	void Update () 
     {
         arrowUIText.text = numArrows.ToString();
+
+		if(m_State == PlayerState.Dialogue || m_State == PlayerState.Gather) //Unaggro birds if the character is gathering or in dialogue
+		{
+			if(GameObject.FindGameObjectWithTag("Bird") != null) //if there are any birds in the scene
+			{
+				GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+				foreach (GameObject b in birds)
+				{
+					if(b.GetComponent<BirdAI>().GetBirdState() == BirdAI.BirdState.Attack)
+					{
+						b.GetComponent<BirdAI>().enterSafeArea();
+						b.GetComponent<BirdAI>().StopAttacking();
+					}
+				}
+			}
+		}
+
         if( m_State == PlayerState.Dialogue && Time.timeScale != 0 ) // Make sure the game isn't paused
         {
             m_Animator.SetBool("isWalking", false);

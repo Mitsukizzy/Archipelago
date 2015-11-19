@@ -28,8 +28,6 @@ public class Interactable : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (checkForOrder)
-        {
             if (m_char.transform.position.y < transform.position.y)
             {
                 GetComponent<SpriteRenderer>().sortingOrder = -1;
@@ -38,7 +36,6 @@ public class Interactable : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().sortingOrder = 1;
             }
-        }
 	}
 
 	void OnTriggerEnter2D (Collider2D coll)
@@ -72,7 +69,6 @@ public class Interactable : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
             }
         }
-        checkForOrder = true;
     }
 
     void OnTriggerExit2D ( Collider2D coll )
@@ -90,7 +86,6 @@ public class Interactable : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("inRange", false);
         }
-        checkForOrder = false;
     }
 
 	public void ReceiveItem()

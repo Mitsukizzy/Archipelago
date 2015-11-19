@@ -30,7 +30,7 @@ public class BirdAI : MonoBehaviour {
     private AudioManager mAudio;
     private Animator mAnimator;
 
-    bool isSafe = false;
+    public bool isSafe = false;
 
     public enum BirdState
     {
@@ -243,4 +243,8 @@ public class BirdAI : MonoBehaviour {
         GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().IncreaseBirdsKilled();
         Destroy(gameObject);
     }
+
+	public BirdState GetBirdState(){
+		return m_State;
+	}
 }
