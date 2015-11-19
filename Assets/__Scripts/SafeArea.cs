@@ -19,11 +19,7 @@ public class SafeArea : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Char")
         {
-            GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
-            foreach (GameObject b in birds)
-            {
-                b.GetComponent<BirdAI>().enterSafeArea();
-            }
+			UnaggroBirds();
         }
     }
 
@@ -38,4 +34,12 @@ public class SafeArea : MonoBehaviour {
             }
         }
     }
+
+	public void UnaggroBirds(){
+		GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+		foreach (GameObject b in birds)
+		{
+			b.GetComponent<BirdAI>().enterSafeArea();
+		}
+	}
 }
