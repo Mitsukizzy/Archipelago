@@ -240,6 +240,7 @@ public class BirdAI : MonoBehaviour {
 
     public void Die()
     {
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().IncreaseBirdsKilled();
         Destroy(gameObject);
     }
 }

@@ -151,7 +151,8 @@ public class DayNightManager : MonoBehaviour
 
         if( timeOfDay >= maxTime )
         {
-            timeOfDay = 1; // Start new day
+            timeOfDay = 1;                    // Start new day
+            mGame.IncreaseDaysSurvived();     // Increment day
             mChar.CheckStarved ();
             RandomizeSafeLocation ();
         }

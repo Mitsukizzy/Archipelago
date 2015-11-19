@@ -26,9 +26,13 @@ public class GameManager : MonoBehaviour
     private string metricsText = "";
     private Dictionary<string, float> timeSpentPerLevel = new Dictionary<string, float> ();
     private List<string> locationTimestamps = new List<string> ();
+    private int daysSurvived = 1;
     private int daysStarved = 0;
     private int deaths = 0;
     private int numPlays = 1;
+    private int arrowsShot = 0;
+    private int birdsKilled = 0;
+    private int timesCamped = 0;
 
     private bool hasVisitedBeach = false;
     private bool hasVisitedWetlands = false;
@@ -389,9 +393,13 @@ public class GameManager : MonoBehaviour
 
     void GenerateMetricsString ()
     {
-        metricsText += "-------- Playthrough " + numPlays + " --------";
-        metricsText += "Days Starved: " + daysStarved + '\n';
-        metricsText += '\n' + "Player Deaths: " + deaths + '\n';
+        metricsText += "-------- Playthrough " + numPlays + " --------\n";
+        metricsText += "Days Survived: " + daysSurvived + '\n';
+        metricsText += "Times Starved: " + daysStarved + '\n';
+        metricsText += "Player Deaths: " + deaths + '\n' + '\n';
+        metricsText += "Arrows Shot: " + arrowsShot + '\n';
+        metricsText += "Birds Killed: " + birdsKilled + '\n';
+        metricsText += "Times Camped: " + timesCamped + '\n';
 
         metricsText += '\n' + "Timestamps of visits to each location. (in seconds since game start)" + '\n';
         for ( int i = 0; i < locationTimestamps.Count; i++ )
@@ -407,11 +415,34 @@ public class GameManager : MonoBehaviour
         locationTimestamps = new List<string> ();
         daysStarved = 0;
         deaths = 0;
+        arrowsShot = 0;
+        birdsKilled = 0;
+        timesCamped = 0;
+    }
+
+    public void IncreaseDaysSurvived()
+    {
+        daysSurvived++;
     }
 
     public void IncreaseDaysStarved()
     {
         daysStarved++;
+    }
+
+    public void IncreaseArrowsShot()
+    {
+        arrowsShot++;
+    }
+
+    public void IncreaseBirdsKilled ()
+    {
+        birdsKilled++;
+    }
+
+    public void IncreaseTimesCamped ()
+    {
+        timesCamped++;
     }
 
     public bool CheckItem ( string ItemName )
