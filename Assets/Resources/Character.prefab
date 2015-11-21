@@ -169,8 +169,11 @@ MonoBehaviour:
   numArrows: 10
   hpBar: {fileID: 0}
   hungerBar: {fileID: 0}
+  hpBG_Starved0: {fileID: 21300000, guid: 16523fa954d090c41825f4e43374d096, type: 3}
   hpBG_Starved1: {fileID: 21300000, guid: 3c76ab2f10657b44ebac444c2b8b259f, type: 3}
   hpBG_Starved2: {fileID: 21300000, guid: 1723d058aa0102e44a97959783228a36, type: 3}
+  hpBG_Starved3: {fileID: 21300000, guid: b7c98e47d92d538489dd9ecfba706499, type: 3}
+  hpBG_Starved4: {fileID: 21300000, guid: f62eb9e728399c2438a8b13f197ec09c, type: 3}
   bow: {fileID: 112930}
 --- !u!114 &11461560
 MonoBehaviour:
@@ -259,6 +262,21 @@ Prefab:
       propertyPath: hpBG_Starved2
       value: 
       objectReference: {fileID: 21300000, guid: 1723d058aa0102e44a97959783228a36,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: hpBG_Starved0
+      value: 
+      objectReference: {fileID: 21300000, guid: 16523fa954d090c41825f4e43374d096,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: hpBG_Starved3
+      value: 
+      objectReference: {fileID: 21300000, guid: b7c98e47d92d538489dd9ecfba706499,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: hpBG_Starved4
+      value: 
+      objectReference: {fileID: 21300000, guid: f62eb9e728399c2438a8b13f197ec09c,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

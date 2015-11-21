@@ -169,7 +169,7 @@ public class DayNightManager : MonoBehaviour
         }
         CheckTime ();
         mSlider.value = timeOfDay;
-        mChar.IncrementHunger ( -1 ); // Get hungrier throughout the day
+        mChar.IncrementHunger ( -2 ); // Get hungrier throughout the day
         StartCoroutine ( AdvanceHour ( 1 ) );
     }
 

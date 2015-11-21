@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOfDay: 1
-  secondsPerHour: .100000001
+  secondsPerHour: 4
   sun: {fileID: 21300000, guid: b2feccdaab4e4ab4da1fb6e56d38c8c5, type: 3}
   moon: {fileID: 21300000, guid: 17578e74db4920d4fb0781f6d8d4a8c7, type: 3}
   daylight: {fileID: 0}
@@ -343,7 +343,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: f3024766867013b498eda10dffa6bced, type: 3}
     - target: {fileID: 0}
       propertyPath: secondsPerHour
-      value: .100000001
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sndEnemyDeath

@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     public float runSpeed = 10.0f;
     private float originalSpeed;
     private int health = 100;
-    private int hunger = 100;
+    private int hunger = 200;
 
 	//Gathering variables
 	public GameObject gatherFrom;
@@ -47,8 +47,11 @@ public class Character : MonoBehaviour
     private int timesStarved = 0;
 
     // Health starved bgs
+    public Sprite hpBG_Starved0;    // Default
     public Sprite hpBG_Starved1;
     public Sprite hpBG_Starved2;
+    public Sprite hpBG_Starved3;
+    public Sprite hpBG_Starved4;
 
     //Animator
     private Animator m_Animator;
@@ -344,7 +347,7 @@ public class Character : MonoBehaviour
     // Gets called on a new day
     public void CheckStarved()
     {
-        if( hungerBar.value < 60 )
+        if( hungerBar.value < 80 )
         {
             timesStarved++;
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
@@ -372,10 +375,19 @@ public class Character : MonoBehaviour
         switch( timesStarved )
         {
             case 1:
-                hpBar.GetComponent<Image> ().sprite = hpBG_Starved1;
+                hpBG.GetComponent<Image>().sprite = hpBG_Starved1;
                 break;
             case 2:
-                hpBar.GetComponent<Image> ().sprite = hpBG_Starved1;
+                hpBG.GetComponent<Image>().sprite = hpBG_Starved2;
+                break;
+            case 3:
+                hpBG.GetComponent<Image>().sprite = hpBG_Starved3;
+                break;
+            case 4:
+                hpBG.GetComponent<Image>().sprite = hpBG_Starved4;
+                break;
+            default:
+                hpBG.GetComponent<Image>().sprite = hpBG_Starved0;
                 break;
         }
     }
@@ -392,6 +404,8 @@ public class Character : MonoBehaviour
     public void Revive ()
     {
         // Both back to their default, full values
+        timesStarved = 0;
+        ChangeHPBarSprite();
         hpBar.value = health;
         hungerBar.value = hunger;
         hpBar.maxValue = health;
