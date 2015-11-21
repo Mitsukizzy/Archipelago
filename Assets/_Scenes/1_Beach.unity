@@ -459,6 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 10
+  isBounded: 0
 --- !u!50 &460778712
 Rigidbody2D:
   serializedVersion: 2
@@ -883,9 +884,28 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 6.82485676
       objectReference: {fileID: 0}
+    - target: {fileID: 474592, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 6.90091515
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &817643837 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 138746, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+  m_PrefabInternal: {fileID: 817643836}
+--- !u!114 &817643838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817643837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7586e02e1dc1e45328859fda9e3bc5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &894735757
 GameObject:
   m_ObjectHideFlags: 0

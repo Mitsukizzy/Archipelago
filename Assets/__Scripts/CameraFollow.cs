@@ -17,6 +17,8 @@ public class CameraFollow : MonoBehaviour
     private float bottomBound;
     private SpriteRenderer spriteBounds;
 
+	public bool isBounded = false;
+
     void Awake()
     {
         // Setting up the reference.
@@ -73,6 +75,14 @@ public class CameraFollow : MonoBehaviour
         // Lerp the camera's position between it's current position and it's new position.
         Vector3 newPosition = Vector3.Lerp ( transform.position, newPos, smooth * Time.deltaTime );
         // Keep camera within bounds of the map background
+		if(newPos.x < leftBound || newPos.x > rightBound) 
+		{
+			isBounded = true;
+		}
+		else
+		{
+			isBounded = false;
+		}
         newPosition.x = Mathf.Clamp ( newPosition.x, leftBound, rightBound );
         newPosition.y = Mathf.Clamp ( newPosition.y, bottomBound, topBound );
         transform.position = newPosition;

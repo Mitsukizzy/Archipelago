@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 10
+  isBounded: 0
 --- !u!50 &283262923
 Rigidbody2D:
   serializedVersion: 2
@@ -1020,9 +1021,36 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f3e2a6f42329c4cf0a3a194500bc1dc2, type: 2}
+    - target: {fileID: 474592, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 6.7297368
+      objectReference: {fileID: 0}
+    - target: {fileID: 474592, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 6.7297368
+      objectReference: {fileID: 0}
+    - target: {fileID: 474592, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 6.7297368
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1956393467 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 138746, guid: a86f9554dd6c6e94ca6286e42cb52a76, type: 2}
+  m_PrefabInternal: {fileID: 1956393466}
+--- !u!114 &1956393468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1956393467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7586e02e1dc1e45328859fda9e3bc5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1999162328
 Prefab:
   m_ObjectHideFlags: 0
