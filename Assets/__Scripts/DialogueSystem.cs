@@ -28,8 +28,10 @@ public class DialogueSystem : MonoBehaviour
     private string[] curDialogue;
     private int curIndex = 0;
     private string curKey;  // Keep track of the current dialogue to show special hints at the end of it
+    private bool hasShownFinalHint = false;
     
-    private GameObject objective;
+    private GameObject objParent; // parent container
+    private GameObject objective; // the text
     private Color objTextColor;
     private GameObject objBackground;
     private GameObject rightArrow;
@@ -98,7 +100,6 @@ public class DialogueSystem : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-
     }
 
     // Custom init method
@@ -111,8 +112,9 @@ public class DialogueSystem : MonoBehaviour
         mDialogueBox = GameObject.FindGameObjectWithTag( "Dialogue" ).transform.Find ( "DialogueBox" ).gameObject;
         mDialogueText = mDialogueBox.transform.Find ( "DialogueText" ).GetComponent<Text> ();
 
-        objective = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjText" ).gameObject;
-        objBackground = GameObject.FindGameObjectWithTag ( "Objective" ).transform.Find ( "ObjBackground" ).gameObject; 
+        objParent = GameObject.FindGameObjectWithTag( "Objective" );
+        objective = objParent.transform.Find ( "ObjText" ).gameObject;
+        objBackground = objParent.transform.Find("ObjBackground").gameObject; 
         rightArrow = GameObject.FindGameObjectWithTag ( "Tutorial" ).transform.Find ( "Right" ).gameObject;
         objTextColor = objective.GetComponent<Text> ().color;
     }
@@ -158,9 +160,13 @@ public class DialogueSystem : MonoBehaviour
         {
             case "beach1":  // spawned on island
                 objective.GetComponent<Text> ().text = "Tip: Press <i>H</i> to view help\nTap <i>E</i> to interact with objects";
+                objParent.GetComponent<Animator>().SetTrigger("Show");
+                StartCoroutine ( HideHint ( hintDuration ) );
                 break;
             case "beach2":  // backpack
                 objective.GetComponent<Text> ().text = "Objective: Explore the Beach";
+                objParent.GetComponent<Animator>().SetTrigger("Show");
+                StartCoroutine ( HideHint ( hintDuration ) );
                 break;
             case "beach3":  // boat
                 mGame.SetHasVisitedBeach ( true );
@@ -171,18 +177,29 @@ public class DialogueSystem : MonoBehaviour
                 break;
             case "afterBagBoat":  // after bag and boat             
                 objective.GetComponent<Text> ().text = "Objective: Go inland and explore";
+                objParent.GetComponent<Animator>().SetTrigger("Show");
                 rightArrow.SetActive ( true );
                 StartCoroutine ( HideHint ( hintDuration ) );
                 break;
             case "afterBow":  // shoot birds
                 objective.GetComponent<Text> ().text = "Objective: Shoot a bird!\n<i>Q</i> to AIM and <i>LEFT CLICK</i> to SHOOT";
+                objParent.GetComponent<Animator>().SetTrigger("Show");
+                StartCoroutine ( HideHint ( hintDuration ) );
                 break;
             case "wetlands2":
-                objective.GetComponent<Text>().text = "Objective: Rest at the campsite";
+                if( !hasShownFinalHint ) // don't show if already been to camp
+                {
+                    objective.GetComponent<Text>().text = "Objective: Rest at the campsite";
+                    objParent.GetComponent<Animator>().SetTrigger("Show");
+                    StartCoroutine(HideHint(hintDuration));
+                }
                 break;
             case "wetlands3":
 				mJournal.AddJournalPage("JPWetlands");
                 objective.GetComponent<Text>().text = "Objective: Find a way off the island";
+                objParent.GetComponent<Animator>().SetTrigger("Show");
+                StartCoroutine ( HideHint ( hintDuration ) );
+                hasShownFinalHint = true;
                 break;
             case "YouWin":
                 mGame.SetHasJustWon ( true );
