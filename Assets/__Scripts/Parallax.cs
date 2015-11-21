@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Paralax : MonoBehaviour {
+public class Parallax : MonoBehaviour {
 
 	Character mChar;
 	InputManager m_Input;
