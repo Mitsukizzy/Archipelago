@@ -190,10 +190,13 @@ public class DialogueSystem : MonoBehaviour
                 StartCoroutine(WaitForFinish(5));
                 break;
         }
-		GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
-		foreach (GameObject b in birds)
+		if(curKey != "wetlands3")
 		{
-			b.GetComponent<BirdAI>().exitedSafeArea();
+			GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+			foreach (GameObject b in birds)
+			{
+				b.GetComponent<BirdAI>().exitedSafeArea();
+			}
 		}
     }
 

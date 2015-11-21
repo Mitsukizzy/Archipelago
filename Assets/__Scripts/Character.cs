@@ -226,6 +226,11 @@ public class Character : MonoBehaviour
 				gatherFrom.GetComponent<Interactable>().ReceiveItem();
                 gatherFrom.GetComponent<Interactable>().SwitchToGatheredSprite();
                 gatherBarObj.SetActive(false);
+				GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+				foreach (GameObject b in birds)
+				{
+					b.GetComponent<BirdAI>().exitedSafeArea();
+				}
 			}
 			else
             {
