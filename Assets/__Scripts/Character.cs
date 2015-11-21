@@ -44,6 +44,11 @@ public class Character : MonoBehaviour
     private GameObject hpFill;
     private float hpFillWidth;
     private float hpWidthOffset = 0.0f;
+    private int timesStarved = 0;
+
+    // Health starved bgs
+    public Sprite hpBG_Starved1;
+    public Sprite hpBG_Starved2;
 
     //Animator
     private Animator m_Animator;
@@ -320,6 +325,10 @@ public class Character : MonoBehaviour
     // If time passes and you don't eat, want a negative number
     public void IncrementHunger( int amount )
     {
+        if( speed == runSpeed )
+        {
+            amount *= 2; // If running, hunger runs out twice as fast
+        }
         hungerBar.value += amount;
         if ( hungerBar.value < 60 )
         {
@@ -337,13 +346,15 @@ public class Character : MonoBehaviour
     {
         if( hungerBar.value < 60 )
         {
+            timesStarved++;
             hpBar.maxValue -= ( health / 5 ); // permanently lose a fifth of max health
             m_Game.IncreaseDaysStarved ();
             if( hpBar.value > hpBar.maxValue)
             {
                 hpBar.value = hpBar.maxValue;
             }
-            
+            ChangeHPBarSprite ();
+
             // TODO: Implement better way to indicate permanent reduction of max health
             if ( hpWidthOffset < ( hpFillWidth * 0.8f ) )
             {
@@ -354,6 +365,19 @@ public class Character : MonoBehaviour
         }
         // Since its a new day, replenish some hunger due to resting
         IncrementHunger ( 10 );
+    }
+
+    private void ChangeHPBarSprite()
+    {
+        switch( timesStarved )
+        {
+            case 1:
+                hpBar.GetComponent<Image> ().sprite = hpBG_Starved1;
+                break;
+            case 2:
+                hpBar.GetComponent<Image> ().sprite = hpBG_Starved1;
+                break;
+        }
     }
 
     public bool IsAlive()

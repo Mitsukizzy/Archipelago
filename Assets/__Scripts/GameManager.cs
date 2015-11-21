@@ -420,30 +420,16 @@ public class GameManager : MonoBehaviour
         timesCamped = 0;
     }
 
-    public void IncreaseDaysSurvived()
-    {
-        daysSurvived++;
-    }
+    public int GetDaysSurvived () { return daysSurvived; }
+    public void IncreaseDaysSurvived() { daysSurvived++; }
 
-    public void IncreaseDaysStarved()
-    {
-        daysStarved++;
-    }
+    public void IncreaseDaysStarved() { daysStarved++; }
 
-    public void IncreaseArrowsShot()
-    {
-        arrowsShot++;
-    }
+    public void IncreaseArrowsShot() { arrowsShot++; }
 
-    public void IncreaseBirdsKilled ()
-    {
-        birdsKilled++;
-    }
+    public void IncreaseBirdsKilled () { birdsKilled++; }
 
-    public void IncreaseTimesCamped ()
-    {
-        timesCamped++;
-    }
+    public void IncreaseTimesCamped () { timesCamped++; }
 
     public bool CheckItem ( string ItemName )
     {

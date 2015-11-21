@@ -23,6 +23,7 @@ public class DayNightManager : MonoBehaviour
 
     public Sprite sun;
     public Sprite moon;
+    private Text dayCountText;
 
 	public Light daylight;
 
@@ -103,6 +104,7 @@ public class DayNightManager : MonoBehaviour
         mAudio = GetComponent<AudioManager> ();
         mSlider = GameObject.Find ( "DayNightSlider" ).GetComponent<Slider> ();
         mHandle = GameObject.Find ( "DayNightHandle" ).GetComponent<Image> ();
+        dayCountText = GameObject.Find ( "DayCount_Text" ).GetComponent<Text> ();
 
         mSlider.maxValue = maxTime;
         mSlider.value = timeOfDay;
@@ -153,6 +155,7 @@ public class DayNightManager : MonoBehaviour
         {
             timeOfDay = 1;                    // Start new day
             mGame.IncreaseDaysSurvived();     // Increment day
+            dayCountText.text = "Day " + mGame.GetDaysSurvived (); // Set day text
             mChar.CheckStarved ();
             RandomizeSafeLocation ();
         }

@@ -169,6 +169,8 @@ MonoBehaviour:
   numArrows: 10
   hpBar: {fileID: 0}
   hungerBar: {fileID: 0}
+  hpBG_Starved1: {fileID: 21300000, guid: 3c76ab2f10657b44ebac444c2b8b259f, type: 3}
+  hpBG_Starved2: {fileID: 21300000, guid: 1723d058aa0102e44a97959783228a36, type: 3}
   bow: {fileID: 112930}
 --- !u!114 &11461560
 MonoBehaviour:
@@ -248,6 +250,16 @@ Prefab:
       propertyPath: arrow
       value: 
       objectReference: {fileID: 187520, guid: b11813ff67d7dcc439cb979dc7fe66b9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: hpBG_Starved1
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c76ab2f10657b44ebac444c2b8b259f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: hpBG_Starved2
+      value: 
+      objectReference: {fileID: 21300000, guid: 1723d058aa0102e44a97959783228a36,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124146}
