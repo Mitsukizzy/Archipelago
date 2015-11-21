@@ -40,13 +40,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7398dd85b474344abc83beaa6650ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Cooked Meat. Instant. Health/Stamina +30
+  description: Cooked Meat. Instant. Health/Fullness +30
   healthIncrease: 30
-  staminaIncrease: 30
+  hungerIncrease: 30
   healsHunger: 1
   healsSickness: 0
   healsTired: 0
   isInstant: 1
+  isKey: 0
   cookedItem: {fileID: 0}
 --- !u!212 &21293326
 SpriteRenderer:
@@ -92,6 +93,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: description
+      value: Cooked Meat. Instant. Health/Fullness +30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hungerIncrease
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
