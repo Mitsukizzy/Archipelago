@@ -37,7 +37,7 @@ public class Arrow : MonoBehaviour
 
     }
 
-    void Update ()
+    void FixedUpdate ()
     {
         if (transform.position.y >= floorY && !inMap)
         {
@@ -49,6 +49,7 @@ public class Arrow : MonoBehaviour
         else
         {
             GetComponent<Interactable>().enabled = true;
+			GetComponent<SpriteRenderer>().sprite = GetComponent<Interactable>().activeSprite;
             hasHit = true;
         }
 	}
