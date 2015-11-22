@@ -64,7 +64,7 @@ public class Interactable : MonoBehaviour
 				coll.gameObject.GetComponent<Character>().gatherFrom = this.gameObject;
                 coll.gameObject.GetComponent<Character>().BeginGather();
 			}
-            else if ( gathersRemaining > 0 )
+            else if ( gathersRemaining > 0 && !this.gameObject.name.Contains("Arrow"))
             {
                 GetComponent<SpriteRenderer>().sprite = activeSprite;
             }
