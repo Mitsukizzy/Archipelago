@@ -368,7 +368,7 @@ public class Character : MonoBehaviour
             {
                 // Don't lower max hp if it would make max hp 0
                 hpWidthOffset += ( hpFillWidth / 5.0f );
-                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 12.5f );
+                hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 34.0f );
             }
         }
         // Since its a new day, replenish some hunger due to resting
@@ -415,7 +415,7 @@ public class Character : MonoBehaviour
         hungerBar.value = hunger;
         hpBar.maxValue = health;
         hpWidthOffset = 0;
-        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 12.5f );
+        hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 34.0f );
     }
 
     public void toggleInteract()
