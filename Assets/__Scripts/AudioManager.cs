@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
         if ( Application.loadedLevel != 0 && Application.loadedLevel != 7 )
         {
             m_LayerSource = GameObject.Find("AudioSlave").GetComponent<AudioSource>();
-            m_LayerSource.volume = 0.4f;
+            m_LayerSource.volume = 0.5f;
             m_LayerSource.loop = true;
         }
     }
@@ -81,6 +81,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLoop ( string soundToLoop )
     {
+        if( !m_MusicSource )
+        {
+            SpecialInit();
+        }
+
         switch( soundToLoop )
         {
             // Constants
@@ -117,6 +122,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLayer ( string layerToPlay )
     {
+        if ( !m_LayerSource )
+        {
+            SpecialInit();
+        }
         switch ( layerToPlay )
         {
             // Day Layers
@@ -138,13 +147,14 @@ public class AudioManager : MonoBehaviour
 
         if ( !m_LayerSource.isPlaying )
         {
+            m_LayerSource.Play();
             StartCoroutine( FadeInLayer () );
         }
     }
 
     public IEnumerator FadeInLayer ()
     {
-        for ( float f = 0.0f; f >= 0.4f; f += 0.05f )
+        for ( float f = 0.0f; f >= 1.0f; f += 0.05f )
         {
             m_LayerSource.volume = f;
             yield return new WaitForSeconds( 0.1f );
@@ -153,7 +163,7 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator FadeOutLayer ()
     {
-        for ( float f = 0.4f; f >= 0; f -= 0.05f )
+        for ( float f = 0.5f; f >= 0; f -= 0.05f )
         {
             m_LayerSource.volume = f;
             yield return new WaitForSeconds( 0.1f );

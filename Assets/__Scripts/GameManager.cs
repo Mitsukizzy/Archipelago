@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 	private int PreviousSceneIndex;
 
     // Persistent (Singleton)
-    void Awake ()
+   /* void Awake ()
     {
         if ( instance == null )
         {
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy ( this );
         }
-    }
+    }*/
 
 	// Use this for initialization
 	void Start () 
@@ -370,7 +370,7 @@ public class GameManager : MonoBehaviour
         // Delete persistent objects that will be spawned again in Main Menu
         Destroy ( GameObject.FindGameObjectWithTag ( "UI" ).gameObject );
         Destroy ( GameObject.FindGameObjectWithTag ( "Char" ).gameObject );
-        Application.LoadLevel ( 0 );
+        Application.LoadLevel(0);
     }
 
     public void RetryFromCampfire ()
@@ -413,6 +413,7 @@ public class GameManager : MonoBehaviour
         // Clear these out in case there is another playthrough
         timeSpentPerLevel = new Dictionary<string, float> ();
         locationTimestamps = new List<string> ();
+        daysSurvived = 1;
         daysStarved = 0;
         deaths = 0;
         arrowsShot = 0;

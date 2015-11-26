@@ -41,6 +41,8 @@ public class MainMenu : MonoBehaviour
             OpenCredits ();
             winBoat.SetActive(true);
         }
+        Destroy(m_Game.gameObject);
+        Instantiate(Resources.Load("GameManager", typeof(GameObject)));
 	}
 
     public void PlayPress ()
