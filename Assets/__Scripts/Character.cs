@@ -320,6 +320,11 @@ public class Character : MonoBehaviour
         m_Animator.SetTrigger("Hit");
         hpBar.value -= damage;
         
+		if(hpBar.value/hpBar.maxValue < .3) //if you are under 20% health, flash red
+		{
+			hpFill.transform.GetChild (0).GetComponent<Animator>().SetBool("isLow",true);
+		}
+
         if ( hpBar.value <= 0 )
         {
             m_Audio.PlayOnce ( "playerDeath" );
@@ -418,6 +423,7 @@ public class Character : MonoBehaviour
         hpBar.maxValue = health;
         hpWidthOffset = 0;
         hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 34.0f );
+		hpFill.transform.GetChild (0).GetComponent<Animator>().SetBool("isLow",false);
     }
 
     public void toggleInteract()
@@ -442,6 +448,11 @@ public class Character : MonoBehaviour
         ItemData data = item.GetComponent<ItemData>();
         hpBar.value += data.healthIncrease;
         hungerBar.value += data.hungerIncrease;
+
+		if(hpBar.value/hpBar.maxValue > .3) //if we are healthy again
+		{
+			hpFill.transform.GetChild (0).GetComponent<Animator>().SetBool("isLow",false);
+		}
     }
 
     public void ReturnToCamp()

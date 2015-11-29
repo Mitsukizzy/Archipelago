@@ -380,7 +380,7 @@ public class GameManager : MonoBehaviour
         Application.LoadLevel ( game.GetPreviousSceneIndex () );
         game.SetIsRetrying ( true );
         m_Char = GameObject.FindGameObjectWithTag ( "Char" ).GetComponent<Character> ();
-        m_Char.ReturnToCamp ();
+        //m_Char.ReturnToCamp ();
     }
 
     public void LoadNextLevel()
