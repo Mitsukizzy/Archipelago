@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ( mChar.GetPlayerState() != Character.PlayerState.Gather && mChar.GetPlayerState() != Character.PlayerState.Interact && mChar.GetPlayerState() != Character.PlayerState.Aim && mChar.GetPlayerState() != Character.PlayerState.Dialogue && !m_Cam.isBounded)
+		if ( mChar.GetPlayerState() != Character.PlayerState.Gather && mChar.GetPlayerState() != Character.PlayerState.Interact && mChar.GetPlayerState() != Character.PlayerState.Aim && mChar.GetPlayerState() != Character.PlayerState.Dialogue && !m_Cam.isBounded && !mChar.getColliding())
 		{   
 			// Move character
 			if ( m_Input.GetHorizontalMovement () != Vector3.zero || m_Input.GetVerticalMovement () != Vector3.zero )

@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     private Combat m_Combat;
 
     private bool m_FacingRight;
+	private bool m_isColliding;
 
     public float speed = 5.0f;
     public float runSpeed = 10.0f;
@@ -482,5 +483,15 @@ public class Character : MonoBehaviour
     {
         campLocation = lastCamp;
     }
+
+	public void setColliding(bool isColliding)
+	{
+		m_isColliding = isColliding;
+	}
+
+	public bool getColliding()
+	{
+		return m_isColliding;
+	}
 
 }

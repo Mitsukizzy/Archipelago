@@ -96,6 +96,24 @@ public class Interactable : MonoBehaviour
 		}
     }
 
+	void OnCollisionEnter2D(Collision2D coll) 
+	{
+		if ( coll.gameObject.tag == "Char")
+		{
+			coll.gameObject.GetComponent<Character>().setColliding(true);
+
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D coll)
+	{
+		if( coll.gameObject.tag == "Char")
+		{
+			coll.gameObject.GetComponent<Character>().setColliding(false);
+
+		}
+	}
+
 	public void ReceiveItem()
 	{
         inventory.AddItem(gatherableItem);
