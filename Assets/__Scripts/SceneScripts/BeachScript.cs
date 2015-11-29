@@ -18,10 +18,9 @@ public class BeachScript : MonoBehaviour
         {
             GameObject Backpack = Instantiate ( Resources.Load ( "Backpack", typeof ( GameObject ) ) ) as GameObject;
         }
-        if ( mGame.CheckItem ( "JournalPageBeach" ) )
+        if ( mGame.CheckItem ( "JPBeach" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageBeach", typeof ( GameObject ) ) ) as GameObject;
-            mGame.DoNotSpawnOnLoad ( "JournalPageBeach" );
         }
         if (!(mGame.CheckItem("glasses") && mGame.CheckItem("watch")))
         {

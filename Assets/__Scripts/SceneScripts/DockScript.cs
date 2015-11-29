@@ -14,10 +14,9 @@ public class DockScript : MonoBehaviour {
         //The Forest has wood as a key item for fixing the boat
         mGame = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
-        if ( mGame.CheckItem ( "JournalPageDocks" ) )
+        if ( mGame.CheckItem ( "JPDocks" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageDocks", typeof ( GameObject ) ) ) as GameObject;
-            mGame.DoNotSpawnOnLoad ( "JournalPageDocks" );
         }
         if (mGame.CheckItem("rope"))
         {

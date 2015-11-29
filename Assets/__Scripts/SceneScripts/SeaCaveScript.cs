@@ -12,10 +12,9 @@ public class SeaCaveScript : MonoBehaviour
         //Beach will have the boat that needs to be fixed and the bag to pick up
         mGame = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
 
-        if ( mGame.CheckItem ( "JournalPageSeaCave" ) )
+        if ( mGame.CheckItem ( "JPSeaCave" ) )
         {
             GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPageSeaCave", typeof ( GameObject ) ) ) as GameObject;
-            mGame.DoNotSpawnOnLoad ( "JournalPageSeaCave" );
         }
         if (mGame.CheckItem("hammer"))
         {

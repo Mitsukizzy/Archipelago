@@ -103,6 +103,7 @@ public class KeyItems : MonoBehaviour
             {
                 mJournal.AddJournalPage ( transform.tag );
                 Destroy ( gameObject ); //picked up, not needed anymore
+				mGame.DoNotSpawnOnLoad( transform.tag );
             }
 
             if (gameObject.name.Contains("wood"))

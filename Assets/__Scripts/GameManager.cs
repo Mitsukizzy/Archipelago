@@ -72,10 +72,10 @@ public class GameManager : MonoBehaviour
         KeyItems.Add("wood", true);
         KeyItems.Add("rope", true);
         KeyItems.Add("hammer", true);
-        KeyItems.Add ( "JournalPageBeach", true );
-        KeyItems.Add ( "JournalPageSeaCave", true );
-        KeyItems.Add ( "JournalPageDocks", true );
-		KeyItems.Add ( "JournalPagePlains", true);
+        KeyItems.Add ( "JPBeach", true );
+        KeyItems.Add ( "JPSeaCave", true );
+        KeyItems.Add ( "JPDocks", true );
+		KeyItems.Add ( "JPPlains", true);
         KeyItems.Add("watch", true);
         KeyItems.Add("glasses", true);
         KeyItems.Add("map", true);

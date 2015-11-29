@@ -7,10 +7,9 @@ public class PlainsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mGame = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<GameManager> ();
-		if ( mGame.CheckItem ( "JournalPagePlains" ) )
+		if ( mGame.CheckItem ( "JPPlains" ) )
 		{
 			GameObject JournalPage = Instantiate ( Resources.Load ( "JournalPagePlains", typeof ( GameObject ) ) ) as GameObject;
-			mGame.DoNotSpawnOnLoad ( "JournalPagePlains" );
 		}
 	}
 	

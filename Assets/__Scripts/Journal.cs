@@ -154,7 +154,7 @@ public class Journal : MonoBehaviour
         if ( pageName.Equals ( "JPDocks" ) )
         {
             pages.Add ( page5 );
-			pages.Add ( page6 );
+			//pages.Add ( page6 );
         }
 		if ( pageName.Equals ( "JPPlains") )
 		{
