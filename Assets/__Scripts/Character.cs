@@ -52,6 +52,8 @@ public class Character : MonoBehaviour
     public Sprite hpBG_Starved2;
     public Sprite hpBG_Starved3;
     public Sprite hpBG_Starved4;
+	
+	private float[] hpFillWidths = new float[5] {  0, 29, 99, 99, 98 };
 
     //Animator
     private Animator m_Animator;
@@ -367,7 +369,7 @@ public class Character : MonoBehaviour
             if ( hpWidthOffset < ( hpFillWidth * 0.8f ) )
             {
                 // Don't lower max hp if it would make max hp 0
-                hpWidthOffset += ( hpFillWidth / 5.0f );
+                hpWidthOffset += hpFillWidths[timesStarved];
                 hpFill.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( hpFillWidth - hpWidthOffset, 34.0f );
             }
         }
