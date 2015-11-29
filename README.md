@@ -23,9 +23,9 @@ Surviving isn’t easy and you’ll have to collect resources to sustain yoursel
 * Richard Lemarchand
 
 ## Controls
-WASD to Move
-E to interact
-Q to aim bow, Left Click to shoot
-Hold Shift while moving to Run
-H to toggle the help/controls screen
-ESC to Pause
+* WASD to Move
+* E to interact
+* Q to aim bow, Left Click to shoot
+* Hold Shift while moving to Run
+* H to toggle the help/controls screen
+* ESC to Pause
