@@ -48,6 +48,10 @@ public class Interactable : MonoBehaviour
 				Destroy(gameObject);
 			}
 		}
+		if(name.Contains("camp") || name.Contains("Camp"))
+		{
+			GetComponent<Animator>().SetBool("isNear", true);
+		}
 	}
 
     void OnTriggerStay2D ( Collider2D coll )
@@ -86,6 +90,10 @@ public class Interactable : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("inRange", false);
         }
+		if(name.Contains("camp") || name.Contains("Camp"))
+		{
+			GetComponent<Animator>().SetBool("isNear", false);
+		}
     }
 
 	public void ReceiveItem()
