@@ -1,28 +1,34 @@
-# Archipelago
+--------------------
+ARCHIPELAGO
+--------------------
 
-##### Game Description:
+Game Description:
 An adventure-survival game where you explore islands and scavenge in the hopes of surviving long enough find a way out of the archipelago. 
 There will be day and night differences, with night time being a particularly dangerous time to be moving around as the island is full of treacherous beasts. 
-Surviving isnâ€™t easy and youâ€™ll have to collect resources to sustain yourself through each day. 
+Surviving isn’t easy and you’ll have to collect resources to sustain yourself through each day. 
 
-## Credits
-#### Design & Engineering
+------------
+CREDITS
+------------
+Design & Engineering
 * Izzy Benavente
 * Jasmine Ying
 
-#### Art
+Art
 * Julie Ku (Lead)
 * Stacy Tindaan
 * Dang Duy Trinh
 
-#### Music
+Music
 * Alex Berner
 
-#### Special Thanks
+Special Thanks
 * Peter Brinson
 * Richard Lemarchand
 
-## Controls
+---------------
+CONTROLS
+---------------
 WASD to Move
 E to interact
 Q to aim bow, Left Click to shoot
