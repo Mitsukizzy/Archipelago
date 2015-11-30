@@ -142,6 +142,8 @@ public class AudioManager : MonoBehaviour
                 m_LayerSource.clip = musicPlainsDay;
                 break;
             default:
+				m_LayerSource.clip = null;
+				m_LayerSource.Stop();	// don't play layer track if no song exists
                 break;
         }
 

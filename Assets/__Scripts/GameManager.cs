@@ -165,11 +165,13 @@ public class GameManager : MonoBehaviour
         else if ( Application.loadedLevel == 4 )
         {
             m_audio.PlayLoop ( "docks" );
+            m_audio.PlayLayer( "none" );
             locationTimestamps.Add ( "Docks - " + Time.time );
         }
         else if ( Application.loadedLevel == 5 )
         {
             m_audio.PlayLoop ( "seacave" );
+            m_audio.PlayLayer( "none" );
             locationTimestamps.Add ( "Sea Cave - " + Time.time );
         }
         else if ( Application.loadedLevel == 6 )
