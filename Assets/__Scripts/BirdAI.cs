@@ -64,10 +64,13 @@ public class BirdAI : MonoBehaviour {
         daynight = GameObject.FindGameObjectWithTag("Manager").GetComponent<DayNightManager>();
         mAudio = GameObject.FindGameObjectWithTag ( "Manager" ).GetComponent<AudioManager> ();
         mAnimator = GetComponent<Animator>();
+
+		GetComponent<SpriteRenderer>().sortingOrder = 4;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		GetComponent<SpriteRenderer>().sortingOrder = 4;
         int rng = Random.Range(1, 100);
         if (m_State == BirdState.Idle)
         {
