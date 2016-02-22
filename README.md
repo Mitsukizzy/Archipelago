@@ -11,6 +11,8 @@ https://www.youtube.com/watch?v=9NxR4-VQDYY
 http://izzybenavente.me/Archipelago%20-%20GoldMaster(PC).zip
 ##### Direct Download (Mac): 
 http://izzybenavente.me/Archipelago%20-%20GoldMaster(Mac).zip
+##### Web Build (Playable Online)
+http://www.jasmineying.com/Archipelago.html
 
 ## Credits
 #### Design & Engineering
