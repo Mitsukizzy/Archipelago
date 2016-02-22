@@ -1,8 +1,11 @@
 # Archipelago
 
-## Trailer: https://www.youtube.com/watch?v=9NxR4-VQDYY
-## Direct Download (PC): http://izzybenavente.me/Archipelago%20-%20GoldMaster(PC).zip
-## Direct Download (Mac): http://izzybenavente.me/Archipelago%20-%20GoldMaster(Mac).zip
+#### Trailer: 
+https://www.youtube.com/watch?v=9NxR4-VQDYY
+#### Direct Download (PC): 
+http://izzybenavente.me/Archipelago%20-%20GoldMaster(PC).zip
+#### Direct Download (Mac): 
+http://izzybenavente.me/Archipelago%20-%20GoldMaster(Mac).zip
 
 ##### Game Description:
 An adventure-survival game where you explore islands and scavenge in the hopes of surviving long enough find a way out of the archipelago. 
