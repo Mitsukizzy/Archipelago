@@ -1,4 +1,4 @@
-[logo]: http://izzybenavente.me/images/archipelago.jpg "Archipelago Title Art"
+![Archipelago]: http://izzybenavente.me/images/archipelago.jpg "Archipelago Title Art"
 
 ##### Game Description:
 An adventure-survival game where you explore islands and scavenge in the hopes of surviving long enough find a way out of the archipelago. 
