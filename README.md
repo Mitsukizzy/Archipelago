@@ -7,6 +7,8 @@ Surviving isn’t easy and you’ll have to collect resources to sustain yoursel
 
 ##### Trailer: 
 https://www.youtube.com/watch?v=9NxR4-VQDYY
+##### Archipelago Soundtrack by Alex Berner:
+https://soundcloud.com/alex-berner-606848481/sets/archipelago-soundtrack
 ##### Direct Download (PC): 
 http://izzybenavente.me/Archipelago%20-%20GoldMaster(PC).zip
 ##### Direct Download (Mac): 
